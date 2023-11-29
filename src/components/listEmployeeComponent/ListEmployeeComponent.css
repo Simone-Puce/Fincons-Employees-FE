@@ -1,34 +1,8 @@
-.updateButton {
-    margin-right: 10px;
-}
-
-.deleteButton {
-    margin-right: 10px;
-}
-
 .filterDiv{
     margin-right: 10px;
     display: inline-table;
     margin-bottom: 10px;
     padding:10px;
-}
-
-.filterButtons {
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 10px;
-    font-size: 15px;
-    font-family: Arial;
-    width: 200px;
-    height: 50px;
-    border-width: 0px;
-    color: green;
-    border-color: red;
-    font-weight: bold;
-    border-top-left-radius: 42px;
-    border-top-right-radius: 42px;
-    border-radius: 42px;
-    background-color: black;
 }
 
 .filterTextBox{
@@ -39,27 +13,3 @@
     border-radius: 50px;
 }
 
-.addButton {
-    padding-top: 10px;
-    margin-bottom: 10px;
-    font-family: Roboto, sans-serif;
-    font-weight: 0;
-    font-size: 14px;
-    background-color: #0066CC;
-    padding: 10px 21px;
-    border: 2px solid #0066cc;
-    transition: 1000ms;
-    transform: translateY(0);
-    flex-direction: row;
-    align-items: center;
-    cursor: pointer;
-}
-
-.addButton:hover {
-    transition: 1000ms;
-    padding: 10px 50px;
-    transform: translateY(-0px);
-    background-color: #fff;
-    color: #0066cc;
-    border: solid 2px #0066cc;
-}

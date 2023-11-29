@@ -18,7 +18,6 @@ const ListEmployeeComponent = () => {
 
   const [employees, setEmployees] = useState<EmployeeExample[]>();
   const [filterByName, setFilterByName] = useState<string>();
-  const [hiddenTable, setHiddenTable] = useState<boolean>(true)
 
   useEffect(() => {
     EmployeeService.getEmployees().then((res) => {
@@ -46,22 +45,13 @@ const ListEmployeeComponent = () => {
     }
   }
 
-  const employeeListCheck = () =>{
-    if(employees !== undefined && employees.length >= 1){
-      setHiddenTable(false);
-    }else{
-      setHiddenTable(true)
-    }
-    return hiddenTable
-  };
-
   return (
-    <div className="containerList">
+    <div className="containerList mt-5 pt-5">
       <div className="row">
-        <div className="filterDiv">
+        <div className="d-flex justify-content-center align-items-center filterDiv">
           <Link to="/add-employee">
-            <button className="btn btn-primary addButton">
-              <i className="bi bi-person-fill-add"></i>
+            <button className="btn rounded-pill btn-primary ">
+              <i className="bi bi-person-fill-add" style={{paddingRight: 5}}></i>Add Employee
             </button>
           </Link>
           <input

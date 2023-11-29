@@ -1,7 +1,12 @@
-
-.navbar-brand {
-    position: absolute;
+.centered-navbar {
+    position: relative;
     left: 50%;
-    margin-left: -50px !important;  /* 50% of your logo width */
+    margin-left: -125px !important; 
     display: block;
 }
+
+.offcanvas-width{
+    width: 150px;
+}
+
+

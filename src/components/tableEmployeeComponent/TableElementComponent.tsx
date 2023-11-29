@@ -2,6 +2,7 @@ import React, { Key, MouseEvent, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import EmployeeService from "../../services/EmployeeService";
 import './TableElementComponent.css'
+import utils from "../../utils/Utils";
 
 type emp = {
     id: Key,
@@ -93,8 +94,8 @@ const TableElementComponent = (props: Props) => {
     return (
         <tbody>
             <tr key={employee.id}>
-                <td> <p hidden={updateClick} >{capitalizeFirstLetter(employee.firstName)}</p><input type="text" hidden={!updateClick} value={employee.firstName} onChange={changeFirstNameHandler}></input></td>
-                <td> <p hidden={updateClick} >{capitalizeFirstLetter(employee.lastName)}</p><input type="text" hidden={!updateClick} value={employee.lastName} onChange={changeLastNameHandler}></input></td>
+                <td> <p hidden={updateClick} >{utils.capitalizeFirstLetter(employee.firstName)}</p><input type="text" hidden={!updateClick} value={employee.firstName} onChange={changeFirstNameHandler}></input></td>
+                <td> <p hidden={updateClick} >{utils.capitalizeFirstLetter(employee.lastName)}</p><input type="text" hidden={!updateClick} value={employee.lastName} onChange={changeLastNameHandler}></input></td>
                 <td> <p hidden={updateClick} >{employee.email}</p><input type="text" hidden={!updateClick} value={employee.email} onChange={changeEmailHandler}></input> </td>
                 <td>
                     <div className='ButtonDiv' hidden={updateClick}>
