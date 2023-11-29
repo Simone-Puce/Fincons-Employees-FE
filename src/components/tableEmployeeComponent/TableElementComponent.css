@@ -1,0 +1,8 @@
+.ButtonDiv{
+    justify-content: center;
+    align-items: stretch;
+}
+
+.cancelUpdateButton{
+    margin-left: 10px;
+}

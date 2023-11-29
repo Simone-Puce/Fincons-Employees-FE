@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+.createContainer{
+  margin-top: 50px;
+  min-height: 73vh;
+  display: flex;
+  flex-direction: column;
+}

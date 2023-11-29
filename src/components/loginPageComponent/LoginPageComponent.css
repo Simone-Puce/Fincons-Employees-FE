@@ -1,0 +1,39 @@
+.card{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: auto;
+    align-self: center;
+}
+
+.divCard{
+    display: flex;
+    justify-content: center;
+}
+
+.textInfo{
+    text-align: center;
+}
+
+
+
+.itemList {
+    position: relative;
+    justify-content: center;
+    display: flex;
+    padding: var(--bs-list-group-item-padding-y) var(--bs-list-group-item-padding-x);
+    color: var(--bs-list-group-color);
+    text-decoration: none;
+    background-color: var(--bs-list-group-bg);
+    border: var(--bs-list-group-border-width) solid var(--bs-list-group-border-color);
+
+}
+
+.formLogin{
+    display: contents;
+    align-items: center;
+}
+
+.registerButton{
+    margin-left: 10px;
+}
