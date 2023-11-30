@@ -8,7 +8,6 @@ interface Props {
 const ProtectedRoutes = ( props : Props) =>{
     const auth = localStorage.getItem("loggedIn"+props.userEmail)
     return auth ? <Outlet/> : <Navigate to={"/login"}/>
-
 }
 
 export default ProtectedRoutes
