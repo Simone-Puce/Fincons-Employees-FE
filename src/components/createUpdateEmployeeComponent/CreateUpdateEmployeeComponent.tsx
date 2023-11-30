@@ -63,12 +63,12 @@ const CreateUpdateEmployeeComponent = () => {
                                     <label>Last name</label>
                                     <input placeholder='Last name' name='lastName' className='form-control' value={employee.lastName || ''} onChange={changeLastNameHandler}></input>
                                 </div>
-                                <div className='form-group'>
+                                <div className='form-group mb-3'>
                                     <label>Email</label>
                                     <input placeholder='Email address' name='email' className='form-control' value={employee.email || ''} onChange={changeEmailHandler}></input>
                                 </div>
-                                <button className='btn btn-success' onClick={saveOrUpdateEmployee}> <i className="bi bi-check-square-fill"></i></button>
-                                <button className='btn btn-danger' style={{ marginLeft: "10px" }} onClick={backToList}><i className="bi bi-arrow-left-square-fill"></i> </button>
+                                <button className='btn btn-success' onClick={saveOrUpdateEmployee}>Save</button>
+                                <button className='btn btn-danger' style={{ marginLeft: "10px" }} onClick={backToList}> Cancel </button>
                             </form>
                         </div>
                     </div>

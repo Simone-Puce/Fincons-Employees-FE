@@ -20,9 +20,11 @@ const ListEmployeeComponent = () => {
   const [filterByName, setFilterByName] = useState<string>();
 
   useEffect(() => {
-    EmployeeService.getEmployees().then((res) => {
+    if(filterByName!=="created"){
+       EmployeeService.getEmployees().then((res) => {
       setEmployees(res.data);
     });
+    }
   })
 
   useEffect(() => {

@@ -24,23 +24,34 @@ const ViewEmployeeComponent = () => {
   };
 
   return (
-    <div>
-      <div className="card col-md-6 offset-md-3">
+    <div className="mt-5 pt-3">
+      <div className="card col-md-6 offset-md-3 mt-5">
         <h3 className="text-center"> View Employee Details </h3>
         <div className="card-body">
-          <div className="row">
-            <label> Employee first name: {employee.firstName} </label>
-            <label> Employee last name: {employee.lastName} </label>
-            <label> Employee email: {employee.email} </label>
+          <div className="row d-flex justify-content-center">
+            <label className="mb-3 text-center">
+              {" "}
+              Employee first name: {employee.firstName}{" "}
+            </label>
+            <label className="mb-3 text-center">
+              {" "}
+              Employee last name: {employee.lastName}{" "}
+            </label>
+            <label className="mb-3 text-center">
+              {" "}
+              Employee email: {employee.email}{" "}
+            </label>
           </div>
-
+          <div className="d-flex justify-content-center">
           <button
             type="button"
             className="btn btn-primary"
             onClick={goToHomepage}
           >
-            {" "} Go back to the employee list
+            {" "}
+            Go back to the employee list
           </button>
+          </div>
         </div>
       </div>
     </div>

@@ -83,14 +83,6 @@ const TableElementComponent = (props: Props) => {
         props.setfilter("")
     }
 
-    function capitalizeFirstLetter(str: string): string {
-        return str.replace(/^\w/, (c) => c.toUpperCase());
-    }
-
-
-
-
-
     return (
         <tbody>
             <tr key={employee.id}>
@@ -98,12 +90,12 @@ const TableElementComponent = (props: Props) => {
                 <td> <p hidden={updateClick} >{utils.capitalizeFirstLetter(employee.lastName)}</p><input type="text" hidden={!updateClick} value={employee.lastName} onChange={changeLastNameHandler}></input></td>
                 <td> <p hidden={updateClick} >{employee.email}</p><input type="text" hidden={!updateClick} value={employee.email} onChange={changeEmailHandler}></input> </td>
                 <td>
-                    <div className='ButtonDiv' hidden={updateClick}>
-                        <button className='btn btn-info updateButton' onClick={(e) => updateButtonHandler(e, employee.id)} > <i className="bi bi-pencil-square"></i> </button>
+                    <div className='ButtonDiv div-style' hidden={updateClick}>
+                        <button className='btn btn-info' onClick={(e) => updateButtonHandler(e, employee.id)} > <i className="bi bi-pencil-square"></i> </button>
                         <button type="button" className="btn btn-warning deleteButton" onClick={(e) => deleteButtonHandler(employee.id)}><i className="bi bi-trash3-fill"></i></button>
                         <Link to={`/view-employee/${employee.id}`}><button type="button" className="btn btn-info"><i className="bi bi-info-circle"></i></button></Link>
                     </div>
-                    <div hidden={!updateClick}>
+                    <div hidden={!updateClick} className="div-two-buttons">
                         <button className='btn btn-success confirmUpdateButton' onClick={(e) => updateEmployee(employee.id)}> <i className="bi bi-check-square-fill"></i> </button>
                         <button className='btn btn-danger cancelUpdateButton' onClick={(e) => updateButtonHandler(e, employee.id)}> <i className="bi bi-arrow-left-square-fill"></i></button>
                     </div>

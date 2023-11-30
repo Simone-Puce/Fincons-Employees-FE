@@ -6,3 +6,13 @@
 .cancelUpdateButton{
     margin-left: 10px;
 }
+
+.div-style{
+    display: flex;
+    justify-content: space-around;
+}
+
+.div-two-buttons{
+    display: flex;
+    justify-content: space-evenly;
+}
