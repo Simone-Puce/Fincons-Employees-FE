@@ -34,8 +34,8 @@ const LoginPageComponent = (props: Props) => {
       props.setUserEmail(input.email);
     } else {
       Swal.fire({
-        title: "Entra?",
-        text: "Non penso proprio",
+        title: "Error?",
+        text: "Email or password are wrong",
         icon: "error",
         confirmButtonText: "OK!",
       });
@@ -140,14 +140,7 @@ const LoginPageComponent = (props: Props) => {
                       </motion.button>
                     </div>
                     <div className="d-flex justify-content-center">
-
                       <p> Non sei ancora registrato? <a onClick={navigateToRegister} className="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Registrati</a></p>
-                     {/* <button
-                        onClick={navigateToRegister}
-                        className="btn btn-link btn-block btn-lg mb-4 rounded-pill"
-                      >
-                        Register
-                      </button>*/}
                     </div>
                   </div>
                 </form>

@@ -10,6 +10,7 @@ import ViewEmployeeComponent from "./components/viewEmployeeComponent/ViewEmploy
 import LoginPageComponent from "./components/loginPageComponent/LoginPageComponent";
 import RegisterPageComponent from "./components/registerPageComponent/RegisterPageComponent";
 import FooterComponent from "./components/footerComponent/FooterComponent";
+import React from "react";
 
 function App() {
   const [selectedUser, setSelectedUser] = useState<string>("");

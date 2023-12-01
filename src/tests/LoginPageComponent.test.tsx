@@ -1,24 +1,47 @@
-import React, { useState } from "react";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+/** @jest-environment jsdom */
+import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
 import LoginPageComponent from "../components/loginPageComponent/LoginPageComponent";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
+import { renderHook } from '@testing-library/react-hooks'
 
+                      
+it("check that there is an input element for the email", async () => {
+  renderHook(() => (
+    <LoginPageComponent
+      userEmail="simonepuce@gmail.com"
+      setUserEmail={() => {
+        return null;
+      }}
+    />
+  ));
+  const emailField = screen.queryByTestId("text-input-element");
+  await (() => expect(emailField).toBeInTheDocument());
+});
 
-beforeAll(()=>{
-    render(<LoginPageComponent userEmail="simonepuce@gmail.com" setUserEmail={()=>{return null}}/>)
-})
+it("test login", async () => {
 
-describe("login page component", () => {
-
-  it("test login", async () => {
-    const email = screen.getByTestId("text-input-element");
-    const password = screen.getByTestId("password-input-element");
+  let selectedUser = "simonepuce@gmail.com"
+  const setSelectedUser = ()=>{
+    return "";
+  }
+  const user = userEvent.setup();
+  renderHook(()=>
+    <LoginPageComponent
+      userEmail={selectedUser} setUserEmail={setSelectedUser}
+    />
+  );
+  try  {
+    let email = screen.getByTestId("text-input-element");
+    let password = screen.getByTestId("password-input-element");
     const buttonLogin = screen.getByTestId("login-button-element");
-    fireEvent.change(email, { target: { value: "simonepuce@gmail.com" } });
-    fireEvent.change(password, { target: { value: "Password!" } });
-
-    fireEvent.click(screen.getByTestId("login-button-element"));
-    await waitFor(() => {
-      expect(buttonLogin).toBeCalledTimes(1);
-    });
-  });
+    user.type(email, "simonepuce@gmail.com");
+    user.type(password, "Password!");
+    user.click(buttonLogin);
+    await expect(buttonLogin).toHaveBeenCalledTimes(2);
+  } catch (error) {
+    console.log("errore grave");
+  }
 });

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ConfirmRegistrationModal from "../confirmRegistrationModal/ConfirmRegistrationModal";
 import 'bootstrap/dist/css/bootstrap.css';
+import React from "react";
 
 
 
