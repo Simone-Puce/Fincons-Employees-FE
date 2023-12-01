@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../../App.css";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { motion } from "framer-motion";
@@ -76,6 +75,7 @@ const LoginPageComponent = (props: Props) => {
                     <div className="row">
                       <motion.div className="form-floating">
                         <motion.input
+                          data-testid="text-input-element"
                           whileFocus={{
                             scale: 1.2,
                           }}
@@ -101,6 +101,7 @@ const LoginPageComponent = (props: Props) => {
                     <div className="row">
                       <div className="form-floating">
                         <motion.input
+                        data-testid="password-input-element"
                           whileFocus={{
                             scale: 1.2,
                           }}
@@ -133,6 +134,7 @@ const LoginPageComponent = (props: Props) => {
                         type="button"
                         className="btn btn-primary btn-block btn-lg mb-4 rounded-pill "
                         onClick={handleLogin}
+                        data-testid="login-button-element"
                       >
                         Sign in
                       </motion.button>
