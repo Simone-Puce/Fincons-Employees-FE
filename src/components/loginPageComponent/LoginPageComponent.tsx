@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { motion } from "framer-motion";
+import { error } from "console";
 
 
 interface Props {
@@ -32,6 +33,7 @@ const LoginPageComponent = (props: Props) => {
       localStorage.setItem("loggedIn" + input.email, "true");
       navigate("/employees");
       props.setUserEmail(input.email);
+   console.log("si")
     } else {
       Swal.fire({
         title: "Error?",
@@ -39,7 +41,7 @@ const LoginPageComponent = (props: Props) => {
         icon: "error",
         confirmButtonText: "OK!",
       });
-    }
+    console.log("no")    }
   };
 
   return (
@@ -132,11 +134,12 @@ const LoginPageComponent = (props: Props) => {
                           transition: { duration: 0.5 },
                         }}
                         type="button"
+                        title="bottone"
                         className="btn btn-primary btn-block btn-lg mb-4 rounded-pill "
                         onClick={handleLogin}
                         data-testid="login-button-element"
-                      >
-                        Sign in
+                        placeholder="bottone-test"
+                      ><p>Login</p>
                       </motion.button>
                     </div>
                     <div className="d-flex justify-content-center">

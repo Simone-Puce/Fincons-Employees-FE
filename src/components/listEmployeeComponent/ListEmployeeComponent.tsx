@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import EmployeeService from "../../services/EmployeeService";
 import { Link } from "react-router-dom";
-import '../../App.css'
-import "bootstrap-icons/font/bootstrap-icons.css";
-import './ListEmployeeComponent.css'
 import TableElementComponent from "../tableEmployeeComponent/TableElementComponent";
 import TableHeadComponent from "../tableHeadComponent/TableHeadComponent";
 
@@ -61,6 +58,7 @@ const ListEmployeeComponent = () => {
             className="filterTextBox"
             placeholder="filter by name"
             id="filterByName"
+            data-testid="filter-test-id"
             name="filterByName"
             onChange={changeFilterHandler}
           ></input>

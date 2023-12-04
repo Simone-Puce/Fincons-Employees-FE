@@ -1,7 +1,6 @@
 import React, { Key, MouseEvent, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import EmployeeService from "../../services/EmployeeService";
-import './TableElementComponent.css'
 import utils from "../../utils/Utils";
 
 type emp = {
