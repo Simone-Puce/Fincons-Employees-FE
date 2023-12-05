@@ -5,9 +5,11 @@ Front end of a web app to manage employees
 ## Description
 
 An in-depth paragraph about your project and overview of use.
-Our project is based on an idea of a simple web application designed to easily manage an employees system, based on the the newest software around. 
-We aspire to make the software user-friendly so that HR professionals and/or managers can effortlessly find the best candidate for a position.
-Overall we hope the application becomes a valuable asset for every company that is going to use it.
+
+Our project is based on an idea of a simple web-application designed to easily manage an employees system, based on the the newest software around. 
+
+We aspire to make the software user-friendly and easy to manage
+
 
 ## Getting Started
 
@@ -20,13 +22,7 @@ Overall we hope the application becomes a valuable asset for every company that 
 
 Contributors names and contact info
 
-ex. Simone Puce  
-ex. Carlo Vitto
-ex. Michelangelo Masiello
-ex. Chiara Basile
-ex. Fabio Vergine
-ex. Narcis Verdesca
-ex. Lorenzo Gaetani
+Simone Puce, Carlo Vitto, Michelangelo Masiello, Chiara Basile, Fabio Vergine, Narcis Verdesca, Lorenzo Gaetani
 
 ## Version History
 
