@@ -7,7 +7,6 @@ import {
 import "@testing-library/jest-dom";
 import LoginPageComponent from "../components/loginPageComponent/LoginPageComponent";
 import userEvent from "@testing-library/user-event";
-import { createMemoryHistory } from "history";
 
 
 const mockLocalStorage = (() => {
