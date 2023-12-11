@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import "../../App.css";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { motion } from "framer-motion";
+import LoginRegistrationService from "../../services/LoginRegistrationService";
 
 
 interface Props {
@@ -22,8 +23,24 @@ const LoginPageComponent = (props: Props) => {
     navigate("/register");
   };
 
-  const handleLogin = () => {
-    const loggedUser = JSON.parse(
+  const handleLogin = (e: FormEvent) => {
+    e.preventDefault()
+    LoginRegistrationService.LoginService(input.email, input.password)
+    .then((res) => {
+      if(res.data === "employees!"){
+        navigate("/employees")
+      }else{
+        Swal.fire({
+          title: "Error?",
+          text: "Email or password are wrong ",
+          icon: "error",
+          confirmButtonText: "OK!",
+        });
+      }
+    })
+    
+    //navigate("/employees");
+    /*const loggedUser = JSON.parse(
       localStorage.getItem("user" + input.email) || "{}"
     );
     if (
@@ -40,7 +57,7 @@ const LoginPageComponent = (props: Props) => {
         icon: "error",
         confirmButtonText: "OK!",
       });
-    }
+    }*/
   };
 
   return (
@@ -62,7 +79,7 @@ const LoginPageComponent = (props: Props) => {
 
             <motion.div className="card bg-glass rounded-5">
               <motion.div className="card-body px-2 py-3 px-md-4 mt-4">
-                <form>  
+                <form onSubmit={(e)=>handleLogin(e)}>  
                   <div className="d-flex justify-content-center">
                     <div><h3 className="text-center">Login form for our employees managment system</h3></div>
                     
@@ -112,6 +129,7 @@ const LoginPageComponent = (props: Props) => {
                               ...input,
                               [e.target.name]: e.target.value,
                             });
+                            console.log(input.password)
                           }}
                           className={"form-control rounded-4"}
                           placeholder="Insert your email here"
@@ -130,9 +148,9 @@ const LoginPageComponent = (props: Props) => {
                           scale: 1.2,
                           transition: { duration: 0.5 },
                         }}
-                        type="button"
+                        type="submit"
                         className="btn btn-primary btn-block btn-lg mb-4 rounded-pill "
-                        onClick={handleLogin}
+                        //onClick={handleLogin}
                       >
                         Sign in
                       </motion.button>
