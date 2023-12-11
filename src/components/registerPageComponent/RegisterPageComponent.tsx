@@ -3,18 +3,14 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ConfirmRegistrationModal from "../confirmRegistrationModal/ConfirmRegistrationModal";
 import 'bootstrap/dist/css/bootstrap.css';
+import User from "../../models/UserModel";
+import LoginRegistrationService from "../../services/LoginRegistrationService";
 
 
 
 
 const RegisterPageComponent = () => {
-  const [input, setInput] = useState({
-    name: "",
-    surname: "",
-    email: "",
-    password: "",
-    birthDate: Date,
-  });
+  const [input, setInput] = useState<User>();
   const passwordSpecialCharacterCheck = RegExp(/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/);
   const passwordUppercaseLetterCheck = RegExp(/[A-Z]/)
   const [confirmPassword, setConfirmPassword] = useState<string>("");
@@ -76,14 +72,15 @@ const RegisterPageComponent = () => {
 
   const checkSubmit = () => {
     if (
-      input.name !== null &&
-      input.name.length >= 1 &&
-      input.surname !== null &&
-      input.surname.length >= 1 &&
+      input !== undefined &&
+      input.firstName !== null &&
+      input.firstName.length >= 1 &&
+      input.lastName !== null &&
+      input.lastName.length >= 1 &&
       emailFieldWarning === "is-valid" &&
       passwordFieldWarning === "is-valid" &&
-      confirmPasswordFieldWarning === "is-valid" &&
-      birthDateValid === true
+      confirmPasswordFieldWarning === "is-valid"
+      //birthDateValid === true
     ) {
       setDisabledButton(false);
     } else {
@@ -101,7 +98,7 @@ const RegisterPageComponent = () => {
   ]);
 
   const handleRegistration = () => {
-    localStorage.setItem("user" + input.email, JSON.stringify(input));
+    LoginRegistrationService.registrationService(input!)
   };
 
   const checkEmail = (e: string) => {
@@ -152,7 +149,7 @@ const RegisterPageComponent = () => {
   };
 
   const checkConfirmPassword = (e: string) => {
-    if (e === input.password) {
+    if (e === input?.password) {
       setConfirmPasswordFieldWarning("is-valid");
     } else {
       setConfirmPasswordFieldWarning("is-invalid");
@@ -236,11 +233,11 @@ const RegisterPageComponent = () => {
                            whileFocus={{
                             scale: 1.2,
                           }}
-                            name="name"
-                            value={input.name}
+                            name="firstName"
+                            value={input?.firstName}
                             onChange={(e) => {
                               setInput({
-                                ...input,
+                                ...input!,
                                 [e.target.name]: e.target.value,
                               });
                               checkName(e.target.value);
@@ -255,11 +252,11 @@ const RegisterPageComponent = () => {
                            whileFocus={{
                             scale: 1.2,
                           }}
-                            name="surname"
-                            value={input.surname}
+                            name="lastName"
+                            value={input?.lastName}
                             onChange={(e) => {
                               setInput({
-                                ...input,
+                                ...input!,
                                 [e.target.name]: e.target.value,
                               });
                               checkSurname(e.target.value);
@@ -282,10 +279,10 @@ const RegisterPageComponent = () => {
                             scale: 1.2,
                           }}
                           name="email"
-                          value={input.email}
+                          value={input?.email}
                           onChange={(e) => {
                             setInput({
-                              ...input,
+                              ...input!,
                               [e.target.name]: e.target.value,
                             });
                             checkEmail(e.target.value);
@@ -314,10 +311,10 @@ const RegisterPageComponent = () => {
                           onBlur={showDetails}
                           type={passwordShow}
                           name="password"
-                          value={input.password}
+                          value={input?.password}
                           onChange={(e) => {
                             setInput({
-                              ...input,
+                              ...input!,
                               [e.target.name]: e.target.value,
                             });
                             checkPassword(e.target.value);
@@ -396,7 +393,7 @@ const RegisterPageComponent = () => {
                         <div className="d-flex justify-content-center mt-2">
                           Insert your birth date
                         </div>
-                        <div className="d-flex justify-content-center">
+                        {/*<div className="d-flex justify-content-center">
                           <motion.input
                            whileFocus={{
                             scale: 1.2,
@@ -413,7 +410,7 @@ const RegisterPageComponent = () => {
                               checkSubmit();
                             }}
                           />
-                        </div>
+                        </div>*/}
                       </div>
                     </div>
                   </div>
