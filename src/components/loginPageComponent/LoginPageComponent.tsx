@@ -38,26 +38,6 @@ const LoginPageComponent = (props: Props) => {
         });
       }
     })
-    
-    //navigate("/employees");
-    /*const loggedUser = JSON.parse(
-      localStorage.getItem("user" + input.email) || "{}"
-    );
-    if (
-      input.email === loggedUser.email &&
-      input.password === loggedUser.password
-    ) {
-      localStorage.setItem("loggedIn" + input.email, "true");
-      navigate("/employees");
-      props.setUserEmail(input.email);
-    } else {
-      Swal.fire({
-        title: "Error?",
-        text: "Email or password are wrong ",
-        icon: "error",
-        confirmButtonText: "OK!",
-      });
-    }*/
   };
 
   return (

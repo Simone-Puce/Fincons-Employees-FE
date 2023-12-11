@@ -23,10 +23,7 @@ function App() {
         />
         <div className="container">
           <Routes>
-            <Route
-              path="/"
-              element={<ProtectedRoutes userEmail={selectedUser} />}
-            >
+            <Route path="/" element={<ProtectedRoutes userEmail={selectedUser} />}>
               <Route
                 path="/employees"
                 element={<ListEmployeeComponent />}
