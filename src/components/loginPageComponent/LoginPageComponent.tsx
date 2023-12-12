@@ -27,8 +27,9 @@ const LoginPageComponent = (props: Props) => {
     e.preventDefault()
     LoginRegistrationService.LoginService(input.email, input.password)
     .then((res) => {
-      if(res.data === "employees!"){
-        navigate("/employees")
+      if(res.data === "You are on the home page"){
+        console.log("rest service")
+        navigate("/home")
       }else{
         Swal.fire({
           title: "Error?",

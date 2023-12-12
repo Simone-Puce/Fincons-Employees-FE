@@ -17,7 +17,10 @@ const LoginRegistrationService = {
         const data = new FormData();
         data.append('username', username);
         data.append('password', password);
-        const headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+        const headers = {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Access-Control-Allow-Origin': '*'
+        }
         return axios.post(LOGIN_URI,data,{headers: headers})
     }
 }
