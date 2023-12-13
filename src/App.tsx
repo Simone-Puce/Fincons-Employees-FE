@@ -24,7 +24,10 @@ function App() {
         />
         <div className="container">
           <Routes>
- {/*          <Route path="/" element={<ProtectedRoutes userEmail={selectedUser} />}>*/ } 
+            <Route
+              path="/"
+              element={<ProtectedRoutes userEmail={selectedUser} />}
+            >
               <Route
                 path="/employees"
                 element={<ListEmployeeComponent />}
@@ -35,16 +38,25 @@ function App() {
               ></Route>
               <Route
                 path="/home"
-                element={<HomePageComponent />}
+                element={<HomePageComponent userEmail={selectedUser} />}
               ></Route>
               <Route
                 path="view-employee/:id"
                 element={<ViewEmployeeComponent />}
               ></Route>
-            {/*   </Route>*/ } 
+            </Route>
             {}
             <Route
               path="/login"
+              element={
+                <LoginPageComponent
+                  userEmail={selectedUser}
+                  setUserEmail={setSelectedUser}
+                />
+              }
+            ></Route>
+            <Route
+              path="/"
               element={
                 <LoginPageComponent
                   userEmail={selectedUser}

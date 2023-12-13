@@ -3,6 +3,8 @@ import "./HeaderComponent.css";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import utils from "../../utils/Utils";
+import LoginRegistrationService from "../../services/LoginRegistrationService";
+import UserDetailModels from "../../models/UserDetailsModel";
 
 interface Props {
   userEmail: string;
@@ -12,13 +14,12 @@ interface Props {
 const HeaderComponent = (props: Props) => {
   const navigate = useNavigate();
   const auth = localStorage.getItem("loggedIn" + props.userEmail);
-  const userName = JSON.parse(
-    localStorage.getItem("user" + props.userEmail) || "{}"
-  );
+  const [userDetails, setUserDetails] = useState<UserDetailModels>();
   const [isHidden, setIsHidden] = useState<boolean>(true);
 
   const handleLogout = () => {
     localStorage.removeItem("loggedIn" + props.userEmail);
+    LoginRegistrationService.logout();
     navigate("login");
     setIsHidden(true);
   };
@@ -29,17 +30,25 @@ const HeaderComponent = (props: Props) => {
 
   useEffect(() => {
     if (auth !== null) {
+      LoginRegistrationService.getHome();
       setIsHidden(false);
+      LoginRegistrationService.getUserDetails(props.userEmail).then((res) =>
+        setUserDetails(res.data)
+      );
     } else {
       setIsHidden(true);
     }
-  }, [auth]);
+  }, [auth,props.userEmail]);
 
   const userNameDisplay = () => {
-    if (userName === undefined) {
+    if (userDetails?.firstName === undefined) {
       return "";
     } else {
-      return utils.capitalizeFirstLetter(userName.name) + " " + utils.capitalizeFirstLetter(userName.surname) ;
+      return (
+        utils.capitalizeFirstLetter(userDetails?.firstName) +
+        " " +
+        utils.capitalizeFirstLetter(userDetails?.lastName)
+      );
     }
   };
 
@@ -67,17 +76,17 @@ const HeaderComponent = (props: Props) => {
         >
           <div className="offcanvas-header d-flex justify-content-center">
             <h5 className="offcanvas-title" id="offcanvasNavbarLabel">
-                {userNameDisplay()}
+              {userNameDisplay()}
             </h5>
             <button
               type="button"
               className="btn-close closing-button"
               data-bs-dismiss="offcanvas"
               aria-label="Close"
-              style={{  
-                position:"absolute",
+              style={{
+                position: "absolute",
                 right: 0,
-                marginRight: "10px"
+                marginRight: "10px",
               }}
             ></button>
           </div>
@@ -87,6 +96,7 @@ const HeaderComponent = (props: Props) => {
               <li className="nav-item  d-flex justify-content-center mb-3">
                 <button
                   onClick={handleEmployeeList}
+                  data-bs-dismiss="offcanvas"
                   className="btn btn-outline-primary btn-lg"
                 >
                   Employees
@@ -95,6 +105,7 @@ const HeaderComponent = (props: Props) => {
               <li className="nav-item d-flex justify-content-center mb-3">
                 <button
                   onClick={handleLogout}
+                  data-bs-dismiss="offcanvas"
                   className="btn btn-outline-danger btn-lg"
                 >
                   Logout
@@ -109,37 +120,3 @@ const HeaderComponent = (props: Props) => {
 };
 
 export default HeaderComponent;
-
-/*<nav className="navbar bg-dark navbar-dark">
-      <a className="navbar-brand text-white">Navbar</a>
-      <ul className="navbar-nav mr-4 pr-4">
-        <div hidden={isHidden} className="dropdown mr-5 btn-gruop">
-          <button
-            className="btn btn-secondary dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-          >
-            {userName.name} <i className="bi bi-person-circle"></i>
-          </button>
-          <ul className="dropdown-menu dropdown-menu-end dropdown-menu-lg-start"
-          style={{width:"50%"}}>
-            <li>
-              <button
-                onClick={handleLogout}
-                className="btn btn-secondary dropdown-item"
-              >
-                Logout
-              </button>
-            </li>
-            <li>
-              <button
-                onClick={handleEmployeeList}
-                className="btn btn-secondary dropdown-item "
-              >
-                Employees
-              </button>
-            </li>
-          </ul>
-        </div>
-      </ul>
-    </nav>*/

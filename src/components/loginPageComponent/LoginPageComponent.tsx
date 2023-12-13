@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { motion } from "framer-motion";
 import LoginRegistrationService from "../../services/LoginRegistrationService";
-
+import LoginUserModel from "../../models/LoginUserModel";
 
 interface Props {
   userEmail: string;
@@ -13,7 +13,7 @@ interface Props {
 
 const LoginPageComponent = (props: Props) => {
   const navigate = useNavigate();
-  const [input, setInput] = useState({
+  const [input, setInput] = useState<LoginUserModel>({
     name: "",
     email: "",
     password: "",
@@ -24,21 +24,23 @@ const LoginPageComponent = (props: Props) => {
   };
 
   const handleLogin = (e: FormEvent) => {
-    e.preventDefault()
-    LoginRegistrationService.LoginService(input.email, input.password)
-    .then((res) => {
-      if(res.data === "You are on the home page"){
-        console.log("rest service")
-        navigate("/home")
-      }else{
-        Swal.fire({
-          title: "Error?",
-          text: "Email or password are wrong ",
-          icon: "error",
-          confirmButtonText: "OK!",
-        });
+    e.preventDefault();
+    LoginRegistrationService.loginService(input.email, input.password).then(
+      (res) => {
+        if (res.data === "You are on the home page") {
+          localStorage.setItem("loggedIn" + input.email, "true");
+          props.setUserEmail(input.email);
+          navigate("/home");
+        } else {
+          Swal.fire({
+            title: "Error?",
+            text: "Email or password are wrong ",
+            icon: "error",
+            confirmButtonText: "OK!",
+          });
+        }
       }
-    })
+    );
   };
 
   return (
@@ -60,10 +62,13 @@ const LoginPageComponent = (props: Props) => {
 
             <motion.div className="card bg-glass rounded-5">
               <motion.div className="card-body px-2 py-3 px-md-4 mt-4">
-                <form onSubmit={(e)=>handleLogin(e)}>  
+                <form onSubmit={(e) => handleLogin(e)}>
                   <div className="d-flex justify-content-center">
-                    <div><h3 className="text-center">Login form for our employees managment system</h3></div>
-                    
+                    <div>
+                      <h3 className="text-center">
+                        Login form for our employees managment system
+                      </h3>
+                    </div>
                   </div>
                   <div className="form-outline mb-4">
                     <div className="row">
@@ -110,7 +115,6 @@ const LoginPageComponent = (props: Props) => {
                               ...input,
                               [e.target.name]: e.target.value,
                             });
-                            console.log(input.password)
                           }}
                           className={"form-control rounded-4"}
                           placeholder="Insert your email here"
@@ -137,8 +141,16 @@ const LoginPageComponent = (props: Props) => {
                       </motion.button>
                     </div>
                     <div className="d-flex justify-content-center">
-
-                      <p> Non sei ancora registrato? <a onClick={navigateToRegister} className="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Registrati</a></p>
+                      <p>
+                        {" "}
+                        Non sei ancora registrato?{" "}
+                        <a
+                          onClick={navigateToRegister}
+                          className="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                        >
+                          Registrati
+                        </a>
+                      </p>
                     </div>
                   </div>
                 </form>
