@@ -56,7 +56,7 @@ const HeaderComponent = (props: Props) => {
     <nav className="navbar fixed-top mb-5 position-absolute">
       <div className="container-fluid">
         <div className="centered-navbar">
-          <h2>Offcanvas navbar</h2>
+          <h2>Employee Manager</h2>
         </div>
         <button
           hidden={isHidden}
