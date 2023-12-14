@@ -10,6 +10,7 @@ import ViewEmployeeComponent from "./components/viewEmployeeComponent/ViewEmploy
 import LoginPageComponent from "./components/loginPageComponent/LoginPageComponent";
 import RegisterPageComponent from "./components/registerPageComponent/RegisterPageComponent";
 import FooterComponent from "./components/footerComponent/FooterComponent";
+import HomePageComponent from "./components/homePageComponent/HomePageComponent";
 
 function App() {
   const [selectedUser, setSelectedUser] = useState<string>("");
@@ -36,6 +37,10 @@ function App() {
                 element={<CreateUpdateEmployeeComponent />}
               ></Route>
               <Route
+                path="/home"
+                element={<HomePageComponent userEmail={selectedUser} />}
+              ></Route>
+              <Route
                 path="view-employee/:id"
                 element={<ViewEmployeeComponent />}
               ></Route>
@@ -43,6 +48,15 @@ function App() {
             {}
             <Route
               path="/login"
+              element={
+                <LoginPageComponent
+                  userEmail={selectedUser}
+                  setUserEmail={setSelectedUser}
+                />
+              }
+            ></Route>
+            <Route
+              path="/"
               element={
                 <LoginPageComponent
                   userEmail={selectedUser}
