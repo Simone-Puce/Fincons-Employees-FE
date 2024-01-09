@@ -390,10 +390,10 @@ const RegisterPageComponent = () => {
                   <div className="form-outline mb-4">
                     <div className="row">
                       <div className="form-floating d-flex justify-content-center">
-                        <div className="d-flex justify-content-center mt-2">
+                        {/*<div className="d-flex justify-content-center mt-2">
                           Insert your birth date
                         </div>
-                        {/*<div className="d-flex justify-content-center">
+                        <div className="d-flex justify-content-center">
                           <motion.input
                            whileFocus={{
                             scale: 1.2,
