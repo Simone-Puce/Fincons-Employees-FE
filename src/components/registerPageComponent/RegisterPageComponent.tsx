@@ -2,17 +2,16 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ConfirmRegistrationModal from "../confirmRegistrationModal/ConfirmRegistrationModal";
-import 'bootstrap/dist/css/bootstrap.css';
+import "bootstrap/dist/css/bootstrap.css";
 import User from "../../models/UserModel";
 import LoginRegistrationService from "../../services/LoginRegistrationService";
 
-
-
-
 const RegisterPageComponent = () => {
   const [input, setInput] = useState<User>();
-  const passwordSpecialCharacterCheck = RegExp(/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/);
-  const passwordUppercaseLetterCheck = RegExp(/[A-Z]/)
+  const passwordSpecialCharacterCheck = RegExp(
+    /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/
+  );
+  const passwordUppercaseLetterCheck = RegExp(/[A-Z]/);
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [disabledButton, setDisabledButton] = useState(true);
   const [emailFieldWarning, setEmailFieldWarning] = useState("is-invalid");
@@ -73,10 +72,8 @@ const RegisterPageComponent = () => {
   const checkSubmit = () => {
     if (
       input !== undefined &&
-      input.firstName !== null &&
-      input.firstName.length >= 1 &&
-      input.lastName !== null &&
-      input.lastName.length >= 1 &&
+      nameFieldWarning === "is-valid" &&
+      surnameFieldWarning === "is-valid" &&
       emailFieldWarning === "is-valid" &&
       passwordFieldWarning === "is-valid" &&
       confirmPasswordFieldWarning === "is-valid"
@@ -97,8 +94,18 @@ const RegisterPageComponent = () => {
     birthDateValid,
   ]);
 
+  useEffect(()=>{
+    console.log("password useeffect  "+ input?.confirmPassword)
+    if(input?.confirmPassword!== input?.password){
+      setConfirmPasswordFieldWarning("is-invalid")
+    }
+    if(input?.confirmPassword === input?.password && input?.confirmPassword !== "" && input?.confirmPassword !== undefined){
+      setConfirmPasswordFieldWarning("is-valid")
+    }
+  },[input?.password, input?.confirmPassword])
+
   const handleRegistration = () => {
-    LoginRegistrationService.registrationService(input!)
+    LoginRegistrationService.registrationService(input!);
   };
 
   const checkEmail = (e: string) => {
@@ -149,9 +156,11 @@ const RegisterPageComponent = () => {
   };
 
   const checkConfirmPassword = (e: string) => {
-    if (e === input?.password) {
+    console.log(e+ "   ++++ ", input?.password)
+    if (e === input?.password && e!== "") {
       setConfirmPasswordFieldWarning("is-valid");
-    } else {
+    }
+    if(e !== input?.password) {
       setConfirmPasswordFieldWarning("is-invalid");
     }
   };
@@ -227,47 +236,52 @@ const RegisterPageComponent = () => {
                 <form>
                   <div className="form-outline mb-4">
                     <div className="row">
-                      <div className="form-floating d-flex justify-content-around">
-                        <div className="d-flex">
-                          <motion.input
-                           whileFocus={{
+                      <div className="form-floating">
+                        <motion.input
+                          whileFocus={{
                             scale: 1.2,
                           }}
-                            name="firstName"
-                            value={input?.firstName}
-                            onChange={(e) => {
-                              setInput({
-                                ...input!,
-                                [e.target.name]: e.target.value,
-                              });
-                              checkName(e.target.value);
-                            }}
-                            className={
-                              "form-control rounded-4 pd-3 " + nameFieldWarning
-                            }
-                            placeholder="Name here"
-                          />
-                          <label className="ms-2"></label>
-                          <motion.input
-                           whileFocus={{
+                          name="firstName"
+                          value={input?.firstName}
+                          onChange={(e) => {
+                            setInput({
+                              ...input!,
+                              [e.target.name]: e.target.value,
+                            });
+                            checkName(e.target.value);
+                          }}
+                          className={
+                            "form-control rounded-4 pd-3 " + nameFieldWarning
+                          }
+                          placeholder="Name here"
+                        />
+                        <label className="ms-2">Name here</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="form-outline mb-4">
+                    <div className="row">
+                      <div className="form-floating">
+                        <motion.input
+                          whileFocus={{
                             scale: 1.2,
                           }}
-                            name="lastName"
-                            value={input?.lastName}
-                            onChange={(e) => {
-                              setInput({
-                                ...input!,
-                                [e.target.name]: e.target.value,
-                              });
-                              checkSurname(e.target.value);
-                            }}
-                            className={
-                              "form-control rounded-4 " + surnameFieldWarning
-                            }
-                            placeholder="Surname here"
-                          />
-                          <label className="ms-2"></label>
-                        </div>
+                          name="lastName"
+                          value={input?.lastName}
+                          onChange={(e) => {
+                            setInput({
+                              ...input!,
+                              [e.target.name]: e.target.value,
+                            });
+                            checkSurname(e.target.value);
+                          }}
+                          className={
+                            "form-control rounded-4 " + surnameFieldWarning
+                          }
+                          placeholder="Surname here"
+                        />
+                        <label className="ms-2">Surname here</label>
                       </div>
                     </div>
                   </div>
@@ -275,7 +289,7 @@ const RegisterPageComponent = () => {
                     <div className="row">
                       <div className="form-floating">
                         <motion.input
-                           whileFocus={{
+                          whileFocus={{
                             scale: 1.2,
                           }}
                           name="email"
@@ -304,7 +318,7 @@ const RegisterPageComponent = () => {
                     <div className="row">
                       <div className="form-floating input-gruop d-flex">
                         <motion.input
-                           whileFocus={{
+                          whileFocus={{
                             scale: 1.2,
                           }}
                           onFocus={showDetails}
@@ -357,14 +371,21 @@ const RegisterPageComponent = () => {
                     <div className="row">
                       <div className="form-floating input-gruop d-flex">
                         <motion.input
-                           whileFocus={{
+                          whileFocus={{
                             scale: 1.2,
                           }}
                           type={confirmPasswordShow}
                           name="confirmPassword"
-                          value={confirmPassword}
+                          value={input?.confirmPassword}
                           onChange={(e) => {
+                            setInput({
+                              ...input!,
+                              [e.target.name]: e.target.value,
+                            });
                             setConfirmPassword(e.target.value);
+                            checkConfirmPassword(e.target.value);
+                          }}
+                          onBlur={(e)=>{
                             checkConfirmPassword(e.target.value);
                           }}
                           className={
