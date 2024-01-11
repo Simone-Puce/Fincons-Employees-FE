@@ -11,6 +11,7 @@ import LoginPageComponent from "./components/loginPageComponent/LoginPageCompone
 import RegisterPageComponent from "./components/registerPageComponent/RegisterPageComponent";
 import FooterComponent from "./components/footerComponent/FooterComponent";
 import HomePageComponent from "./components/homePageComponent/HomePageComponent";
+import Update from "./components/updateComponent/Update";
 
 function App() {
   const [selectedUser, setSelectedUser] = useState<string>("");
@@ -43,6 +44,10 @@ function App() {
               <Route
                 path="view-employee/:id"
                 element={<ViewEmployeeComponent />}
+              ></Route>
+               <Route
+                path="update-employee/:id"
+                element={<Update />}
               ></Route>
             </Route>
             {}

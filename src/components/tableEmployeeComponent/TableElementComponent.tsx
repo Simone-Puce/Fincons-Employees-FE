@@ -25,22 +25,19 @@ const TableElementComponent = (props: Props) => {
 
     const updateButtonHandler = (e: MouseEvent, id: number | undefined) => {
         e.preventDefault();
-        if (updateClick) {
+        /*if (updateClick) {
             setUpdateClick(false)
         } else {
             setUpdateClick(true)
-        }
+        }*/
     }
 
    const updateEmployee = (id: number | undefined) => {
-        /*let idToUse = parseInt(id.toString())
-        EmployeeService.updateEmployee(idToUse, {employee})
-        setUpdateClick(false)*/
         console.log(id)
     }
 
-    function deleteButtonHandler(id: any) {
-        EmployeeService.deleteEmployee(parseInt(id.toString()))
+    function deleteButtonHandler(id: number | undefined) {
+        EmployeeService.deleteEmployee(id)
         props.setfilter("")
     }
 
@@ -52,14 +49,14 @@ const TableElementComponent = (props: Props) => {
                 <td> <p hidden={updateClick} >{employee?.email}</p><input type="text" hidden={!updateClick} value={employee?.email} /*onChange={changeEmailHandler}*/></input> </td>
                 <td>
                     <div className='ButtonDiv div-style' hidden={updateClick}>
-                        <button className='btn btn-info' onClick={(e) => updateButtonHandler(e, employee?.id)} > <i className="bi bi-pencil-square"></i> </button>
+                        <Link to={`/update-employee/${employee?.id}` }><button className='btn btn-info'> <i className="bi bi-pencil-square"></i> </button></Link>
                         <button type="button" className="btn btn-warning deleteButton" onClick={(e) => deleteButtonHandler(employee?.id)}><i className="bi bi-trash3-fill"></i></button>
                         <Link to={`/view-employee/${employee?.id}`}><button type="button" className="btn btn-info"><i className="bi bi-info-circle"></i></button></Link>
                     </div>
-                    <div hidden={!updateClick} className="div-two-buttons">
+                    {/*<div hidden={!updateClick} className="div-two-buttons">
                         <button className='btn btn-success confirmUpdateButton' onClick={(e) => updateEmployee(employee?.id)}> <i className="bi bi-check-square-fill"></i> </button>
                         <button className='btn btn-danger cancelUpdateButton' onClick={(e) => updateButtonHandler(e, employee?.id)}> <i className="bi bi-arrow-left-square-fill"></i></button>
-                    </div>
+    </div> */   }
                 </td>
             </tr>
         </tbody>
