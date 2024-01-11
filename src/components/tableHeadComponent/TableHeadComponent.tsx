@@ -1,15 +1,8 @@
 import { useEffect, useState } from "react";
-
-
-interface EmployeeExample {
-    id: number;
-    firstName: string;
-    lastName: string;
-    email: string;
-  };
+import EmployeeModel from "../../models/EmployeeModel";
 
 interface Props {
-    employees: EmployeeExample[] | undefined
+    employees: EmployeeModel[] | undefined
 };
 
 const TableHeadComponent = (props: Props) => {
@@ -23,8 +16,7 @@ const TableHeadComponent = (props: Props) => {
             setHiddenValue(false)
         }
     })
-
-
+    
     return (
         <thead hidden={hiddenValue}>
               <tr>

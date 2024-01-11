@@ -353,17 +353,15 @@ const RegisterPageComponent = () => {
                     <div hidden={passwordDetails}>
                       <div className="mb-1 mt-2">
                         {" "}
-                        {firstPasswordRestriction()} Almeno 8 lettere{" "}
+                        {firstPasswordRestriction()} Atleast 8 letter {" "}
                       </div>
                       <div className="mb-1">
                         {" "}
-                        {secondPasswordRestriction()} Almeno un carattere
-                        maiuscolo
+                        {secondPasswordRestriction()} Atleast 1 capital letter
                       </div>
                       <div className="mb-1">
                         {" "}
-                        {thirdPasswordRestriction()} Almeno un carattere
-                        speciale
+                        {thirdPasswordRestriction()} Atleast 1 special character
                       </div>
                     </div>
                   </div>

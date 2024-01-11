@@ -9,14 +9,7 @@ import TableHeadComponent from "../tableHeadComponent/TableHeadComponent";
 
 
 const ListEmployeeComponent = () => {
-  type EmployeeExample = {
-    id: number;
-    firstName: string;
-    lastName: string;
-    email: string;
-  };
-
-  const [employees, setEmployees] = useState<EmployeeExample[]>();
+  const [employees, setEmployees] = useState<any>();
   const [filterByName, setFilterByName] = useState<string>();
 
   useEffect(() => {
@@ -74,18 +67,17 @@ const ListEmployeeComponent = () => {
             style={{ marginBottom: 70 }}
           >
             <TableHeadComponent employees={employees}/>
-            {employees?.map((element) => (
-              <TableElementComponent
-                key={element.id}
-                props={{
-                  id: element.id,
-                  firstName: element.firstName,
-                  lastName: element.lastName,
-                  email: element.email,
-                }} filter={filterByName} setfilter={setFilterByName}
-              />
-            )
-            )}
+            {
+              employees?.data?.map((employee:any)=>(
+                <TableElementComponent
+                  key={employee.email}
+                  props={employee}
+                  filter={filterByName}
+                  setfilter={setFilterByName}
+                />
+              ))
+            }
+   
           </table>
         }
       </div>

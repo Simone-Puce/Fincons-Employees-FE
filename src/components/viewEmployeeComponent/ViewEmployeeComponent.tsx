@@ -14,7 +14,7 @@ const ViewEmployeeComponent = () => {
   const idEmployee = parseInt(id!);
 
   useEffect(() => {
-    EmployeeService.getEmployeesById(idEmployee).then((res) => {
+    EmployeeService.getById(idEmployee).then((res) => {
       setEmployee(res.data);
     });
   });

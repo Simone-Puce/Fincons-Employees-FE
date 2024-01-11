@@ -142,13 +142,12 @@ const LoginPageComponent = (props: Props) => {
                     </div>
                     <div className="d-flex justify-content-center">
                       <p>
-                        {" "}
-                        Non sei ancora registrato?{" "}
+                        You don't have an account?
                         <a
                           onClick={navigateToRegister}
                           className="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
                         >
-                          Registrati
+                          Sign up now
                         </a>
                       </p>
                     </div>

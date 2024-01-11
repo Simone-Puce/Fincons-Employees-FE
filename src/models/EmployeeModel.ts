@@ -1,0 +1,19 @@
+import Department from "./DepartmentModel";
+import Position from "./PositionModel";
+import Project from "./ProjectModel";
+
+interface Employee {
+    id: number,
+    firstName: string,
+    lastName: string,
+    gender: string,
+    birthDate: Date,
+    email: string,
+    startDate: Date,
+    endDate?: Date,
+    department: Department,
+    position: Position,
+    project?: Project[]
+}
+
+export default Employee;
