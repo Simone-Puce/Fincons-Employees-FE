@@ -53,11 +53,16 @@ const HeaderComponent = (props: Props) => {
   };
 
   return (
-    <nav className="navbar fixed-top mb-5 position-absolute">
-      <div className="container-fluid">
-        <div className="centered-navbar">
+    <nav className="navbar fixed-top mb-5 position-absolute pb-5">
+      <div className="container-fluid mb-5 pb-5">
+        <div className="centered-navbar mb-5 ">
           <h2>Employee Manager</h2>
         </div>
+        <div className="d-flex justify-content-around mt-5 pt-2">
+            <button hidden={isHidden} className="btn rounded-pill btn-primary mr-5"> Employees</button>
+            <button hidden={isHidden} className="btn rounded-pill btn-info mr-5 ml-5"> Departments</button>
+            <button hidden={isHidden} className="btn rounded-pill btn-secondary ml-5"> Positions</button>
+          </div>
         <button
           hidden={isHidden}
           className="navbar-toggler close-navbar-button border-0 btn-lg"

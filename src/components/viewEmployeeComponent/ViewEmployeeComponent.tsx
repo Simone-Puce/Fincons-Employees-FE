@@ -3,15 +3,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import EmployeeService from "../../services/EmployeeService";
 import Employee from "../../models/EmployeeModel";
-import Department from "../../models/DepartmentModel";
-import Position from "../../models/PositionModel";
-import DepartmentService from "../../services/DepartmentService";
-import PositionService from "../../services/PositionService";
 
 const ViewEmployeeComponent = () => {
   const [employee, setEmployee] = useState<Employee>()
-  const [department, setDepartment] = useState<Department>()
-  const [position, setPosition] = useState<Position>()
   const navigate = useNavigate();
   const { id } = useParams();
   const idEmployee = parseInt(id!);

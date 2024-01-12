@@ -30,7 +30,7 @@ const LoginPageComponent = (props: Props) => {
         if (res.data === "You are on the home page") {
           localStorage.setItem("loggedIn" + input.email, "true");
           props.setUserEmail(input.email);
-          navigate("/home");
+          navigate("/employees");
         } else {
           Swal.fire({
             title: "Error?",

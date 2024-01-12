@@ -42,7 +42,7 @@ const ListEmployeeComponent = () => {
 
   return (
     <div className="containerList mt-5 pt-5">
-      <div className="row">
+      <div className="row mt-4 mb-3">
         <div className="d-flex justify-content-center align-items-center filterDiv">
           <Link to="/add-employee">
             <button className="btn rounded-pill btn-primary ">
