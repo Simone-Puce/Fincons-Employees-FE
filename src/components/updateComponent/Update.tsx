@@ -54,14 +54,6 @@ const ViewEmployeeComponent = () => {
               {" "}
               Employee contract end date: {JSON.stringify(employee?.endDate)}{" "}
             </label>
-            <label className="mb-3 text-center">
-              {" "}
-              Employee department: {employee?.department?.name}{" "}
-            </label>
-            <label className="mb-3 text-center">
-              {" "}
-              Employee position: {employee?.position?.name}{" "}
-            </label>
           </div>
           <div className="d-flex justify-content-center">
           <button

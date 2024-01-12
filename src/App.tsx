@@ -3,7 +3,7 @@ import "./App.css";
 import { useState } from "react";
 import ProtectedRoutes from "./services/ProtectedRoutes";
 import "bootstrap/dist/css/bootstrap.css";
-import CreateUpdateEmployeeComponent from "./components/createUpdateEmployeeComponent/CreateUpdateEmployeeComponent";
+import CreateUpdateEmployeeComponent from "./components/createUpdateEmployeeComponent/CreateEmployeeComponent";
 import HeaderComponent from "./components/headerComponent/HeaderComponent";
 import ListEmployeeComponent from "./components/listEmployeeComponent/ListEmployeeComponent";
 import ViewEmployeeComponent from "./components/viewEmployeeComponent/ViewEmployeeComponent";

@@ -5,7 +5,7 @@ const POSITION_API_BASE_URL = "http://localhost:81/be/company-employee-managemen
 const VERSION_URI = POSITION_API_BASE_URL+"/v1";
 const POSITION_URI = VERSION_URI+"/position";
 const GET_ALL_URI = POSITION_URI+"/list";
-const GET_BY_ID=POSITION_URI+"/find"
+const GET_BY_ID=POSITION_URI+"/find-by-id"
 const CREATE_POSITION=POSITION_URI+"/create"
 const UPDATE_POSITION=POSITION_URI+"/update"
 const DELETE_POSITION=POSITION_URI+"/delete"
@@ -15,7 +15,7 @@ const PositionService = {
         return axios.get(GET_ALL_URI);
     },
 
-    getPositionsById(positionId: number){
+    getPositionsById(positionId: number | undefined){
         return axios.get(GET_BY_ID, {params:{id:positionId}})
     },
     

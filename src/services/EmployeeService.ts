@@ -1,5 +1,5 @@
 import axios from "axios";
-import EmployeeModel from "../models/EmployeeModel";
+import Employee from "../models/EmployeeModel";
 
 const EMPLOYEE_API_BASE_URL = "http://localhost:81/be/company-employee-management";
 const VERSION_URI = EMPLOYEE_API_BASE_URL+"/v1";
@@ -20,10 +20,22 @@ const EmployeeService = {
         return axios.get(GET_BY_ID, {params:{id: employeeId}})
     },
     
-    createEmployee(employee: EmployeeModel | undefined){
-        return axios.post(CREATE_EMPLOYEE,employee)
+    createEmployee(employee: Employee | undefined){
+        console.log(employee?.department + " i'm looking at the department object")
+        console.log(employee?.department?.id+  " i'm looking for the department id");
+        return axios.post(CREATE_EMPLOYEE,{
+            firstName: employee?.firstName,
+            lastName: employee?.lastName,
+            gender: employee?.gender,
+            birthDate: employee?.birthDate,
+            email: employee?.email,
+            startDate: employee?.startDate,
+            endDate: employee?.endDate,
+            department: {id: employee?.department},
+            position: {id: employee?.position}
+        })
     },
-    updateEmployee(employeeId: string | undefined, employee: EmployeeModel | undefined){
+    updateEmployee(employeeId: string | undefined, employee: Employee | undefined){
         return axios.put(EMPLOYEE_API_BASE_URL + '/' + employeeId,employee)
     },
 

@@ -25,23 +25,7 @@ const CreateUpdateEmployeeComponent = () => {
   }, []);
 
   const saveOrUpdateEmployee = () => {
-    let departmentForEmployee;
-    DepartmentService.getDepartmentsById(employee?.department?.id).then((res)=>{
-        departmentForEmployee=res.data
-    })
-    EmployeeService.createEmployee(
-        {
-           firstName: employee?.firstName,
-           lastName: employee?.lastName,
-           gender: employee?.gender,
-           birthDate: employee?.birthDate,
-           email: employee?.email,
-           startDate: employee?.startDate,
-           endDate: employee?.endDate,
-           department: departmentForEmployee,
-           position: employee?.position
-        }
-    );
+    EmployeeService.createEmployee(employee);
     navigate("/employees");
   };
 
@@ -179,7 +163,7 @@ const CreateUpdateEmployeeComponent = () => {
                     onChange={(e)=>{
                         setEmployee({
                             ...employee!,
-                            [e.target.name]: e.target.value
+                            [e.target.name]: e.target.value 
                         })
                     }}
                   >
