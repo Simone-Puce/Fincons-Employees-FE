@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import EmployeeService from "../../services/EmployeeService";
-import Department from "../../models/DepartmentModel";
-import DepartmentService from "../../services/DepartmentService";
-import PositionService from "../../services/PositionService";
-import Employee from "../../models/EmployeeModel";
-import Position from "../../models/PositionModel";
+import EmployeeService from "../../../services/EmployeeService";
+import Department from "../../../models/DepartmentModel";
+import DepartmentService from "../../../services/DepartmentService";
+import PositionService from "../../../services/PositionService";
+import Employee from "../../../models/EmployeeModel";
+import Position from "../../../models/PositionModel";
 
 const Update = () => {
   const [employee, setEmployee] = useState<Employee>();

@@ -1,10 +1,9 @@
 import React, { FormEvent, useState } from "react";
-import "../../App.css";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { motion } from "framer-motion";
-import LoginRegistrationService from "../../services/LoginRegistrationService";
-import LoginUserModel from "../../models/LoginUserModel";
+import LoginRegistrationService from "../../../services/LoginRegistrationService";
+import LoginUserModel from "../../../models/LoginUserModel";
 
 interface Props {
   userEmail: string;

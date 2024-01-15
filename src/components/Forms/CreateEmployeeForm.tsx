@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import EmployeeService from "../../services/EmployeeService";
+import Employee from "../../models/EmployeeModel";
 import Department from "../../models/DepartmentModel";
 import DepartmentService from "../../services/DepartmentService";
+import EmployeeService from "../../services/EmployeeService";
 import PositionService from "../../services/PositionService";
-import Employee from "../../models/EmployeeModel";
 
-const CreateUpdateEmployeeComponent = () => {
+const CreateEmployeeForm = () => {
   const [employee, setEmployee] = useState<Employee>();
   const [departments, setDepartments] = useState<any>();
   const [positions, setPositions] = useState<any>();
@@ -15,12 +15,13 @@ const CreateUpdateEmployeeComponent = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("rendering create form")
     DepartmentService.getDepartments().then((res) => {
       setDepartments(res.data);
     });
-    PositionService.getPositions().then((res)=>{
-        setPositions(res.data)
-    })
+    PositionService.getPositions().then((res) => {
+      setPositions(res.data);
+    });
     setFormNames("Add");
   }, []);
 
@@ -160,16 +161,18 @@ const CreateUpdateEmployeeComponent = () => {
                     name="department"
                     className="form-select"
                     aria-label="Default select example"
-                    onChange={(e)=>{
-                        setEmployee({
-                            ...employee!,
-                            [e.target.name]: e.target.value 
-                        })
+                    onChange={(e) => {
+                      setEmployee({
+                        ...employee!,
+                        [e.target.name]: e.target.value,
+                      });
                     }}
                   >
                     <option selected>Select the department</option>
                     {departments?.data?.map((department: Department) => {
-                      return <option value={department.id}>{department.name}</option>;
+                      return (
+                        <option value={department.id}>{department.name}</option>
+                      );
                     })}
                   </select>
                 </div>
@@ -180,16 +183,18 @@ const CreateUpdateEmployeeComponent = () => {
                     className="form-select"
                     aria-label="Default select example"
                     name="position"
-                    onChange={(e)=>{
-                        setEmployee({
-                            ...employee!,
-                            [e.target.name]: e.target.value
-                        })
+                    onChange={(e) => {
+                      setEmployee({
+                        ...employee!,
+                        [e.target.name]: e.target.value,
+                      });
                     }}
                   >
                     <option selected>Select the position</option>
                     {positions?.data?.map((position: Department) => {
-                      return <option value={position.id}>{position.name}</option>;
+                      return (
+                        <option value={position.id}>{position.name}</option>
+                      );
                     })}
                   </select>
                 </div>
@@ -217,4 +222,4 @@ const CreateUpdateEmployeeComponent = () => {
   );
 };
 
-export default CreateUpdateEmployeeComponent;
+export default CreateEmployeeForm;

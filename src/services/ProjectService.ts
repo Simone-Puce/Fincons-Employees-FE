@@ -32,7 +32,7 @@ const ProjectService = {
     },
 
     deleteEmployee(employeeId: Number){
-        return axios.delete(CREATE_PROJECT+"/"+employeeId)
+        return axios.delete(DELETE_PROJECT+"/"+employeeId)
     }
 }
 

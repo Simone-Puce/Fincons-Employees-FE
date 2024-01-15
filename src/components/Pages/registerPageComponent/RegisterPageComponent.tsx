@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ConfirmRegistrationModal from "../confirmRegistrationModal/ConfirmRegistrationModal";
 import "bootstrap/dist/css/bootstrap.css";
-import User from "../../models/UserModel";
-import LoginRegistrationService from "../../services/LoginRegistrationService";
+import User from "../../../models/UserModel";
+import LoginRegistrationService from "../../../services/LoginRegistrationService";
+import ConfirmRegistrationModal from "../confirmRegistrationModal/ConfirmRegistrationModal";
 
 const RegisterPageComponent = () => {
   const [input, setInput] = useState<User>();

@@ -3,18 +3,19 @@ import "./App.css";
 import { useState } from "react";
 import ProtectedRoutes from "./services/ProtectedRoutes";
 import "bootstrap/dist/css/bootstrap.css";
-import CreateUpdateEmployeeComponent from "./components/createUpdateEmployeeComponent/CreateEmployeeComponent";
-import HeaderComponent from "./components/headerComponent/HeaderComponent";
-import ListEmployeeComponent from "./components/listEmployeeComponent/ListEmployeeComponent";
-import ViewEmployeeComponent from "./components/viewEmployeeComponent/ViewEmployeeComponent";
-import LoginPageComponent from "./components/loginPageComponent/LoginPageComponent";
-import RegisterPageComponent from "./components/registerPageComponent/RegisterPageComponent";
-import FooterComponent from "./components/footerComponent/FooterComponent";
-import HomePageComponent from "./components/homePageComponent/HomePageComponent";
-import Update from "./components/updateComponent/Update";
+import CreateUpdateEmployeeComponent from "./components/Pages/createUpdateEmployeeComponent/CreateEmployeeComponent";
+import HeaderComponent from "./components/Pages/headerComponent/HeaderComponent";
+import ListEmployeeComponent from "./components/Pages/listEmployeeComponent/ListEmployeeComponent";
+import ViewEmployeeComponent from "./components/Pages/viewEmployeeComponent/ViewEmployeeComponent";
+import LoginPageComponent from "./components/Pages/loginPageComponent/LoginPageComponent";
+import RegisterPageComponent from "./components/Pages/registerPageComponent/RegisterPageComponent";
+import FooterComponent from "./components/Pages/footerComponent/FooterComponent";
+import HomePageComponent from "./components/Pages/homePageComponent/HomePageComponent";
+import Update from "./components/Pages/updateComponent/Update";
 
 function App() {
   const [selectedUser, setSelectedUser] = useState<string>("");
+  const [toDisplayList, setToDisplayList] = useState<string>("employees")
 
   return (
     <div>
@@ -22,8 +23,10 @@ function App() {
         <HeaderComponent
           userEmail={selectedUser}
           setUserEmail={setSelectedUser}
+          toDisplayList={toDisplayList}
+          setToDisplayList={setToDisplayList}
         />
-        <div className="container">
+       
           <Routes>
             <Route
               path="/"
@@ -31,11 +34,11 @@ function App() {
             >
               <Route
                 path="/employees"
-                element={<ListEmployeeComponent />}
+                element={<ListEmployeeComponent toDisplayList={toDisplayList} />}
               ></Route>
               <Route
                 path="/add-employee"
-                element={<CreateUpdateEmployeeComponent />}
+                element={<CreateUpdateEmployeeComponent toDisplayList={toDisplayList}/>}
               ></Route>
               <Route
                 path="/home"
@@ -71,7 +74,6 @@ function App() {
             ></Route>
             <Route path="/register" element={<RegisterPageComponent />}></Route>
           </Routes>
-        </div>
         <FooterComponent />
       </Router>
     </div>

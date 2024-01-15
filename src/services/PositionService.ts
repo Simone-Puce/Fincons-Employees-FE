@@ -27,7 +27,7 @@ const PositionService = {
         return axios.put(UPDATE_POSITION,{params:{id: position}, updatedPosition})
     },
 
-    deleteEmployee(positionId: number){
+    deletePosition(positionId: number | undefined) {
         return axios.delete(DELETE_POSITION,{params:{id:positionId}})
     }
 }

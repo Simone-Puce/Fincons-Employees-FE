@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import "./HeaderComponent.css";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
-import utils from "../../utils/Utils";
-import LoginRegistrationService from "../../services/LoginRegistrationService";
-import UserDetailModels from "../../models/UserDetailsModel";
+import utils from "../../../utils/Utils";
+import LoginRegistrationService from "../../../services/LoginRegistrationService";
+import UserDetailModels from "../../../models/UserDetailsModel";
 
 interface Props {
   userEmail: string;
   setUserEmail: React.Dispatch<React.SetStateAction<string>>;
+  toDisplayList: string;
+  setToDisplayList: React.Dispatch<React.SetStateAction<string>>;
+  
 }
 
 const HeaderComponent = (props: Props) => {
@@ -25,8 +28,21 @@ const HeaderComponent = (props: Props) => {
   };
 
   const handleEmployeeList = () => {
+    props.setToDisplayList("employees")
     navigate("/employees");
   };
+  
+  const handlePositionList = () => {
+    props.setToDisplayList("positions")
+    navigate("/employees");
+  };
+  
+  const handleDepartmentList = () => {
+    props.setToDisplayList("departments")
+    navigate("/employees");
+  };
+
+  
 
   useEffect(() => {
     if (auth !== null) {
@@ -53,15 +69,15 @@ const HeaderComponent = (props: Props) => {
   };
 
   return (
-    <nav className="navbar fixed-top mb-5 position-absolute pb-5">
-      <div className="container-fluid mb-5 pb-5">
-        <div className="centered-navbar mb-5 ">
+    <nav className="navbar fixed-top mb-5 position-absolute">
+      <div className="container-fluid">
+        <div className="centered-navbar">
           <h2>Employee Manager</h2>
         </div>
-        <div className="d-flex justify-content-around mt-5 pt-2">
-            <button hidden={isHidden} className="btn rounded-pill btn-primary mr-5"> Employees</button>
-            <button hidden={isHidden} className="btn rounded-pill btn-info mr-5 ml-5"> Departments</button>
-            <button hidden={isHidden} className="btn rounded-pill btn-secondary ml-5"> Positions</button>
+        <div className="d-flex mt-5 pt-2">
+            <button hidden={isHidden} className="btn rounded-pill btn-primary mr-5" onClick={handleEmployeeList}> Employees</button>
+            <button hidden={isHidden} className="btn rounded-pill btn-info mr-5 ml-5" onClick={handleDepartmentList}> Departments</button>
+            <button hidden={isHidden} className="btn rounded-pill btn-secondary ml-5" onClick={handlePositionList}> Positions</button>
           </div>
         <button
           hidden={isHidden}

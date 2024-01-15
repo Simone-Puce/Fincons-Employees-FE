@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import EmployeeService from "../../services/EmployeeService";
-import Employee from "../../models/EmployeeModel";
+import EmployeeService from "../../../services/EmployeeService";
+import Employee from "../../../models/EmployeeModel";
 
 const ViewEmployeeComponent = () => {
   const [employee, setEmployee] = useState<Employee>()

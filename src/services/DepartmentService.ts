@@ -28,7 +28,7 @@ const EmployeeService = {
         return axios.put(UPDATE_DEPARTMENT,{params:{id: departmentId}, updatedDepartment})
     },
 
-    deleteEmployee(departmentId: number){
+    deleteDepartment(departmentId: number | undefined) {
         return axios.delete(DELETE_DEPARTMENT,{params:{id:departmentId}})
     }
 }
