@@ -31,7 +31,7 @@ const TableHeadComponent = (props: Props) => {
       }
     }
     console.log(tableHeadValues);
-  }, []);
+  },[]);
 
   return (
     <thead hidden={hiddenValue}>

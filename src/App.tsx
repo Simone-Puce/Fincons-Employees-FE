@@ -38,7 +38,7 @@ function App() {
               ></Route>
               <Route
                 path="/add-employee"
-                element={<CreateUpdateEmployeeComponent toDisplayList={toDisplayList}/>}
+                element={<CreateUpdateEmployeeComponent toDisplayList={toDisplayList} />}
               ></Route>
               <Route
                 path="/home"
@@ -50,7 +50,7 @@ function App() {
               ></Route>
                <Route
                 path="update-employee/:id"
-                element={<Update />}
+                element={<Update toDisplayList={toDisplayList}/>}
               ></Route>
             </Route>
             {}

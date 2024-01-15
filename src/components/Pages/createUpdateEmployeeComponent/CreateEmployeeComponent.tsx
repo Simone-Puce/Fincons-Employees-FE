@@ -1,6 +1,5 @@
-import { useEffect } from "react";
 import CreateEmployeeForm from "../../Forms/CreateEmployeeForm";
-import CreateDepartmentForm from "../../Forms/CreateDepartmentsForm";
+import CreateDepartmentForm from "../../Forms/CreateDepartmentForm";
 import CreatePositionForm from "../../Forms/CreatePositionForm";
 
 const EMPLOYEE_CASE = "employees";
@@ -8,11 +7,10 @@ const DEPARTMENT_CASE = "departments";
 const POSITION_CASE = "positions";
 
 interface Props {
-  toDisplayList: string;
+  toDisplayList: string;  
 }
 
 const CreateUpdateEmployeeComponent = (props: Props) => {
-  useEffect(() => {}, [props.toDisplayList]);
 
   const conditionalRenderCreateForm = () => {
     switch (props.toDisplayList) {
