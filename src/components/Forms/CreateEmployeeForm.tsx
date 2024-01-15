@@ -10,19 +10,16 @@ const CreateEmployeeForm = () => {
   const [employee, setEmployee] = useState<Employee>();
   const [departments, setDepartments] = useState<any>();
   const [positions, setPositions] = useState<any>();
-  const [formNames, setFormNames] = useState("");
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("rendering create form")
     DepartmentService.getDepartments().then((res) => {
       setDepartments(res.data);
     });
     PositionService.getPositions().then((res) => {
       setPositions(res.data);
     });
-    setFormNames("Add");
   }, []);
 
   const saveOrUpdateEmployee = () => {
@@ -37,7 +34,7 @@ const CreateEmployeeForm = () => {
       <div className="container">
         <div className="row">
           <div className="card col-md-6 offset-md-3 offset-md-3">
-            <h3 className="text-center"> {formNames} employee </h3>
+            <h3 className="text-center"> Create employee </h3>
             <div className="card-body">
               <form>
                 <div className="form-group">
