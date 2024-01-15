@@ -1,5 +1,4 @@
 import axios from "axios";
-import EmployeeModel from "../models/EmployeeModel";
 import Department from "../models/DepartmentModel";
 
 const DEPARTMENT_API_BASE_URL = "http://localhost:81/be/company-employee-management";
@@ -11,12 +10,12 @@ const CREATE_DEPARTMENT=DEPARTMENT_URI+"/create"
 const UPDATE_DEPARTMENT=DEPARTMENT_URI+"/update"
 const DELETE_DEPARTMENT=DEPARTMENT_URI+"/delete"
 
-const EmployeeService = {
+const DepartmentService = {
     getDepartments(){
         return axios.get(GET_ALL_URI);
     },
 
-    getDepartmentsById(departmentId: number | undefined){
+    getDepartmentById(departmentId: number | undefined){
         return axios.get(GET_BY_ID, {params:{id:departmentId}})
     },
     
@@ -33,4 +32,4 @@ const EmployeeService = {
     }
 }
 
-export default EmployeeService;
+export default DepartmentService;

@@ -15,7 +15,7 @@ const PositionService = {
         return axios.get(GET_ALL_URI);
     },
 
-    getPositionsById(positionId: number | undefined){
+    getPositionById(positionId: number | undefined){
         return axios.get(GET_BY_ID, {params:{id:positionId}})
     },
     

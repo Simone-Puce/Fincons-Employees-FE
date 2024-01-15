@@ -46,7 +46,7 @@ function App() {
               ></Route>
               <Route
                 path="view-employee/:id"
-                element={<ViewEmployeeComponent />}
+                element={<ViewEmployeeComponent toDisplayList={toDisplayList}/>}
               ></Route>
                <Route
                 path="update-employee/:id"
