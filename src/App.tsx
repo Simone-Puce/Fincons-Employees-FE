@@ -30,11 +30,11 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={<ProtectedRoutes userEmail={selectedUser} />}
+              element={<ProtectedRoutes userEmail={selectedUser}  />}
             >
               <Route
                 path="/employees"
-                element={<ListEmployeeComponent toDisplayList={toDisplayList} />}
+                element={<ListEmployeeComponent toDisplayList={toDisplayList}/>}
               ></Route>
               <Route
                 path="/add-employee"

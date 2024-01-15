@@ -30,7 +30,6 @@ const TableHeadComponent = (props: Props) => {
           break;
       }
     }
-    console.log(tableHeadValues);
   },[]);
 
   return (

@@ -19,7 +19,7 @@ const UpdatePositionForm = () => {
 
 
   const UpdatePosition = () => {
-    EmployeeService.updateEmployee(idPosition, position);
+    PositionService.updatePosition(idPosition, position!);
     navigate("/employees");
   };
 

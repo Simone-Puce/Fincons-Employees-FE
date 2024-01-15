@@ -35,7 +35,7 @@ const EmployeeService = {
     },
 
     updateEmployee(employeeId: number | undefined,updatedEmployee: Employee | undefined) {
-        console.log(updatedEmployee, "logging updated employee")
+        console.log(updatedEmployee, "update employee body")
         return axios.put(
             UPDATE_EMPLOYEE,
             {   firstName: updatedEmployee?.firstName,
@@ -45,8 +45,8 @@ const EmployeeService = {
                 email: updatedEmployee?.email,
                 startDate: updatedEmployee?.startDate,
                 endDate: updatedEmployee?.endDate,
-                department: { id: updatedEmployee?.department?.id },
-                position: { id: updatedEmployee?.position?.id } },
+                department: { id: updatedEmployee?.department},
+                position: { id: updatedEmployee?.position } },
             { 
                 params: { id: employeeId }, 
                 headers:{

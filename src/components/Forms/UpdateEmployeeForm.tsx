@@ -197,7 +197,7 @@ const UpdateEmployeeForm = () => {
                       });
                     }}
                   >
-                    <option>{employee?.position?.name}</option>
+                    <option>Select the position</option>
 
                     {positions?.data?.map((position: Position) => {
                       return (

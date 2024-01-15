@@ -27,7 +27,6 @@ const TableElementComponent = (props: Props) => {
 
 
     useEffect(()=>{
-        console.log(props.tableData, "beforeSetData")
         switch(props.toDisplay){
             case EMPLOYEE_CASE:
                 setTableElementId(props.tableData.id)

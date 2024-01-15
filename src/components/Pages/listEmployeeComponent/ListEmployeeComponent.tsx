@@ -94,7 +94,8 @@ const ListEmployeeComponent = (props: Props) => {
   };
 
   return (
-    <div className="container">{listConditionalRender()}</div>
+    <div className="container">
+      {listConditionalRender()}</div>
   )
 };
 

@@ -95,7 +95,6 @@ const RegisterPageComponent = () => {
   ]);
 
   useEffect(()=>{
-    console.log("password useeffect  "+ input?.confirmPassword)
     if(input?.confirmPassword!== input?.password){
       setConfirmPasswordFieldWarning("is-invalid")
     }
@@ -156,7 +155,6 @@ const RegisterPageComponent = () => {
   };
 
   const checkConfirmPassword = (e: string) => {
-    console.log(e+ "   ++++ ", input?.password)
     if (e === input?.password && e!== "") {
       setConfirmPasswordFieldWarning("is-valid");
     }

@@ -24,7 +24,19 @@ const DepartmentService = {
     },
 
     updateDepartment(departmentId: number, updatedDepartment: Department){
-        return axios.put(UPDATE_DEPARTMENT,{params:{id: departmentId}, updatedDepartment})
+        return axios.put(
+            UPDATE_DEPARTMENT,
+            {   name: updatedDepartment?.name,
+                address: updatedDepartment?.address,
+                city: updatedDepartment.city
+            },
+            { 
+                params: { id: departmentId }, 
+                headers:{
+                    'Content-Type': 'application/json'
+                }
+            }
+        );
     },
 
     deleteDepartment(departmentId: number | undefined) {

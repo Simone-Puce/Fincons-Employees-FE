@@ -23,8 +23,18 @@ const PositionService = {
         return axios.post(CREATE_POSITION,position)
     },
 
-    updatePosition(position: number, updatedPosition: Position){
-        return axios.put(UPDATE_POSITION,{params:{id: position}, updatedPosition})
+    updatePosition(positionId: number, updatedPosition: Position){
+        console.log(updatedPosition)
+        return axios.put(
+            UPDATE_POSITION,
+            { 
+                name: updatedPosition?.name,
+                salary: updatedPosition?.salary
+            },
+            { 
+                params: { id: positionId }
+            }
+        );
     },
 
     deletePosition(positionId: number | undefined) {
