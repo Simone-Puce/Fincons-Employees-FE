@@ -27,7 +27,7 @@ const TableHeadComponent = (props: Props) => {
           setTableHeadValues(["Name", "Address", "City", "Actions"]);
           break;
         case POSITION_CASE:
-          setTableHeadValues(["Name", "Salary", "idk", "Actions"]);
+          setTableHeadValues(["Name", "Salary", "Actions"]);
           break;
       }
     }
@@ -40,7 +40,7 @@ const TableHeadComponent = (props: Props) => {
 
   return (
     <thead hidden={hiddenValue}>
-      <tr>
+      <tr className="text-center">
         {tableHeadValues?.map((tableHeadValue, index) => (
           <th key={index}>{tableHeadValue}</th>
         ))}
