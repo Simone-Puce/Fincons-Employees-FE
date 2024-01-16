@@ -30,19 +30,6 @@ const HeaderComponent = (props: Props) => {
   const handleEmployeeList = () => {
     props.setToDisplayList("employees")
     navigate("/employees");
-
-  };
-  
-  const handlePositionList = () => {
-    props.setToDisplayList("positions")
-    navigate("/employees");
-
-  };
-  
-  const handleDepartmentList = () => {
-    props.setToDisplayList("departments")
-    navigate("/employees");
-
   };
 
   

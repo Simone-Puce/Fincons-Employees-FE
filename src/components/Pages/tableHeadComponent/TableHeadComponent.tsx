@@ -7,6 +7,7 @@ const POSITION_CASE = "positions";
 interface Props {
   tableHeadList: any | undefined;
   toDisplay: string | undefined;
+  tableData: any;
 }
 
 const TableHeadComponent = (props: Props) => {
@@ -15,7 +16,7 @@ const TableHeadComponent = (props: Props) => {
 
   useEffect(() => {
     if (props.tableHeadList === undefined || props.tableHeadList.length === 0) {
-      setHiddenValue(true);
+      setHiddenValue(true)
     } else {
       setHiddenValue(false);
       switch (props.toDisplay) {
@@ -30,12 +31,17 @@ const TableHeadComponent = (props: Props) => {
           break;
       }
     }
-  },[props.toDisplay, props.tableHeadList]);
+    if(props.tableData !== undefined){
+      if(props.tableData.data.length === 0){
+        setHiddenValue(true)
+      }
+    }
+  }, [props.toDisplay, props.tableHeadList, props.tableData]);
 
   return (
     <thead hidden={hiddenValue}>
       <tr>
-        {tableHeadValues?.map((tableHeadValue,index) => (
+        {tableHeadValues?.map((tableHeadValue, index) => (
           <th key={index}>{tableHeadValue}</th>
         ))}
       </tr>

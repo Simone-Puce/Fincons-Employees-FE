@@ -84,19 +84,25 @@ const UpdateEmployeeForm = () => {
 
                 <div className="form-group">
                   <label>Gender</label>
-                  <input
-                    placeholder="gender"
-                    name="gender"
-                    className="form-control"
+                  <select
+                    className="form-select"
+                    aria-label="Default select example"
                     value={employee?.gender}
+                    name="gender"
                     onChange={(e) => {
                       setEmployee({
                         ...employee!,
                         [e.target.name]: e.target.value,
                       });
                     }}
-                  ></input>
+                  >
+                    <option selected>Select your gender</option>
+                    <option value="male"> Male </option>
+                    <option value="female"> Female </option>
+                    <option value="others"> Other </option>
+                  </select>
                 </div>
+
 
                 <div className="form-group">
                   <label>Birth date</label>
@@ -206,18 +212,19 @@ const UpdateEmployeeForm = () => {
                     })}
                   </select>
                 </div>
+                <div className="d-flex justify-content-center mt-3">
+                  <button className="btn btn-success" onClick={UpdateEmployee}>
+                    Save
+                  </button>
+                  <button
+                    className="btn btn-danger"
+                    style={{ marginLeft: "10px" }}
+                    onClick={backToList}
+                  >
 
-                <button className="btn btn-success" onClick={UpdateEmployee}>
-                  Save
-                </button>
-                <button
-                  className="btn btn-danger"
-                  style={{ marginLeft: "10px" }}
-                  onClick={backToList}
-                >
-                  {" "}
-                  Cancel{" "}
-                </button>
+                    Cancel
+                  </button>
+                </div>
               </form>
             </div>
           </div>

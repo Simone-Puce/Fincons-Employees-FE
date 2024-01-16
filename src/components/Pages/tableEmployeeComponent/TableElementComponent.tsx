@@ -1,4 +1,4 @@
-import React, {MouseEvent, useEffect, useState } from "react";
+import React, { MouseEvent, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import EmployeeService from "../../../services/EmployeeService";
 import './TableElementComponent.css'
@@ -14,6 +14,7 @@ const POSITION_CASE = "positions";
 
 type Props = {
     tableData: any;
+    setTableData: React.Dispatch<React.SetStateAction<any | undefined>>
     filter: string | undefined;
     setfilter: React.Dispatch<React.SetStateAction<string | undefined>>;
     toDisplay: string | undefined;
@@ -26,8 +27,8 @@ const TableElementComponent = (props: Props) => {
     const [thirdElement, setThirdElement] = useState<string>()
 
 
-    useEffect(()=>{
-        switch(props.toDisplay){
+    useEffect(() => {
+        switch (props.toDisplay) {
             case EMPLOYEE_CASE:
                 setTableElementId(props.tableData.id)
                 setFirstElement(props.tableData.firstName)
@@ -47,22 +48,31 @@ const TableElementComponent = (props: Props) => {
                 setThirdElement(props.tableData.salary.toString())
                 break;
         }
-    },[props.toDisplay])
+    }, [props.toDisplay, props])
 
     useEffect(() => {
 
-    }, [props.filter])
+    }, [props.tableData])
 
     const deleteButtonHandler = (id: string | undefined) => {
-        switch(props.toDisplay){
+        switch (props.toDisplay) {
             case EMPLOYEE_CASE:
                 EmployeeService.deleteEmployee(parseInt(id!));
+                EmployeeService.getEmployees().then((res)=>{
+                    console.log(res.data, "employees")
+                })
                 break;
             case DEPARTMENT_CASE:
                 DepartmentService.deleteDepartment(parseInt(id!));
+                DepartmentService.getDepartments().then((res)=>{
+                    console.log(res.data, "departments")
+                })
                 break;
             case POSITION_CASE:
                 PositionService.deletePosition(parseInt(id!))
+                PositionService.getPositions().then((res)=>{
+                    console.log(res.data, "departments")
+                })
                 break;
         }
         props.setfilter("")
@@ -70,22 +80,22 @@ const TableElementComponent = (props: Props) => {
 
     return (
         <>
-        <tbody>
-            <tr key={tableElementId}>
-                <td> {utils.capitalizeFirstLetter(firstElement)}</td>
-                <td> {utils.capitalizeFirstLetter(secondElement)}</td>
-                <td> {thirdElement}</td>
-                <td>
-                    <div className='ButtonDiv div-style'>
-                        <Link to={`/update-employee/${tableElementId}` }><button className='btn btn-info'> <i className="bi bi-pencil-square"></i> </button></Link>
-                        <button type="button" className="btn btn-warning deleteButton" onClick={(e) => deleteButtonHandler(tableElementId)}><i className="bi bi-trash3-fill"></i></button>
-                        <Link to={`/view-employee/${tableElementId}`}><button type="button" className="btn btn-info"><i className="bi bi-info-circle"></i></button></Link>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    
-    </>
+            <tbody>
+                <tr key={tableElementId}>
+                    <td> {utils.capitalizeFirstLetter(firstElement)}</td>
+                    <td> {utils.capitalizeFirstLetter(secondElement)}</td>
+                    <td> {thirdElement}</td>
+                    <td>
+                        <div className='ButtonDiv div-style'>
+                            <Link to={`/update-employee/${tableElementId}`}><button className='btn btn-info'> <i className="bi bi-pencil-square"></i> </button></Link>
+                            <button type="button" className="btn btn-warning deleteButton" onClick={(e) => deleteButtonHandler(tableElementId)}><i className="bi bi-trash3-fill"></i></button>
+                            <Link to={`/view-employee/${tableElementId}`}><button type="button" className="btn btn-info"><i className="bi bi-info-circle"></i></button></Link>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+
+        </>
 
     )
 

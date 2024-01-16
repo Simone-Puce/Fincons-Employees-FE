@@ -86,6 +86,7 @@ const ListEmployeeComponent = (props: Props) => {
           <EmployeeList
             changeFilterHandler={changeFilterHandler}
             tableData={employees}
+            setTableData={setEmployees}
             filter={filterByName}
             setfilter={setFilterByName}
             toDisplay={props.toDisplayList}
@@ -95,6 +96,7 @@ const ListEmployeeComponent = (props: Props) => {
         return (
           <PositionList
             changeFilterHandler={changeFilterHandler}
+            setTableData={setPositions}
             tableData={positions}
             filter={filterByName}
             setfilter={setFilterByName}
@@ -106,6 +108,7 @@ const ListEmployeeComponent = (props: Props) => {
           <DepartmentList
             changeFilterHandler={changeFilterHandler}
             tableData={departments}
+            setTableData={setDepartments}
             filter={filterByName}
             setfilter={setFilterByName}
             toDisplay={props.toDisplayList}
@@ -115,13 +118,17 @@ const ListEmployeeComponent = (props: Props) => {
   };
 
   return (
-    <div className="container">
-      <div className="col">
+
+    <div className="col mt-5 pt-5">
+      <div className="d-flex justify-content-evenly">
         <button className="btn rounded-pill btn-primary mr-5 pr-5" onClick={handleEmployeeList}> Employees</button>
         <button className="btn rounded-pill btn-info mr-5 pr-5 pl-5 ml-5" onClick={handleDepartmentList}> Departments</button>
         <button className="btn rounded-pill btn-secondary ml-5" onClick={handlePositionList}> Positions</button>
       </div>
-      {listConditionalRender()}</div>
+      <div className="container">
+        {listConditionalRender()}
+      </div>
+    </div>
   )
 };
 
