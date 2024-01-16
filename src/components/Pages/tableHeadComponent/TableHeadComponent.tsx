@@ -30,7 +30,7 @@ const TableHeadComponent = (props: Props) => {
           break;
       }
     }
-  },[]);
+  },[props.toDisplay, props.tableHeadList]);
 
   return (
     <thead hidden={hiddenValue}>
