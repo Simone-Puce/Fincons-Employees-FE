@@ -1,10 +1,9 @@
 import React, { FormEvent, useState } from "react";
-import "../../App.css";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { motion } from "framer-motion";
-import LoginRegistrationService from "../../services/LoginRegistrationService";
-import LoginUserModel from "../../models/LoginUserModel";
+import LoginRegistrationService from "../../../services/LoginRegistrationService";
+import LoginUserModel from "../../../models/LoginUserModel";
 
 interface Props {
   userEmail: string;
@@ -30,7 +29,7 @@ const LoginPageComponent = (props: Props) => {
         if (res.data === "You are on the home page") {
           localStorage.setItem("loggedIn" + input.email, "true");
           props.setUserEmail(input.email);
-          navigate("/home");
+          navigate("/employees");
         } else {
           Swal.fire({
             title: "Error?",
@@ -142,13 +141,12 @@ const LoginPageComponent = (props: Props) => {
                     </div>
                     <div className="d-flex justify-content-center">
                       <p>
-                        {" "}
-                        Non sei ancora registrato?{" "}
+                        You don't have an account?
                         <a
                           onClick={navigateToRegister}
                           className="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
                         >
-                          Registrati
+                          Sign up now
                         </a>
                       </p>
                     </div>

@@ -1,5 +1,5 @@
 class Utils {
-  capitalizeFirstLetter(str: string) {
+  capitalizeFirstLetter(str: string | undefined) {
     if (str !== undefined) {
       return str.replace(/^\w/, (c) => c.toUpperCase());
     } else {

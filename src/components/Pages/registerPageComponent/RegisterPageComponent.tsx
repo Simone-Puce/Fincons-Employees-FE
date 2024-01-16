@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ConfirmRegistrationModal from "../confirmRegistrationModal/ConfirmRegistrationModal";
 import "bootstrap/dist/css/bootstrap.css";
-import User from "../../models/UserModel";
-import LoginRegistrationService from "../../services/LoginRegistrationService";
+import User from "../../../models/UserModel";
+import LoginRegistrationService from "../../../services/LoginRegistrationService";
+import ConfirmRegistrationModal from "../confirmRegistrationModal/ConfirmRegistrationModal";
 
 const RegisterPageComponent = () => {
   const [input, setInput] = useState<User>();
@@ -95,7 +95,6 @@ const RegisterPageComponent = () => {
   ]);
 
   useEffect(()=>{
-    console.log("password useeffect  "+ input?.confirmPassword)
     if(input?.confirmPassword!== input?.password){
       setConfirmPasswordFieldWarning("is-invalid")
     }
@@ -156,7 +155,6 @@ const RegisterPageComponent = () => {
   };
 
   const checkConfirmPassword = (e: string) => {
-    console.log(e+ "   ++++ ", input?.password)
     if (e === input?.password && e!== "") {
       setConfirmPasswordFieldWarning("is-valid");
     }
@@ -353,17 +351,15 @@ const RegisterPageComponent = () => {
                     <div hidden={passwordDetails}>
                       <div className="mb-1 mt-2">
                         {" "}
-                        {firstPasswordRestriction()} Almeno 8 lettere{" "}
+                        {firstPasswordRestriction()} Atleast 8 letter {" "}
                       </div>
                       <div className="mb-1">
                         {" "}
-                        {secondPasswordRestriction()} Almeno un carattere
-                        maiuscolo
+                        {secondPasswordRestriction()} Atleast 1 capital letter
                       </div>
                       <div className="mb-1">
                         {" "}
-                        {thirdPasswordRestriction()} Almeno un carattere
-                        speciale
+                        {thirdPasswordRestriction()} Atleast 1 special character
                       </div>
                     </div>
                   </div>

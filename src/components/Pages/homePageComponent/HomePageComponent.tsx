@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import LoginRegistrationService from "../../services/LoginRegistrationService";
+import LoginRegistrationService from "../../../services/LoginRegistrationService";
 
 interface Props{
     userEmail: string;
