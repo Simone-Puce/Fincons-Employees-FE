@@ -82,19 +82,13 @@ const TableElementComponent = (props: Props) => {
     const deleteButtonHandler = (id: string | undefined) => {
         switch (props.toDisplay) {
             case EMPLOYEE_CASE:
-                EmployeeService.deleteEmployee(parseInt(id!));
-                EmployeeService.getEmployees().then((res) => {
-                    //console.log(res.data, "employees")
-                })
+                EmployeeService.deleteEmployee(parseInt(id!))
                 break;
             case DEPARTMENT_CASE:
                 DepartmentService.deleteDepartment(parseInt(id!));
-                DepartmentService.getDepartments().then((res) => {
-                    props.setTableData(res.data)
-                })
                 break;
             case POSITION_CASE:
-                //PositionService.deletePosition(parseInt(id!))
+                PositionService.deletePosition(parseInt(id!))
                 break;
         }
         props.setfilter("")
