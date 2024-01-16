@@ -35,8 +35,8 @@ const TableHeadComponent = (props: Props) => {
   return (
     <thead hidden={hiddenValue}>
       <tr>
-        {tableHeadValues?.map((tableHeadValue) => (
-          <th>{tableHeadValue}</th>
+        {tableHeadValues?.map((tableHeadValue,index) => (
+          <th key={index}>{tableHeadValue}</th>
         ))}
       </tr>
     </thead>
