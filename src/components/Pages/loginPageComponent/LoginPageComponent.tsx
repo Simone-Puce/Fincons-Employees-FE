@@ -140,15 +140,17 @@ const LoginPageComponent = (props: Props) => {
                       </motion.button>
                     </div>
                     <div className="d-flex justify-content-center">
-                      <p>
+                        <div className="d-flex align-self-center">
                         You don't have an account?
-                        <a
-                          onClick={navigateToRegister}
-                          className="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                        </div>
+                        <button
+                         type="button"
+                         className="btn btn-link"
+                        onClick={navigateToRegister}
                         >
                           Sign up now
-                        </a>
-                      </p>
+                        </button>
+                      
                     </div>
                   </div>
                 </form>
