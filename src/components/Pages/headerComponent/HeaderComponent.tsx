@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import "./HeaderComponent.css";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
-import utils from "../../utils/Utils";
-import LoginRegistrationService from "../../services/LoginRegistrationService";
-import UserDetailModels from "../../models/UserDetailsModel";
+import utils from "../../../utils/Utils";
+import LoginRegistrationService from "../../../services/LoginRegistrationService";
+import UserDetailModels from "../../../models/UserDetailsModel";
 
 interface Props {
   userEmail: string;
   setUserEmail: React.Dispatch<React.SetStateAction<string>>;
+  toDisplayList: string;
+  setToDisplayList: React.Dispatch<React.SetStateAction<string>>;
+  
 }
 
 const HeaderComponent = (props: Props) => {
@@ -25,8 +28,11 @@ const HeaderComponent = (props: Props) => {
   };
 
   const handleEmployeeList = () => {
+    props.setToDisplayList("employees")
     navigate("/employees");
-  };
+  }
+
+  
 
   useEffect(() => {
     if (auth !== null) {
@@ -54,13 +60,13 @@ const HeaderComponent = (props: Props) => {
 
   return (
     <nav className="navbar fixed-top mb-5 position-absolute">
-      <div className="container-fluid">
-        <div className="centered-navbar">
+      <div className="container-fluid d-flex">
+        <div className="centered-navbar align-self-start">
           <h2>Employee Manager</h2>
         </div>
         <button
           hidden={isHidden}
-          className="navbar-toggler close-navbar-button border-0 btn-lg"
+          className="navbar-toggler close-navbar-button border-0 btn-lg align-self-start"
           type="button"
           data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasNavbar"
