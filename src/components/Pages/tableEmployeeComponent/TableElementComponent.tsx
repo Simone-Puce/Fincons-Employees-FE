@@ -1,12 +1,10 @@
-import React, { MouseEvent, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import EmployeeService from "../../../services/EmployeeService";
 import './TableElementComponent.css'
 import utils from "../../../utils/Utils";
 import DepartmentService from "../../../services/DepartmentService";
 import PositionService from "../../../services/PositionService";
-
-
 
 const EMPLOYEE_CASE = "employees";
 const DEPARTMENT_CASE = "departments";
@@ -27,7 +25,6 @@ const TableElementComponent = (props: Props) => {
     const [thirdElement, setThirdElement] = useState<string>()
     const [isPositionSelected, setIsPositionSelected] = useState<boolean>(false)
     const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false)
-
 
     useEffect(() => {
         switch (props.toDisplay) {
@@ -67,13 +64,13 @@ const TableElementComponent = (props: Props) => {
         }
         if (props.toDisplay === POSITION_CASE) {
             EmployeeService.getEmployees().then((res: any) => {
-                
                 if (Array.isArray(res.data.data)) {
                     res.data.data.map((singleData: any) => {
-                        if(singleData.position.name === props.tableData.name){
-                           setIsButtonDisabled(true)
+                        if (singleData.position.name === props.tableData.name) {
+                            setIsButtonDisabled(true)
                         }
-                })
+                        return null;
+                    })
                 }
             })
         }
@@ -104,15 +101,13 @@ const TableElementComponent = (props: Props) => {
                     <td className="text-center">
                         <div className='ButtonDiv div-style'>
                             <Link to={`/update-employee/${tableElementId}`}><button className='btn btn-info'> <i className="bi bi-pencil-square"></i> </button></Link>
-                            <button type="button" className="btn btn-warning deleteButton" disabled={isButtonDisabled} onClick={(e) => deleteButtonHandler(tableElementId)}><i className="bi bi-trash3-fill"></i></button>
+                            <button type="button" title={isButtonDisabled ? "this can't be deleted" : ""} className="btn btn-warning delete-button" disabled={isButtonDisabled} onClick={(e) => deleteButtonHandler(tableElementId)}><i className="bi bi-trash3-fill"></i></button>
                             <Link to={`/view-employee/${tableElementId}`}><button type="button" className="btn btn-info"><i className="bi bi-info-circle"></i></button></Link>
                         </div>
                     </td>
                 </tr>
             </tbody>
-
         </>
-
     )
 
 
