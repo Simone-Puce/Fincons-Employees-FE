@@ -1,4 +1,4 @@
-import React, {MouseEvent, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import EmployeeService from "../../../services/EmployeeService";
 import './TableElementComponent.css'
@@ -6,14 +6,13 @@ import utils from "../../../utils/Utils";
 import DepartmentService from "../../../services/DepartmentService";
 import PositionService from "../../../services/PositionService";
 
-
-
 const EMPLOYEE_CASE = "employees";
 const DEPARTMENT_CASE = "departments";
 const POSITION_CASE = "positions";
 
 type Props = {
     tableData: any;
+    setTableData: React.Dispatch<React.SetStateAction<any | undefined>>
     filter: string | undefined;
     setfilter: React.Dispatch<React.SetStateAction<string | undefined>>;
     toDisplay: string | undefined;
@@ -24,10 +23,11 @@ const TableElementComponent = (props: Props) => {
     const [firstElement, setFirstElement] = useState<string>()
     const [secondElement, setSecondElemnt] = useState<string>()
     const [thirdElement, setThirdElement] = useState<string>()
+    const [isPositionSelected, setIsPositionSelected] = useState<boolean>(false)
+    const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false)
 
-
-    useEffect(()=>{
-        switch(props.toDisplay){
+    useEffect(() => {
+        switch (props.toDisplay) {
             case EMPLOYEE_CASE:
                 setTableElementId(props.tableData.id)
                 setFirstElement(props.tableData.firstName)
@@ -44,19 +44,42 @@ const TableElementComponent = (props: Props) => {
                 setTableElementId(props.tableData.id)
                 setFirstElement(props.tableData.name.toString())
                 setSecondElemnt(props.tableData.salary.toString())
-                setThirdElement(props.tableData.salary.toString())
                 break;
         }
-    },[props.toDisplay])
+    }, [props.toDisplay, props])
 
     useEffect(() => {
+        if (props.toDisplay === POSITION_CASE) {
+            setIsPositionSelected(true)
+        } else {
+            setIsPositionSelected(false)
+        }
+    }, [props.tableData, props.toDisplay])
 
-    }, [props.filter])
+    useEffect(() => {
+        if (props.toDisplay === DEPARTMENT_CASE) {
+            if (props.tableData.employees.length > 0) {
+                setIsButtonDisabled(true)
+            }
+        }
+        if (props.toDisplay === POSITION_CASE) {
+            EmployeeService.getEmployees().then((res: any) => {
+                if (Array.isArray(res.data.data)) {
+                    res.data.data.map((singleData: any) => {
+                        if (singleData.position.name === props.tableData.name) {
+                            setIsButtonDisabled(true)
+                        }
+                        return null;
+                    })
+                }
+            })
+        }
+    }, [props.toDisplay, props.tableData])
 
     const deleteButtonHandler = (id: string | undefined) => {
-        switch(props.toDisplay){
+        switch (props.toDisplay) {
             case EMPLOYEE_CASE:
-                EmployeeService.deleteEmployee(parseInt(id!));
+                EmployeeService.deleteEmployee(parseInt(id!))
                 break;
             case DEPARTMENT_CASE:
                 DepartmentService.deleteDepartment(parseInt(id!));
@@ -70,23 +93,21 @@ const TableElementComponent = (props: Props) => {
 
     return (
         <>
-        <tbody>
-            <tr key={tableElementId}>
-                <td> {utils.capitalizeFirstLetter(firstElement)}</td>
-                <td> {utils.capitalizeFirstLetter(secondElement)}</td>
-                <td> {thirdElement}</td>
-                <td>
-                    <div className='ButtonDiv div-style'>
-                        <Link to={`/update-employee/${tableElementId}` }><button className='btn btn-info'> <i className="bi bi-pencil-square"></i> </button></Link>
-                        <button type="button" className="btn btn-warning deleteButton" onClick={(e) => deleteButtonHandler(tableElementId)}><i className="bi bi-trash3-fill"></i></button>
-                        <Link to={`/view-employee/${tableElementId}`}><button type="button" className="btn btn-info"><i className="bi bi-info-circle"></i></button></Link>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    
-    </>
-
+            <tbody>
+                <tr key={tableElementId}>
+                    <td className="text-center"> {utils.capitalizeFirstLetter(firstElement)}</td>
+                    <td className="text-center"> {utils.capitalizeFirstLetter(secondElement)}</td>
+                    <td hidden={isPositionSelected} className="text-center"> {thirdElement}</td>
+                    <td className="text-center">
+                        <div className='ButtonDiv div-style'>
+                            <Link to={`/update-employee/${tableElementId}`}><button className='btn btn-info'> <i className="bi bi-pencil-square"></i> </button></Link>
+                            <button type="button" title={isButtonDisabled ? "this can't be deleted" : ""} className="btn btn-warning delete-button" disabled={isButtonDisabled} onClick={(e) => deleteButtonHandler(tableElementId)}><i className="bi bi-trash3-fill"></i></button>
+                            <Link to={`/view-employee/${tableElementId}`}><button type="button" className="btn btn-info"><i className="bi bi-info-circle"></i></button></Link>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </>
     )
 
 

@@ -59,7 +59,7 @@ const CreatePositionForm = () => {
                         }}
                       ></input>
                     </div>
-    
+                    <div className="d-flex justify-content-center mt-3">
                     <button
                       className="btn btn-success"
                       onClick={savePosition}
@@ -71,9 +71,10 @@ const CreatePositionForm = () => {
                       style={{ marginLeft: "10px" }}
                       onClick={goBackToList}
                     >
-                      {" "}
-                      Cancel{" "}
+                      
+                      Cancel
                     </button>
+                    </div>
                   </form>
                 </div>
               </div>

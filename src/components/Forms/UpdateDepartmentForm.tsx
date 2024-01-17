@@ -79,7 +79,7 @@ const UpdateDepartmentForm = () => {
                     }}
                   ></input>
                 </div>
-
+                <div className="d-flex justify-content-center mt-3">
                 <button className="btn btn-success" onClick={UpdatePosition}>
                   Save
                 </button>
@@ -88,9 +88,10 @@ const UpdateDepartmentForm = () => {
                   style={{ marginLeft: "10px" }}
                   onClick={backToList}
                 >
-                  {" "}
-                  Cancel{" "}
+                  
+                  Cancel
                 </button>
+                </div>
               </form>
             </div>
           </div>

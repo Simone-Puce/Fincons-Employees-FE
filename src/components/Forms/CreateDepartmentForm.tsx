@@ -73,7 +73,7 @@ const CreateDepartmentForm = () => {
                     }}
                   ></input>
                 </div>
-
+                <div className="d-flex justify-content-center mt-3">
                 <button
                   className="btn btn-success"
                   onClick={saveDepartment}
@@ -85,9 +85,9 @@ const CreateDepartmentForm = () => {
                   style={{ marginLeft: "10px" }}
                   onClick={goBackToList}
                 >
-                  {" "}
-                  Cancel{" "}
+                  Cancel
                 </button>
+                </div>
               </form>
             </div>
           </div>

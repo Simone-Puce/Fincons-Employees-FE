@@ -47,6 +47,8 @@ const HeaderComponent = (props: Props) => {
 
   
 
+  
+
   useEffect(() => {
     if (auth !== null) {
       LoginRegistrationService.getHome();

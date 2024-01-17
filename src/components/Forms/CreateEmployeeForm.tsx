@@ -71,18 +71,23 @@ const CreateEmployeeForm = () => {
 
                 <div className="form-group">
                   <label>Gender</label>
-                  <input
-                    placeholder="gender"
-                    name="gender"
-                    className="form-control"
+                  <select
+                    className="form-select"
+                    aria-label="Default select example"
                     value={employee?.gender}
+                    name="gender"
                     onChange={(e) => {
                       setEmployee({
                         ...employee!,
                         [e.target.name]: e.target.value,
                       });
                     }}
-                  ></input>
+                  >
+                    <option selected>Select your gender</option>
+                    <option value="male"> Male </option>
+                    <option value="female"> Female </option>
+                    <option value="others"> Other </option>
+                  </select>
                 </div>
 
                 <div className="form-group">
@@ -92,7 +97,6 @@ const CreateEmployeeForm = () => {
                     placeholder="birth name"
                     name="birthDate"
                     className="form-control"
-                    //value={employee?.birthDate}
                     onChange={(e) => {
                       setEmployee({
                         ...employee!,
@@ -125,7 +129,6 @@ const CreateEmployeeForm = () => {
                     placeholder="start date"
                     name="startDate"
                     className="form-control"
-                    //value={employee?.birthDate}
                     onChange={(e) => {
                       setEmployee({
                         ...employee!,
@@ -142,7 +145,6 @@ const CreateEmployeeForm = () => {
                     placeholder="end date"
                     name="endDate"
                     className="form-control"
-                    //value={employee?.birthDate}
                     onChange={(e) => {
                       setEmployee({
                         ...employee!,
@@ -195,21 +197,21 @@ const CreateEmployeeForm = () => {
                     })}
                   </select>
                 </div>
-
-                <button
-                  className="btn btn-success"
-                  onClick={saveOrUpdateEmployee}
-                >
-                  Save
-                </button>
-                <button
-                  className="btn btn-danger"
-                  style={{ marginLeft: "10px" }}
-                  onClick={backToList}
-                >
-                  {" "}
-                  Cancel{" "}
-                </button>
+                <div className="d-flex justify-content-center mt-3">
+                  <button
+                    className="btn btn-success"
+                    onClick={saveOrUpdateEmployee}
+                  >
+                    Save
+                  </button>
+                  <button
+                    className="btn btn-danger"
+                    style={{ marginLeft: "10px" }}
+                    onClick={backToList}
+                  >
+                    Cancel
+                  </button>
+                </div>
               </form>
             </div>
           </div>
