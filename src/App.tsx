@@ -34,7 +34,7 @@ function App() {
             >
               <Route
                 path="/employees"
-                element={<ListEmployeeComponent toDisplayList={toDisplayList}/>}
+                element={<ListEmployeeComponent toDisplayList={toDisplayList} setToDisplayList={setToDisplayList}/>}
               ></Route>
               <Route
                 path="/add-employee"

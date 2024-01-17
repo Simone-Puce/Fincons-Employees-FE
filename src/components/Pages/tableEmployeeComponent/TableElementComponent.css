@@ -16,3 +16,7 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+.delete-button{
+    pointer-events: auto !important;
+}

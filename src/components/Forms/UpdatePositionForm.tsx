@@ -65,18 +65,18 @@ const UpdatePositionForm = () => {
                     }}
                   ></input>
                 </div>
-
-                <button className="btn btn-success" onClick={UpdatePosition}>
-                  Save
-                </button>
-                <button
-                  className="btn btn-danger"
-                  style={{ marginLeft: "10px" }}
-                  onClick={backToList}
-                >
-                  {" "}
-                  Cancel{" "}
-                </button>
+                <div className="d-flex justify-content-center mt-3">
+                  <button className="btn btn-success" onClick={UpdatePosition}>
+                    Save
+                  </button>
+                  <button
+                    className="btn btn-danger"
+                    style={{ marginLeft: "10px" }}
+                    onClick={backToList}
+                  >
+                    Cancel
+                  </button>
+                </div>
               </form>
             </div>
           </div>
