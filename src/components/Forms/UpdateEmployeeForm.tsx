@@ -102,8 +102,6 @@ const UpdateEmployeeForm = () => {
                     <option value="others"> Other </option>
                   </select>
                 </div>
-
-
                 <div className="form-group">
                   <label>Birth date</label>
                   <input
