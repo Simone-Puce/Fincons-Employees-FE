@@ -22,7 +22,7 @@ const PositionDetails = () => {
   return (
     <div className="mt-5 pt-3">
       <div className="card col-md-6 offset-md-3 mt-5">
-        <h3 className="text-center"> View Employee Details </h3>
+        <h3 className="text-center mt-2"> View position details </h3>
         <div className="card-body">
           <div className="row d-flex justify-content-center">
             <label className="mb-3 text-center">

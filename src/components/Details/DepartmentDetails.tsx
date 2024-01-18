@@ -22,22 +22,22 @@ const DepartmentDetails = () => {
   return (
     <div className="mt-5 pt-3">
       <div className="card col-md-6 offset-md-3 mt-5">
-        <h3 className="text-center"> View Employee Details </h3>
+        <h3 className="text-center mt-2"> View department details </h3>
         <div className="card-body">
           <div className="row d-flex justify-content-center">
             <label className="mb-3 text-center">
               {" "}
-              Department name: {department?.name}{" "}
+               Name: {department?.name}{" "}
             </label>
 
             <label className="mb-3 text-center">
               {" "}
-              Department address: {department?.address}{" "}
+              Address: {department?.address}{" "}
             </label>
 
             <label className="mb-3 text-center">
               {" "}
-              Department city: {department?.city}{" "}
+               City: {department?.city}{" "}
             </label>
             <div className="d-flex justify-content-center">
             <button
