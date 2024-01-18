@@ -10,12 +10,12 @@ const CreatePositionForm = () => {
     const navigate = useNavigate();
   
     const goBackToList = () => {
-      navigate("/employees");
+      navigate("/spinner");
     };
   
     const savePosition = () => {
       PositionService.createPosition(position!);
-      navigate("/employees");
+      navigate("/spinner");
     };
 
     return (

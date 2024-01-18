@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import DepartmentService from "../../services/DepartmentService";
 import Position from "../../models/PositionModel";
 import PositionService from "../../services/PositionService";
 
@@ -14,10 +13,10 @@ const PositionDetails = () => {
     PositionService.getPositionById(idPosition).then((res) => {
       setPosition(res.data.data);
     });
-  }, []);
+  }, [idPosition]);
 
   const goToHomepage = () => {
-    navigate("/employees");
+    navigate("/spinner");
   };
 
   return (
@@ -43,7 +42,7 @@ const PositionDetails = () => {
               onClick={goToHomepage}
             >
               {" "}
-              Go back to the employee list
+              Go back to the position list
             </button>
             </div>
           </div>

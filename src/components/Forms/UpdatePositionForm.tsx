@@ -20,7 +20,7 @@ const UpdatePositionForm = () => {
 
   const UpdatePosition = () => {
     PositionService.updatePosition(idPosition, position!);
-    navigate("/employees");
+    navigate("/spinner");
   };
 
   const backToList = () => [navigate("/Employees")];

@@ -23,7 +23,7 @@ const DepartmentList = (props: Props) => {
     <div className="containerList mt-1 pt-1">
       <div className="row mt-4 mb-3">
         <div className="d-flex justify-content-center filterDiv">
-          <Link to={"/add-employee"}><button className="btn rounded-pill btn-primary " >
+          <Link to={"/add-employee"}><button className="btn rounded-pill btn-primary" >
             <i
               className="bi bi-person-fill-add"
               style={{ paddingRight: 5 }}

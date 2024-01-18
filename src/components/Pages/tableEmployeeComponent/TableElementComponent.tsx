@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import EmployeeService from "../../../services/EmployeeService";
 import './TableElementComponent.css'
 import utils from "../../../utils/Utils";
@@ -25,6 +25,8 @@ const TableElementComponent = (props: Props) => {
     const [thirdElement, setThirdElement] = useState<string>()
     const [isPositionSelected, setIsPositionSelected] = useState<boolean>(false)
     const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false)
+    const navigate = useNavigate()
+
 
     useEffect(() => {
         switch (props.toDisplay) {
@@ -46,7 +48,7 @@ const TableElementComponent = (props: Props) => {
                 setSecondElemnt(props.tableData.salary.toString())
                 break;
         }
-    }, [props.toDisplay, props])
+    }, [props.toDisplay, props.setfilter, props])
 
     useEffect(() => {
         if (props.toDisplay === POSITION_CASE) {
@@ -80,12 +82,15 @@ const TableElementComponent = (props: Props) => {
         switch (props.toDisplay) {
             case EMPLOYEE_CASE:
                 EmployeeService.deleteEmployee(parseInt(id!))
+                navigate("/spinner")
                 break;
             case DEPARTMENT_CASE:
                 DepartmentService.deleteDepartment(parseInt(id!));
+                navigate("/spinner")
                 break;
             case POSITION_CASE:
                 PositionService.deletePosition(parseInt(id!))
+                navigate("/spinner")
                 break;
         }
         props.setfilter("")

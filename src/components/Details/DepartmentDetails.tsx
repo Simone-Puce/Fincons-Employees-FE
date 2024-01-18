@@ -13,10 +13,10 @@ const DepartmentDetails = () => {
     DepartmentService.getDepartmentById(idDepartment).then((res) => {
       setDepartment(res.data.data);
     });
-  }, []);
+  }, [idDepartment]);
 
   const goToHomepage = () => {
-    navigate("/employees");
+    navigate("/spinner");
   };
 
   return (
@@ -46,7 +46,7 @@ const DepartmentDetails = () => {
               onClick={goToHomepage}
             >
               {" "}
-              Go back to the employee list
+              Go back to the department list
             </button>
             </div>
           </div>

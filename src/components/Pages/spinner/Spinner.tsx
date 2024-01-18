@@ -1,0 +1,35 @@
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { PacmanLoader, SyncLoader } from 'react-spinners';
+import './Spinner.css'
+
+const SpinnerComponent = () => {
+
+    const navigate = useNavigate()
+    const [showSpinner, setShowSpinner] = useState(true)
+
+    useEffect(() => {
+        setTimeout(() => {
+            setShowSpinner(false)
+            navigate("/employees")
+
+        }, 1000)
+    }, [])
+
+    return (
+        <div className='d-flex justify-content-center align-items-center vh-100'>
+        <div className='spinner-container'>
+           {
+            showSpinner ? 
+                ( 
+                    <PacmanLoader color="#000000" loading={true} /> 
+                ) : (
+                    <></>
+                )
+           }
+        </div>
+    </div>
+    )
+}
+
+export default SpinnerComponent;

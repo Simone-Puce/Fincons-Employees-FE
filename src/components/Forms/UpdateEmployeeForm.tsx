@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Key } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Department from "../../models/DepartmentModel";
 import Employee from "../../models/EmployeeModel";
@@ -6,6 +6,7 @@ import Position from "../../models/PositionModel";
 import DepartmentService from "../../services/DepartmentService";
 import EmployeeService from "../../services/EmployeeService";
 import PositionService from "../../services/PositionService";
+import utils from "../../utils/Utils";
 
 const UpdateEmployeeForm = () => {
   const [employee, setEmployee] = useState<Employee>();
@@ -19,7 +20,6 @@ const UpdateEmployeeForm = () => {
 
   useEffect(() => {
     EmployeeService.getEmployeeById(idEmployee).then((res) => {
-      console.log(res.data.data);
       setEmployee(res.data.data);
     });
   }, []);
@@ -36,8 +36,7 @@ const UpdateEmployeeForm = () => {
 
   const UpdateEmployee = () => {
     EmployeeService.updateEmployee(idEmployee, employee);
-    console.log(employee, "looking at employee")
-    navigate("/employees");
+    navigate("/spinner");
   };
 
   const backToList = () => [navigate("/Employees")];
@@ -87,7 +86,6 @@ const UpdateEmployeeForm = () => {
                   <select
                     className="form-select"
                     aria-label="Default select example"
-                    value={employee?.gender}
                     name="gender"
                     onChange={(e) => {
                       setEmployee({
@@ -96,7 +94,6 @@ const UpdateEmployeeForm = () => {
                       });
                     }}
                   >
-                    <option selected>Select your gender</option>
                     <option value="male"> Male </option>
                     <option value="female"> Female </option>
                     <option value="others"> Other </option>
@@ -108,6 +105,7 @@ const UpdateEmployeeForm = () => {
                     type="date"
                     placeholder="birth name"
                     name="birthDate"
+                    value={employee?.birthDate?.toString()}
                     className="form-control"
                     onChange={(e) => {
                       setEmployee({
@@ -140,6 +138,7 @@ const UpdateEmployeeForm = () => {
                     type="date"
                     placeholder="start date"
                     name="startDate"
+                    value={employee?.startDate?.toString()}
                     className="form-control"
                     onChange={(e) => {
                       setEmployee({
@@ -156,6 +155,7 @@ const UpdateEmployeeForm = () => {
                     type="date"
                     placeholder="end date"
                     name="endDate"
+                    value={employee?.endDate?.toString() || undefined}
                     className="form-control"
                     onChange={(e) => {
                       setEmployee({
@@ -172,6 +172,7 @@ const UpdateEmployeeForm = () => {
                     name="department"
                     className="form-select"
                     aria-label="Default select example"
+                    value={employee?.department?.name}
                     onChange={(e) => {
                       setEmployee({
                         ...employee!,
@@ -203,9 +204,9 @@ const UpdateEmployeeForm = () => {
                   >
                     <option>Select the position</option>
 
-                    {positions?.data?.map((position: Position) => {
+                    {positions?.data?.map((position: Position, index: Key) => {
                       return (
-                        <option value={position.id}>{position.name}</option>
+                        <option key={index} value={position.id}>{position.name}</option>
                       );
                     })}
                   </select>
@@ -219,7 +220,6 @@ const UpdateEmployeeForm = () => {
                     style={{ marginLeft: "10px" }}
                     onClick={backToList}
                   >
-
                     Cancel
                   </button>
                 </div>

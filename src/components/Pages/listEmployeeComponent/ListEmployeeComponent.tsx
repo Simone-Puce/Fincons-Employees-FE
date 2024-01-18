@@ -8,6 +8,7 @@ import DepartmentList from "../../Lists/DepartmentList";
 import DepartmentService from "../../../services/DepartmentService";
 import PositionService from "../../../services/PositionService";
 import { useNavigate } from "react-router-dom";
+import Spinner from "../spinner/Spinner";
 
 interface Props {
   toDisplayList: string;
@@ -20,6 +21,7 @@ const ListEmployeeComponent = (props: Props) => {
   const [positions, setPositions] = useState<any>();
   const [filterByName, setFilterByName] = useState<string>();
   const navigate = useNavigate()
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (filterByName !== "created") {
@@ -44,19 +46,23 @@ const ListEmployeeComponent = (props: Props) => {
 
   const handleEmployeeList = () => {
     props.setToDisplayList("employees")
-    navigate("/employees");
-
+    setLoading(true)
+    navigate("/spinner");
+    setLoading(false)
   };
 
   const handlePositionList = () => {
     props.setToDisplayList("positions")
-    navigate("/employees");
-
+    setLoading(true)
+    navigate("/spinner");
+    setLoading(false)
   };
 
   const handleDepartmentList = () => {
     props.setToDisplayList("departments")
-    navigate("/employees");
+    setLoading(true)
+    navigate("/spinner");
+    setLoading(false)
 
   };
 
@@ -67,7 +73,7 @@ const ListEmployeeComponent = (props: Props) => {
         setEmployees(res.data);
       });
       DepartmentService.getDepartments().then((res) => {
-        setDepartments(res.data);
+        setDepartments(res.data)
       });
       PositionService.getPositions().then((res) => {
         setPositions(res.data);
@@ -121,7 +127,7 @@ const ListEmployeeComponent = (props: Props) => {
 
     <div className="col mt-5 pt-5">
       <div className="d-flex justify-content-evenly">
-        <button className="btn rounded-pill btn-primary mr-5 pr-5" onClick={handleEmployeeList}> Employees</button>
+        <button className="btn rounded-pill btn-primary mr-5 pr-5" onClick={handleEmployeeList}> Employees </button>
         <button className="btn rounded-pill btn-info mr-5 pr-5 pl-5 ml-5" onClick={handleDepartmentList}> Departments</button>
         <button className="btn rounded-pill btn-secondary ml-5" onClick={handlePositionList}> Positions</button>
       </div>

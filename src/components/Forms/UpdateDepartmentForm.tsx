@@ -19,7 +19,7 @@ const UpdateDepartmentForm = () => {
 
   const UpdatePosition = () => {
     DepartmentService.updateDepartment(idDepartment, department!);
-    navigate("/employees");
+    navigate("/spinner");
   };
 
   const backToList = () => [navigate("/Employees")];
