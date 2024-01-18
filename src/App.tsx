@@ -12,6 +12,7 @@ import RegisterPageComponent from "./components/Pages/registerPageComponent/Regi
 import FooterComponent from "./components/Pages/footerComponent/FooterComponent";
 import HomePageComponent from "./components/Pages/homePageComponent/HomePageComponent";
 import Update from "./components/Pages/updateComponent/Update";
+import CreateCertificateEmployeeForm from "./components/Forms/CreateCertificateEmployeeForm";
 
 function App() {
   const [selectedUser, setSelectedUser] = useState<string>("");
@@ -51,6 +52,10 @@ function App() {
                <Route
                 path="update-employee/:id"
                 element={<Update toDisplayList={toDisplayList}/>}
+              ></Route>
+               <Route
+                path="/add/:id"
+                element={<CreateCertificateEmployeeForm />}
               ></Route>
             </Route>
             {}
