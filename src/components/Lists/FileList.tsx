@@ -22,22 +22,22 @@ const FileList = () => {
   };
 
   return (
-    <div className="mt-5 pt-3">
-      <div className="card col-md-6 offset-md-3 mt-5">
-        <h3 className="text-center"> {employee?.firstName} {employee?.lastName}'s file </h3>
-        <div className="card-body">
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Extension</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
+    <div className="container">
+      <div className="mt-5 pt-3">
+        <div className="card col-md-6 offset-md-3 mt-5">
+          <h3 className="text-center"> {employee?.firstName} {employee?.lastName}'s file </h3>
+          <div className="card-body">
+            <table>
+              <thead>
+                <tr className="text-center">
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Extension</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
 
-            <tbody>
-              <tr className="text-center">
+              <tbody>
                 {/*<div className="row d-flex justify-content-center">
                   {employee?.fileList?.map(singleFile => (
                     <label className="mb-3 text-center">
@@ -46,29 +46,29 @@ const FileList = () => {
                     </label>
                   ))}
                   </div>*/}
-                  {
-                    employee?.fileList?.map(singleFile => (
-                    <>
+                {
+                  employee?.fileList?.map(singleFile => (
+                    <tr className="text-center">
                       <td>{singleFile.name}</td>
                       <td>{singleFile.description}</td>
                       <td>{singleFile.extension}</td>
-                      <td><button className="btn btn-link">Carlho</button></td>
-                    </>
-                    ))
-                  }
-              </tr>
-            </tbody>
+                      <td><button> carlo vitto </button></td>
+                    </tr>
+                  ))
+                }
+              </tbody>
 
-          </table>
-          <div className="d-flex justify-content-center">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={goToHomepage}
-            >
-              {" "}
-              Go back to the employee list
-            </button>
+            </table>
+            <div className="d-flex justify-content-center">
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={goToHomepage}
+              >
+                {" "}
+                Go back to the employee list
+              </button>
+            </div>
           </div>
         </div>
       </div>
