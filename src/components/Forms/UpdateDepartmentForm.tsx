@@ -14,12 +14,12 @@ const UpdateDepartmentForm = () => {
     DepartmentService.getDepartmentById(idDepartment).then((res) => {
       setDepartment(res.data.data);
     });
-  }, []);
+  }, [idDepartment]);
 
 
   const UpdatePosition = () => {
     DepartmentService.updateDepartment(idDepartment, department!);
-    navigate("/employees");
+    navigate("/spinner");
   };
 
   const backToList = () => [navigate("/Employees")];

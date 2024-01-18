@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Key, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Employee from "../../models/EmployeeModel";
 import Department from "../../models/DepartmentModel";
@@ -24,7 +24,7 @@ const CreateEmployeeForm = () => {
 
   const saveOrUpdateEmployee = () => {
     EmployeeService.createEmployee(employee);
-    navigate("/employees");
+    navigate("/spinner");
   };
 
   const backToList = () => [navigate("/Employees")];
@@ -83,7 +83,7 @@ const CreateEmployeeForm = () => {
                       });
                     }}
                   >
-                    <option selected>Select your gender</option>
+                    <option value="select your gender">Select your gender</option>
                     <option value="male"> Male </option>
                     <option value="female"> Female </option>
                     <option value="others"> Other </option>
@@ -160,6 +160,7 @@ const CreateEmployeeForm = () => {
                     name="department"
                     className="form-select"
                     aria-label="Default select example"
+                    defaultValue={"Select the department"}
                     onChange={(e) => {
                       setEmployee({
                         ...employee!,
@@ -167,10 +168,10 @@ const CreateEmployeeForm = () => {
                       });
                     }}
                   >
-                    <option selected>Select the department</option>
-                    {departments?.data?.map((department: Department) => {
+                    <option defaultValue="select the department">Select the department</option>
+                    {departments?.data?.map((department: Department,index: Key) => {
                       return (
-                        <option value={department.id}>{department.name}</option>
+                        <option key={index} value={department.id}>{department.name}</option>
                       );
                     })}
                   </select>
@@ -181,6 +182,7 @@ const CreateEmployeeForm = () => {
                   <select
                     className="form-select"
                     aria-label="Default select example"
+                    defaultValue={"Select the position"}
                     name="position"
                     onChange={(e) => {
                       setEmployee({
@@ -189,10 +191,10 @@ const CreateEmployeeForm = () => {
                       });
                     }}
                   >
-                    <option selected>Select the position</option>
-                    {positions?.data?.map((position: Department) => {
+                    <option defaultValue="select the position">Select the position</option>
+                    {positions?.data?.map((position: Department, index: Key) => {
                       return (
-                        <option value={position.id}>{position.name}</option>
+                        <option key={index} value={position.id}>{position.name}</option>
                       );
                     })}
                   </select>

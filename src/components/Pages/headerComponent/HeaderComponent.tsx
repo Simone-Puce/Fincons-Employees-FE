@@ -16,12 +16,12 @@ interface Props {
 
 const HeaderComponent = (props: Props) => {
   const navigate = useNavigate();
-  const auth = localStorage.getItem("loggedIn" + props.userEmail);
+  const auth = localStorage.getItem("loggedIn");
   const [userDetails, setUserDetails] = useState<UserDetailModels>();
   const [isHidden, setIsHidden] = useState<boolean>(true);
 
   const handleLogout = () => {
-    localStorage.removeItem("loggedIn" + props.userEmail);
+    localStorage.removeItem("loggedIn");
     LoginRegistrationService.logout();
     navigate("login");
     setIsHidden(true);
@@ -29,8 +29,8 @@ const HeaderComponent = (props: Props) => {
 
   const handleEmployeeList = () => {
     props.setToDisplayList("employees")
-    navigate("/employees");
-  };
+    navigate("/spinner");
+  }
 
   
 
@@ -38,7 +38,7 @@ const HeaderComponent = (props: Props) => {
     if (auth !== null) {
       LoginRegistrationService.getHome();
       setIsHidden(false);
-      LoginRegistrationService.getUserDetails(props.userEmail).then((res) =>
+      LoginRegistrationService.getUserDetails(auth).then((res) =>
         setUserDetails(res.data)
       );
     } else {
