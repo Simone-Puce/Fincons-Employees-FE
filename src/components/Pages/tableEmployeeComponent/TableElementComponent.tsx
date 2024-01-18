@@ -106,7 +106,7 @@ const TableElementComponent = (props: Props) => {
                     <td className="text-center">
                         <div className='ButtonDiv div-style'>
                             <Link to={`/update-employee/${tableElementId}`}><button className='btn btn-info'> <i className="bi bi-pencil-square"></i> </button></Link>
-                            <button type="button" title={isButtonDisabled ? "this can't be deleted" : ""} className="btn btn-warning delete-button" disabled={isButtonDisabled} onClick={(e) => deleteButtonHandler(tableElementId)}><i className="bi bi-trash3-fill"></i></button>
+                            <button type="button" title={isButtonDisabled ? "This can't be deleted because there is at least 1 employee connected to this record" : ""} className="btn btn-warning delete-button" disabled={isButtonDisabled} onClick={(e) => deleteButtonHandler(tableElementId)}><i className="bi bi-trash3-fill"></i></button>
                             <Link to={`/view-employee/${tableElementId}`}><button type="button" className="btn btn-info"><i className="bi bi-info-circle"></i></button></Link>
                         </div>
                     </td>

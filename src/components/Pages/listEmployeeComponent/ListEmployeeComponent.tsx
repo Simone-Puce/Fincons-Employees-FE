@@ -8,7 +8,6 @@ import DepartmentList from "../../Lists/DepartmentList";
 import DepartmentService from "../../../services/DepartmentService";
 import PositionService from "../../../services/PositionService";
 import { useNavigate } from "react-router-dom";
-import Spinner from "../spinner/Spinner";
 
 interface Props {
   toDisplayList: string;
@@ -21,7 +20,6 @@ const ListEmployeeComponent = (props: Props) => {
   const [positions, setPositions] = useState<any>();
   const [filterByName, setFilterByName] = useState<string>();
   const navigate = useNavigate()
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (filterByName !== "created") {
@@ -46,24 +44,17 @@ const ListEmployeeComponent = (props: Props) => {
 
   const handleEmployeeList = () => {
     props.setToDisplayList("employees")
-    setLoading(true)
     navigate("/spinner");
-    setLoading(false)
   };
 
   const handlePositionList = () => {
     props.setToDisplayList("positions")
-    setLoading(true)
     navigate("/spinner");
-    setLoading(false)
   };
 
   const handleDepartmentList = () => {
     props.setToDisplayList("departments")
-    setLoading(true)
     navigate("/spinner");
-    setLoading(false)
-
   };
 
   const changeFilterHandler = (e: React.ChangeEvent<HTMLInputElement>) => {

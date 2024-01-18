@@ -6,7 +6,6 @@ import Position from "../../models/PositionModel";
 import DepartmentService from "../../services/DepartmentService";
 import EmployeeService from "../../services/EmployeeService";
 import PositionService from "../../services/PositionService";
-import utils from "../../utils/Utils";
 
 const UpdateEmployeeForm = () => {
   const [employee, setEmployee] = useState<Employee>();
@@ -22,7 +21,7 @@ const UpdateEmployeeForm = () => {
     EmployeeService.getEmployeeById(idEmployee).then((res) => {
       setEmployee(res.data.data);
     });
-  }, []);
+  }, [idEmployee]);
 
   useEffect(() => {
     DepartmentService.getDepartments().then((res) => {

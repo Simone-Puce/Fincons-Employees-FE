@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PacmanLoader, SyncLoader } from 'react-spinners';
+import { PacmanLoader } from 'react-spinners';
 import './Spinner.css'
 
 const SpinnerComponent = () => {
@@ -12,7 +13,6 @@ const SpinnerComponent = () => {
         setTimeout(() => {
             setShowSpinner(false)
             navigate("/employees")
-
         }, 1000)
     }, [])
 

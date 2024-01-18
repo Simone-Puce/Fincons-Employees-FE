@@ -40,7 +40,7 @@ const EmployeeList = (props: Props) => {
     <div className="containerList mt-1 pt-1">
       <div className="row mt-4 mb-3">
         <div className="d-flex justify-content-center filterDiv">
-          <button className="btn rounded-pill btn-primary create-button" title={disabledCreation ? "departments or position are missing" : ""} disabled={disabledCreation} onClick={goToAddForm}>
+          <button className="btn rounded-pill btn-primary create-button" title={disabledCreation ? "You need at least one department and one position to create an employee" : ""} disabled={disabledCreation} onClick={goToAddForm}>
             <i
               className="bi bi-person-fill-add"
               style={{ paddingRight: 5 }}

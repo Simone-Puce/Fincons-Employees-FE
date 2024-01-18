@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Position from "../../models/PositionModel";
-import EmployeeService from "../../services/EmployeeService";
 import PositionService from "../../services/PositionService";
 
 const UpdatePositionForm = () => {
@@ -15,7 +14,7 @@ const UpdatePositionForm = () => {
     PositionService.getPositionById(idPosition).then((res) => {
       setPosition(res.data.data);
     });
-  }, []);
+  }, [idPosition]);
 
 
   const UpdatePosition = () => {

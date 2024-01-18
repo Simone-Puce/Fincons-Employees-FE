@@ -14,7 +14,7 @@ const UpdateDepartmentForm = () => {
     DepartmentService.getDepartmentById(idDepartment).then((res) => {
       setDepartment(res.data.data);
     });
-  }, []);
+  }, [idDepartment]);
 
 
   const UpdatePosition = () => {
