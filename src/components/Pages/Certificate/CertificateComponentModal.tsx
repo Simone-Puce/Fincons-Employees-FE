@@ -38,9 +38,7 @@ const CertificateComponent = (props: Props) => {
         });
     }
 
-
     const checkCertificateEmployee = (certificateEmployee: CertificateEmployee) => {
-        console.log("------", certificateEmployee)
         if (certificateEmployee.employee?.id === props.idEmployee) {
             return (
                 <tbody className='border-1'>
@@ -71,7 +69,7 @@ const CertificateComponent = (props: Props) => {
                 </Link>
             </div>
             <div className='d-flex justify-content-center'>
-            <table>
+            <table hidden={certificateEmployees.length === 0 ? true : false }>
                 <thead>
                     <tr className='text-center'>
                         <th>Name</th>
