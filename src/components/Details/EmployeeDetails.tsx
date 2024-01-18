@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, SetStateAction } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Employee from "../../models/EmployeeModel";
 import EmployeeService from "../../services/EmployeeService";
+import CertificateComponent from "../Pages/Certificate/CertificateComponentModal";
 
 
 const EmployeeDetails = () => {
@@ -62,6 +63,9 @@ const EmployeeDetails = () => {
                 {" "}
                 Position: {employee?.position?.name}{" "}
               </label>
+            </div>
+            <div>
+              <CertificateComponent idEmployee={idEmployee}/>
             </div>
             <div className="d-flex justify-content-center">
             <button
