@@ -1,3 +1,4 @@
+import CertificateEmployee from "./CertificateEmployeeModel";
 import Department from "./DepartmentModel";
 import Position from "./PositionModel";
 import Project from "./ProjectModel";
@@ -13,7 +14,8 @@ interface Employee {
     endDate?: Date,
     department?: Department,
     position?: Position,
-    project?: Project[]
+    project?: Project[],
+    certificateEmployee?: CertificateEmployee[]
 }
 
 export default Employee;

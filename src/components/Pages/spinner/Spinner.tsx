@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PacmanLoader } from 'react-spinners';
+import { ScaleLoader } from 'react-spinners';
 import './Spinner.css'
 
 const SpinnerComponent = () => {
@@ -22,7 +22,7 @@ const SpinnerComponent = () => {
            {
             showSpinner ? 
                 ( 
-                    <PacmanLoader color="#000000" loading={true} /> 
+                    <ScaleLoader color="#000000" loading={true} /> 
                 ) : (
                     <></>
                 )
