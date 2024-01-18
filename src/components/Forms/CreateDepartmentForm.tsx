@@ -9,12 +9,12 @@ const CreateDepartmentForm = () => {
   const navigate = useNavigate();
 
   const goBackToList = () => {
-    navigate("/employees");
+    navigate("/spinner");
   };
 
   const saveDepartment = () => {
     DepartmentService.createDepartment(department!);
-    navigate("/employees");
+    navigate("/spinner");
   };
 
   return (

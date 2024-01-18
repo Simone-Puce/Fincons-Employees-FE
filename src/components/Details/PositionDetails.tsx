@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import DepartmentService from "../../services/DepartmentService";
 import Position from "../../models/PositionModel";
 import PositionService from "../../services/PositionService";
 
@@ -14,16 +13,16 @@ const PositionDetails = () => {
     PositionService.getPositionById(idPosition).then((res) => {
       setPosition(res.data.data);
     });
-  }, []);
+  }, [idPosition]);
 
   const goToHomepage = () => {
-    navigate("/employees");
+    navigate("/spinner");
   };
 
   return (
     <div className="mt-5 pt-3">
       <div className="card col-md-6 offset-md-3 mt-5">
-        <h3 className="text-center"> View Employee Details </h3>
+        <h3 className="text-center mt-2"> View position details </h3>
         <div className="card-body">
           <div className="row d-flex justify-content-center">
             <label className="mb-3 text-center">
@@ -43,7 +42,7 @@ const PositionDetails = () => {
               onClick={goToHomepage}
             >
               {" "}
-              Go back to the employee list
+              Go back to the position list
             </button>
             </div>
           </div>

@@ -15,53 +15,53 @@ const EmployeeDetails = () => {
       EmployeeService.getEmployeeById(idEmployee).then((res) => {
         setEmployee(res.data.data);
       });
-    },[]);
+    },[idEmployee]);
   
     const goToHomepage = () => {
-      navigate("/employees");
+      navigate("/spinner");
     };
   
     return (
       <div className="mt-5 pt-3">
         <div className="card col-md-6 offset-md-3 mt-5">
-          <h3 className="text-center"> View Employee Details </h3>
+          <h3 className="text-center mt-2"> View employee details </h3>
           <div className="card-body">
             <div className="row d-flex justify-content-center">
               <label className="mb-3 text-center">
                 {" "}
-                Employee first name: {employee?.firstName}{" "}
+                First name: {employee?.firstName}{" "}
               </label>
               <label className="mb-3 text-center">
                 {" "}
-                Employee last name: {employee?.lastName}{" "}
+                Last name: {employee?.lastName}{" "}
               </label>
               <label className="mb-3 text-center">
                 {" "}
-                Employee email: {employee?.email}{" "}
+                Email: {employee?.email}{" "}
               </label>
               <label className="mb-3 text-center">
                 {" "}
-                Employee birth date: {JSON.stringify(employee?.birthDate)}{" "}
+                Birth date: {JSON.stringify(employee?.birthDate)}{" "}
               </label>
               <label className="mb-3 text-center">
                 {" "}
-                Employee gender: {employee?.gender}{" "}
+                Gender: {employee?.gender}{" "}
               </label>
               <label className="mb-3 text-center">
                 {" "}
-                Employee hire date: {JSON.stringify(employee?.startDate)}{" "}
+                Hire date: {JSON.stringify(employee?.startDate)}{" "}
               </label>
               <label className="mb-3 text-center">
                 {" "}
-                Employee contract end date: {JSON.stringify(employee?.endDate)}{" "}
+                Contract end date: {JSON.stringify(employee?.endDate)}{" "}
               </label>
               <label className="mb-3 text-center">
                 {" "}
-                Employee department: {employee?.department?.name}{" "}
+                Department: {employee?.department?.name}{" "}
               </label>
               <label className="mb-3 text-center">
                 {" "}
-                Employee position: {employee?.position?.name}{" "}
+                Position: {employee?.position?.name}{" "}
               </label>
             </div>
             <div>
