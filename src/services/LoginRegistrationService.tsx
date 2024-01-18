@@ -40,7 +40,8 @@ const LoginRegistrationService = {
   getHome() {
     return axios.get(HOME_URI);
   },
-  getUserDetails(userEmail: string) {
+  
+  getUserDetails(userEmail: string | undefined) {
     return axios.get(USER_DETAILS_URI, {
       params: { email: userEmail },
     });
