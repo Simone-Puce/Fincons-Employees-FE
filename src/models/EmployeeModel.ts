@@ -1,4 +1,5 @@
 import Department from "./DepartmentModel";
+import File from "./FileModel";
 import Position from "./PositionModel";
 import Project from "./ProjectModel";
 
@@ -13,7 +14,8 @@ interface Employee {
     endDate?: Date,
     department?: Department,
     position?: Position,
-    project?: Project[]
+    project?: Project[],
+    fileList?: File[]
 }
 
 export default Employee;

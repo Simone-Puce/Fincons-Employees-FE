@@ -12,6 +12,7 @@ import RegisterPageComponent from "./components/Pages/registerPageComponent/Regi
 import FooterComponent from "./components/Pages/footerComponent/FooterComponent";
 import HomePageComponent from "./components/Pages/homePageComponent/HomePageComponent";
 import Update from "./components/Pages/updateComponent/Update";
+import FileList from "./components/Lists/FileList";
 
 function App() {
   const [selectedUser, setSelectedUser] = useState<string>("");
@@ -52,6 +53,11 @@ function App() {
                 path="update-employee/:id"
                 element={<Update toDisplayList={toDisplayList}/>}
               ></Route>
+              <Route
+                path="file/list/:id"
+                element={<FileList/>}
+              ></Route>
+
             </Route>
             {}
             <Route
