@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { motion } from "framer-motion";
@@ -23,6 +23,12 @@ const LoginPageComponent = (props: Props) => {
   const navigateToRegister = () => {
     navigate("/register");
   };
+
+  useEffect(()=>{
+    if(localStorage.getItem("loggedIn") !== null){
+      localStorage.removeItem("loggedIn")
+    }
+  },[])
 
   const handleLogin = (e: FormEvent) => {
     e.preventDefault();
