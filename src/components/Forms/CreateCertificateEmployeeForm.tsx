@@ -20,7 +20,6 @@ const CreateCertificateEmployeeForm = () => {
   useEffect(() => {
     CertificateService.getCertificates().then((res) => {
       setCertificates(res.data);
-      console.log(res.data)
     })    
  }, []);
 

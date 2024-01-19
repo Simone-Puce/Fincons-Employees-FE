@@ -245,7 +245,7 @@ const RegisterPageComponent = () => {
                             setInput({
                               ...input!,
                               [e.target.name]: e.target.value,
-                            });
+                            })
                             checkName(e.target.value);
                           }}
                           className={

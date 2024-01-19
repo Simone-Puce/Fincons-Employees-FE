@@ -20,7 +20,6 @@ const CertificateEmployeeService = {
     },
 
     createCertificateEmployee(certificateEmployee: CertificateEmployeeModel , idEmployee: number) {
-        console.log(certificateEmployee.certificate, " ++ looking certificate employee")
         return axios.post(CREATE_CERTIFICATE_EMPLOYEE,{
             certificate: {
                 id: certificateEmployee.certificate
