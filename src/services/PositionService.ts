@@ -24,6 +24,7 @@ const PositionService = {
     },
 
     updatePosition(positionId: number, updatedPosition: Position){
+        console.log(positionId, " carlo " , updatedPosition)
         return axios.put(
             UPDATE_POSITION,
             { 
