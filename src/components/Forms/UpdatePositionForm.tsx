@@ -2,11 +2,16 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Position from "../../models/PositionModel";
 import PositionService from "../../services/PositionService";
+import "./Styles/FormStyles.css"
 
 const UpdatePositionForm = () => {
   const [position, setPosition] = useState<Position>();
   const { id } = useParams();
   const idPosition = parseInt(id!);
+  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false)
+  const [salaryValueValid, setSalaryValueValid] = useState<boolean>(true)
+  const [positionNameValid, setPositionNameValid] = useState<boolean>(true)
+
 
   const navigate = useNavigate();
 
@@ -16,10 +21,39 @@ const UpdatePositionForm = () => {
     });
   }, [idPosition]);
 
+  useEffect(()=>{
+    checkSubmit()
+  },[isButtonDisabled,salaryValueValid,position])
 
   const UpdatePosition = () => {
     PositionService.updatePosition(idPosition, position!);
     navigate("/spinner");
+  };
+
+  const checkPositionNameValue = (positionNameValue: string) => {
+    if (positionNameValue.toString() === "") {
+      setPositionNameValid(false)
+    } else {
+      setPositionNameValid(true)
+    }
+    checkSubmit()
+  }
+
+  const checkSalaryValue = (salary: any) => {
+    if (salary.toString() === "") {
+      setSalaryValueValid(false)
+    } else {
+      setSalaryValueValid(true)
+    }
+    checkSubmit()
+  }
+
+  const checkSubmit = () => {
+    if (salaryValueValid === false || positionNameValid === false ) {
+      setIsButtonDisabled(true);
+    } else {
+      setIsButtonDisabled(false);
+    }
   };
 
   const backToList = () => [navigate("/Employees")];
@@ -44,6 +78,7 @@ const UpdatePositionForm = () => {
                         ...position!,
                         [e.target.name]: e.target.value,
                       });
+                      checkPositionNameValue(e.target.value)
                     }}
                   ></input>
                 </div>
@@ -60,12 +95,18 @@ const UpdatePositionForm = () => {
                       setPosition({
                         ...position!,
                         [e.target.name]: e.target.value,
-                      });
+                      })
+                      checkSalaryValue(e.target.value)
                     }}
                   ></input>
                 </div>
                 <div className="d-flex justify-content-center mt-3">
-                  <button className="btn btn-success" onClick={UpdatePosition}>
+                  <button
+                    className="btn btn-success pointer-control"
+                    onClick={UpdatePosition}
+                    disabled={isButtonDisabled}
+                    title={isButtonDisabled ? "some fields are not valid, please check the values" : ""}
+                  >
                     Save
                   </button>
                   <button

@@ -34,7 +34,7 @@ const EmployeeService = {
         });
     },
 
-    updateEmployee(employeeId: number | undefined,updatedEmployee: Employee | undefined) {
+    updateEmployee(employeeId: number | undefined , updatedEmployee: any | undefined) {
         return axios.put(
             UPDATE_EMPLOYEE,
             {   firstName: updatedEmployee?.firstName,
@@ -44,15 +44,15 @@ const EmployeeService = {
                 email: updatedEmployee?.email,
                 startDate: updatedEmployee?.startDate,
                 endDate: updatedEmployee?.endDate,
-                department: { id: updatedEmployee?.department?.id},
-                position: { id: updatedEmployee?.position?.id } },
+                department: { id: updatedEmployee?.department.id },
+                position: { id: updatedEmployee?.department.id } },
             { 
                 params: { id: employeeId }, 
                 headers:{
                     'Content-Type': 'application/json'
                 }
             }
-        );
+        )
     },
 
     filterEmployee(employeeFirstName: String) {

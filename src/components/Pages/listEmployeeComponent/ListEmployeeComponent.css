@@ -1,11 +1,11 @@
-.filterDiv{
+.filterDiv {
     margin-right: 10px;
     display: inline-table;
     margin-bottom: 10px;
-    padding:10px;
+    padding: 10px;
 }
 
-.filterTextBox{
+.filterTextBox {
     margin-left: 10px;
     border: 2px solid;
     border-color: black;
@@ -13,3 +13,8 @@
     border-radius: 50px;
 }
 
+.spinner-container {
+    height: 100px;
+    width: 100px;
+    display: flex;
+}
