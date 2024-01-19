@@ -13,6 +13,7 @@ import FooterComponent from "./components/Pages/footerComponent/FooterComponent"
 import HomePageComponent from "./components/Pages/homePageComponent/HomePageComponent";
 import Update from "./components/Pages/updateComponent/Update";
 import FileList from "./components/Lists/FileList";
+import ViewFileComponent from "./components/Pages/viewFileComponent/ViewFileComponent";
 
 function App() {
   const [selectedUser, setSelectedUser] = useState<string>("");
@@ -56,6 +57,10 @@ function App() {
               <Route
                 path="file/list/:id"
                 element={<FileList/>}
+              ></Route>
+              <Route
+                path="/view-file/:id"
+                element={<ViewFileComponent/>}
               ></Route>
 
             </Route>

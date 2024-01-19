@@ -103,7 +103,6 @@ const TableElementComponent = (props: Props) => {
                             <Link to={`/update-employee/${tableElementId}`}><button className='btn btn-info'> <i className="bi bi-pencil-square"></i> </button></Link>
                             <button type="button" title={isButtonDisabled ? "this can't be deleted" : ""} className="btn btn-warning delete-button" disabled={isButtonDisabled} onClick={(e) => deleteButtonHandler(tableElementId)}><i className="bi bi-trash3-fill"></i></button>
                             <Link to={`/view-employee/${tableElementId}`}><button type="button" className="btn btn-info"><i className="bi bi-info-circle"></i></button></Link>
-                            <Link to={`/file/list/${tableElementId}`}><button type="button" className="btn btn-secondary"><i className="bi bi-archive"></i></button></Link>
                         </div>
                     </td>
                 </tr>

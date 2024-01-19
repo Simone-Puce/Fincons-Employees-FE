@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Employee from "../../models/EmployeeModel";
 import EmployeeService from "../../services/EmployeeService";
 
@@ -9,6 +9,7 @@ const EmployeeDetails = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     const idEmployee = parseInt(id!);
+    const [tableElementId, setTableElementId] = useState<string>()
   
     useEffect(() => {
       EmployeeService.getEmployeeById(idEmployee).then((res) => {
@@ -72,6 +73,7 @@ const EmployeeDetails = () => {
               {" "}
               Go back to the employee list
             </button>
+            <Link to={`/file/list/${employee?.id}`}><button type="button" className="btn btn-secondary">Go to {employee?.firstName}'s file</button></Link>
             </div>
           </div>
         </div>
