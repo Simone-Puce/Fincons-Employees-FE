@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Key, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Employee from "../../models/EmployeeModel";
@@ -5,13 +6,40 @@ import Department from "../../models/DepartmentModel";
 import DepartmentService from "../../services/DepartmentService";
 import EmployeeService from "../../services/EmployeeService";
 import PositionService from "../../services/PositionService";
+import './Styles/FormStyles.css'
+import Utils from "../../utils/Utils";
+
 
 const CreateEmployeeForm = () => {
   const [employee, setEmployee] = useState<Employee>();
   const [departments, setDepartments] = useState<any>();
   const [positions, setPositions] = useState<any>();
-
+  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true)
+  const [firstNameValidator, setFirstNameValidator] = useState<boolean>(false)
+  const [lastNameValidator, setLastNameValidator] = useState<boolean>(false)
+  const [birthDateValidator, setBirthDateValidator] = useState<boolean>(false)
+  const [genderValidator, setGenderValidator] = useState<boolean>(false)
+  const [emailValidator, setEmailValidator] = useState<boolean>(false)
+  const [startDateValidator, setStartDateValidator] = useState<boolean>(false)
+  const [departmentValidator, setDepartmentValidator] = useState<boolean>(false)
+  const [positionValidator, setPositionValidator] = useState<boolean>(false)
   const navigate = useNavigate();
+
+  
+  useEffect(() => {
+    checkSubmit()
+  }, [
+    isButtonDisabled,
+    firstNameValidator,
+    lastNameValidator,
+    birthDateValidator,
+    emailValidator,
+    startDateValidator,
+    genderValidator,
+    departmentValidator,
+    positionValidator
+  ]
+  )
 
   useEffect(() => {
     DepartmentService.getDepartments().then((res) => {
@@ -21,6 +49,23 @@ const CreateEmployeeForm = () => {
       setPositions(res.data);
     });
   }, []);
+
+  const checkSubmit = () => {
+    if (
+      firstNameValidator === false ||
+      lastNameValidator === false ||
+      birthDateValidator === false ||
+      emailValidator === false ||
+      startDateValidator === false ||
+      genderValidator === false ||
+      departmentValidator === false ||
+      positionValidator === false
+    ) {
+      setIsButtonDisabled(true);
+    } else {
+      setIsButtonDisabled(false);
+    }
+  };
 
   const saveOrUpdateEmployee = () => {
     EmployeeService.createEmployee(employee);
@@ -49,6 +94,7 @@ const CreateEmployeeForm = () => {
                         ...employee!,
                         [e.target.name]: e.target.value,
                       });
+                      setFirstNameValidator(Utils.valideField(e.target.value))
                     }}
                   ></input>
                 </div>
@@ -65,6 +111,7 @@ const CreateEmployeeForm = () => {
                         ...employee!,
                         [e.target.name]: e.target.value,
                       });
+                      setLastNameValidator(Utils.valideField(e.target.value))
                     }}
                   ></input>
                 </div>
@@ -81,6 +128,7 @@ const CreateEmployeeForm = () => {
                         ...employee!,
                         [e.target.name]: e.target.value,
                       });
+                      setGenderValidator(Utils.valideField(e.target.value))
                     }}
                   >
                     <option value="select your gender">Select your gender</option>
@@ -102,6 +150,7 @@ const CreateEmployeeForm = () => {
                         ...employee!,
                         [e.target.name]: e.target.value,
                       });
+                      setBirthDateValidator(Utils.valideField(e.target.value))
                     }}
                   ></input>
                 </div>
@@ -118,6 +167,7 @@ const CreateEmployeeForm = () => {
                         ...employee!,
                         [e.target.name]: e.target.value,
                       });
+                      setEmailValidator(Utils.valideField(e.target.value))
                     }}
                   ></input>
                 </div>
@@ -134,6 +184,7 @@ const CreateEmployeeForm = () => {
                         ...employee!,
                         [e.target.name]: e.target.value,
                       });
+                      setStartDateValidator(Utils.valideField(e.target.value))
                     }}
                   ></input>
                 </div>
@@ -166,6 +217,7 @@ const CreateEmployeeForm = () => {
                         ...employee!,
                         [e.target.name]: e.target.value,
                       });
+                      setDepartmentValidator(Utils.valideField(e.target.value))
                     }}
                   >
                     <option defaultValue="select the department">Select the department</option>
@@ -189,6 +241,7 @@ const CreateEmployeeForm = () => {
                         ...employee!,
                         [e.target.name]: e.target.value,
                       });
+                      setPositionValidator(Utils.valideField(e.target.value))
                     }}
                   >
                     <option defaultValue="select the position">Select the position</option>
@@ -203,6 +256,8 @@ const CreateEmployeeForm = () => {
                   <button
                     className="btn btn-success"
                     onClick={saveOrUpdateEmployee}
+                    disabled={isButtonDisabled}
+                    title={isButtonDisabled ? "some fields are not valid, please check the values" : ""}
                   >
                     Save
                   </button>

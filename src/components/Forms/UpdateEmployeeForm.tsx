@@ -1,21 +1,36 @@
-import { useState, useEffect, Key } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Department from "../../models/DepartmentModel";
 import Employee from "../../models/EmployeeModel";
-import Position from "../../models/PositionModel";
 import DepartmentService from "../../services/DepartmentService";
 import EmployeeService from "../../services/EmployeeService";
 import PositionService from "../../services/PositionService";
+import './Styles/FormStyles.css'
 
 const UpdateEmployeeForm = () => {
   const [employee, setEmployee] = useState<Employee>();
   const [departments, setDepartments] = useState<any>();
   const [positions, setPositions] = useState<any>();
-  const [formNames, setFormNames] = useState("");
   const { id } = useParams();
   const idEmployee = parseInt(id!);
-
+  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false)
+  const [firstNameValidator, setFirstNameValidator] = useState<boolean>(true)
+  const [lastNameValidator, setLastNameValidator] = useState<boolean>(true)
+  const [birthDateValidator, setBirthDateValidator] = useState<boolean>(true)
+  const [emailValidator, setEmailValidator] = useState<boolean>(true)
+  const [startDateValidator, setStartDateValidator] = useState<boolean>(true)
   const navigate = useNavigate();
+
+  useEffect(() => {
+    checkSubmit()
+  }, [
+    isButtonDisabled,
+    firstNameValidator,
+    lastNameValidator,
+    birthDateValidator,
+    emailValidator,
+    startDateValidator
+  ]
+  )
 
   useEffect(() => {
     EmployeeService.getEmployeeById(idEmployee).then((res) => {
@@ -30,12 +45,70 @@ const UpdateEmployeeForm = () => {
     PositionService.getPositions().then((res) => {
       setPositions(res.data);
     });
-    setFormNames("Add");
   }, []);
 
   const UpdateEmployee = () => {
     EmployeeService.updateEmployee(idEmployee, employee);
     navigate("/spinner");
+  };
+
+  const checkFirstName = (firstName: string) =>{
+    if (firstName.toString() === "") {
+      setFirstNameValidator(false)
+    } else {
+      setFirstNameValidator(true)
+    }
+    checkSubmit()
+  }
+
+  const checkLastName = (lastName: string) =>{
+    if (lastName.toString() === "") {
+      setLastNameValidator(false)
+    } else {
+      setLastNameValidator(true)
+    }
+    checkSubmit()
+  }
+
+  const checkEmail = (email: string) => {
+    if (email.toString() === "") {
+      setEmailValidator(false)
+    } else {
+      setEmailValidator(true)
+    }
+    checkSubmit()
+  }
+
+  const checkBirthDate = (birthDate : any) =>{
+    if (birthDate.toString() === "") {
+      setBirthDateValidator(false)
+    } else {
+      setBirthDateValidator(true)
+    }
+    checkSubmit()
+  }
+
+  const checkStartDate = (startDate : any) =>{
+    if (startDate.toString() === "") {
+      setStartDateValidator(false)
+    } else {
+      setStartDateValidator(true)
+    }
+    checkSubmit()
+  }
+
+  const checkSubmit = () => {
+    if (
+      firstNameValidator === false ||
+      lastNameValidator === false ||
+      birthDateValidator === false ||
+      emailValidator === false ||
+      startDateValidator === false
+    ) {
+      setIsButtonDisabled(true);
+    } else {
+      setIsButtonDisabled(false);
+    }
   };
 
   const backToList = () => [navigate("/Employees")];
@@ -45,7 +118,7 @@ const UpdateEmployeeForm = () => {
       <div className="container">
         <div className="row">
           <div className="card col-md-6 offset-md-3 offset-md-3">
-            <h3 className="text-center"> {formNames} employee </h3>
+            <h3 className="text-center"> Update employee </h3>
             <div className="card-body">
               <form>
                 <div className="form-group">
@@ -60,6 +133,7 @@ const UpdateEmployeeForm = () => {
                         ...employee!,
                         [e.target.name]: e.target.value,
                       });
+                      checkFirstName(e.target.value)
                     }}
                   ></input>
                 </div>
@@ -76,6 +150,7 @@ const UpdateEmployeeForm = () => {
                         ...employee!,
                         [e.target.name]: e.target.value,
                       });
+                     checkLastName(e.target.value)
                     }}
                   ></input>
                 </div>
@@ -111,6 +186,7 @@ const UpdateEmployeeForm = () => {
                         ...employee!,
                         [e.target.name]: e.target.value,
                       });
+                      checkBirthDate(e.target.value)
                     }}
                   ></input>
                 </div>
@@ -125,8 +201,9 @@ const UpdateEmployeeForm = () => {
                     onChange={(e) => {
                       setEmployee({
                         ...employee!,
-                        [e.target.name]: e.target.value,
+                        [e.target.name]: e.target.value
                       });
+                      checkEmail(e.target.value)
                     }}
                   ></input>
                 </div>
@@ -144,6 +221,7 @@ const UpdateEmployeeForm = () => {
                         ...employee!,
                         [e.target.name]: e.target.value,
                       });
+                      checkStartDate(e.target.value)
                     }}
                   ></input>
                 </div>
@@ -165,7 +243,7 @@ const UpdateEmployeeForm = () => {
                   ></input>
                 </div>
 
-                <div className="form-group">
+                {/*<div className="form-group">
                   <label>Department</label>
                   <select
                     name="department"
@@ -179,10 +257,9 @@ const UpdateEmployeeForm = () => {
                       });
                     }}
                   >
-                    <option selected>Select the department</option>
                     {departments?.data?.map((department: Department) => {
                       return (
-                        <option value={department.id}>{department.name}</option>
+                        <option value={department.toString()}>{department.name}</option>
                       );
                     })}
                   </select>
@@ -194,6 +271,7 @@ const UpdateEmployeeForm = () => {
                     className="form-select"
                     aria-label="Default select example"
                     name="position"
+                    value={employee?.position?.id}
                     onChange={(e) => {
                       setEmployee({
                         ...employee!,
@@ -201,17 +279,20 @@ const UpdateEmployeeForm = () => {
                       });
                     }}
                   >
-                    <option>Select the position</option>
-
                     {positions?.data?.map((position: Position, index: Key) => {
                       return (
                         <option key={index} value={position.id}>{position.name}</option>
                       );
                     })}
                   </select>
-                </div>
+                  </div>}*/}
                 <div className="d-flex justify-content-center mt-3">
-                  <button className="btn btn-success" onClick={UpdateEmployee}>
+                  <button
+                    className="btn btn-success pointer-control"
+                    onClick={UpdateEmployee}
+                    disabled={isButtonDisabled}
+                    title={isButtonDisabled ? "some fields are not valid, please check the values" : ""}
+                  >
                     Save
                   </button>
                   <button

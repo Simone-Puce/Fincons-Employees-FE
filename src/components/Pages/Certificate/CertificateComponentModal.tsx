@@ -20,15 +20,12 @@ const CertificateComponent = (props: Props) => {
     useEffect(() => {
         CertificateService.getCertificates().then((res) => {
             setCertificates(res.data);
-            console.log(res.data)
         });
         CertificateEmployeeService.getCertificateEmployees().then((res) => {
             setCertificateEmployees(res.data)
-            console.log(res.data)
         });
         EmployeeService.getEmployees().then((res) => {
             setEmployee(res.data)
-            console.log(res.data)
         })
     }, []);
 
@@ -43,9 +40,9 @@ const CertificateComponent = (props: Props) => {
             return (
                 <tbody className='border-1'>
                     <tr className='text-center'>
-                        <td key={certificateEmployee.id}>{certificateEmployee.certificate?.name}</td>
-                        <td key={certificateEmployee.id}>{certificateEmployee.achieved?.toString()}</td>
-                        <td>
+                        <td className='border-1' key={certificateEmployee.id}>{certificateEmployee.certificate?.name}</td>
+                        <td className='border-1' key={certificateEmployee.id}>{certificateEmployee.achieved?.toString()}</td>
+                        <td className='border-1'>
                             <button onClick={() => handleDelete(certificateEmployee.id)} className="btn btn-warning delete-button"><i className="bi bi-trash3-fill"></i></button>
                         </td>
                     </tr>
@@ -72,9 +69,9 @@ const CertificateComponent = (props: Props) => {
             <table hidden={certificateEmployees.length === 0 ? true : false }>
                 <thead>
                     <tr className='text-center'>
-                        <th>Name</th>
-                        <th>Achieved</th>
-                        <th>Actions</th>
+                        <th className='border-1'>Name</th>
+                        <th className='border-1'>Achieved</th>
+                        <th className='border-1'>Actions</th>
                     </tr>
                 </thead>
                 {certificateEmployees.map((certificateEmployee) => (

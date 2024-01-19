@@ -9,6 +9,9 @@ const UpdatePositionForm = () => {
   const { id } = useParams();
   const idPosition = parseInt(id!);
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false)
+  const [salaryValueValid, setSalaryValueValid] = useState<boolean>(true)
+  const [positionNameValid, setPositionNameValid] = useState<boolean>(true)
+
 
   const navigate = useNavigate();
 
@@ -18,6 +21,9 @@ const UpdatePositionForm = () => {
     });
   }, [idPosition]);
 
+  useEffect(()=>{
+    checkSubmit()
+  },[isButtonDisabled,salaryValueValid,position])
 
   const UpdatePosition = () => {
     PositionService.updatePosition(idPosition, position!);
@@ -26,19 +32,29 @@ const UpdatePositionForm = () => {
 
   const checkPositionNameValue = (positionNameValue: string) => {
     if (positionNameValue.toString() === "") {
-      setIsButtonDisabled(true)
+      setPositionNameValid(false)
     } else {
-      setIsButtonDisabled(false)
+      setPositionNameValid(true)
     }
+    checkSubmit()
   }
 
   const checkSalaryValue = (salary: any) => {
     if (salary.toString() === "") {
-      setIsButtonDisabled(true)
+      setSalaryValueValid(false)
     } else {
-      setIsButtonDisabled(false)
+      setSalaryValueValid(true)
     }
+    checkSubmit()
   }
+
+  const checkSubmit = () => {
+    if (salaryValueValid === false || positionNameValid === false ) {
+      setIsButtonDisabled(true);
+    } else {
+      setIsButtonDisabled(false);
+    }
+  };
 
   const backToList = () => [navigate("/Employees")];
 
