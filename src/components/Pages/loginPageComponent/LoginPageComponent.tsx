@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import LoginRegistrationService from "../../../services/LoginRegistrationService";
 import LoginUserModel from "../../../models/LoginUserModel";
 
+
+
 interface Props {
   userEmail: string;
   setUserEmail: React.Dispatch<React.SetStateAction<string>>;
@@ -27,9 +29,9 @@ const LoginPageComponent = (props: Props) => {
     LoginRegistrationService.loginService(input.email, input.password).then(
       (res) => {
         if (res.data === "You are on the home page") {
-          localStorage.setItem("loggedIn" + input.email, "true");
+          localStorage.setItem("loggedIn",input.email);
           props.setUserEmail(input.email);
-          navigate("/employees");
+          navigate("/spinner");
         } else {
           Swal.fire({
             title: "Error?",
@@ -79,7 +81,7 @@ const LoginPageComponent = (props: Props) => {
                       <motion.div className="form-floating">
                         <motion.input
                           whileFocus={{
-                            scale: 1.2,
+                            scale: 1.1,
                           }}
                           type="email"
                           name="email"
@@ -104,7 +106,7 @@ const LoginPageComponent = (props: Props) => {
                       <div className="form-floating">
                         <motion.input
                           whileFocus={{
-                            scale: 1.2,
+                            scale: 1.1,
                           }}
                           type="password"
                           name="password"
@@ -140,15 +142,17 @@ const LoginPageComponent = (props: Props) => {
                       </motion.button>
                     </div>
                     <div className="d-flex justify-content-center">
-                      <p>
+                        <div className="d-flex align-self-center">
                         You don't have an account?
-                        <a
-                          onClick={navigateToRegister}
-                          className="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                        </div>
+                        <button
+                         type="button"
+                         className="btn btn-link"
+                        onClick={navigateToRegister}
                         >
                           Sign up now
-                        </a>
-                      </p>
+                        </button>
+                      
                     </div>
                   </div>
                 </form>

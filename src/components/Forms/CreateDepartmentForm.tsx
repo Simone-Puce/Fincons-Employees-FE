@@ -1,20 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Department from "../../models/DepartmentModel";
 import DepartmentService from "../../services/DepartmentService";
+import Utils from "../../utils/Utils";
 
 const CreateDepartmentForm = () => {
   const [department, setDepartment] = useState<Department>();
-
+  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true)
+  const [departmentNameValid, setDepartmentNameValid] = useState<boolean>(false)
+  const [departmentCityValid, setDepartmentCityValid] = useState<boolean>(false)
+  const [departmentAddressValid, setDepartmentAddressValid] = useState<boolean>(false)
   const navigate = useNavigate();
 
   const goBackToList = () => {
-    navigate("/employees");
+    navigate("/spinner");
   };
+
+  useEffect(() => {
+    checkSubmit()
+  }, [
+    isButtonDisabled,
+    departmentAddressValid,
+    departmentNameValid,
+    departmentCityValid
+  ])
+
+  const checkSubmit = () => {
+    if (
+      departmentAddressValid === false ||
+      departmentCityValid === false ||
+      departmentNameValid === false
+    ) {
+      setIsButtonDisabled(true)
+    } else {
+      setIsButtonDisabled(false)
+    }
+  }
 
   const saveDepartment = () => {
     DepartmentService.createDepartment(department!);
-    navigate("/employees");
+    navigate("/spinner");
   };
 
   return (
@@ -38,6 +63,7 @@ const CreateDepartmentForm = () => {
                         ...department!,
                         [e.target.name]: e.target.value,
                       });
+                      setDepartmentNameValid(Utils.valideField(e.target.value))
                     }}
                   ></input>
                 </div>
@@ -54,6 +80,7 @@ const CreateDepartmentForm = () => {
                         ...department!,
                         [e.target.name]: e.target.value,
                       });
+                      setDepartmentAddressValid(Utils.valideField(e.target.value))
                     }}
                   ></input>
                 </div>
@@ -70,6 +97,7 @@ const CreateDepartmentForm = () => {
                         ...department!,
                         [e.target.name]: e.target.value,
                       });
+                      setDepartmentCityValid(Utils.valideField(e.target.value))
                     }}
                   ></input>
                 </div>
@@ -77,6 +105,8 @@ const CreateDepartmentForm = () => {
                 <button
                   className="btn btn-success"
                   onClick={saveDepartment}
+                  disabled={isButtonDisabled}
+                  title={isButtonDisabled ? "some fields are not valid, please check the values" : ""}
                 >
                   Save
                 </button>

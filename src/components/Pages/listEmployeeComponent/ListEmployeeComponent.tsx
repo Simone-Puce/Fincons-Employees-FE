@@ -8,6 +8,8 @@ import DepartmentList from "../../Lists/DepartmentList";
 import DepartmentService from "../../../services/DepartmentService";
 import PositionService from "../../../services/PositionService";
 import { useNavigate } from "react-router-dom";
+import { ScaleLoader } from 'react-spinners';
+
 
 interface Props {
   toDisplayList: string;
@@ -20,6 +22,14 @@ const ListEmployeeComponent = (props: Props) => {
   const [positions, setPositions] = useState<any>();
   const [filterByName, setFilterByName] = useState<string>();
   const navigate = useNavigate()
+  const [showSpinner, setShowSpinner] = useState(true)
+
+  useEffect(() => {
+    setShowSpinner(true)
+    setTimeout(() => {
+      setShowSpinner(false)
+    }, 5000)
+  }, [props.toDisplayList])
 
   useEffect(() => {
     if (filterByName !== "created") {
@@ -44,20 +54,17 @@ const ListEmployeeComponent = (props: Props) => {
 
   const handleEmployeeList = () => {
     props.setToDisplayList("employees")
-    navigate("/employees");
-
+    navigate("/spinner");
   };
 
   const handlePositionList = () => {
     props.setToDisplayList("positions")
-    navigate("/employees");
-
+    navigate("/spinner");
   };
 
   const handleDepartmentList = () => {
     props.setToDisplayList("departments")
-    navigate("/employees");
-
+    navigate("/spinner");
   };
 
   const changeFilterHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,7 +74,7 @@ const ListEmployeeComponent = (props: Props) => {
         setEmployees(res.data);
       });
       DepartmentService.getDepartments().then((res) => {
-        setDepartments(res.data);
+        setDepartments(res.data)
       });
       PositionService.getPositions().then((res) => {
         setPositions(res.data);
@@ -118,17 +125,28 @@ const ListEmployeeComponent = (props: Props) => {
   };
 
   return (
-
-    <div className="col mt-5 pt-5">
-      <div className="d-flex justify-content-evenly">
-        <button className="btn rounded-pill btn-primary mr-5 pr-5" onClick={handleEmployeeList}> Employees</button>
-        <button className="btn rounded-pill btn-info mr-5 pr-5 pl-5 ml-5" onClick={handleDepartmentList}> Departments</button>
-        <button className="btn rounded-pill btn-secondary ml-5" onClick={handlePositionList}> Positions</button>
+    <>
+      {
+        showSpinner ? (
+          <div className='d-flex justify-content-center align-items-center vh-100'>
+          <div className='spinner-container'>
+          <ScaleLoader color="#000000" loading={true} />
+          </div>
+          </div>
+        ) : (
+      <div className="col mt-5 pt-5">
+        <div className="d-flex justify-content-evenly">
+          <button className="btn rounded-pill btn-primary mr-5 pr-5" onClick={handleEmployeeList}> Employees </button>
+          <button className="btn rounded-pill btn-info mr-5 pr-5 pl-5 ml-5" onClick={handleDepartmentList}> Departments</button>
+          <button className="btn rounded-pill btn-secondary ml-5" onClick={handlePositionList}> Positions</button>
+        </div>
+        <div className="container">
+          {listConditionalRender()}
+        </div>
       </div>
-      <div className="container">
-        {listConditionalRender()}
-      </div>
-    </div>
+        )
+  } 
+  </ > 
   )
 };
 

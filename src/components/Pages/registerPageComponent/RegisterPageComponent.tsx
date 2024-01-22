@@ -14,13 +14,13 @@ const RegisterPageComponent = () => {
   const passwordUppercaseLetterCheck = RegExp(/[A-Z]/);
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [disabledButton, setDisabledButton] = useState(true);
-  const [emailFieldWarning, setEmailFieldWarning] = useState("is-invalid");
+  const [emailFieldWarning, setEmailFieldWarning] = useState("");
   const [passwordFieldWarning, setPasswordFieldWarning] =
-    useState("is-invalid");
+    useState("");
   const [confirmPasswordFieldWarning, setConfirmPasswordFieldWarning] =
-    useState("is-invalid");
-  const [nameFieldWarning, setNameFieldWarning] = useState("is-invalid");
-  const [surnameFieldWarning, setSurnameFieldWarning] = useState("is-invalid");
+    useState("");
+  const [nameFieldWarning, setNameFieldWarning] = useState("");
+  const [surnameFieldWarning, setSurnameFieldWarning] = useState("");
   const [passwordShow, setPasswordShow] = useState("password");
   const [confirmPasswordShow, setConfirmPasswordShow] = useState("password");
   const [iconToShowConfirm, setIconToShowConfirm] = useState(
@@ -94,14 +94,14 @@ const RegisterPageComponent = () => {
     birthDateValid,
   ]);
 
-  useEffect(()=>{
-    if(input?.confirmPassword!== input?.password){
+  useEffect(() => {
+    if (input?.confirmPassword !== input?.password) {
       setConfirmPasswordFieldWarning("is-invalid")
     }
-    if(input?.confirmPassword === input?.password && input?.confirmPassword !== "" && input?.confirmPassword !== undefined){
+    if (input?.confirmPassword === input?.password && input?.confirmPassword !== "" && input?.confirmPassword !== undefined) {
       setConfirmPasswordFieldWarning("is-valid")
     }
-  },[input?.password, input?.confirmPassword])
+  }, [input?.password, input?.confirmPassword])
 
   const handleRegistration = () => {
     LoginRegistrationService.registrationService(input!);
@@ -155,10 +155,10 @@ const RegisterPageComponent = () => {
   };
 
   const checkConfirmPassword = (e: string) => {
-    if (e === input?.password && e!== "") {
+    if (e === input?.password && e !== "") {
       setConfirmPasswordFieldWarning("is-valid");
     }
-    if(e !== input?.password) {
+    if (e !== input?.password) {
       setConfirmPasswordFieldWarning("is-invalid");
     }
   };
@@ -237,7 +237,7 @@ const RegisterPageComponent = () => {
                       <div className="form-floating">
                         <motion.input
                           whileFocus={{
-                            scale: 1.2,
+                            scale: 1.1,
                           }}
                           name="firstName"
                           value={input?.firstName}
@@ -245,7 +245,7 @@ const RegisterPageComponent = () => {
                             setInput({
                               ...input!,
                               [e.target.name]: e.target.value,
-                            });
+                            })
                             checkName(e.target.value);
                           }}
                           className={
@@ -263,7 +263,7 @@ const RegisterPageComponent = () => {
                       <div className="form-floating">
                         <motion.input
                           whileFocus={{
-                            scale: 1.2,
+                            scale: 1.1,
                           }}
                           name="lastName"
                           value={input?.lastName}
@@ -288,7 +288,7 @@ const RegisterPageComponent = () => {
                       <div className="form-floating">
                         <motion.input
                           whileFocus={{
-                            scale: 1.2,
+                            scale: 1.1,
                           }}
                           name="email"
                           value={input?.email}
@@ -317,13 +317,14 @@ const RegisterPageComponent = () => {
                       <div className="form-floating input-gruop d-flex">
                         <motion.input
                           whileFocus={{
-                            scale: 1.2,
+                            scale: 1.1,
                           }}
                           onFocus={showDetails}
                           onBlur={showDetails}
                           type={passwordShow}
                           name="password"
                           value={input?.password}
+                          placeholder="Insert your password here"
                           onChange={(e) => {
                             setInput({
                               ...input!,
@@ -351,15 +352,15 @@ const RegisterPageComponent = () => {
                     <div hidden={passwordDetails}>
                       <div className="mb-1 mt-2">
                         {" "}
-                        {firstPasswordRestriction()} Atleast 8 letter {" "}
+                        {firstPasswordRestriction()} At least 8 letter {" "}
                       </div>
                       <div className="mb-1">
                         {" "}
-                        {secondPasswordRestriction()} Atleast 1 capital letter
+                        {secondPasswordRestriction()} At least 1 capital letter
                       </div>
                       <div className="mb-1">
                         {" "}
-                        {thirdPasswordRestriction()} Atleast 1 special character
+                        {thirdPasswordRestriction()} At least 1 special character
                       </div>
                     </div>
                   </div>
@@ -368,11 +369,12 @@ const RegisterPageComponent = () => {
                       <div className="form-floating input-gruop d-flex">
                         <motion.input
                           whileFocus={{
-                            scale: 1.2,
+                            scale: 1.1,
                           }}
                           type={confirmPasswordShow}
                           name="confirmPassword"
                           value={input?.confirmPassword}
+                          placeholder="Repeat your password here"
                           onChange={(e) => {
                             setInput({
                               ...input!,
@@ -381,7 +383,7 @@ const RegisterPageComponent = () => {
                             setConfirmPassword(e.target.value);
                             checkConfirmPassword(e.target.value);
                           }}
-                          onBlur={(e)=>{
+                          onBlur={(e) => {
                             checkConfirmPassword(e.target.value);
                           }}
                           className={
