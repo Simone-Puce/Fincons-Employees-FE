@@ -53,7 +53,7 @@ const EmployeeDetails = () => {
               </label>
               <label className="mb-3 text-center">
                 {" "}
-                Contract end date: {JSON.stringify(employee?.endDate)}{" "}
+                Contract end date: {employee?.endDate === null ? JSON.stringify(employee?.endDate) : "End date not established yet"}{" "}
               </label>
               <label className="mb-3 text-center">
                 {" "}
