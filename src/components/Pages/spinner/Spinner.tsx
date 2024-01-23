@@ -13,7 +13,7 @@ const SpinnerComponent = () => {
         setTimeout(() => {
             setShowSpinner(false)
             navigate("/employees")
-        }, 1)
+        }, 1000)
     }, [])
 
     return (
