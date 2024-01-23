@@ -17,7 +17,6 @@ interface Employee {
     position?: Position,
     project?: Project[],
     fileList?: File[]
-    project?: Project[],
     certificateEmployee?: CertificateEmployee[]
 }
 

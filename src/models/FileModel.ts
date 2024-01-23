@@ -1,12 +1,12 @@
 import Employee from "./EmployeeModel"
 
-interface File {
+interface FileModel {
     id: number,
     file64: string,
     name: string,
     extension: string,
     description: string
-    employee: Employee[]
+    employeeId: Employee
 }
 
-export default File;
+export default FileModel;

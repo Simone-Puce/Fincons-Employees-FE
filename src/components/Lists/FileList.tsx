@@ -1,8 +1,9 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, MouseEventHandler } from "react";
 import EmployeeService from "../../services/EmployeeService";
 import Employee from "../../models/EmployeeModel";
 import FileService from "../../services/FileService";
+import FileModel from "../../models/FileModel";
 
 
 const FileList = () => {
@@ -21,6 +22,10 @@ const FileList = () => {
 
   const deleteFile = (fileId: number) => {
     FileService.deleteFile(fileId);
+  };
+
+  const downloadFile = (fileId: number) : any => {
+    FileService.downloadFile(fileId);
   };
 
 
@@ -50,18 +55,14 @@ const FileList = () => {
                 {
                   employee?.fileList?.map(singleFile => (
                     <tr className="text-center">
-                      <td>{singleFile.id}</td>
                       <td>{singleFile.name}</td>
                       <td>{singleFile.description}</td>
                       <td>{singleFile.extension}</td>
                       <div className="btn-group m-2" role="group">
                       <Link to={`/view-file/${singleFile.id}`}><button type="button" className="bi bi-eye btn btn-outline-primary"></button></Link>      
-                        <button type="button" className="bi bi-cloud-download btn btn-outline-success" onClick={() => FileService.downloadFile(singleFile)}></button>
+                        <button type="button" className="bi bi-cloud-download btn btn-outline-success" onClick={downloadFile(singleFile?.id)}></button>
                         <button type="button" className="bi bi-trash btn btn-outline-danger" onClick={() => deleteFile(singleFile.id)}></button>
                       </div>
-                      {/*<td><button className="bi bi-eye btn rounded-pill btn-primary"></button></td>
-                      <td><button className="bi bi-cloud-download btn rounded-pill btn-success"></button></td>
-                      <td><button className="bi bi-trash btn rounded-pill btn-danger"></button></td>*/}
                     </tr>
                   ))
                 }
@@ -80,7 +81,7 @@ const FileList = () => {
               className="btn btn-primary"
               onClick={goToViewEmployee}>
               {" "}
-              Go back to the employee list
+              Go back to the employee detail
             </button>
 
           </div>
