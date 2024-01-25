@@ -29,13 +29,7 @@ const LoginPageComponent = (props: Props) => {
     e.preventDefault();
     LoginRegistrationService.loginService(input).then(
       (res) => {
-       // console.log(res.data)
         const jwt = jwtDecode(res.data.accessToken)
-        //console.log("decode token " , jwt)
-        /*if (res.data === "You are on the home page") {
-          localStorage.setItem("loggedIn",input.email);
-          props.setUserEmail(input.email);
-          navigate("/spinner");*/
           if(res.status === 200){
             Cookies.set('jwt-token', res.data.accessToken)
             props.setUserEmail(jwt.sub!)
@@ -145,7 +139,6 @@ const LoginPageComponent = (props: Props) => {
                         }}
                         type="submit"
                         className="btn btn-primary btn-block btn-lg mb-4 rounded-pill "
-                        //onClick={handleLogin}
                       >
                         Sign in
                       </motion.button>

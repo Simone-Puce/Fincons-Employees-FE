@@ -51,9 +51,8 @@ const UpdateEmployeeForm = () => {
   }, []);
 
   const UpdateEmployee = () => {
-    console.log(employee?.department)
-    //EmployeeService.updateEmployee(idEmployee, employee);
-    //navigate("/spinner");
+    EmployeeService.updateEmployee(idEmployee, employee);
+    navigate("/spinner");
   };
 
   const checkFirstName = (firstName: string) => {
@@ -292,7 +291,7 @@ const UpdateEmployeeForm = () => {
                 <div className="d-flex justify-content-center mt-3">
                   <button
                     className="btn btn-success pointer-control"
-                    //onClick={UpdateEmployee}
+                    onClick={UpdateEmployee}
                     onClick={()=>console.log(employee)}
                     disabled={isButtonDisabled}
                     title={isButtonDisabled ? "some fields are not valid, please check the values" : ""}

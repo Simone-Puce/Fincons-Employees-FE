@@ -77,7 +77,6 @@ const RegisterPageComponent = () => {
       emailFieldWarning === "is-valid" &&
       passwordFieldWarning === "is-valid" &&
       confirmPasswordFieldWarning === "is-valid"
-      //birthDateValid === true
     ) {
       setDisabledButton(false);
     } else {
@@ -128,7 +127,6 @@ const RegisterPageComponent = () => {
       setFirstCheckIcon(false);
     }
     if (passwordUppercaseLetterCheck.test(e)) {
-      //controlla che almeno un carattere maiuscolo sia  presente
       tempSecondCheck = true;
       setSecondCheckIcon(true);
     } else {

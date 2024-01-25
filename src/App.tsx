@@ -14,20 +14,12 @@ import HomePageComponent from "./components/Pages/homePageComponent/HomePageComp
 import Update from "./components/Pages/updateComponent/Update";
 import SpinnerComponent from "./components/Pages/spinner/Spinner";
 import CreateCertificateEmployeeForm from "./components/Forms/CreateCertificateEmployeeForm";
-import Cookies from "js-cookie";
 
 function App() {
   const [selectedUser, setSelectedUser] = useState<string>("");
   const [toDisplayList, setToDisplayList] = useState<string>("employees")
 
- /*useEffect(() => {
-    let local = Cookies.get("jwt-token");
-    if (local !== null) {
-      userE
-      setSelectedUser()
-    }
-  }, [])*/
-
+  
   return (
     <div>
       <Router>
