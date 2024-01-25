@@ -5,6 +5,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import utils from "../../../utils/Utils";
 import LoginRegistrationService from "../../../services/LoginRegistrationService";
 import UserDetailModels from "../../../models/UserDetailsModel";
+import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
 
 interface Props {
   userEmail: string;
@@ -16,12 +18,12 @@ interface Props {
 
 const HeaderComponent = (props: Props) => {
   const navigate = useNavigate();
-  const auth = localStorage.getItem("loggedIn");
+  const auth = Cookies.get("jwt-token");
   const [userDetails, setUserDetails] = useState<UserDetailModels>();
   const [isHidden, setIsHidden] = useState<boolean>(true);
 
   const handleLogout = () => {
-    localStorage.removeItem("loggedIn");
+    Cookies.remove("jwt-token");
     LoginRegistrationService.logout();
     navigate("login");
     setIsHidden(true);
@@ -32,19 +34,23 @@ const HeaderComponent = (props: Props) => {
     navigate("/spinner");
   }
 
+  useEffect(()=>{
+    console.log(auth)
+  },[])
   
 
   useEffect(() => {
-    if (auth !== null) {
+    if (auth !== undefined) {    
+      const jwt = jwtDecode(auth!)
       LoginRegistrationService.getHome();
       setIsHidden(false);
-      LoginRegistrationService.getUserDetails(auth).then((res) =>
+      LoginRegistrationService.getUserDetails(jwt.sub).then((res) =>
         setUserDetails(res.data)
       );
     } else {
       setIsHidden(true);
     }
-  }, [auth,props.userEmail]);
+  }, [props.userEmail]);
 
   const userNameDisplay = () => {
     if (userDetails?.firstName === undefined) {

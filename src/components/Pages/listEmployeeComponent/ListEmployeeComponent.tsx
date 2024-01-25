@@ -28,7 +28,7 @@ const ListEmployeeComponent = (props: Props) => {
     setShowSpinner(true)
     setTimeout(() => {
       setShowSpinner(false)
-    }, 5000)
+    }, 500)
   }, [props.toDisplayList])
 
   useEffect(() => {

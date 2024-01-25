@@ -4,6 +4,8 @@ import Swal from "sweetalert2";
 import { motion } from "framer-motion";
 import LoginRegistrationService from "../../../services/LoginRegistrationService";
 import LoginUserModel from "../../../models/LoginUserModel";
+import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
 
 
 
@@ -15,7 +17,6 @@ interface Props {
 const LoginPageComponent = (props: Props) => {
   const navigate = useNavigate();
   const [input, setInput] = useState<LoginUserModel>({
-    name: "",
     email: "",
     password: "",
   });
@@ -26,13 +27,21 @@ const LoginPageComponent = (props: Props) => {
 
   const handleLogin = (e: FormEvent) => {
     e.preventDefault();
-    LoginRegistrationService.loginService(input.email, input.password).then(
+    LoginRegistrationService.loginService(input).then(
       (res) => {
-        if (res.data === "You are on the home page") {
+       // console.log(res.data)
+        const jwt = jwtDecode(res.data.accessToken)
+        //console.log("decode token " , jwt)
+        /*if (res.data === "You are on the home page") {
           localStorage.setItem("loggedIn",input.email);
           props.setUserEmail(input.email);
-          navigate("/spinner");
-        } else {
+          navigate("/spinner");*/
+          if(res.status === 200){
+            Cookies.set('jwt-token', res.data.accessToken)
+            props.setUserEmail(jwt.sub!)
+            navigate("/spinner")
+          }
+          if(res.status !== 200){
           Swal.fire({
             title: "Error?",
             text: "Email or password are wrong ",

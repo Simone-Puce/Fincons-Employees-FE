@@ -1,5 +1,6 @@
 import axios from "axios";
 import User from "../models/UserModel";
+import LoginUserModel from "../models/LoginUserModel";
 
 const REGISTRATION_LOGIN_BASE_URI =
   "http://localhost:81/be/company-employee-management";
@@ -16,17 +17,18 @@ const LoginRegistrationService = {
     return axios.post(REGISTRATION_URI, user);
   },
 
-  loginService(username: string, password: string) {
-    const data = new FormData();
-    data.append("username", username);
-    data.append("password", password);
-    
+  loginService(loginInput : LoginUserModel) {
     const headers = {
-      "Content-Type": "application/x-www-form-urlencoded",
+      "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*",
       "withCredentials": "true",
     };
-    return axios.post(LOGIN_URI, data, {headers: headers});
+    return axios.post(
+      LOGIN_URI,
+      loginInput,
+      {
+        headers: headers
+      })
   },
 
   getSessionValue() {

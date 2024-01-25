@@ -409,27 +409,6 @@ const RegisterPageComponent = () => {
                   <div className="form-outline mb-4">
                     <div className="row">
                       <div className="form-floating d-flex justify-content-center">
-                        {/*<div className="d-flex justify-content-center mt-2">
-                          Insert your birth date
-                        </div>
-                        <div className="d-flex justify-content-center">
-                          <motion.input
-                           whileFocus={{
-                            scale: 1.2,
-                          }}
-                            name="date"
-                            type="date"
-                            className="form-control text-center border-0 border-white"
-                            onChange={(e) => {
-                              setInput({
-                                ...input,
-                                [e.target.name]: e.target.value,
-                              });
-                              birthDateCheck(e.target.value);
-                              checkSubmit();
-                            }}
-                          />
-                        </div>*/}
                       </div>
                     </div>
                   </div>
