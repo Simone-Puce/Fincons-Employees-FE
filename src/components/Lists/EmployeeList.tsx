@@ -35,6 +35,11 @@ const EmployeeList = (props: Props) => {
   const goToAddForm = () =>{
     navigate("/add-employee")
   }
+  
+  
+  const goToImportFile = () =>{
+    navigate("/importfile")
+  }
 
   return (
     <div className="containerList mt-1 pt-1">
@@ -46,6 +51,14 @@ const EmployeeList = (props: Props) => {
               style={{ paddingRight: 5 }}
             ></i>
             Add Employee
+          </button>
+
+          <button className="btn rounded-pill btn-primary create-button" title={disabledCreation ? "You need at least one department and one position to create an employee" : ""} disabled={disabledCreation} onClick={goToImportFile}>
+            <i
+              className="bi bi-person-fill-add"
+              style={{ paddingLeft: 5, marginRight:5}}
+            ></i>
+            Add Employee From File
           </button>
           {/*<input
             type="text"

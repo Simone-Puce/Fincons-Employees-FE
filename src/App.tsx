@@ -14,7 +14,7 @@ import HomePageComponent from "./components/Pages/homePageComponent/HomePageComp
 import Update from "./components/Pages/updateComponent/Update";
 import SpinnerComponent from "./components/Pages/spinner/Spinner";
 import CreateCertificateEmployeeForm from "./components/Forms/CreateCertificateEmployeeForm";
-
+import ImportFileComponent from "./components/Pages/ImportFileComponent/ImportFileComponent";
 function App() {
   const [selectedUser, setSelectedUser] = useState<string>("");
   const [toDisplayList, setToDisplayList] = useState<string>("employees")
@@ -71,6 +71,10 @@ function App() {
                 path="/add/:id"
                 element={<CreateCertificateEmployeeForm />}
               ></Route>
+               <Route
+              path="/importfile"
+              element={<ImportFileComponent/>}
+            ></Route>
           </Route>
           { }
           <Route
