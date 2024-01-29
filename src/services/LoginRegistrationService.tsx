@@ -17,18 +17,11 @@ const LoginRegistrationService = {
     return axios.post(REGISTRATION_URI, user);
   },
 
-  loginService(loginInput : LoginUserModel) {
-    const headers = {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-      "withCredentials": "true",
-    };
+  loginService(loginInput: LoginUserModel) {
     return axios.post(
       LOGIN_URI,
-      loginInput,
-      {
-        headers: headers
-      })
+      loginInput
+    )
   },
 
   getSessionValue() {
@@ -42,7 +35,7 @@ const LoginRegistrationService = {
   getHome() {
     return axios.get(HOME_URI);
   },
-  
+
   getUserDetails(userEmail: string | undefined) {
     return axios.get(USER_DETAILS_URI, {
       params: { email: userEmail },

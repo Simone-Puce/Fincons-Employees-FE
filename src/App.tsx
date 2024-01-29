@@ -14,6 +14,7 @@ import HomePageComponent from "./components/Pages/homePageComponent/HomePageComp
 import Update from "./components/Pages/updateComponent/Update";
 import SpinnerComponent from "./components/Pages/spinner/Spinner";
 import CreateCertificateEmployeeForm from "./components/Forms/CreateCertificateEmployeeForm";
+import UserProfile from "./components/Pages/userProfile/UserProfile";
 
 function App() {
   const [selectedUser, setSelectedUser] = useState<string>("");
@@ -45,6 +46,11 @@ function App() {
                 <SpinnerComponent />
               }
             ></Route>
+            <Route
+              path="/profile"
+              element={<UserProfile/>}
+            >
+            </Route>
             <Route
               path="/add-employee"
               element={<CreateUpdateEmployeeComponent toDisplayList={toDisplayList} />}
@@ -87,7 +93,7 @@ function App() {
           ></Route>
           <Route path="/register" element={<RegisterPageComponent />}></Route>
         </Routes>
-        <FooterComponent />
+         {/*<FooterComponent />*/}
       </Router>
     </div>
   );

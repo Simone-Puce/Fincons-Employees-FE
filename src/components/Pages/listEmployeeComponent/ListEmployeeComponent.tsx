@@ -43,7 +43,7 @@ const ListEmployeeComponent = (props: Props) => {
         setPositions(res.data);
       });
     }
-  });
+  },);
 
   useEffect(() => {
     EmployeeService.getEmployees().then((res) => {
@@ -129,24 +129,24 @@ const ListEmployeeComponent = (props: Props) => {
       {
         showSpinner ? (
           <div className='d-flex justify-content-center align-items-center vh-100'>
-          <div className='spinner-container'>
-          <ScaleLoader color="#000000" loading={true} />
-          </div>
+            <div className='spinner-container'>
+              <ScaleLoader color="#000000" loading={true} />
+            </div>
           </div>
         ) : (
-      <div className="col mt-5 pt-5">
-        <div className="d-flex justify-content-evenly">
-          <button className="btn rounded-pill btn-primary mr-5 pr-5" onClick={handleEmployeeList}> Employees </button>
-          <button className="btn rounded-pill btn-info mr-5 pr-5 pl-5 ml-5" onClick={handleDepartmentList}> Departments</button>
-          <button className="btn rounded-pill btn-secondary ml-5" onClick={handlePositionList}> Positions</button>
-        </div>
-        <div className="container">
-          {listConditionalRender()}
-        </div>
-      </div>
+          <div className="col mt-5 pt-5">
+            <div className="d-flex justify-content-evenly">
+              <button className="btn rounded-pill btn-primary mr-5 pr-5" onClick={handleEmployeeList}> Employees </button>
+              <button className="btn rounded-pill btn-info mr-5 pr-5 pl-5 ml-5" onClick={handleDepartmentList}> Departments</button>
+              <button className="btn rounded-pill btn-secondary ml-5" onClick={handlePositionList}> Positions</button>
+            </div>
+            <div className="container">
+              {listConditionalRender()}
+            </div>
+          </div>
         )
-  } 
-  </ > 
+      }
+    </ >
   )
 };
 

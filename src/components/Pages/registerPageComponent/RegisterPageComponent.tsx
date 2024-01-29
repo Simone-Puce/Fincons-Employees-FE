@@ -214,9 +214,8 @@ const RegisterPageComponent = () => {
       <div className="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
         <div className="row gx-lg-5 align-items-center mb-5">
           <div className="col-lg-6 mb-5 mb-lg-0">
-            <h1 className="my-5 display-5 fw-bold ls-tight">
-              Registration test <br />
-              <span>for your business</span>
+            <h1 className="my-5 display-5 fw-bold ls-tight"> 
+              <span>Employee manager for your company</span>
             </h1>
             <p className="mb-4 opacity-70">
               Registration form to use an applicative that manages employees

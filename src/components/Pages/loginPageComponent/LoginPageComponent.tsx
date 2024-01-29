@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { motion } from "framer-motion";
@@ -25,17 +25,23 @@ const LoginPageComponent = (props: Props) => {
     navigate("/register");
   };
 
+  useEffect(() => {
+    if (Cookies.get("jwt-token") !== undefined) {
+      navigate("/employees")
+    }
+  }, [])
+
   const handleLogin = (e: FormEvent) => {
     e.preventDefault();
     LoginRegistrationService.loginService(input).then(
       (res) => {
-        const jwt = jwtDecode(res.data.accessToken)
-          if(res.status === 200){
-            Cookies.set('jwt-token', res.data.accessToken)
-            props.setUserEmail(jwt.sub!)
-            navigate("/spinner")
-          }
-          if(res.status !== 200){
+        console.log(res)
+        if (res.data.status === "OK") {
+          const jwt = jwtDecode(res.data.data.accessToken)
+          Cookies.set('jwt-token', res.data.data.accessToken)
+          props.setUserEmail(jwt.sub!)
+          navigate("/spinner")
+        } else {
           Swal.fire({
             title: "Error?",
             text: "Email or password are wrong ",
@@ -53,8 +59,7 @@ const LoginPageComponent = (props: Props) => {
         <div className="row gx-lg-5 align-items-center mb-5">
           <div className="col-lg-6 mb-5 mb-lg-0">
             <h1 className="my-5 display-5 fw-bold ls-tight">
-              Registration test <br />
-              <span>for your business</span>
+              <span>Employee manager for your company</span>
             </h1>
             <p className="mb-4 opacity-70">
               Login form to use an applicative that manages employees
@@ -134,7 +139,7 @@ const LoginPageComponent = (props: Props) => {
                     <div className="d-flex justify-content-center">
                       <motion.button
                         whileHover={{
-                          scale: 1.2,
+                          scale: 1.1,
                           transition: { duration: 0.5 },
                         }}
                         type="submit"
@@ -144,17 +149,17 @@ const LoginPageComponent = (props: Props) => {
                       </motion.button>
                     </div>
                     <div className="d-flex justify-content-center">
-                        <div className="d-flex align-self-center">
+                      <div className="d-flex align-self-center">
                         You don't have an account?
-                        </div>
-                        <button
-                         type="button"
-                         className="btn btn-link"
+                      </div>
+                      <button
+                        type="button"
+                        className="btn btn-link"
                         onClick={navigateToRegister}
-                        >
-                          Sign up now
-                        </button>
-                      
+                      >
+                        Sign up now
+                      </button>
+
                     </div>
                   </div>
                 </form>

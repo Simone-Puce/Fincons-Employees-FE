@@ -29,23 +29,23 @@ const HeaderComponent = (props: Props) => {
     setIsHidden(true);
   };
 
+  const handleProfile = () => {
+    navigate("/profile")
+  }
+
   const handleEmployeeList = () => {
     props.setToDisplayList("employees")
     navigate("/spinner");
   }
-
-  useEffect(()=>{
-    console.log(auth)
-  },[])
-  
 
   useEffect(() => {
     if (auth !== undefined) {    
       const jwt = jwtDecode(auth!)
       LoginRegistrationService.getHome();
       setIsHidden(false);
-      LoginRegistrationService.getUserDetails(jwt.sub).then((res) =>
-        setUserDetails(res.data)
+      LoginRegistrationService.getUserDetails(jwt.sub).then((res) =>{
+        setUserDetails(res.data.data)
+      }
       );
     } else {
       setIsHidden(true);
@@ -121,6 +121,15 @@ const HeaderComponent = (props: Props) => {
                   className="btn btn-outline-danger btn-lg"
                 >
                   Logout
+                </button>
+              </li>
+              <li className="nav-item d-flex justify-content-center mb-3">
+                <button
+                  onClick={handleProfile}
+                  data-bs-dismiss="offcanvas"
+                  className="btn btn-outline-danger btn-lg"
+                >
+                  Profile
                 </button>
               </li>
             </ul>

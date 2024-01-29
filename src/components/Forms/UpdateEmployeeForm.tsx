@@ -292,7 +292,6 @@ const UpdateEmployeeForm = () => {
                   <button
                     className="btn btn-success pointer-control"
                     onClick={UpdateEmployee}
-                    onClick={()=>console.log(employee)}
                     disabled={isButtonDisabled}
                     title={isButtonDisabled ? "some fields are not valid, please check the values" : ""}
                   >
