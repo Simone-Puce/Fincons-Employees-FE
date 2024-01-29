@@ -1,6 +1,8 @@
 import axios from "axios";
 import User from "../models/UserModel";
 import LoginUserModel from "../models/LoginUserModel";
+import Cookies from "js-cookie";
+import UserDetailsModel from "../models/UserDetailsModel";
 
 const REGISTRATION_LOGIN_BASE_URI =
   "http://localhost:81/be/company-employee-management";
@@ -11,10 +13,29 @@ const HOME_URI = VERSION_URI + "/home";
 const SESSION_VALUE_URI = VERSION_URI + "/session-value";
 const LOGOUT_URI = VERSION_URI + "/logout";
 const USER_DETAILS_URI = VERSION_URI + "/email";
+const UPDATE_USER_DETAILS = VERSION_URI + "/update-user"
+
+const token = Cookies.get("jwt-token")
 
 const LoginRegistrationService = {
   registrationService(user: User) {
     return axios.post(REGISTRATION_URI, user);
+  },
+
+  updateUserData(updatedUserDetails : UserDetailsModel){
+    return axios.put(
+      UPDATE_USER_DETAILS,
+      {
+        firstName: updatedUserDetails.firstName,
+        lastName: updatedUserDetails.lastName,
+        email: updatedUserDetails.email,
+        password: updatedUserDetails.password
+      },
+      {
+        params: { email: updatedUserDetails.email },
+        headers: { Authorization: `Bearer ${token}`}
+      }
+    )
   },
 
   loginService(loginInput: LoginUserModel) {
