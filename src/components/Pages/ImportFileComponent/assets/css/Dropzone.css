@@ -1,7 +1,7 @@
 .dropzone {
     width: 60vh;
     height: 25vh;
-    border: 2px dashed #cccccc;
+    border: 1px dashed #cccccc;
     border-radius: 5%;
     padding: 20px;
     text-align: center;
@@ -10,7 +10,16 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
   }
+
+
+  
+  .dropzone:hover,
+.dropzone:focus {
+  border-color: #5d5050; /* Cambia il colore del bordo quando il cursore è sopra la dropzone o ha il focus */
+  background-color: rgba(0, 0, 0, 0.1); /* Sfondo scuro leggermente trasparente */
+}
 
 
   .dropzone-image {
@@ -19,9 +28,36 @@
     height: 11vh;
   }
 
+  .dropzone img {
+    transition: transform 0.3s ease; /* Aggiunge una transizione al cambiare la trasformazione dell'immagine */
+  }
+  
+  .dropzone:hover img,
+  .dropzone:focus img {
+    transform: scale(1.05); /* Ingrandisce leggermente l'immagine quando il cursore è sopra la dropzone o ha il focus */
+  }
+
   .dropzone-description{
    margin-top:3vh;
   }
+
+
+  .dropzone-description a {
+    color: #007bff; /* Cambia il colore del link quando il cursore è sopra la dropzone o ha il focus */
+  }
+  
+  .dropzone-description a:hover,
+  .dropzone-description a:focus {
+    text-decoration: underline; /* Sottolinea il link quando il cursore è sopra di esso o ha il focus */
+  }
+
+
+
+
+
+
+
+
 
   .upload-button{
     float:left;
@@ -37,14 +73,20 @@
     flex-direction: column; /* Assicura che gli elementi all'interno siano allineati verticalmente */
     justify-content: center;
     align-items: center; /* Allinea il contenuto verticalmente al centro */
-    width: 50vh;
+    width: auto;
     height: auto;
-    border: 2px dashed #cccccc;
+    border: 1px dashed #cccccc;
     border-radius: 5%;
     padding: 20px;
     text-align: center;
-    margin-top: 5%;
+    margin-top: 3%;
     margin-bottom: 10%;
+  }
+
+  .detail-import{
+    text-align: left;
+    width: 100%;
+    margin-bottom: 2%;
   }
 
   .center-flex-div{
@@ -52,5 +94,11 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+  }
+
+  .table-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   

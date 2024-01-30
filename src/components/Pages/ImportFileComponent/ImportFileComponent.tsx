@@ -19,9 +19,17 @@ const ImportFileComponent = () => {
   const [filesize, setFileSize] = useState(0);
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [errors, setErrors] = useState<Error[]>([]);
   const [acceptedFiles, setAcceptedFiles] = useState<File[]>([]);
   const buttonClass = fileUploaded ? 'btn btn-success' : 'btn btn-secondary';
+  const [gravityColor, setGravityColor] = useState('');
+
   const [showResetButton, setShowResetButton] = useState(false);
+  const [showFormatError, setShowFormatError] = useState(false);
+  const [showImportResult, setShowImportResult] = useState(false);
+  const [successImportMessage, setSuccessImportMessage] = useState(false);
+  const [warningImportMessage, setWarningImportMessage] = useState(false);
+  const [errorImportMessage, setErrorImportMessage] = useState(false);
 
 
   interface Error {
@@ -32,7 +40,7 @@ const ImportFileComponent = () => {
     shortDescription: string;
     longDescription: string;
   }
-  const [errors, setErrors] = useState<Error[]>([]);
+
 
 
 
@@ -48,7 +56,7 @@ const ImportFileComponent = () => {
     return (bytes / (1024 * 1024)).toFixed(2); // Imposta il numero di decimali desiderato
   };
 
-
+  //resetta tutti i campi se si vuole annullare l'import del file
   const resetFileUpload = () => {
     setFileUploaded(false);
     setFormData(new FormData());
@@ -61,15 +69,19 @@ const ImportFileComponent = () => {
     setEndDate('');
     setAcceptedFiles([]);
     setShowResetButton(false);
+    setErrors([]);
+    setShowFormatError(false);
+    setShowImportResult(false);
+    setSuccessImportMessage(false);
+    setWarningImportMessage(false);
+    setErrorImportMessage(false);
   };
-
+  //sceglie immagine rispettivamente al tipo di file selezionato
   const getDropzoneImage = () => {
     if (filename.endsWith('.csv')) {
       return csvLogo;
     } else if (filename.endsWith('.xlsx')) {
       return xlsxLogo;
-    } else {
-      return wrongFormatLogo;
     }
   };
 
@@ -91,9 +103,14 @@ const ImportFileComponent = () => {
       setFileSize(selectedFile.size);
       setFileUploaded(true);
       setShowResetButton(true);
+      setErrorImportMessage(false);
+      setWarningImportMessage(false);
+      setSuccessImportMessage(false);
+      setShowFormatError(false);
     } else {
       setFileUploaded(false);
       setShowResetButton(false);
+      setShowImportResult(false);
       console.log('nessun file selezionato');
     }
   };
@@ -114,15 +131,24 @@ const ImportFileComponent = () => {
         setStartDate(response.data.startProcessingDate);
         setEndDate(response.data.endProcessingDate);
         setErrors(response.data.errors);
-        //response.data.errors;
         setShowResetButton(false);
+        if (response.data.status === 'LOADED') {
+          setSuccessImportMessage(true);
+        } else if (response.data.status === 'LOADED_WITH_ERRORS') {
+          setWarningImportMessage(true);
+        } else if (response.data.status === 'NOT_LOADED') {
+          setErrorImportMessage(true);
+        }
 
-        // Ora puoi utilizzare queste variabili come necessario
+        //se la risposta viene ricevuta dal server, mostro i dettagli dell'import
+        setShowImportResult(true);
+
         console.log("L'id dell'esecuzione è: " + executionId, "Lo stato è:" + status, "Nome del file:" + filename, filesize, startDate, endDate);
         setResponse(response.data);
 
       })
       .catch(error => console.log(error))
+
 
   };
 
@@ -147,14 +173,23 @@ const ImportFileComponent = () => {
       onFileChange(event as unknown as React.ChangeEvent<HTMLInputElement>);
       setAcceptedFiles(acceptedFiles);
       setFileUploaded(true);
+      setShowFormatError(false);
+      setShowImportResult(false);
 
     } else {
       setFileUploaded(false);
+      setShowResetButton(false);
+      setShowFormatError(true);
+      setSuccessImportMessage(false);
+      setWarningImportMessage(false);
+      setErrorImportMessage(false);
       console.log('Sono accettati solo file .csv o .xlsx.');
     }
   };
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
+
+
 
   return (
 
@@ -162,7 +197,7 @@ const ImportFileComponent = () => {
 
 
       {/* HEADER*/}
-      <div style={{ marginTop: 50 }}>
+      <div style={{ marginTop: '5%' }}>
         <p>Importa dipendenti da file '.csv' o '.xlsx'</p>
       </div>
 
@@ -191,37 +226,115 @@ const ImportFileComponent = () => {
           {/*BUTTON CANCEL FILE*/}
           {showResetButton && (
             <div>
-              <button className="btn btn-danger cancel-button" onClick={resetFileUpload}>Reset</button>
+              <button className="btn btn-danger cancel-button" onClick={resetFileUpload}>Annulla</button>
             </div>
           )}
+
         </form>
       </div>
 
+      {/*MESSAGGIO DI ERRORE FORMATO SBAGLIATO*/}
+      {showFormatError === true && (
+        <div style={{ marginTop: '3%', width: '30%', textAlign: 'center' }} className="alert alert-danger alert-dismissible d-flex align-items-center fade show">
+          <i className="bi-exclamation-octagon-fill"></i>
+          <p><strong className="mx-2">Errore!</strong> Il formato del file selezionato risulta errato. Sono accettati solo file '.csv' o '.xlsx'  </p>
+        </div>
+      )}
+
+      {/*MESSAGGIO DI SUCCESSO IMPORT*/}
+      {successImportMessage === true && (
+        <div style={{ marginTop: '3%', width: '30%', textAlign: 'center' }} className="alert alert-success alert-dismissible d-flex align-items-center fade show">
+          <i className="bi-check-circle-fill"></i>
+          <p> <strong className="mx-2">Operazione Completata!</strong> Tutti i dipendenti sono stati aggiunti con successo.</p>
+        </div>
+      )}
+
+      {/*MESSAGGIO DI SUCCESSO CON ERRRORI IMPORT*/}
+      {warningImportMessage === true && (
+        <div style={{ marginTop: '3%', width: '30%', textAlign: 'center' }} className="alert alert-warning alert-dismissible d-flex align-items-center fade show">
+          <i className="bi-exclamation-triangle-fill"></i>
+          <p> <strong className="mx-2">Operazione Completata!</strong>Sono stati riscontrati degli errori durante il processo. </p>
+        </div>
+      )}
+      {/*MESSAGGIO DI FALLIMENTO PROCESSO IMPORT*/}
+      {errorImportMessage === true && (
+        <div style={{ marginTop: '3%', width: '30%', textAlign: 'center' }} className="alert alert-danger alert-dismissible d-flex align-items-center fade show">
+          <i className="bi-exclamation-octagon-fill"></i>
+          <p><strong className="mx-2">Processo Fallito!</strong> Sono stati riscontrati degli errori bloccanti. </p>
+        </div>
+      )}
+
+
+
+
+
+
+
+
+
 
       {/*SEZIONE DETTAGLI RISULTATO IMPORT*/}
-      <div className='import-result'>
-        <p>File: {filename}</p>
-        <p>Size: {calculateKB(filesize)} KB</p>
-        <p>Status: {status}</p>
+      {showImportResult === true && (
+        <div className='import-result'>
 
-        {/* Mappa gli errori se ce ne sono */}
-        {errors && errors.length > 0 && (
-          <div>
-            <h3>Errori:</h3>
-            <ul>
-              {errors.map((error, index) => (
-                <li key={index}>
-                  <p>Linea: {error.lineNumber}</p>
-                  <p>Errore: {error.shortDescription}</p>
-                  <p>Descrizione: {error.longDescription}</p>
-                </li>
-              ))}
-            </ul>
+          <h1>Dettagli Processo</h1> <br />
+          
+          <div className='detail-import'>
+            <p><strong>File:</strong> {filename}</p>
+            <p><strong>Dimensione: </strong>{calculateKB(filesize)} KB</p>
+            <p><strong>Stato: </strong>{status}</p>
+            <p><strong>Data Di Inizio: </strong>{startDate}</p>
+            <p><strong>Data Di Fine: </strong>{endDate}</p>
           </div>
-        )}
 
 
-      </div>
+          {/* Mappa gli errori se ce ne sono */}
+          {errors && errors.length > 0 && (
+            <div className="table-container">
+           <h2>Errori Riscontrati durante il processo</h2>
+
+
+            <table className="table table-dark">              
+              <thead>
+                <tr>
+                  <th scope="col">Riga n.</th>
+                  <th scope="col">Codice Errore</th>
+                  <th scope="col">Gravità</th>
+                  <th scope="col">Colonna</th>
+                  <th scope="col">Descrizione</th>
+                </tr>
+              </thead>
+              <tbody>
+
+
+                {errors.map((error, index) => (
+                  <tr>
+                    <th scope="row" key={index}> {error.lineNumber}</th>
+                    <td>{error.errorCode}</td>
+
+                    {error.gravity === 'BLOCKING' ? (
+                      <td style={{ color: 'red' }}>{error.gravity}</td>
+                    ) : error.gravity === 'WARNING' ? (
+                      <td style={{ color: 'yellow' }}>{error.gravity}</td>
+                    ) : (
+                      <td>{error.gravity}</td>
+                    )}
+
+                    <td>{error.column}</td>
+                    <td title={error.longDescription}>{error.shortDescription}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            </div>
+          )}
+        </div>
+
+      )}
+
+
+
+
 
 
 
