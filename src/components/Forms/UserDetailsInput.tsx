@@ -1,7 +1,7 @@
 import UserDetailModels from "../../models/UserDetailsModel";
 
 interface Props {
-    updatingData : boolean,
+    updatingData: boolean,
     userDetails: UserDetailModels
     setUserDetails: React.Dispatch<React.SetStateAction<UserDetailModels | undefined>>
 }
@@ -20,13 +20,12 @@ const UserDetailsInput = (props: Props) => {
                     disabled={props.updatingData}
                     onChange={(e) => {
                         props.setUserDetails({
-                          ...props.userDetails!,
-                          [e.target.name]: e.target.value,
+                            ...props.userDetails!,
+                            [e.target.name]: e.target.value,
                         });
-                      }}
+                    }}
                 ></input>
             </div>
-
             <div className="form-group">
                 <label>Last name</label>
                 <input
@@ -38,13 +37,12 @@ const UserDetailsInput = (props: Props) => {
                     disabled={props.updatingData}
                     onChange={(e) => {
                         props.setUserDetails({
-                          ...props.userDetails!,
-                          [e.target.name]: e.target.value,
+                            ...props.userDetails!,
+                            [e.target.name]: e.target.value,
                         });
-                      }}
+                    }}
                 ></input>
             </div>
-
             <div hidden={!props.updatingData} className="form-group">
                 <label>Email </label>
                 <input
@@ -57,8 +55,6 @@ const UserDetailsInput = (props: Props) => {
                     hidden={!props.updatingData}
                 ></input>
             </div>
-
-
             <div hidden={props.updatingData} className="form-group">
                 <label>Password </label>
                 <input
@@ -66,17 +62,15 @@ const UserDetailsInput = (props: Props) => {
                     type="password"
                     name="password"
                     className="form-control"
-                    value=""
                     disabled={props.updatingData}
                     onChange={(e) => {
                         props.setUserDetails({
-                          ...props.userDetails!,
-                          [e.target.name]: e.target.value,
+                            ...props.userDetails!,
+                            [e.target.name]: e.target.value,
                         });
-                      }}
+                    }}
                 ></input>
             </div>
-
         </form>
     )
 

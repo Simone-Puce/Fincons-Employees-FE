@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import UserDetailsInput from "../../InputFormComponent/UserDetailsInput";
+import UserDetailsInput from "../../Forms/UserDetailsInput";
 import { useEffect, useState } from "react";
 import UserDetailModels from "../../../models/UserDetailsModel";
 import Cookies from "js-cookie";
