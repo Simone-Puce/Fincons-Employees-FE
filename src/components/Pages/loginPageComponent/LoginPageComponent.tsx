@@ -7,8 +7,6 @@ import LoginUserModel from "../../../models/LoginUserModel";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 
-
-
 interface Props {
   userEmail: string;
   setUserEmail: React.Dispatch<React.SetStateAction<string>>;
@@ -35,7 +33,6 @@ const LoginPageComponent = (props: Props) => {
     e.preventDefault();
     LoginRegistrationService.loginService(input).then(
       (res) => {
-        console.log(res)
         if (res.data.status === "OK") {
           const jwt = jwtDecode(res.data.data.accessToken)
           Cookies.set('jwt-token', res.data.data.accessToken)
