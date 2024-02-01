@@ -89,8 +89,7 @@ const RegisterPageComponent = () => {
   }, [
     emailFieldWarning,
     passwordFieldWarning,
-    confirmPasswordFieldWarning,
-    birthDateValid,
+    confirmPasswordFieldWarning
   ]);
 
   useEffect(() => {

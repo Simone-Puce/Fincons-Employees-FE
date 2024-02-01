@@ -39,11 +39,11 @@ const HeaderComponent = (props: Props) => {
   }
 
   useEffect(() => {
-    if (auth !== undefined) {    
+    if (auth !== undefined) { 
       const jwt = jwtDecode(auth!)
-      LoginRegistrationService.getHome();
       setIsHidden(false);
       LoginRegistrationService.getUserDetails(jwt.sub).then((res) =>{
+        console.log(res)
         setUserDetails(res.data.data)
       }
       );

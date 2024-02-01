@@ -10,7 +10,6 @@ import ViewEmployeeComponent from "./components/Pages/viewEmployeeComponent/View
 import LoginPageComponent from "./components/Pages/loginPageComponent/LoginPageComponent";
 import RegisterPageComponent from "./components/Pages/registerPageComponent/RegisterPageComponent";
 import FooterComponent from "./components/Pages/footerComponent/FooterComponent";
-import HomePageComponent from "./components/Pages/homePageComponent/HomePageComponent";
 import Update from "./components/Pages/updateComponent/Update";
 import SpinnerComponent from "./components/Pages/spinner/Spinner";
 import CreateCertificateEmployeeForm from "./components/Forms/CreateCertificateEmployeeForm";
@@ -54,10 +53,6 @@ function App() {
             <Route
               path="/add-employee"
               element={<CreateUpdateEmployeeComponent toDisplayList={toDisplayList} />}
-            ></Route>
-            <Route
-              path="/home"
-              element={<HomePageComponent userEmail={selectedUser} />}
             ></Route>
             <Route
               path="view-employee/:id"

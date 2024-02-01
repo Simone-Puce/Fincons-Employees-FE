@@ -35,6 +35,7 @@ const LoginPageComponent = (props: Props) => {
     e.preventDefault();
     LoginRegistrationService.loginService(input).then(
       (res) => {
+        console.log(res)
         if (res.data.status === "OK") {
           const jwt = jwtDecode(res.data.data.accessToken)
           Cookies.set('jwt-token', res.data.data.accessToken)
