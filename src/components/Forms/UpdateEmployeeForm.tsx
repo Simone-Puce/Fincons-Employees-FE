@@ -1,10 +1,13 @@
-import { useState, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect, Key } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Employee from "../../models/EmployeeModel";
 import DepartmentService from "../../services/DepartmentService";
 import EmployeeService from "../../services/EmployeeService";
 import PositionService from "../../services/PositionService";
 import './Styles/FormStyles.css'
+import Position from "../../models/PositionModel";
+import Department from "../../models/DepartmentModel";
 
 const UpdateEmployeeForm = () => {
   const [employee, setEmployee] = useState<Employee>();
@@ -52,7 +55,7 @@ const UpdateEmployeeForm = () => {
     navigate("/spinner");
   };
 
-  const checkFirstName = (firstName: string) =>{
+  const checkFirstName = (firstName: string) => {
     if (firstName.toString() === "") {
       setFirstNameValidator(false)
     } else {
@@ -61,7 +64,7 @@ const UpdateEmployeeForm = () => {
     checkSubmit()
   }
 
-  const checkLastName = (lastName: string) =>{
+  const checkLastName = (lastName: string) => {
     if (lastName.toString() === "") {
       setLastNameValidator(false)
     } else {
@@ -79,7 +82,7 @@ const UpdateEmployeeForm = () => {
     checkSubmit()
   }
 
-  const checkBirthDate = (birthDate : any) =>{
+  const checkBirthDate = (birthDate: any) => {
     if (birthDate.toString() === "") {
       setBirthDateValidator(false)
     } else {
@@ -88,7 +91,7 @@ const UpdateEmployeeForm = () => {
     checkSubmit()
   }
 
-  const checkStartDate = (startDate : any) =>{
+  const checkStartDate = (startDate: any) => {
     if (startDate.toString() === "") {
       setStartDateValidator(false)
     } else {
@@ -150,7 +153,7 @@ const UpdateEmployeeForm = () => {
                         ...employee!,
                         [e.target.name]: e.target.value,
                       });
-                     checkLastName(e.target.value)
+                      checkLastName(e.target.value)
                     }}
                   ></input>
                 </div>
@@ -243,23 +246,23 @@ const UpdateEmployeeForm = () => {
                   ></input>
                 </div>
 
-                {/*<div className="form-group">
+                <div className="form-group">
                   <label>Department</label>
                   <select
                     name="department"
                     className="form-select"
                     aria-label="Default select example"
-                    value={employee?.department?.name}
                     onChange={(e) => {
                       setEmployee({
                         ...employee!,
                         [e.target.name]: e.target.value,
                       });
+                      
                     }}
                   >
-                    {departments?.data?.map((department: Department) => {
+                    {departments?.data?.map((department: Department, index: Key) => {
                       return (
-                        <option value={department.toString()}>{department.name}</option>
+                        <option key={index} value={department.id}>{department.name}</option>
                       );
                     })}
                   </select>
@@ -271,7 +274,6 @@ const UpdateEmployeeForm = () => {
                     className="form-select"
                     aria-label="Default select example"
                     name="position"
-                    value={employee?.position?.id}
                     onChange={(e) => {
                       setEmployee({
                         ...employee!,
@@ -285,7 +287,7 @@ const UpdateEmployeeForm = () => {
                       );
                     })}
                   </select>
-                  </div>}*/}
+                </div>
                 <div className="d-flex justify-content-center mt-3">
                   <button
                     className="btn btn-success pointer-control"

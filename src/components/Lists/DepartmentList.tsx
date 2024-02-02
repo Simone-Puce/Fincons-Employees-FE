@@ -31,14 +31,6 @@ const DepartmentList = (props: Props) => {
             ></i>
             Add Department
           </button></Link>
-          {/*<input
-            type="text"
-            className="filterTextBox"
-            placeholder="filter by name"
-            id="filterByName"
-            name="filterByName"
-            onChange={props.changeFilterHandler}
-          ></input>*/}
         </div>
       </div>
       <div className="row">

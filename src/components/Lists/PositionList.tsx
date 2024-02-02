@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import TableHeadComponent from "../Pages/tableHeadComponent/TableHeadComponent";
 import TableElementComponent from "../Pages/tableEmployeeComponent/TableElementComponent";
-import { useEffect } from "react";
 
 interface Props {
   changeFilterHandler: React.ChangeEventHandler<HTMLInputElement>;
@@ -32,14 +31,6 @@ const PositionList = (props: Props) => {
             ></i>
             Add Position
           </button></Link>
-          {/*<input
-            type="text"
-            className="filterTextBox"
-            placeholder="filter by name"
-            id="filterByName"
-            name="filterByName"
-            onChange={props.changeFilterHandler}
-          ></input>*/}
         </div>
       </div>
       <div className="row">

@@ -5,6 +5,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import utils from "../../../utils/Utils";
 import LoginRegistrationService from "../../../services/LoginRegistrationService";
 import UserDetailModels from "../../../models/UserDetailsModel";
+import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
 
 interface Props {
   userEmail: string;
@@ -16,35 +18,39 @@ interface Props {
 
 const HeaderComponent = (props: Props) => {
   const navigate = useNavigate();
-  const auth = localStorage.getItem("loggedIn");
+  const auth = Cookies.get("jwt-token");
   const [userDetails, setUserDetails] = useState<UserDetailModels>();
   const [isHidden, setIsHidden] = useState<boolean>(true);
 
   const handleLogout = () => {
-    localStorage.removeItem("loggedIn");
+    Cookies.remove("jwt-token");
     LoginRegistrationService.logout();
     navigate("login");
     setIsHidden(true);
   };
+
+  const handleProfile = () => {
+    navigate("/profile")
+  }
 
   const handleEmployeeList = () => {
     props.setToDisplayList("employees")
     navigate("/spinner");
   }
 
-  
-
   useEffect(() => {
-    if (auth !== null) {
-      LoginRegistrationService.getHome();
+    if (auth !== undefined) { 
+      const jwt = jwtDecode(auth!)
       setIsHidden(false);
-      LoginRegistrationService.getUserDetails(auth).then((res) =>
-        setUserDetails(res.data)
+      LoginRegistrationService.getUserDetails(jwt.sub).then((res) =>{
+        console.log(res)
+        setUserDetails(res.data.data)
+      }
       );
     } else {
       setIsHidden(true);
     }
-  }, [auth,props.userEmail]);
+  }, [props.userEmail]);
 
   const userNameDisplay = () => {
     if (userDetails?.firstName === undefined) {
@@ -115,6 +121,15 @@ const HeaderComponent = (props: Props) => {
                   className="btn btn-outline-danger btn-lg"
                 >
                   Logout
+                </button>
+              </li>
+              <li className="nav-item d-flex justify-content-center mb-3">
+                <button
+                  onClick={handleProfile}
+                  data-bs-dismiss="offcanvas"
+                  className="btn btn-outline-danger btn-lg"
+                >
+                  Profile
                 </button>
               </li>
             </ul>

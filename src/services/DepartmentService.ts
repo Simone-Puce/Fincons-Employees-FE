@@ -1,5 +1,6 @@
 import axios from "axios";
 import Department from "../models/DepartmentModel";
+import Cookies from "js-cookie";
 
 const DEPARTMENT_API_BASE_URL = "http://localhost:81/be/company-employee-management";
 const VERSION_URI = DEPARTMENT_API_BASE_URL+"/v1";
@@ -10,17 +11,22 @@ const CREATE_DEPARTMENT=DEPARTMENT_URI+"/create"
 const UPDATE_DEPARTMENT=DEPARTMENT_URI+"/update"
 const DELETE_DEPARTMENT=DEPARTMENT_URI+"/delete"
 
+const token = Cookies.get("jwt-token");
+const config = {
+    headers: { Authorization: `Bearer ${token}` },
+};
+
 const DepartmentService = {
     getDepartments(){
-        return axios.get(GET_ALL_URI);
+        return axios.get(GET_ALL_URI, config);
     },
 
     getDepartmentById(departmentId: number | undefined){
-        return axios.get(GET_BY_ID, {params:{id:departmentId}})
+        return axios.get(GET_BY_ID, {params:{id:departmentId}, headers: { Authorization: `Bearer ${token}` }})
     },
     
     createDepartment(department: Department){
-        return axios.post(CREATE_DEPARTMENT,department)
+        return axios.post(CREATE_DEPARTMENT,department, config)
     },
 
     updateDepartment(departmentId: number, updatedDepartment: Department){
@@ -33,7 +39,8 @@ const DepartmentService = {
             { 
                 params: { id: departmentId }, 
                 headers:{
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
                 }
             }
         );
