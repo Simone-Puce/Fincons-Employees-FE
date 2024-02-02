@@ -25,8 +25,7 @@ const PositionList = (props: Props) => {
         <div className="d-flex justify-content-center filterDiv">
           <Link to={"/add-employee"}><button className="btn rounded-pill btn-primary" >
             <i
-              className="bi bi-person-fill-add"
-              style={{ paddingRight: 5 }}
+              className="bi bi-person-fill-add pr-1"
               onClick={handleNavigation}
             ></i>
             Add Position
@@ -36,9 +35,7 @@ const PositionList = (props: Props) => {
       <div className="row">
         {
           <table
-            className="table table-striped table-bordered"
-            style={{ marginBottom: 70 }}
-          >
+            className="table table-striped table-bordered"          >
             <TableHeadComponent
               tableHeadList={props.tableData}
               toDisplay={props.toDisplay}

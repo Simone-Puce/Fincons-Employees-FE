@@ -90,8 +90,7 @@ const CreatePositionForm = () => {
                     Save
                   </button>
                     <button
-                      className="btn btn-danger"
-                      style={{ marginLeft: "10px" }}
+                      className="btn btn-danger ml-2"
                       onClick={goBackToList}
                     >
                       

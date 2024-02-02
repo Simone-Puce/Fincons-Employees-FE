@@ -42,8 +42,7 @@ const EmployeeList = (props: Props) => {
         <div className="d-flex justify-content-center filterDiv">
           <button className="btn rounded-pill btn-primary create-button" title={disabledCreation ? "You need at least one department and one position to create an employee" : ""} disabled={disabledCreation} onClick={goToAddForm}>
             <i
-              className="bi bi-person-fill-add"
-              style={{ paddingRight: 5 }}
+              className="bi bi-person-fill-add pr-1"
             ></i>
             Add Employee
           </button>
@@ -53,7 +52,6 @@ const EmployeeList = (props: Props) => {
         {
           <table
             className="table table-striped table-bordered"
-            style={{ marginBottom: 70 }}
           >
             <TableHeadComponent
               tableHeadList={props.tableData}

@@ -25,8 +25,7 @@ const DepartmentList = (props: Props) => {
         <div className="d-flex justify-content-center filterDiv">
           <Link to={"/add-employee"}><button className="btn rounded-pill btn-primary" >
             <i
-              className="bi bi-person-fill-add"
-              style={{ paddingRight: 5 }}
+              className="bi bi-person-fill-add pr-1"
               onClick={handleNavigation}
             ></i>
             Add Department
@@ -37,7 +36,6 @@ const DepartmentList = (props: Props) => {
         {
           <table
             className="table table-striped table-bordered"
-            style={{ marginBottom: 70 }}
           >
             <TableHeadComponent
               tableHeadList={props.tableData}
