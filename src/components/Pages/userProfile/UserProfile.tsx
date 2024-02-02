@@ -65,7 +65,24 @@ const UserProfile = () => {
                     userDetails?.email!, 
                     passwordUpdateValues.oldPassword, 
                     passwordUpdateValues.newPassword!
-                )
+                ).then((res)=>{
+                    console.log(res.data)
+                    if(res.data.success === false){
+                        Swal.fire({
+                            title: "Error",
+                            text: "Something went wrong please check the values again",
+                            icon: "error",
+                            confirmButtonText: "OK!",
+                          });
+                    }else{
+                        Swal.fire({
+                            title: "Success",
+                            text: "Your password has been updated",
+                            icon: "success",
+                            confirmButtonText: "OK!",
+                          });
+                    }
+                })
             }
     }
 
