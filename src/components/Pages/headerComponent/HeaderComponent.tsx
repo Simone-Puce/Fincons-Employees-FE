@@ -43,7 +43,6 @@ const HeaderComponent = (props: Props) => {
       const jwt = jwtDecode(auth!)
       setIsHidden(false);
       LoginRegistrationService.getUserDetails(jwt.sub).then((res) =>{
-        console.log(res)
         setUserDetails(res.data.data)
       }
       );

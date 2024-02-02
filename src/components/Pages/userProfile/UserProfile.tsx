@@ -66,7 +66,6 @@ const UserProfile = () => {
                     passwordUpdateValues.oldPassword, 
                     passwordUpdateValues.newPassword!
                 ).then((res)=>{
-                    console.log(res.data)
                     if(res.data.success === false){
                         Swal.fire({
                             title: "Error",
