@@ -48,10 +48,10 @@ const EmployeeList = (props: Props) => {
           </button>
         </div>
       </div>
-      <div className="row">
+      <div className="row table-style">
         {
           <table
-            className="table table-striped table-bordered"
+            className="table table-striped mb-0"
           >
             <TableHeadComponent
               tableHeadList={props.tableData}

@@ -8,7 +8,7 @@ import { jwtDecode } from "jwt-decode";
 import PasswordUpdateModel from "../../../models/PasswordUpdateModel";
 import Swal from "sweetalert2";
 import UserService from "../../../services/UserService";
-import './UserProfile.css'
+import './UserProfile.css';
 
 const UserProfile = () => {
     const navigate = useNavigate();
@@ -102,8 +102,8 @@ const UserProfile = () => {
     }
     
     return (
-        <div className="mt-5 pt-3">
-            <div className="card col-md-6 offset-md-3 mt-5 anagraphic-card shadow p-3 mb-5 bg-body rounded">
+        <div className="mt-5 pt-3"> 
+            <div className="card col-md-6 offset-md-3 anagraphic-card mt-5">
                 <h3 className="text-center mt-2"> User details </h3>
                 <div className="card-body">
                     <UserDetailsInput
@@ -123,19 +123,19 @@ const UserProfile = () => {
                             updatingData === false && updatingPassword === false ? (
                                 <>
                                     <button
-                                        className="btn btn-primary m-2 h-25 w-50"
+                                        className="btn btn-primary m-2 h-25 w-50 rounded-pill button-style text-black"
                                         onClick={() => navigate("/employees")}
                                     >
                                         Go back
                                     </button>
                                     <button
-                                        className="btn btn-success m-2 h-25 w-50"
+                                        className="btn btn-success m-2 h-25 w-50 rounded-pill button-style text-black"
                                         onClick={handleUpdateAnagraphic}
                                     >
                                         Update anagraphic
                                     </button>
                                     <button
-                                        className="btn btn-warning m-2 h-25 w-50"
+                                        className="btn btn-warning m-2 h-25 w-50 rounded-pill button-style text-black"
                                         onClick={handlePasswordUpdateClick}
                                     >
                                         Update password
@@ -148,20 +148,20 @@ const UserProfile = () => {
                                             updatingData === true && updatingPassword === false ? (
                                                 <>
                                                     <button
-                                                        className="btn btn-primary m-2 h-25 w-50"
+                                                        className="btn btn-primary m-2 h-25 w-50 rounded-pill button-style text-black"
                                                         onClick={handleUpdateConfirm}
                                                         disabled={isUpdateValid}
                                                     >
                                                         Confirm anagraphic update
                                                     </button>
                                                     <button
-                                                        className="btn btn-success m-2 h-25 w-50"
+                                                        className="btn btn-success m-2 h-25 w-50 rounded-pill button-style text-black"
                                                         onClick={handleCancelUpdateClick}
                                                     >
                                                         Cancel update
                                                     </button>
                                                     <button
-                                                        className="btn btn-warning m-2 h-25 w-50"
+                                                        className="btn btn-warning m-2 h-25 w-50 rounded-pill button-style text-black"
                                                         onClick={handlePasswordUpdateClick}
                                                     >
                                                         Update password
@@ -172,20 +172,20 @@ const UserProfile = () => {
                                                 <>
                                                     <button
                                                         
-                                                        className="btn btn-primary m-2 h-25 w-50"
+                                                        className="btn btn-primary m-2 h-25 w-50 rounded-pill button-style text-black"
                                                         onClick={handlePasswordUpdate}
                                                         disabled={isPasswordUpdateValid}
                                                     >
                                                         Confirm password update
                                                     </button>
                                                     <button
-                                                        className="btn btn-success m-2 h-25 w-50"
+                                                        className="btn btn-success m-2 h-25 w-50 rounded-pill button-style text-black"
                                                         onClick={handleUpdateAnagraphic}
                                                     >
                                                         Update anagraphic
                                                     </button>
                                                     <button
-                                                        className="btn btn-warning m-2 h-25 w-50"
+                                                        className="btn btn-warning m-2 h-25 w-50 rounded-pill button-style text-black"
                                                         onClick={handlePasswordUpdateCancel}
                                                     >
                                                         Cancel update

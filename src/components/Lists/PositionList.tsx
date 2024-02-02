@@ -32,10 +32,10 @@ const PositionList = (props: Props) => {
           </button></Link>
         </div>
       </div>
-      <div className="row">
+      <div className="row table-style">
         {
           <table
-            className="table table-striped table-bordered"          >
+            className="table table-striped mb-0"          >
             <TableHeadComponent
               tableHeadList={props.tableData}
               toDisplay={props.toDisplay}

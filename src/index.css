@@ -1,6 +1,6 @@
 body {
-  background-image: url("https://t4.ftcdn.net/jpg/03/09/80/85/360_F_309808590_uomWmBr8tspatIp7tu7JvCn5UmuuvtHg.jpg");
-  background-size: cover;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 18%, rgba(217,25,25,0.31416316526610644) 78%);
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',

@@ -35,7 +35,7 @@ const DepartmentList = (props: Props) => {
       <div className="row">
         {
           <table
-            className="table table-striped table-bordered"
+            className="table table-striped mb-0"
           >
             <TableHeadComponent
               tableHeadList={props.tableData}
