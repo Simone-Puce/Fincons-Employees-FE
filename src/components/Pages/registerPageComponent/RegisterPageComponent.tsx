@@ -77,7 +77,6 @@ const RegisterPageComponent = () => {
       emailFieldWarning === "is-valid" &&
       passwordFieldWarning === "is-valid" &&
       confirmPasswordFieldWarning === "is-valid"
-      //birthDateValid === true
     ) {
       setDisabledButton(false);
     } else {
@@ -90,8 +89,7 @@ const RegisterPageComponent = () => {
   }, [
     emailFieldWarning,
     passwordFieldWarning,
-    confirmPasswordFieldWarning,
-    birthDateValid,
+    confirmPasswordFieldWarning
   ]);
 
   useEffect(() => {
@@ -128,7 +126,6 @@ const RegisterPageComponent = () => {
       setFirstCheckIcon(false);
     }
     if (passwordUppercaseLetterCheck.test(e)) {
-      //controlla che almeno un carattere maiuscolo sia  presente
       tempSecondCheck = true;
       setSecondCheckIcon(true);
     } else {
@@ -216,9 +213,8 @@ const RegisterPageComponent = () => {
       <div className="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
         <div className="row gx-lg-5 align-items-center mb-5">
           <div className="col-lg-6 mb-5 mb-lg-0">
-            <h1 className="my-5 display-5 fw-bold ls-tight">
-              Registration test <br />
-              <span>for your business</span>
+            <h1 className="my-5 display-5 fw-bold ls-tight"> 
+              <span>Employee manager for your company</span>
             </h1>
             <p className="mb-4 opacity-70">
               Registration form to use an applicative that manages employees
@@ -409,27 +405,6 @@ const RegisterPageComponent = () => {
                   <div className="form-outline mb-4">
                     <div className="row">
                       <div className="form-floating d-flex justify-content-center">
-                        {/*<div className="d-flex justify-content-center mt-2">
-                          Insert your birth date
-                        </div>
-                        <div className="d-flex justify-content-center">
-                          <motion.input
-                           whileFocus={{
-                            scale: 1.2,
-                          }}
-                            name="date"
-                            type="date"
-                            className="form-control text-center border-0 border-white"
-                            onChange={(e) => {
-                              setInput({
-                                ...input,
-                                [e.target.name]: e.target.value,
-                              });
-                              birthDateCheck(e.target.value);
-                              checkSubmit();
-                            }}
-                          />
-                        </div>*/}
                       </div>
                     </div>
                   </div>

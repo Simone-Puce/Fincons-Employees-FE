@@ -25,13 +25,6 @@ const ListEmployeeComponent = (props: Props) => {
   const [showSpinner, setShowSpinner] = useState(true)
 
   useEffect(() => {
-    setShowSpinner(true)
-    setTimeout(() => {
-      setShowSpinner(false)
-    }, 5000)
-  }, [props.toDisplayList])
-
-  useEffect(() => {
     if (filterByName !== "created") {
       EmployeeService.getEmployees().then((res) => {
         setEmployees(res.data);
@@ -43,7 +36,7 @@ const ListEmployeeComponent = (props: Props) => {
         setPositions(res.data);
       });
     }
-  });
+  },[]);
 
   useEffect(() => {
     EmployeeService.getEmployees().then((res) => {
@@ -125,28 +118,16 @@ const ListEmployeeComponent = (props: Props) => {
   };
 
   return (
-    <>
-      {
-        showSpinner ? (
-          <div className='d-flex justify-content-center align-items-center vh-100'>
-          <div className='spinner-container'>
-          <ScaleLoader color="#000000" loading={true} />
+          <div className="col mt-5 pt-5">
+            <div className="d-flex justify-content-evenly">
+              <button className="btn rounded-pill btn-primary mr-5 pr-5" onClick={handleEmployeeList}> Employees </button>
+              <button className="btn rounded-pill btn-info mr-5 pr-5 pl-5 ml-5" onClick={handleDepartmentList}> Departments</button>
+              <button className="btn rounded-pill btn-secondary ml-5" onClick={handlePositionList}> Positions</button>
+            </div>
+            <div className="container">
+              {listConditionalRender()}
+            </div>
           </div>
-          </div>
-        ) : (
-      <div className="col mt-5 pt-5">
-        <div className="d-flex justify-content-evenly">
-          <button className="btn rounded-pill btn-primary mr-5 pr-5" onClick={handleEmployeeList}> Employees </button>
-          <button className="btn rounded-pill btn-info mr-5 pr-5 pl-5 ml-5" onClick={handleDepartmentList}> Departments</button>
-          <button className="btn rounded-pill btn-secondary ml-5" onClick={handlePositionList}> Positions</button>
-        </div>
-        <div className="container">
-          {listConditionalRender()}
-        </div>
-      </div>
-        )
-  } 
-  </ > 
   )
 };
 

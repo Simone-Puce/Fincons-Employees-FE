@@ -25,27 +25,17 @@ const DepartmentList = (props: Props) => {
         <div className="d-flex justify-content-center filterDiv">
           <Link to={"/add-employee"}><button className="btn rounded-pill btn-primary" >
             <i
-              className="bi bi-person-fill-add"
-              style={{ paddingRight: 5 }}
+              className="bi bi-person-fill-add pr-1"
               onClick={handleNavigation}
             ></i>
             Add Department
           </button></Link>
-          {/*<input
-            type="text"
-            className="filterTextBox"
-            placeholder="filter by name"
-            id="filterByName"
-            name="filterByName"
-            onChange={props.changeFilterHandler}
-          ></input>*/}
         </div>
       </div>
       <div className="row">
         {
           <table
             className="table table-striped table-bordered"
-            style={{ marginBottom: 70 }}
           >
             <TableHeadComponent
               tableHeadList={props.tableData}

@@ -1,4 +1,5 @@
 
+import Cookies from "js-cookie"
 import { Navigate, Outlet } from "react-router-dom"
 
 interface Props {
@@ -6,7 +7,7 @@ interface Props {
 }
 
 const ProtectedRoutes = ( props : Props) =>{
-    const auth = localStorage.getItem("loggedIn")
+    const auth = Cookies.get("jwt-token")
     return auth ? <Outlet/> : <Navigate to={"/login"}/>
 }
 

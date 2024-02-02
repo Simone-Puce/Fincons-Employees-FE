@@ -42,26 +42,16 @@ const EmployeeList = (props: Props) => {
         <div className="d-flex justify-content-center filterDiv">
           <button className="btn rounded-pill btn-primary create-button" title={disabledCreation ? "You need at least one department and one position to create an employee" : ""} disabled={disabledCreation} onClick={goToAddForm}>
             <i
-              className="bi bi-person-fill-add"
-              style={{ paddingRight: 5 }}
+              className="bi bi-person-fill-add pr-1"
             ></i>
             Add Employee
           </button>
-          {/*<input
-            type="text"
-            className="filterTextBox"
-            placeholder="filter by name"
-            id="filterByName"
-            name="filterByName"
-            onChange={props.changeFilterHandler}
-          ></input>*/}
         </div>
       </div>
       <div className="row">
         {
           <table
             className="table table-striped table-bordered"
-            style={{ marginBottom: 70 }}
           >
             <TableHeadComponent
               tableHeadList={props.tableData}
