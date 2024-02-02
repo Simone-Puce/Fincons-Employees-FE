@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, Key } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Employee from "../../models/EmployeeModel";
@@ -140,7 +139,6 @@ const UpdateEmployeeForm = () => {
                     }}
                   ></input>
                 </div>
-
                 <div className="form-group">
                   <label>Last name</label>
                   <input
@@ -157,7 +155,6 @@ const UpdateEmployeeForm = () => {
                     }}
                   ></input>
                 </div>
-
                 <div className="form-group">
                   <label>Gender</label>
                   <select
@@ -193,7 +190,6 @@ const UpdateEmployeeForm = () => {
                     }}
                   ></input>
                 </div>
-
                 <div className="form-group">
                   <label>Email</label>
                   <input
@@ -210,7 +206,6 @@ const UpdateEmployeeForm = () => {
                     }}
                   ></input>
                 </div>
-
                 <div className="form-group">
                   <label>Start date</label>
                   <input
@@ -228,7 +223,6 @@ const UpdateEmployeeForm = () => {
                     }}
                   ></input>
                 </div>
-
                 <div className="form-group">
                   <label>End date</label>
                   <input
@@ -245,7 +239,6 @@ const UpdateEmployeeForm = () => {
                     }}
                   ></input>
                 </div>
-
                 <div className="form-group">
                   <label>Department</label>
                   <select
@@ -257,7 +250,6 @@ const UpdateEmployeeForm = () => {
                         ...employee!,
                         [e.target.name]: e.target.value,
                       });
-                      
                     }}
                   >
                     {departments?.data?.map((department: Department, index: Key) => {
@@ -267,7 +259,6 @@ const UpdateEmployeeForm = () => {
                     })}
                   </select>
                 </div>
-
                 <div className="form-group">
                   <label>Positions</label>
                   <select

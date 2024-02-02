@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import UserDetailModels from "../../models/UserDetailsModel";
 import Utils from "../../utils/Utils";

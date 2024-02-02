@@ -13,7 +13,6 @@ const SESSION_VALUE_URI = VERSION_URI + "/session-value";
 const LOGOUT_URI = VERSION_URI + "/logout";
 const USER_DETAILS_URI = VERSION_URI + "/email";
 const UPDATE_USER_DETAILS = VERSION_URI + "/update-user"
-
 const token = Cookies.get("jwt-token")
 
 const LoginRegistrationService = {
@@ -51,7 +50,7 @@ const LoginRegistrationService = {
   logout() {
     return axios.post(LOGOUT_URI);
   },
-
+  
   getUserDetails(userEmail: string | undefined) {
     return axios.get(USER_DETAILS_URI, {
       params: { email: userEmail },
