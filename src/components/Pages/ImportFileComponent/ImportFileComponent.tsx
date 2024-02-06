@@ -23,7 +23,6 @@ const ImportFileComponent = () => {
   const [acceptedFiles, setAcceptedFiles] = useState<File[]>([]);
   const buttonClass = fileUploaded ? 'btn btn-success' : 'btn btn-secondary';
   const [gravityColor, setGravityColor] = useState('');
-
   const [showResetButton, setShowResetButton] = useState(false);
   const [showFormatError, setShowFormatError] = useState(false);
   const [showImportResult, setShowImportResult] = useState(false);
@@ -119,10 +118,11 @@ const ImportFileComponent = () => {
 
     console.log("Sto inviando il file");
     setFileUploaded(false);
+    setShowResetButton(false);
+
     ImportEmployeeFileService.importFile(formData)
       .then(response => {
         console.log(response);
-
         // Accedi ai campi della risposta
         setExecutionId(response.data.executionId);
         setStatus(response.data.status);
@@ -131,7 +131,6 @@ const ImportFileComponent = () => {
         setStartDate(response.data.startProcessingDate);
         setEndDate(response.data.endProcessingDate);
         setErrors(response.data.errors);
-        setShowResetButton(false);
         if (response.data.status === 'LOADED') {
           setSuccessImportMessage(true);
         } else if (response.data.status === 'LOADED_WITH_ERRORS') {
@@ -142,6 +141,7 @@ const ImportFileComponent = () => {
 
         //se la risposta viene ricevuta dal server, mostro i dettagli dell'import
         setShowImportResult(true);
+        
 
         console.log("L'id dell'esecuzione è: " + executionId, "Lo stato è:" + status, "Nome del file:" + filename, filesize, startDate, endDate);
         setResponse(response.data);
@@ -193,14 +193,14 @@ const ImportFileComponent = () => {
 
   return (
 
-    <div className='center-flex-div' style={{ minHeight: '100vh', overflowY: 'auto' }}>
+    <div className='center-flex-div' style={{overflowY: 'auto' }}>
 
 
       {/* HEADER*/}
       <div style={{ marginTop: '5%' }}>
-        <p>Importa dipendenti da file '.csv' o '.xlsx'</p>
+        <p>Import employees from '.csv' or '.xlsx' files</p>
       </div>
-
+      
 
       {/*SEZIONE DRAG AND DROP IMPORT FILE*/}
       <div>
@@ -211,23 +211,24 @@ const ImportFileComponent = () => {
               <p className='dropzone-description'>{filename}</p>
             ) : (
               <>
-                <p className='dropzone-description'>Trascina e rilascia il tuo file qui oppure <a href='#'>sfoglia</a></p>
+                <p className='dropzone-description'>Drag and drop your file here or  <a href='#'>leave</a></p>
               </>
             )}
 
             <input {...getInputProps()} />
           </div>
           {/*BUTTON UPLOAD FILE*/}
-
+         
           <div>
-            <button className={`${buttonClass} upload-button`} onClick={(e) => { e.preventDefault(); submitFileData(); }} disabled={!fileUploaded}>Carica</button>
+            <button style={{backgroundColor:'#2970a6'}} className={`${buttonClass} upload-button`} onClick={(e) => { e.preventDefault(); submitFileData(); }} disabled={!fileUploaded}>Upload</button>
           </div>
 
           {/*BUTTON CANCEL FILE*/}
           {showResetButton && (
             <div>
-              <button className="btn btn-danger cancel-button" onClick={resetFileUpload}>Annulla</button>
+              <button className="btn btn-danger cancel-button" onClick={resetFileUpload}>Cancel</button>
             </div>
+          
           )}
 
         </form>
@@ -237,7 +238,7 @@ const ImportFileComponent = () => {
       {showFormatError === true && (
         <div style={{ marginTop: '3%', width: '30%', textAlign: 'center' }} className="alert alert-danger alert-dismissible d-flex align-items-center fade show">
           <i className="bi-exclamation-octagon-fill"></i>
-          <p><strong className="mx-2">Errore!</strong> Il formato del file selezionato risulta errato. Sono accettati solo file '.csv' o '.xlsx'  </p>
+          <p><strong className="mx-2">Error!</strong> The selected file format is incorrect. Only '.csv' or '.xlsx' files are accepted. </p>
         </div>
       )}
 
@@ -245,7 +246,7 @@ const ImportFileComponent = () => {
       {successImportMessage === true && (
         <div style={{ marginTop: '3%', width: '30%', textAlign: 'center' }} className="alert alert-success alert-dismissible d-flex align-items-center fade show">
           <i className="bi-check-circle-fill"></i>
-          <p> <strong className="mx-2">Operazione Completata!</strong> Tutti i dipendenti sono stati aggiunti con successo.</p>
+          <p> <strong className="mx-2">Operation Completed!</strong>  All employees have been successfully added.</p>
         </div>
       )}
 
@@ -253,14 +254,14 @@ const ImportFileComponent = () => {
       {warningImportMessage === true && (
         <div style={{ marginTop: '3%', width: '30%', textAlign: 'center' }} className="alert alert-warning alert-dismissible d-flex align-items-center fade show">
           <i className="bi-exclamation-triangle-fill"></i>
-          <p> <strong className="mx-2">Operazione Completata!</strong>Sono stati riscontrati degli errori durante il processo. </p>
+          <p> <strong className="mx-2">Operation Completed!</strong>Errors were encountered during the process. </p>
         </div>
       )}
       {/*MESSAGGIO DI FALLIMENTO PROCESSO IMPORT*/}
       {errorImportMessage === true && (
         <div style={{ marginTop: '3%', width: '30%', textAlign: 'center' }} className="alert alert-danger alert-dismissible d-flex align-items-center fade show">
           <i className="bi-exclamation-octagon-fill"></i>
-          <p><strong className="mx-2">Processo Fallito!</strong> Sono stati riscontrati degli errori bloccanti. </p>
+          <p><strong className="mx-2">Process Failed!</strong> Blocking errors were encountered. </p>
         </div>
       )}
 
@@ -277,31 +278,31 @@ const ImportFileComponent = () => {
       {showImportResult === true && (
         <div className='import-result'>
 
-          <h1>Dettagli Processo</h1> <br />
+          <h1>Process Details</h1> <br />
           
           <div className='detail-import'>
-            <p><strong>File:</strong> {filename}</p>
-            <p><strong>Dimensione: </strong>{calculateKB(filesize)} KB</p>
-            <p><strong>Stato: </strong>{status}</p>
-            <p><strong>Data Di Inizio: </strong>{startDate}</p>
-            <p><strong>Data Di Fine: </strong>{endDate}</p>
+            <p><strong>File:</strong> <span>{filename}</span></p>
+            <p><strong>Size: </strong><span>{calculateKB(filesize)} KB </span></p>
+            <p><strong>Status: </strong><span>{status}</span></p>
+            <p><strong>Start Date: </strong><span>{startDate}</span></p>
+            <p><strong>End Date: </strong><span>{endDate}</span></p>
           </div>
 
 
           {/* Mappa gli errori se ce ne sono */}
           {errors && errors.length > 0 && (
             <div className="table-container">
-           <h2>Errori Riscontrati durante il processo</h2>
+           <h2>Errors Found During the Process</h2>
 
 
-            <table className="table table-dark">              
+            <table className="table table-striped">              
               <thead>
                 <tr>
-                  <th scope="col">Riga n.</th>
-                  <th scope="col">Codice Errore</th>
-                  <th scope="col">Gravità</th>
-                  <th scope="col">Colonna</th>
-                  <th scope="col">Descrizione</th>
+                  <th scope="col">Row n.</th>
+                  <th scope="col">Code Error</th>
+                  <th scope="col">Gravity</th>
+                  <th scope="col">Column</th>
+                  <th scope="col">Description</th>
                 </tr>
               </thead>
               <tbody>
