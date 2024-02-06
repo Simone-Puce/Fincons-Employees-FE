@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import './TableHeadComponent.css'
 
 const EMPLOYEE_CASE = "employees";
 const DEPARTMENT_CASE = "departments";
@@ -39,10 +40,10 @@ const TableHeadComponent = (props: Props) => {
   }, [props.toDisplay, props.tableHeadList, props.tableData]);
 
   return (
-    <thead hidden={hiddenValue}>
-      <tr className="text-center">
+    <thead className="backgroud-style" hidden={hiddenValue}>
+      <tr className="text-center backgroud-style-header">
         {tableHeadValues?.map((tableHeadValue, index) => (
-          <th key={index}>{tableHeadValue}</th>
+          <th className="backgroud-style" key={index}>{tableHeadValue}</th>
         ))}
       </tr>
     </thead>

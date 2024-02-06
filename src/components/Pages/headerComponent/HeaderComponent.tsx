@@ -64,21 +64,22 @@ const HeaderComponent = (props: Props) => {
   };
 
   return (
-    <nav className="navbar fixed-top mb-5 position-absolute">
-      <div className="container-fluid d-flex">
+    <nav className="navbar fixed-top mb-5 position-absolute ">
+      <div className="container-fluid d-flex align-items-center">
         <div className="centered-navbar align-self-start">
-          <h2>Employee Manager</h2>
+          <h2 className="text-white">Employee Manager</h2>
         </div>
         <button
           hidden={isHidden}
-          className="navbar-toggler close-navbar-button border-0 btn-lg align-self-start"
+          className="navbar-toggler close-navbar-button border-0 btn-lg text-white aling-middle"
           type="button"
           data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasNavbar"
           aria-controls="offcanvasNavbar"
           aria-label="Toggle navigation"
+          
         >
-          {userNameDisplay()} <i className="bi bi-person-circle"></i>
+          {userNameDisplay()} <i className="bi bi-person-circle text-dark"></i>
         </button>
         <div
           className="offcanvas offcanvas-end offcanvas-width"

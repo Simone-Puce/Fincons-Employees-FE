@@ -51,7 +51,7 @@ const LoginPageComponent = (props: Props) => {
   };
 
   return (
-    <section className="background-radial-gradient">
+    <section className="background-radial-gradient footer-manager">
       <div className="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
         <div className="row gx-lg-5 align-items-center mb-5">
           <div className="col-lg-6 mb-5 mb-lg-0">

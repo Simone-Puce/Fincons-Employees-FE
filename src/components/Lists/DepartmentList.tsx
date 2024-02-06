@@ -15,24 +15,23 @@ interface Props {
 const DepartmentList = (props: Props) => {
   const navigate = useNavigate();
 
-  const handleNavigation = () => {
+  const goToAddDepartment = () => {
     navigate("/add-employee");
   };
 
   return (
-    <div className="containerList mt-1 pt-1">
+    <div className="containerList mt-1 pt-1 mb-2">
       <div className="row mt-4 mb-3">
         <div className="d-flex justify-content-center filterDiv">
-          <Link to={"/add-employee"}><button className="btn rounded-pill btn-primary" >
+          <button className="btn rounded-pill btn-add text-white w-25" onClick={goToAddDepartment} >
             <i
-              className="bi bi-person-fill-add pr-1"
-              onClick={handleNavigation}
+              className="bi bi-person-fill-add m-3"
             ></i>
             Add Department
-          </button></Link>
+          </button>
         </div>
       </div>
-      <div className="row">
+      <div className="row table-style">
         {
           <table
             className="table table-striped mb-0"

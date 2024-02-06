@@ -1,3 +1,42 @@
 .pointer-control{
     pointer-events: auto !important;
 }
+
+.anagraphic-form-style{
+    height: 20em;
+    display: flex;
+    flex-direction: column ;
+    align-items: center ;
+}
+
+.create-card-style{
+    background: transparent !important;
+    border: 2px solid transparent !important;
+    box-shadow: 5px 5px 5px 5px rgb(0,0,0,0.5) !important;
+}
+
+.footer-manager{
+    min-height: 100%;
+}
+
+.btn-save{
+    border: 2px solid black !important;
+    border-radius: 15px !important;
+}
+
+.btn-cancel{
+    border: 2px solid black !important;
+    border-radius: 15px !important;
+}
+
+.btn-save:hover{
+    background: #B10135 !important;
+}
+
+.btn-cancel:hover{
+    background: #B10135 !important;
+}
+
+.on-hover-handler:hover{
+    color: white;
+}

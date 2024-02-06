@@ -1,22 +1,43 @@
-.ButtonDiv{
+.ButtonDiv {
     justify-content: center;
     align-items: stretch;
 }
 
-.cancelUpdateButton{
+.cancelUpdateButton {
     margin-left: 10px;
 }
 
-.div-style{
+.div-style {
     display: flex;
     justify-content: space-around;
 }
 
-.div-two-buttons{
+.div-two-buttons {
     display: flex;
     justify-content: space-evenly;
 }
 
-.delete-button{
+.delete-button {
     pointer-events: auto !important;
+    background-color: transparent !important;
+    border: none !important;
+    border: 1px solid black !important;
+}
+
+.backgroud-style {
+    background: transparent !important;
+    border: none;
+    border-top: 1px solid white;
+}
+
+.btn-background:hover{
+    background: #B10135 !important;
+}
+
+.icon-background{
+    color: black;
+}
+
+.icon-background:hover{
+    color: white;
 }

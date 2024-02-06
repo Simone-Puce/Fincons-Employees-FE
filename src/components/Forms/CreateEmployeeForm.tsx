@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Key, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Employee from "../../models/EmployeeModel";
@@ -25,7 +24,7 @@ const CreateEmployeeForm = () => {
   const [positionValidator, setPositionValidator] = useState<boolean>(false)
   const navigate = useNavigate();
 
-  
+
   useEffect(() => {
     checkSubmit()
   }, [
@@ -75,11 +74,11 @@ const CreateEmployeeForm = () => {
   const backToList = () => [navigate("/Employees")];
 
   return (
-    <div className="createContainer mt-5 pt-5">
+    <div className="createContainer mt-5 pt-5 footer-manager">
       <div className="container">
         <div className="row">
-          <div className="card col-md-6 offset-md-3 offset-md-3">
-            <h3 className="text-center"> Create employee </h3>
+          <div className="card mb-5 col-md-6 offset-md-3 offset-md-3 create-card-style">
+            <h3 className="text-center pt-2"> Create employee </h3>
             <div className="card-body">
               <form>
                 <div className="form-group">
@@ -98,7 +97,6 @@ const CreateEmployeeForm = () => {
                     }}
                   ></input>
                 </div>
-
                 <div className="form-group">
                   <label>Last name</label>
                   <input
@@ -115,7 +113,6 @@ const CreateEmployeeForm = () => {
                     }}
                   ></input>
                 </div>
-
                 <div className="form-group">
                   <label>Gender</label>
                   <select
@@ -137,7 +134,6 @@ const CreateEmployeeForm = () => {
                     <option value="others"> Other </option>
                   </select>
                 </div>
-
                 <div className="form-group">
                   <label>Birth date</label>
                   <input
@@ -154,7 +150,6 @@ const CreateEmployeeForm = () => {
                     }}
                   ></input>
                 </div>
-
                 <div className="form-group">
                   <label>Email</label>
                   <input
@@ -171,7 +166,6 @@ const CreateEmployeeForm = () => {
                     }}
                   ></input>
                 </div>
-
                 <div className="form-group">
                   <label>Start date</label>
                   <input
@@ -188,7 +182,6 @@ const CreateEmployeeForm = () => {
                     }}
                   ></input>
                 </div>
-
                 <div className="form-group">
                   <label>End date</label>
                   <input
@@ -204,7 +197,6 @@ const CreateEmployeeForm = () => {
                     }}
                   ></input>
                 </div>
-
                 <div className="form-group">
                   <label>Department</label>
                   <select
@@ -221,14 +213,13 @@ const CreateEmployeeForm = () => {
                     }}
                   >
                     <option defaultValue="select the department">Select the department</option>
-                    {departments?.data?.map((department: Department,index: Key) => {
+                    {departments?.data?.map((department: Department, index: Key) => {
                       return (
                         <option key={index} value={department.id}>{department.name}</option>
                       );
                     })}
                   </select>
                 </div>
-
                 <div className="form-group">
                   <label>Positions</label>
                   <select
@@ -252,21 +243,23 @@ const CreateEmployeeForm = () => {
                     })}
                   </select>
                 </div>
-                <div className="d-flex justify-content-center mt-3">
-                  <button
-                    className="btn btn-success"
-                    onClick={saveOrUpdateEmployee}
-                    disabled={isButtonDisabled}
-                    title={isButtonDisabled ? "some fields are not valid, please check the values" : ""}
-                  >
-                    Save
-                  </button>
-                  <button
-                    className="btn btn-danger ml-2"
-                    onClick={backToList}
-                  >
-                    Cancel
-                  </button>
+                <div className="form-group d-flex justify-content-center">
+                  <div className="d-flex justify-content-evenly w-50 mt-3">
+                    <button
+                       className="btn btn-save w-25"
+                      onClick={saveOrUpdateEmployee}
+                      disabled={isButtonDisabled}
+                      title={isButtonDisabled ? "some fields are not valid, please check the values" : ""}
+                    >
+                      Save
+                    </button>
+                    <button
+                        className="btn btn-cancel w-25"
+                      onClick={backToList}
+                    >
+                      Cancel
+                    </button>
+                  </div>
                 </div>
               </form>
             </div>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Position from "../../models/PositionModel";
 import PositionService from "../../services/PositionService";
+import './Styles/Details.css'
 
 const PositionDetails = () => {
   const [position, setPosition] = useState<Position>();
@@ -20,8 +21,8 @@ const PositionDetails = () => {
   };
 
   return (
-    <div className="mt-5 pt-3">
-      <div className="card col-md-6 offset-md-3 mt-5">
+    <div className="mt-5 pt-3 footer-manager">
+      <div className="card col-md-6 offset-md-3 mt-5 card-style">
         <h3 className="text-center mt-2"> View position details </h3>
         <div className="card-body">
           <div className="row d-flex justify-content-center">
@@ -34,16 +35,14 @@ const PositionDetails = () => {
               {" "}
               Position salary: {position?.salary}{" "}
             </label>
-
             <div className="d-flex justify-content-center">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={goToHomepage}
-            >
-              {" "}
-              Go back to the position list
-            </button>
+              <button
+                type="button"
+                className="btn btn-back"
+                onClick={goToHomepage}
+              >
+                <i className="bi bi-caret-left-fill"></i>
+              </button>
             </div>
           </div>
         </div>

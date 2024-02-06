@@ -4,7 +4,6 @@ import DepartmentService from "../../services/DepartmentService";
 import Department from "../../models/DepartmentModel";
 import "./Styles/FormStyles.css"
 
-
 const UpdateDepartmentForm = () => {
   const [department, setDepartment] = useState<Department>();
   const { id } = useParams();
@@ -77,11 +76,11 @@ const UpdateDepartmentForm = () => {
   const backToList = () => [navigate("/Employees")];
 
   return (
-    <div className="createContainer mt-5 pt-5">
+    <div className="createContainer mt-5 pt-5 footer-manager">
       <div className="container">
         <div className="row">
-          <div className="card col-md-6 offset-md-3 offset-md-3">
-            <h3 className="text-center"> Update department </h3>
+          <div className="card col-md-6 offset-md-3 offset-md-3 create-card-style">
+            <h3 className="text-center pt-2"> Update department </h3>
             <div className="card-body">
               <form>
                 <div className="form-group">
@@ -117,7 +116,6 @@ const UpdateDepartmentForm = () => {
                     }}
                   ></input>
                 </div>
-
                 <div className="form-group">
                   <label>City</label>
                   <input
@@ -134,21 +132,22 @@ const UpdateDepartmentForm = () => {
                     }}
                   ></input>
                 </div>
-                <div className="d-flex justify-content-center mt-3">
-                  <button className="btn btn-success pointer-control"
-                    onClick={UpdatePosition}
-                    disabled={isButtonDisabled}
-                    title={isButtonDisabled ? "some fields are not valid, please check the values" : ""}
-                  >
-                    Save
-                  </button>
-                  <button
-                    className="btn btn-danger ml-2"
-                  
-                    onClick={backToList}
-                  >
-                    Cancel
-                  </button>
+                <div className="form-group d-flex justify-content-center">
+                  <div className="d-flex justify-content-evenly w-50 mt-3">
+                    <button className="btn btn-save w-25 pointer-control"
+                      onClick={UpdatePosition}
+                      disabled={isButtonDisabled}
+                      title={isButtonDisabled ? "some fields are not valid, please check the values" : ""}
+                    >
+                      Save
+                    </button>
+                    <button
+                      className="btn btn-save w-25"
+                      onClick={backToList}
+                    >
+                      Cancel
+                    </button>
+                  </div>
                 </div>
               </form>
             </div>

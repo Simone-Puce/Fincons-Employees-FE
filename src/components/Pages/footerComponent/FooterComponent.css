@@ -1,0 +1,12 @@
+.footer-style {
+    background: #D5C4A9;
+    min-width: 100% !important;
+    border-top: 1px solid black;
+}
+
+.footer-text {
+    color: #5D5D5F;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: small;
+}

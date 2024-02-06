@@ -3,6 +3,12 @@
 }
 
 .table-style{
-    border: 2px solid transparent !important;
-    box-shadow: 5px 5px 5px 5px rgb(0,0,0,0.5) !important;
+    border: 2px solid black !important;
+    border-radius: 25px;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5) !important;
+    overflow: hidden;
+}
+
+.btn-add{
+    background: #B10135 !important;
 }

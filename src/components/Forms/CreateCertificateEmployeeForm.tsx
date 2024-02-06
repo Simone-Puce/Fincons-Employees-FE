@@ -4,6 +4,7 @@ import CertificateEmployee from "../../models/CertificateEmployeeModel";
 import CertificateEmployeeService from "../../services/CertificateEmployeeService";
 import Certificate from "../../models/CertificateModel";
 import CertificateService from "../../services/CertificateService";
+import './Styles/FormStyles.css'
 
 const CreateCertificateEmployeeForm = () => {
   const [certificateEmployee, setCertificateEmployee] = useState<CertificateEmployee>();
@@ -20,25 +21,24 @@ const CreateCertificateEmployeeForm = () => {
   useEffect(() => {
     CertificateService.getCertificates().then((res) => {
       setCertificates(res.data);
-    })    
- }, []);
+    })
+  }, []);
 
- const saveCertificateEmployee = () => {
+  const saveCertificateEmployee = () => {
 
-    CertificateEmployeeService.createCertificateEmployee(certificateEmployee!,idEmployee);
-    navigate("/view-employee/"+idEmployee);
- };
+    CertificateEmployeeService.createCertificateEmployee(certificateEmployee!, idEmployee);
+    navigate("/view-employee/" + idEmployee);
+  };
 
 
   return (
-    <div className="createContainer mt-5 pt-5">
+    <div className="createContainer mt-5 pt-5 footer-manager">
       <div className="container">
         <div className="row">
-          <div className="card col-md-6 offset-md-3 offset-md-3">
-            <h3 className="text-center"> Add Certificate </h3>
+          <div className="card col-md-6 offset-md-3 offset-md-3 create-card-style">
+            <h3 className="text-center pt-2"> Add Certificate </h3>
             <div className="card-body">
               <form>
-
                 <div className="form-group">
                   <label>Certificate</label>
                   <select
@@ -53,7 +53,7 @@ const CreateCertificateEmployeeForm = () => {
                     }}
                   >
                     <option selected>Select the certificate</option>
-                    {certificates?.map((certificate : Certificate) => {
+                    {certificates?.map((certificate: Certificate) => {
                       return (
                         <option value={certificate.id}>{certificate.name}</option>
                       );
@@ -76,20 +76,21 @@ const CreateCertificateEmployeeForm = () => {
                     }}
                   ></input>
                 </div>
-                <div className="d-flex justify-content-center mt-3">
-                  <button
-                    className="btn btn-success"
-                    onClick={saveCertificateEmployee}
-                  >
-                    Save
-                  </button>
-                  <button
-                    className="btn btn-danger ml-2"
-                    
-                    onClick={goBackToList}
-                  >
-                    Cancel
-                  </button>
+                <div className="form-group d-flex justify-content-center">
+                  <div className="d-flex justify-content-evenly w-50 mt-3">
+                    <button
+                      className="btn rounded pill w-25"
+                      onClick={saveCertificateEmployee}
+                    >
+                      Save
+                    </button>
+                    <button
+                      className="btn rounded pill w-25 ml-2"
+                      onClick={goBackToList}
+                    >
+                      Cancel
+                    </button>
+                  </div>
                 </div>
               </form>
             </div>

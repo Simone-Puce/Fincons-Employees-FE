@@ -3,11 +3,10 @@ import './FooterComponent.css'
 
 const FooterComponent = () => {
     return (
-        <footer className='footer fixed-bottom mt-auto py-3 bg-dark'>
-            <div className='d-flex justify-content-center container stick'>
-                <span className='text-white '> ITS project</span>
-            </div>
-        </footer>
+        <div className='row m-0 footer-style mb-3 pb-3 pt-3'>
+            <div className='d-flex justify-content-center footer-text'>carlo</div>
+            <div className='d-flex justify-content-center footer-text'>chiara</div>
+        </div>
     );
 }
 

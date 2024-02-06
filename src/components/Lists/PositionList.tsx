@@ -14,22 +14,21 @@ interface Props {
 const PositionList = (props: Props) => {
   const navigate = useNavigate();
 
-  const handleNavigation = () => {
+  const goToAddPosition = () => {
     navigate("/add-employee");
   };
 
 
   return (
-    <div className="containerList mt-1 pt-1">
+    <div className="containerList mt-1 pt-1 mb-2">
       <div className="row mt-4 mb-3">
         <div className="d-flex justify-content-center filterDiv">
-          <Link to={"/add-employee"}><button className="btn rounded-pill btn-primary" >
+          <button className="btn rounded-pill btn-add text-white w-25" onClick={goToAddPosition} >
             <i
-              className="bi bi-person-fill-add pr-1"
-              onClick={handleNavigation}
+              className="bi bi-person-fill-add m-3"
             ></i>
-            Add Position
-          </button></Link>
+            Add position
+          </button>
         </div>
       </div>
       <div className="row table-style">

@@ -134,11 +134,11 @@ const ListEmployeeComponent = (props: Props) => {
             </div>
           </div>
         ) : (
-          <div className="col mt-5 pt-5">
+          <div className="col mt-5 pt-5 pb-5 footer-manager">
             <div className="d-flex justify-content-evenly">
-              <button className="btn rounded-pill btn-primary mr-5 pr-5" onClick={handleEmployeeList}> Employees </button>
-              <button className="btn rounded-pill btn-info mr-5 pr-5 pl-5 ml-5" onClick={handleDepartmentList}> Departments</button>
-              <button className="btn rounded-pill btn-secondary ml-5" onClick={handlePositionList}> Positions</button>
+              <button className="btn btn-color rounded-pill mr-5 pr-5 w-25 h-25" onClick={handleEmployeeList}> Employees </button>
+              <button className="btn btn-color rounded-pill mr-5 pr-5 pl-5 ml-5 w-25 h-25" onClick={handleDepartmentList}> Departments</button>
+              <button className="btn btn-color rounded-pill ml-5 w-25 h-25" onClick={handlePositionList}> Positions</button>
             </div>
             <div className="container">
               {listConditionalRender()}

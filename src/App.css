@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: black;
 }
 
 .App-link {
@@ -42,6 +42,4 @@
 .createContainer{
   margin-top: 50px;
   min-height: 73vh;
-  display: flex;
-  flex-direction: column;
 }

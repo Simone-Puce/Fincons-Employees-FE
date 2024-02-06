@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, Key } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Employee from "../../models/EmployeeModel";
@@ -117,11 +116,11 @@ const UpdateEmployeeForm = () => {
   const backToList = () => [navigate("/Employees")];
 
   return (
-    <div className="createContainer mt-5 pt-5">
+    <div className="createContainer mt-5 pt-5 footer-manager">
       <div className="container">
         <div className="row">
-          <div className="card col-md-6 offset-md-3 offset-md-3">
-            <h3 className="text-center"> Update employee </h3>
+          <div className="card mb-5 col-md-6 offset-md-3 offset-md-3 create-card-style">
+            <h3 className="text-center pt-2"> Update employee </h3>
             <div className="card-body">
               <form>
                 <div className="form-group">
@@ -257,7 +256,7 @@ const UpdateEmployeeForm = () => {
                         ...employee!,
                         [e.target.name]: e.target.value,
                       });
-                      
+
                     }}
                   >
                     {departments?.data?.map((department: Department, index: Key) => {
@@ -288,21 +287,23 @@ const UpdateEmployeeForm = () => {
                     })}
                   </select>
                 </div>
-                <div className="d-flex justify-content-center mt-3">
-                  <button
-                    className="btn btn-success pointer-control"
-                    onClick={UpdateEmployee}
-                    disabled={isButtonDisabled}
-                    title={isButtonDisabled ? "some fields are not valid, please check the values" : ""}
-                  >
-                    Save
-                  </button>
-                  <button
-                    className="btn btn-danger ml-2" 
-                    onClick={backToList}
-                  >
-                    Cancel
-                  </button>
+                <div className="form-group d-flex justify-content-center">
+                  <div className="d-flex justify-content-evenly w-50 mt-3">
+                    <button
+                      className="btn btn-save w-25 pointer-control"
+                      onClick={UpdateEmployee}
+                      disabled={isButtonDisabled}
+                      title={isButtonDisabled ? "some fields are not valid, please check the values" : ""}
+                    >
+                      Save
+                    </button>
+                    <button
+                      className="btn btn-save w-25"
+                      onClick={backToList}
+                    >
+                      Cancel
+                    </button>
+                  </div>
                 </div>
               </form>
             </div>

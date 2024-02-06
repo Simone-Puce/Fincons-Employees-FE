@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 import UserService from "../../../services/UserService";
 import './UserProfile.css';
 
+
 const UserProfile = () => {
     const navigate = useNavigate();
     const [updatingData, setUpdatingData] = useState<boolean>(false)
@@ -102,8 +103,8 @@ const UserProfile = () => {
     }
     
     return (
-        <div className="mt-5 pt-3"> 
-            <div className="card col-md-6 offset-md-3 anagraphic-card mt-5">
+        <div className="mt-5 pt-5 footer-manager"> 
+            <div className="card col-md-6 offset-md-3 anagraphic-card">
                 <h3 className="text-center mt-2"> User details </h3>
                 <div className="card-body">
                     <UserDetailsInput
