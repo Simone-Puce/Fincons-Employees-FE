@@ -25,29 +25,27 @@ const LoginPageComponent = (props: Props) => {
 
   useEffect(() => {
     if (Cookies.get("jwt-token") !== undefined) {
-      navigate("/employees")
+      navigate("/employees");
     }
-  }, [])
+  }, []);
 
   const handleLogin = (e: FormEvent) => {
     e.preventDefault();
-    LoginRegistrationService.loginService(input).then(
-      (res) => {
-        if (res.data.status === "OK") {
-          const jwt = jwtDecode(res.data.data.accessToken)
-          Cookies.set('jwt-token', res.data.data.accessToken)
-          props.setUserEmail(jwt.sub!)
-          navigate("/spinner")
-        } else {
-          Swal.fire({
-            title: "Error?",
-            text: "Email or password are wrong ",
-            icon: "error",
-            confirmButtonText: "OK!",
-          });
-        }
+    LoginRegistrationService.loginService(input).then((res) => {
+      if (res.data.status === "OK") {
+        const jwt = jwtDecode(res.data.data.accessToken);
+        Cookies.set("jwt-token", res.data.data.accessToken);
+        props.setUserEmail(jwt.sub!);
+        navigate("/spinner");
+      } else {
+        Swal.fire({
+          title: "Error?",
+          text: "Email or password are wrong ",
+          icon: "error",
+          confirmButtonText: "OK!",
+        });
       }
-    );
+    });
   };
 
   return (
@@ -156,7 +154,6 @@ const LoginPageComponent = (props: Props) => {
                       >
                         Sign up now
                       </button>
-
                     </div>
                   </div>
                 </form>
