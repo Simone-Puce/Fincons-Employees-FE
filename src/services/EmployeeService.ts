@@ -19,16 +19,6 @@ const config = {
 
 const EmployeeService = {
 
-   /* async getEmployees() {
-        try {
-            const response = await axios.get(GET_ALL_URI, {headers: { Authorization: `Bearer ${token}` }});
-            return response.data;
-        } catch (error) {
-            console.error("Error fetching employees: ", error);
-            throw error;
-        }
-    }*/
-
     getEmployees() {
         return axios.get(GET_ALL_URI,  {headers: { Authorization: `Bearer ${token}` }});
     },

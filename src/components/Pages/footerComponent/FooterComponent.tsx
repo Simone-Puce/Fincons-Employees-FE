@@ -3,8 +3,8 @@ import './FooterComponent.css'
 
 const FooterComponent = () => {
     return (
-        <div className='row m-0 footer-style mb-3 pb-3 pt-3'>
-            <div className='d-flex justify-content-center footer-text background-style'>
+        <div className='row m-0 footer-style mb-1 pb-1 pt-3'>
+            <div className='d-flex justify-content-center footer-text background-style mt-2 mb-0 pb-0'>
                 <div className="container">
                     <div className="row">
                         <div className="col text-center">
