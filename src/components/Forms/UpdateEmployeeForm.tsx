@@ -250,7 +250,7 @@ const UpdateEmployeeForm = () => {
                         ...employee!,
                         [e.target.name]: e.target.value,
                       });
-
+                      
                     }}
                   >
                     {departments?.data?.map((department: Department, index: Key) => {

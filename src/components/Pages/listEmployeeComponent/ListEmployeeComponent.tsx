@@ -24,13 +24,6 @@ const ListEmployeeComponent = (props: Props) => {
   const [showSpinner, setShowSpinner] = useState(true)
 
   useEffect(() => {
-    setShowSpinner(true)
-    setTimeout(() => {
-      setShowSpinner(false)
-    }, 500)
-  }, [props.toDisplayList])
-
-  useEffect(() => {
     if (filterByName !== "created") {
       EmployeeService.getEmployees().then((res) => {
         setEmployees(res.data);
@@ -42,7 +35,7 @@ const ListEmployeeComponent = (props: Props) => {
         setPositions(res.data);
       });
     }
-  },);
+  }, []);
 
   useEffect(() => {
     EmployeeService.getEmployees().then((res) => {
@@ -133,7 +126,7 @@ const ListEmployeeComponent = (props: Props) => {
             </div>
           </div>
         ) : (
-          <div className="col mt-5 pt-5 pb-5 footer-manager">
+          <div className="col mt-5 pt-5">
             <div className="d-flex justify-content-evenly">
               <button className="btn btn-color rounded-pill mr-5 pr-5 w-25 h-25" onClick={handleEmployeeList}> Employees </button>
               <button className="btn btn-color rounded-pill mr-5 pr-5 pl-5 ml-5 w-25 h-25" onClick={handleDepartmentList}> Departments</button>
@@ -145,7 +138,7 @@ const ListEmployeeComponent = (props: Props) => {
           </div>
         )
       }
-    </ >
+    </>
   )
 };
 
