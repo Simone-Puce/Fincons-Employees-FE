@@ -7,10 +7,10 @@ const Utils = {
     }
   },
 
-  valideField(str : any  ) {
-    if(str.toString() === "" || str === null || str === undefined){
+  valideField(str: any) {
+    if (str.toString() === "" || str === null || str === undefined) {
       return false
-    }else{
+    } else {
       return true
     }
   }

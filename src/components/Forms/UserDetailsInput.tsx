@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import UserDetailModels from "../../models/UserDetailsModel";
 import Utils from "../../utils/Utils";
 import PasswordUpdateModel from "../../models/PasswordUpdateModel";
-
+import './Styles/FormStyles.css'
 interface Props {
     updatingData: boolean,
     updatingPassword: boolean,
@@ -87,8 +87,8 @@ const UserDetailsInput = (props: Props) => {
     }
 
     return (
-        <form autoComplete="off">
-            <div hidden={props.updatingPassword} className="form-group">
+        <form className="anagraphic-form-style footer-manager">
+            <div hidden={props.updatingPassword} className="form-group w-75 mb-2">
                 <label>First name</label>
                 <input
                     placeholder={props.userDetails?.firstName}
@@ -105,7 +105,7 @@ const UserDetailsInput = (props: Props) => {
                     }}
                 ></input>
             </div>
-            <div hidden={props.updatingPassword} className="form-group">
+            <div hidden={props.updatingPassword} className="form-group w-75 mb-2">
                 <label>Last name</label>
                 <input
                     placeholder={props.userDetails?.lastName}
@@ -123,7 +123,7 @@ const UserDetailsInput = (props: Props) => {
                     }}
                 ></input>
             </div>
-            <div hidden={props.updatingData || props.updatingPassword} className="form-group">
+            <div hidden={props.updatingData || props.updatingPassword} className="form-group w-75 mb-2">
                 <label>Email </label>
                 <input
                     placeholder={props.userDetails?.email}
@@ -135,7 +135,7 @@ const UserDetailsInput = (props: Props) => {
                     hidden={props.updatingData}
                 ></input>
             </div>
-            <div hidden={!props.updatingPassword} className="form-group">
+            <div hidden={!props.updatingPassword} className="form-group w-75 mb-2">
                 <label> Old password </label>
                 <input
                     value={props.passwordUpdateValues.oldPassword}
@@ -151,7 +151,7 @@ const UserDetailsInput = (props: Props) => {
                     }}
                 ></input>
             </div>
-            <div hidden={!props.updatingPassword} className="form-group">
+            <div hidden={!props.updatingPassword} className="form-group w-75 mb-2">
                 <label> New password </label>
                 <input
                     value={props.passwordUpdateValues.newPassword}
@@ -167,12 +167,12 @@ const UserDetailsInput = (props: Props) => {
                         });
                         passwordValidator(e.target.value)
                     }}
-                    onFocus={()=>setPasswordFocus(false)}
-                    onBlur={()=>setPasswordFocus(true)}
+                    onFocus={() => setPasswordFocus(false)}
+                    onBlur={() => setPasswordFocus(true)}
                 ></input>
                 <p hidden={passwordFocus}> Password must be 8 letters, contains an uppercase letter and a special character</p>
             </div>
-            <div hidden={!props.updatingPassword} className="form-group">
+            <div hidden={!props.updatingPassword} className="form-group w-75 mb-2">
                 <label> Confirm new password </label>
                 <input
                     value={props.passwordUpdateValues.confirmPassword}
@@ -191,6 +191,5 @@ const UserDetailsInput = (props: Props) => {
             </div>
         </form>
     )
-
 }
 export default UserDetailsInput

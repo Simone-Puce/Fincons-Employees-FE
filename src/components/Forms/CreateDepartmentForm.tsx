@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Department from "../../models/DepartmentModel";
 import DepartmentService from "../../services/DepartmentService";
 import Utils from "../../utils/Utils";
+import './Styles/FormStyles.css'
 
 const CreateDepartmentForm = () => {
   const [department, setDepartment] = useState<Department>();
@@ -13,7 +14,7 @@ const CreateDepartmentForm = () => {
   const navigate = useNavigate();
 
   const goBackToList = () => {
-    navigate("/spinner");
+    navigate("/employees");
   };
 
   useEffect(() => {
@@ -39,18 +40,17 @@ const CreateDepartmentForm = () => {
 
   const saveDepartment = () => {
     DepartmentService.createDepartment(department!);
-    navigate("/spinner");
+    navigate("/employees");
   };
 
   return (
-    <div className="createContainer mt-5 pt-5">
+    <div className="createContainer mt-5 pt-5 footer-manager">
       <div className="container">
         <div className="row">
-          <div className="card col-md-6 offset-md-3 offset-md-3">
-            <h3 className="text-center"> Create Department </h3>
+          <div className="card col-md-6 offset-md-3 offset-md-3 create-card-style">
+            <h3 className="text-center pt-2"> Create Department </h3>
             <div className="card-body">
               <form>
-
                 <div className="form-group">
                   <label>Department</label>
                   <input
@@ -67,7 +67,6 @@ const CreateDepartmentForm = () => {
                     }}
                   ></input>
                 </div>
-
                 <div className="form-group">
                   <label>Address</label>
                   <input
@@ -84,7 +83,6 @@ const CreateDepartmentForm = () => {
                     }}
                   ></input>
                 </div>
-
                 <div className="form-group">
                   <label>City</label>
                   <input
@@ -101,9 +99,10 @@ const CreateDepartmentForm = () => {
                     }}
                   ></input>
                 </div>
-                <div className="d-flex justify-content-center mt-3">
+                <div className="form-group d-flex justify-content-center">
+                <div className="d-flex justify-content-evenly w-50 mt-3">
                 <button
-                  className="btn btn-success"
+                  className="btn btn-save w-25"
                   onClick={saveDepartment}
                   disabled={isButtonDisabled}
                   title={isButtonDisabled ? "some fields are not valid, please check the values" : ""}
@@ -111,11 +110,12 @@ const CreateDepartmentForm = () => {
                   Save
                 </button>
                 <button
-                  className="btn btn-danger ml-2"
+                  className="btn btn-cancel w-25 ml-2"
                   onClick={goBackToList}
                 >
                   Cancel
                 </button>
+                </div>
                 </div>
               </form>
             </div>

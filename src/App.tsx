@@ -19,10 +19,9 @@ function App() {
   const [selectedUser, setSelectedUser] = useState<string>("");
   const [toDisplayList, setToDisplayList] = useState<string>("employees")
 
-  
   return (
-    <div>
-      <Router>
+    <div id="app">
+      <Router>  
         <HeaderComponent
           userEmail={selectedUser}
           setUserEmail={setSelectedUser}
@@ -47,7 +46,7 @@ function App() {
             ></Route>
             <Route
               path="/profile"
-              element={<UserProfile/>}
+              element={<UserProfile />}
             >
             </Route>
             <Route
@@ -62,10 +61,10 @@ function App() {
               path="update-employee/:id"
               element={<Update toDisplayList={toDisplayList} />}
             ></Route>
-               <Route
-                path="/add/:id"
-                element={<CreateCertificateEmployeeForm />}
-              ></Route>
+            <Route
+              path="/add/:id"
+              element={<CreateCertificateEmployeeForm />}
+            ></Route>
           </Route>
           { }
           <Route
@@ -88,8 +87,8 @@ function App() {
           ></Route>
           <Route path="/register" element={<RegisterPageComponent />}></Route>
         </Routes>
-         {/*<FooterComponent />*/}
       </Router>
+    <FooterComponent />
     </div>
   );
 }

@@ -1,20 +1,16 @@
-.filterDiv {
-    margin-right: 10px;
-    display: inline-table;
-    margin-bottom: 10px;
-    padding: 10px;
-}
-
-.filterTextBox {
-    margin-left: 10px;
-    border: 2px solid;
-    border-color: black;
-    padding: 10px 21px;
-    border-radius: 50px;
-}
-
 .spinner-container {
     height: 100px;
     width: 100px;
     display: flex;
+}
+
+.footer-manager {
+    min-height: 100%;
+}
+
+.btn-color {
+    background-color: #D5C4A9 !important;
+    color: #5D5D5F !important;
+    font-weight: bold !important;
+    font-size: medium !important;
 }

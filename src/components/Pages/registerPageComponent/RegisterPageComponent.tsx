@@ -33,7 +33,6 @@ const RegisterPageComponent = () => {
   const [firstCheckIcon, setFirstCheckIcon] = useState<boolean>(false);
   const [secondCheckIcon, setSecondCheckIcon] = useState<boolean>(false);
   const [thirdCheckIcon, setThirdCheckIcon] = useState<boolean>(false);
-  const [birthDateValid, setBirthDateValid] = useState<boolean>(false);
   const [passwordDetails, setPasswordDetails] = useState(true);
 
   const firstPasswordRestriction = () => {
@@ -58,15 +57,6 @@ const RegisterPageComponent = () => {
     } else {
       return <i className="bi bi-emoji-smile"></i>;
     }
-  };
-
-  const birthDateCheck = (value: string) => {
-    if (value !== null && value !== undefined && value !== "") {
-      setBirthDateValid(true);
-    } else {
-      setBirthDateValid(false);
-    }
-    checkSubmit();
   };
 
   const checkSubmit = () => {
@@ -209,32 +199,27 @@ const RegisterPageComponent = () => {
   };
 
   return (
-    <section className="background-radial-gradient overflow-hidden">
+    <section className="background-radial-gradient overflow-hidden footer-manager ">
       <div className="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
         <div className="row gx-lg-5 align-items-center mb-5">
           <div className="col-lg-6 mb-5 mb-lg-0">
-            <h1 className="my-5 display-5 fw-bold ls-tight"> 
+            <h1 className="my-5 display-5 fw-bold ls-tight">
               <span>Employee manager for your company</span>
             </h1>
             <p className="mb-4 opacity-70">
               Registration form to use an applicative that manages employees
             </p>
           </div>
-
           <div className="col-lg-6 mb-5 mb-lg-0 position-relative">
             <div className="position-absolute rounded-circle shadow-5-strong"></div>
             <div className="position-absolute shadow-5-strong"></div>
-
-            <div className="card bg-glass rounded-5">
+            <div className="card-style">
               <div className="card-body px-4 py-5 px-md-4">
                 <form>
                   <div className="form-outline mb-4">
                     <div className="row">
                       <div className="form-floating">
-                        <motion.input
-                          whileFocus={{
-                            scale: 1.1,
-                          }}
+                        <input
                           name="firstName"
                           value={input?.firstName}
                           onChange={(e) => {
@@ -253,14 +238,10 @@ const RegisterPageComponent = () => {
                       </div>
                     </div>
                   </div>
-
                   <div className="form-outline mb-4">
                     <div className="row">
                       <div className="form-floating">
-                        <motion.input
-                          whileFocus={{
-                            scale: 1.1,
-                          }}
+                        <input
                           name="lastName"
                           value={input?.lastName}
                           onChange={(e) => {
@@ -282,10 +263,7 @@ const RegisterPageComponent = () => {
                   <div className="form-outline mb-4">
                     <div className="row">
                       <div className="form-floating">
-                        <motion.input
-                          whileFocus={{
-                            scale: 1.1,
-                          }}
+                        <input
                           name="email"
                           value={input?.email}
                           onChange={(e) => {
@@ -311,10 +289,7 @@ const RegisterPageComponent = () => {
                   <div className="form-outline mb-4">
                     <div className="row">
                       <div className="form-floating input-gruop d-flex">
-                        <motion.input
-                          whileFocus={{
-                            scale: 1.1,
-                          }}
+                        <input
                           onFocus={showDetails}
                           onBlur={showDetails}
                           type={passwordShow}
@@ -339,7 +314,6 @@ const RegisterPageComponent = () => {
                         >
                           {iconToShow}
                         </button>
-
                         <label className="ms-2" htmlFor="floatingInputInvalid">
                           Insert your password
                         </label>
@@ -363,10 +337,7 @@ const RegisterPageComponent = () => {
                   <div className="form-outline mb-4">
                     <div className="row">
                       <div className="form-floating input-gruop d-flex">
-                        <motion.input
-                          whileFocus={{
-                            scale: 1.1,
-                          }}
+                        <input
                           type={confirmPasswordShow}
                           name="confirmPassword"
                           value={input?.confirmPassword}
@@ -387,7 +358,6 @@ const RegisterPageComponent = () => {
                             confirmPasswordFieldWarning
                           }
                         />
-
                         <button
                           type="button"
                           className="input-group-text border border-primary rounded-5 ms-3"
@@ -395,7 +365,6 @@ const RegisterPageComponent = () => {
                         >
                           {iconToShowConfirm}
                         </button>
-
                         <label className="ms-2" htmlFor="floatingInputInvalid">
                           Repeat your password
                         </label>
@@ -408,7 +377,6 @@ const RegisterPageComponent = () => {
                       </div>
                     </div>
                   </div>
-
                   <div className="d-flex justify-content-center">
                     <ConfirmRegistrationModal
                       handleRegistration={handleRegistration}
@@ -418,7 +386,7 @@ const RegisterPageComponent = () => {
                     />
                     <button
                       type="button"
-                      className="btn btn-link"
+                      className="btn btn-link text-black"
                       onClick={handleBackToLogin}
                     >
                       {" "}

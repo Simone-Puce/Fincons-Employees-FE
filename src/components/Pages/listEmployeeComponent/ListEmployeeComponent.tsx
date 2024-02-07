@@ -10,7 +10,6 @@ import PositionService from "../../../services/PositionService";
 import { useNavigate } from "react-router-dom";
 import { ScaleLoader } from 'react-spinners';
 
-
 interface Props {
   toDisplayList: string;
   setToDisplayList: React.Dispatch<React.SetStateAction<string>>;
@@ -36,7 +35,7 @@ const ListEmployeeComponent = (props: Props) => {
         setPositions(res.data);
       });
     }
-  },[]);
+  }, []);
 
   useEffect(() => {
     EmployeeService.getEmployees().then((res) => {
@@ -47,17 +46,17 @@ const ListEmployeeComponent = (props: Props) => {
 
   const handleEmployeeList = () => {
     props.setToDisplayList("employees")
-    navigate("/spinner");
+    navigate("/employees");
   };
 
   const handlePositionList = () => {
     props.setToDisplayList("positions")
-    navigate("/spinner");
+    navigate("/employees");
   };
 
   const handleDepartmentList = () => {
     props.setToDisplayList("departments")
-    navigate("/spinner");
+    navigate("/employees");
   };
 
   const changeFilterHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -118,17 +117,17 @@ const ListEmployeeComponent = (props: Props) => {
   };
 
   return (
-          <div className="col mt-5 pt-5">
+          <div className="col mt-5 pt-5 footer-manager">
             <div className="d-flex justify-content-evenly">
-              <button className="btn rounded-pill btn-primary mr-5 pr-5" onClick={handleEmployeeList}> Employees </button>
-              <button className="btn rounded-pill btn-info mr-5 pr-5 pl-5 ml-5" onClick={handleDepartmentList}> Departments</button>
-              <button className="btn rounded-pill btn-secondary ml-5" onClick={handlePositionList}> Positions</button>
+              <button className="btn btn-color rounded-pill mr-5 pr-5 w-25 h-25" onClick={handleEmployeeList}> Employees </button>
+              <button className="btn btn-color rounded-pill mr-5 pr-5 pl-5 ml-5 w-25 h-25" onClick={handleDepartmentList}> Departments</button>
+              <button className="btn btn-color rounded-pill ml-5 w-25 h-25" onClick={handlePositionList}> Positions</button>
             </div>
             <div className="container">
               {listConditionalRender()}
             </div>
           </div>
-  )
-};
+        )
+      }
 
 export default ListEmployeeComponent;

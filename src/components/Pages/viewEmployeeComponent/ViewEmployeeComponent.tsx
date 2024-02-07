@@ -1,5 +1,3 @@
-
-
 import DepartmentDetails from "../../Details/DepartmentDetails";
 import EmployeeDetails from "../../Details/EmployeeDetails";
 import PositionDetails from "../../Details/PositionDetails";
@@ -23,8 +21,6 @@ const ViewEmployeeComponent = (props: Props) => {
         return <PositionDetails />;
     }
   };
-
-
 
   return <>{conditionalRenderDetails()}</>
 };

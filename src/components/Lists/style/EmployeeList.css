@@ -1,3 +1,14 @@
 .create-button{
     pointer-events: auto !important;
 }
+
+.table-style{
+    border: 2px solid black !important;
+    border-radius: 25px;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5) !important;
+    overflow: hidden;
+}
+
+.btn-add{
+    background: #B10135 !important;
+}

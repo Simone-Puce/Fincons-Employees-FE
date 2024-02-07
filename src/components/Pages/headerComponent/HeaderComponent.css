@@ -1,12 +1,31 @@
 .centered-navbar {
     position: relative;
     left: 50%;
-    margin-left: -125px !important; 
+    margin-left: -125px !important;
     display: block;
 }
 
-.offcanvas-width{
+.offcanvas-width {
     width: 150px;
 }
 
+.navbar {
+    background: #B10135;
+    border-bottom: 1px solid black;
+}
 
+.menu-style {
+    background: #D5C4A9;
+}
+
+
+.btn-canvas {
+    border: 2px solid black !important;
+    border-radius: 15px !important;
+    background: transparent ;
+}
+
+.btn-canvas:hover{
+    background: #B10135 !important;
+    color: white !important;
+} 

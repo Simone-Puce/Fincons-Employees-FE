@@ -6,6 +6,7 @@ import CertificateEmployee from '../../../models/CertificateEmployeeModel';
 import Employee from '../../../models/EmployeeModel';
 import EmployeeService from '../../../services/EmployeeService';
 import { Link } from 'react-router-dom';
+import './CertificateComponentModal.css'
 
 interface Props {
     idEmployee: number;
@@ -38,17 +39,18 @@ const CertificateComponent = (props: Props) => {
     const checkCertificateEmployee = (certificateEmployee: CertificateEmployee) => {
         if (certificateEmployee.employee?.id === props.idEmployee) {
             return (
-                <tbody className='border-1'>
-                    <tr className='text-center'>
-                        <td className='border-1' key={certificateEmployee.id}>{certificateEmployee.certificate?.name}</td>
-                        <td className='border-1' key={certificateEmployee.id}>{certificateEmployee.achieved?.toString()}</td>
-                        <td className='border-1'>
-                            <button onClick={() => handleDelete(certificateEmployee.id)} className="btn btn-warning delete-button"><i className="bi bi-trash3-fill"></i></button>
+                <tbody className='backgroud-style'>
+                    <tr className='backgroud-style align-middle'>
+                        <td className='text-center backgroud-style align-middle' key={certificateEmployee.id}>{certificateEmployee.certificate?.name}</td>
+                        <td className='text-center backgroud-style align-middle' key={certificateEmployee.id}>{certificateEmployee.achieved?.toString()}</td>
+                        <td className='text-center backgroud-style '>
+                            <button onClick={() => handleDelete(certificateEmployee.id)} className="btn btn-background">
+                                <i className="bi bi-trash3-fill"></i>
+                            </button>
                         </td>
                     </tr>
                 </tbody>
             )
-
         }
     }
 
@@ -56,30 +58,32 @@ const CertificateComponent = (props: Props) => {
         <div className='m-2'>
             <div className='d-flex justify-content-center'>
                 <Link to={`/add/${props.idEmployee}`}>
-                    <button className="btn rounded-pill btn-primary " >
+                    <button className="btn rounded-pill btn-background mb-3 button-text" >
                         <i
                             className="bi bi-person-fill-add"
                             style={{ paddingRight: 5 }}
                         ></i>
-                        Add certificate
+                        <span>Add certificate</span>
                     </button>
                 </Link>
             </div>
             <div className='d-flex justify-content-center'>
-            <table hidden={certificateEmployees.length === 0 ? true : false }>
-                <thead>
-                    <tr className='text-center'>
-                        <th className='border-1'>Name</th>
-                        <th className='border-1'>Achieved</th>
-                        <th className='border-1'>Actions</th>
-                    </tr>
-                </thead>
-                {certificateEmployees.map((certificateEmployee) => (
-                    <>
-                        {checkCertificateEmployee(certificateEmployee)}
-                    </>
-                ))}
-            </table>
+                <div className='row table-style'>
+                    <table className="table table-striped mb-0 " hidden={certificateEmployees.length === 0 ? true : false}>
+                        <thead className="backgroud-style">
+                            <tr className='text-center backgroud-style-header'>
+                                <th className='backgroud-style'>Name</th>
+                                <th className='backgroud-style'>Achieved</th>
+                                <th className='backgroud-style'>Actions</th>
+                            </tr>
+                        </thead>
+                        {certificateEmployees.map((certificateEmployee) => (
+                            <>
+                                {checkCertificateEmployee(certificateEmployee)}
+                            </>
+                        ))}
+                    </table>
+                </div>
             </div>
         </div>
     );

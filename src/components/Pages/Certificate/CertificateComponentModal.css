@@ -1,0 +1,26 @@
+.backgroud-style-header {
+    background: transparent !important;
+    border: 2px solid transparent;
+    border-bottom: 1px solid white;
+}
+
+.backgroud-style {
+    background: transparent !important;
+    border: none;
+    border-top: 1px solid white;
+}
+
+.table-style {
+    border: 1px solid black !important;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.btn-background {
+    border: 1px solid black !important;
+}
+
+.btn-background:hover {
+    background: #B10135 !important;
+    color: white !important
+}

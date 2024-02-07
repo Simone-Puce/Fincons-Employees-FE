@@ -13,7 +13,6 @@ interface Props {
   setUserEmail: React.Dispatch<React.SetStateAction<string>>;
   toDisplayList: string;
   setToDisplayList: React.Dispatch<React.SetStateAction<string>>;
-  
 }
 
 const HeaderComponent = (props: Props) => {
@@ -35,7 +34,7 @@ const HeaderComponent = (props: Props) => {
 
   const handleEmployeeList = () => {
     props.setToDisplayList("employees")
-    navigate("/spinner");
+    navigate("/employees");
   }
 
   useEffect(() => {
@@ -64,28 +63,28 @@ const HeaderComponent = (props: Props) => {
   };
 
   return (
-    <nav className="navbar fixed-top mb-5 position-absolute">
-      <div className="container-fluid d-flex">
+    <nav className="navbar fixed-top mb-5 position-absolute ">
+      <div className="container-fluid d-flex align-items-center">
         <div className="centered-navbar align-self-start">
-          <h2>Employee Manager</h2>
+          <h2 className="text-white">Employee Manager</h2>
         </div>
         <button
           hidden={isHidden}
-          className="navbar-toggler close-navbar-button border-0 btn-lg align-self-start"
+          className="navbar-toggler close-navbar-button border-0 btn-lg text-white aling-middle"
           type="button"
           data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasNavbar"
           aria-controls="offcanvasNavbar"
           aria-label="Toggle navigation"
         >
-          {userNameDisplay()} <i className="bi bi-person-circle"></i>
+          {userNameDisplay()} <i className="bi bi-person-circle text-white"></i>
         </button>
         <div
           className="offcanvas offcanvas-end offcanvas-width"
           id="offcanvasNavbar"
           aria-labelledby="offcanvasNavbarLabel"
         >
-          <div className="offcanvas-header d-flex justify-content-center">
+          <div className="offcanvas-header d-flex justify-content-center menu-style">
             <h5 className="offcanvas-title" id="offcanvasNavbarLabel">
               {userNameDisplay()}
             </h5>
@@ -101,23 +100,13 @@ const HeaderComponent = (props: Props) => {
               }}
             ></button>
           </div>
-          <div className="offcanvas-body">
+          <div className="offcanvas-body menu-style">
             <ul className="navbar-nav justify-content-end flex-grow-1 ">
-              {" "}
-              <li className="nav-item  d-flex justify-content-center mb-3">
-                <button
-                  onClick={handleEmployeeList}
-                  data-bs-dismiss="offcanvas"
-                  className="btn btn-outline-primary btn-lg"
-                >
-                  Employees
-                </button>
-              </li>
               <li className="nav-item d-flex justify-content-center mb-3">
                 <button
                   onClick={handleLogout}
                   data-bs-dismiss="offcanvas"
-                  className="btn btn-outline-danger btn-lg"
+                  className="btn btn-canvas w-50"
                 >
                   Logout
                 </button>
@@ -126,7 +115,7 @@ const HeaderComponent = (props: Props) => {
                 <button
                   onClick={handleProfile}
                   data-bs-dismiss="offcanvas"
-                  className="btn btn-outline-danger btn-lg"
+                  className="btn btn-canvas w-50"
                 >
                   Profile
                 </button>

@@ -44,7 +44,9 @@ const EmployeeService = {
                 department: { id: employee?.department },
                 position: { id: employee?.position },
             },
-            config
+            {
+                headers: { Authorization: `Bearer ${token}` }
+            }
         );
     },
 

@@ -1,4 +1,4 @@
-.card{
+.card {
     display: flex;
     justify-content: center;
     margin-top: 50px;
@@ -6,34 +6,13 @@
     align-self: center;
 }
 
-.divCard{
-    display: flex;
-    justify-content: center;
+.btn-style-login {
+    border: 2px solid black !important;
+    border-radius: 15px !important;
+    background: transparent ;
 }
 
-.textInfo{
-    text-align: center;
-}
-
-
-
-.itemList {
-    position: relative;
-    justify-content: center;
-    display: flex;
-    padding: var(--bs-list-group-item-padding-y) var(--bs-list-group-item-padding-x);
-    color: var(--bs-list-group-color);
-    text-decoration: none;
-    background-color: var(--bs-list-group-bg);
-    border: var(--bs-list-group-border-width) solid var(--bs-list-group-border-color);
-
-}
-
-.formLogin{
-    display: contents;
-    align-items: center;
-}
-
-.registerButton{
-    margin-left: 10px;
-}
+.btn-style-login:hover{
+    background: #B10135 !important;
+    color: white !important;
+} 

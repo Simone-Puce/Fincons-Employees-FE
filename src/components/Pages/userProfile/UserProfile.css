@@ -1,3 +1,22 @@
 .anagraphic-card {
-    height: 43vh;
+    background: transparent !important;
+    border: 2px solid transparent !important;
+    box-shadow: 5px 5px 5px 5px rgb(0,0,0,0.5) !important;
+}
+
+.button-style {
+    background: transparent !important ;
+}
+
+.footer-manager{
+    min-height: 100%;
+}
+
+.btn-save{
+    border: 2px solid black !important;
+    border-radius: 15px !important;
+}
+
+.btn-cancel:hover{
+    background: #B10135 !important;
 }

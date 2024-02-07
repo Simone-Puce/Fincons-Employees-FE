@@ -1,11 +1,9 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ScaleLoader } from 'react-spinners';
 import './Spinner.css'
 
 const SpinnerComponent = () => {
-
     const navigate = useNavigate()
     const [showSpinner, setShowSpinner] = useState(true)
 

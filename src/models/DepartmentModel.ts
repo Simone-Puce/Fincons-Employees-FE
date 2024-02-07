@@ -1,7 +1,5 @@
 import Employee from "./EmployeeModel";
 
-
-
 interface Department {
     id?: number,
     name: string,

@@ -1,4 +1,3 @@
-
 import Cookies from "js-cookie"
 import { Navigate, Outlet } from "react-router-dom"
 
@@ -11,4 +10,4 @@ const ProtectedRoutes = ( props : Props) =>{
     return auth ? <Outlet/> : <Navigate to={"/login"}/>
 }
 
-export default ProtectedRoutes
+export default ProtectedRoutes;

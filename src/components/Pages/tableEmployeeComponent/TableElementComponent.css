@@ -1,22 +1,27 @@
-.ButtonDiv{
+.button-div {
     justify-content: center;
     align-items: stretch;
 }
 
-.cancelUpdateButton{
-    margin-left: 10px;
-}
-
-.div-style{
+.div-style {
     display: flex;
     justify-content: space-around;
 }
 
-.div-two-buttons{
-    display: flex;
-    justify-content: space-evenly;
+.delete-button {
+    pointer-events: auto !important;
+    background-color: transparent !important;
+    border: none !important;
+    border: 1px solid black !important;
 }
 
-.delete-button{
-    pointer-events: auto !important;
+.backgroud-style {
+    background: transparent !important;
+    border: none;
+    border-top: 1px solid white;
+}
+
+.btn-background:hover {
+    background: #B10135 !important;
+    color: white !important;
 }

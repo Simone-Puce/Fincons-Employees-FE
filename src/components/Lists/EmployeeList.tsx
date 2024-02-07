@@ -19,39 +19,39 @@ const EmployeeList = (props: Props) => {
   const [disabledCreation, setDisabledCreation] = useState<boolean>(false)
   const navigate = useNavigate()
 
-  useEffect(()=>{
-    DepartmentService.getDepartments().then(( res ) => {
-      if(res.data.data.length === 0){
+  useEffect(() => {
+    DepartmentService.getDepartments().then((res) => {
+      if (res.data.data.length === 0) {
         setDisabledCreation(true)
       }
     })
-    PositionService.getPositions().then(( res ) => {
-      if(res.data.data.length === 0){
+    PositionService.getPositions().then((res) => {
+      if (res.data.data.length === 0) {
         setDisabledCreation(true)
       }
     })
-  },[props.toDisplay])
+  }, [props.toDisplay])
 
-  const goToAddForm = () =>{
+  const goToAddForm = () => {
     navigate("/add-employee")
   }
 
   return (
-    <div className="containerList mt-1 pt-1">
+    <div className="containerList mt-1 pt-1 pb-4">
       <div className="row mt-4 mb-3">
         <div className="d-flex justify-content-center filterDiv">
-          <button className="btn rounded-pill btn-primary create-button" title={disabledCreation ? "You need at least one department and one position to create an employee" : ""} disabled={disabledCreation} onClick={goToAddForm}>
+          <button className="btn rounded-pill btn-add text-white create-button w-25" title={disabledCreation ? "You need at least one department and one position to create an employee" : ""} disabled={disabledCreation} onClick={goToAddForm}>
             <i
-              className="bi bi-person-fill-add pr-1"
+              className="bi bi-person-fill-add m-3"
             ></i>
-            Add Employee
+            Add employee
           </button>
         </div>
       </div>
-      <div className="row">
+      <div className="row table-style">
         {
           <table
-            className="table table-striped table-bordered"
+            className="table table-striped mb-0"
           >
             <TableHeadComponent
               tableHeadList={props.tableData}
