@@ -4,7 +4,6 @@ import { ScaleLoader } from 'react-spinners';
 import './Spinner.css'
 
 const SpinnerComponent = () => {
-
     const navigate = useNavigate()
     const [showSpinner, setShowSpinner] = useState(true)
 

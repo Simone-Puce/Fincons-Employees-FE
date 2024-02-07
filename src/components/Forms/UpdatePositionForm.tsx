@@ -11,8 +11,6 @@ const UpdatePositionForm = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false)
   const [salaryValueValid, setSalaryValueValid] = useState<boolean>(true)
   const [positionNameValid, setPositionNameValid] = useState<boolean>(true)
-
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -82,7 +80,6 @@ const UpdatePositionForm = () => {
                     }}
                   ></input>
                 </div>
-
                 <div className="form-group">
                   <label>Salary</label>
                   <input

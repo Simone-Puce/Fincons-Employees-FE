@@ -51,7 +51,6 @@ const CertificateComponent = (props: Props) => {
                     </tr>
                 </tbody>
             )
-
         }
     }
 

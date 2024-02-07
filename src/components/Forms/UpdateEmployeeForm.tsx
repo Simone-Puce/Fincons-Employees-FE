@@ -139,7 +139,6 @@ const UpdateEmployeeForm = () => {
                     }}
                   ></input>
                 </div>
-
                 <div className="form-group">
                   <label>Last name</label>
                   <input
@@ -156,7 +155,6 @@ const UpdateEmployeeForm = () => {
                     }}
                   ></input>
                 </div>
-
                 <div className="form-group">
                   <label>Gender</label>
                   <select
@@ -192,7 +190,6 @@ const UpdateEmployeeForm = () => {
                     }}
                   ></input>
                 </div>
-
                 <div className="form-group">
                   <label>Email</label>
                   <input
@@ -209,7 +206,6 @@ const UpdateEmployeeForm = () => {
                     }}
                   ></input>
                 </div>
-
                 <div className="form-group">
                   <label>Start date</label>
                   <input
@@ -227,7 +223,6 @@ const UpdateEmployeeForm = () => {
                     }}
                   ></input>
                 </div>
-
                 <div className="form-group">
                   <label>End date</label>
                   <input
@@ -244,7 +239,6 @@ const UpdateEmployeeForm = () => {
                     }}
                   ></input>
                 </div>
-
                 <div className="form-group">
                   <label>Department</label>
                   <select
@@ -266,7 +260,6 @@ const UpdateEmployeeForm = () => {
                     })}
                   </select>
                 </div>
-
                 <div className="form-group">
                   <label>Positions</label>
                   <select

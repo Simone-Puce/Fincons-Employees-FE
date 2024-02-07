@@ -8,7 +8,6 @@ import PositionService from "../../services/PositionService";
 import './Styles/FormStyles.css'
 import Utils from "../../utils/Utils";
 
-
 const CreateEmployeeForm = () => {
   const [employee, setEmployee] = useState<Employee>();
   const [departments, setDepartments] = useState<any>();
@@ -23,7 +22,6 @@ const CreateEmployeeForm = () => {
   const [departmentValidator, setDepartmentValidator] = useState<boolean>(false)
   const [positionValidator, setPositionValidator] = useState<boolean>(false)
   const navigate = useNavigate();
-
 
   useEffect(() => {
     checkSubmit()
@@ -246,7 +244,7 @@ const CreateEmployeeForm = () => {
                 <div className="form-group d-flex justify-content-center">
                   <div className="d-flex justify-content-evenly w-50 mt-3">
                     <button
-                       className="btn btn-save w-25"
+                      className="btn btn-save w-25"
                       onClick={saveOrUpdateEmployee}
                       disabled={isButtonDisabled}
                       title={isButtonDisabled ? "some fields are not valid, please check the values" : ""}
@@ -254,7 +252,7 @@ const CreateEmployeeForm = () => {
                       Save
                     </button>
                     <button
-                        className="btn btn-cancel w-25"
+                      className="btn btn-cancel w-25"
                       onClick={backToList}
                     >
                       Cancel

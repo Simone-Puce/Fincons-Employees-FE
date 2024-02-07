@@ -1,4 +1,3 @@
-
 interface PasswordUpdateModel {
     oldPassword: string,
     newPassword?: string,

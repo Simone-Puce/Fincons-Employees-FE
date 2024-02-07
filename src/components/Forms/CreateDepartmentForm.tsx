@@ -67,7 +67,6 @@ const CreateDepartmentForm = () => {
                     }}
                   ></input>
                 </div>
-
                 <div className="form-group">
                   <label>Address</label>
                   <input
@@ -84,7 +83,6 @@ const CreateDepartmentForm = () => {
                     }}
                   ></input>
                 </div>
-
                 <div className="form-group">
                   <label>City</label>
                   <input

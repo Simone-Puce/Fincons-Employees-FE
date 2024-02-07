@@ -10,7 +10,6 @@ import PositionService from "../../../services/PositionService";
 import { useNavigate } from "react-router-dom";
 import { ScaleLoader } from 'react-spinners';
 
-
 interface Props {
   toDisplayList: string;
   setToDisplayList: React.Dispatch<React.SetStateAction<string>>;

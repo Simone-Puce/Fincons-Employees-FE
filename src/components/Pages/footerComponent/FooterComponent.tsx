@@ -1,6 +1,5 @@
 import './FooterComponent.css'
 
-
 const FooterComponent = () => {
     return (
         <div className='row m-0 footer-style mb-1 pb-1 pt-3'>
@@ -55,27 +54,3 @@ const FooterComponent = () => {
 }
 
 export default FooterComponent;
-
-<div className='row'>
-    <table className="table table-style-footer mb-0 ">
-        <thead className="table-background-style">
-            <tr className='text-center table-background-style'>
-                <th className='table-background-style'>Tecnologies</th>
-                <th className='table-background-style'>Copyright 2024</th>
-                <th className='table-background-style'>About us</th>
-            </tr>
-        </thead>
-        <tbody className='table-background-style'>
-            <tr className='table-background-style align-middle'>
-                <td className='text-center table-background-style align-middle' >React</td>
-                <td className='text-center table-background-style align-middle' >Cookie</td>
-                <td className='text-center table-background-style align-middle' >Fincons Lecce</td>
-            </tr>
-            <tr className='table-background-style align-middle'>
-                <td className='text-center table-background-style align-middle' >Java</td>
-                <td className='text-center table-background-style align-middle' >Privacy</td>
-                <td className='text-center table-background-style align-middle' >ITS Apulia Digital Maker</td>
-            </tr>
-        </tbody>
-    </table>
-</div>

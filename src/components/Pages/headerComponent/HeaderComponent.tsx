@@ -77,7 +77,6 @@ const HeaderComponent = (props: Props) => {
           data-bs-target="#offcanvasNavbar"
           aria-controls="offcanvasNavbar"
           aria-label="Toggle navigation"
-          
         >
           {userNameDisplay()} <i className="bi bi-person-circle text-white"></i>
         </button>

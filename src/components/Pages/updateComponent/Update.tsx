@@ -8,7 +8,7 @@ const DEPARTMENT_CASE = "departments";
 const POSITION_CASE = "positions";
 
 interface Props {
-  toDisplayList: string;  
+  toDisplayList: string;
 }
 
 const Update = (props: Props) => {

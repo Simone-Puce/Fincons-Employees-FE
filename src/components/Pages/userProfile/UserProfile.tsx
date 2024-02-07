@@ -10,7 +10,6 @@ import Swal from "sweetalert2";
 import UserService from "../../../services/UserService";
 import './UserProfile.css';
 
-
 const UserProfile = () => {
     const navigate = useNavigate();
     const [updatingData, setUpdatingData] = useState<boolean>(false)
@@ -30,7 +29,7 @@ const UserProfile = () => {
         LoginRegistrationService.getUserDetails(subJWT.sub).then((res) => {
             setUserDetails(res.data.data)
         })
-    }, [updatingData, updatingPassword,jwt])
+    }, [updatingData, updatingPassword, jwt])
 
     const handleUpdateAnagraphic = () => {
         setUpdatingData(true)
@@ -48,43 +47,43 @@ const UserProfile = () => {
     }
 
     const handlePasswordUpdate = () => {
-        if(passwordUpdateValues.confirmPassword !== passwordUpdateValues.newPassword){
+        if (passwordUpdateValues.confirmPassword !== passwordUpdateValues.newPassword) {
             Swal.fire({
                 title: "Warning?",
                 text: "Password and confirm password do not match ",
                 icon: "warning",
                 confirmButtonText: "OK!",
-              });
-        } else if(passwordUpdateValues.oldPassword === passwordUpdateValues.newPassword){
+            });
+        } else if (passwordUpdateValues.oldPassword === passwordUpdateValues.newPassword) {
             Swal.fire({
                 title: "Warning?",
                 text: "The new password cannot be the same as the old password ",
                 icon: "warning",
                 confirmButtonText: "OK!",
-              });
-            }else{
-                UserService.updateUserPassword(
-                    userDetails?.email!, 
-                    passwordUpdateValues.oldPassword, 
-                    passwordUpdateValues.newPassword!
-                ).then((res)=>{
-                    if(res.data.success === false){
-                        Swal.fire({
-                            title: "Error",
-                            text: "Something went wrong please check the values again",
-                            icon: "error",
-                            confirmButtonText: "OK!",
-                          });
-                    }else{
-                        Swal.fire({
-                            title: "Success",
-                            text: "Your password has been updated",
-                            icon: "success",
-                            confirmButtonText: "OK!",
-                          });
-                    }
-                })
-            }
+            });
+        } else {
+            UserService.updateUserPassword(
+                userDetails?.email!,
+                passwordUpdateValues.oldPassword,
+                passwordUpdateValues.newPassword!
+            ).then((res) => {
+                if (res.data.success === false) {
+                    Swal.fire({
+                        title: "Error",
+                        text: "Something went wrong please check the values again",
+                        icon: "error",
+                        confirmButtonText: "OK!",
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Success",
+                        text: "Your password has been updated",
+                        icon: "success",
+                        confirmButtonText: "OK!",
+                    });
+                }
+            })
+        }
     }
 
     const handlePasswordUpdateClick = () => {
@@ -101,9 +100,9 @@ const UserProfile = () => {
         setUpdatingPassword(false)
         setUpdatingData(false)
     }
-    
+
     return (
-        <div className="mt-5 pt-5 footer-manager"> 
+        <div className="mt-5 pt-5 footer-manager">
             <div className="card col-md-6 offset-md-3 anagraphic-card">
                 <h3 className="text-center mt-2"> User details </h3>
                 <div className="card-body">
@@ -168,11 +167,10 @@ const UserProfile = () => {
                                                         Update password
                                                     </button>
                                                 </>
-
                                             ) : (
                                                 <>
                                                     <button
-                                                        
+
                                                         className="btn btn-save m-2 h-25 w-50 button-style text-black"
                                                         onClick={handlePasswordUpdate}
                                                         disabled={isPasswordUpdateValid}
@@ -201,6 +199,6 @@ const UserProfile = () => {
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 export default UserProfile;

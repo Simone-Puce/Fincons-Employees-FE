@@ -167,8 +167,8 @@ const UserDetailsInput = (props: Props) => {
                         });
                         passwordValidator(e.target.value)
                     }}
-                    onFocus={()=>setPasswordFocus(false)}
-                    onBlur={()=>setPasswordFocus(true)}
+                    onFocus={() => setPasswordFocus(false)}
+                    onBlur={() => setPasswordFocus(true)}
                 ></input>
                 <p hidden={passwordFocus}> Password must be 8 letters, contains an uppercase letter and a special character</p>
             </div>
@@ -191,6 +191,5 @@ const UserDetailsInput = (props: Props) => {
             </div>
         </form>
     )
-
 }
 export default UserDetailsInput

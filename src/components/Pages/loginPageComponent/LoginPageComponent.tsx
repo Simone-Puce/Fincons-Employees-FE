@@ -65,7 +65,6 @@ const LoginPageComponent = (props: Props) => {
           <div className="col-lg-6 mb-2 mb-lg-0 position-relative">
             <div className="position-absolute rounded-circle shadow-5-strong"></div>
             <div className="position-absolute shadow-5-strong"></div>
-
             <motion.div className="card bg-glass rounded-5">
               <motion.div className="card-body px-2 py-3 px-md-4 mt-4">
                 <form onSubmit={(e) => handleLogin(e)}>
@@ -131,7 +130,6 @@ const LoginPageComponent = (props: Props) => {
                       </div>
                     </div>
                   </div>
-
                   <div className="align-items-center">
                     <div className="d-flex justify-content-center">
                       <motion.button
@@ -156,7 +154,6 @@ const LoginPageComponent = (props: Props) => {
                       >
                         Sign up now
                       </button>
-
                     </div>
                   </div>
                 </form>

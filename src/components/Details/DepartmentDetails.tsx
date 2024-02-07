@@ -35,7 +35,6 @@ const DepartmentDetails = () => {
               {" "}
               Address: {department?.address}{" "}
             </label>
-
             <label className="mb-3 text-center">
               {" "}
               City: {department?.city}{" "}

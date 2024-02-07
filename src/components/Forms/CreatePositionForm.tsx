@@ -5,7 +5,6 @@ import PositionService from "../../services/PositionService";
 import Utils from "../../utils/Utils";
 import "./Styles/FormStyles.css"
 
-
 const CreatePositionForm = () => {
   const [position, setPosition] = useState<Position>();
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true)

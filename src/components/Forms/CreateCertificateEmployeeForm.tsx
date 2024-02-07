@@ -11,7 +11,6 @@ const CreateCertificateEmployeeForm = () => {
   const [certificates, setCertificates] = useState<any>()
   const { id } = useParams();
   const idEmployee = parseInt(id!);
-
   const navigate = useNavigate();
 
   const goBackToList = () => {
@@ -29,7 +28,6 @@ const CreateCertificateEmployeeForm = () => {
     CertificateEmployeeService.createCertificateEmployee(certificateEmployee!, idEmployee);
     navigate("/view-employee/" + idEmployee);
   };
-
 
   return (
     <div className="createContainer mt-5 pt-5 footer-manager">
@@ -60,7 +58,6 @@ const CreateCertificateEmployeeForm = () => {
                     })}
                   </select>
                 </div>
-
                 <div className="form-group">
                   <label>Achieved</label>
                   <input

@@ -19,20 +19,20 @@ const EmployeeList = (props: Props) => {
   const [disabledCreation, setDisabledCreation] = useState<boolean>(false)
   const navigate = useNavigate()
 
-  useEffect(()=>{
-    DepartmentService.getDepartments().then(( res ) => {
-      if(res.data.data.length === 0){
+  useEffect(() => {
+    DepartmentService.getDepartments().then((res) => {
+      if (res.data.data.length === 0) {
         setDisabledCreation(true)
       }
     })
-    PositionService.getPositions().then(( res ) => {
-      if(res.data.data.length === 0){
+    PositionService.getPositions().then((res) => {
+      if (res.data.data.length === 0) {
         setDisabledCreation(true)
       }
     })
-  },[props.toDisplay])
+  }, [props.toDisplay])
 
-  const goToAddForm = () =>{
+  const goToAddForm = () => {
     navigate("/add-employee")
   }
 

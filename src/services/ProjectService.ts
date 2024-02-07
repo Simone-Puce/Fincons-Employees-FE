@@ -23,6 +23,7 @@ const ProjectService = {
     createEmployee(employee: EmployeeModel | undefined){
         return axios.post(CREATE_PROJECT,employee)
     },
+    
     updateEmployee(employeeId: string | undefined, employee: EmployeeModel | undefined){
         return axios.put(CREATE_PROJECT + '/' + employeeId,employee)
     },
