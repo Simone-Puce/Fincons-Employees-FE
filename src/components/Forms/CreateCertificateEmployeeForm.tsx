@@ -79,13 +79,13 @@ const CreateCertificateEmployeeForm = () => {
                 <div className="form-group d-flex justify-content-center">
                   <div className="d-flex justify-content-evenly w-50 mt-3">
                     <button
-                      className="btn rounded pill w-25"
+                      className="btn btn-save w-25"
                       onClick={saveCertificateEmployee}
                     >
                       Save
                     </button>
                     <button
-                      className="btn rounded pill w-25 ml-2"
+                      className="btn btn-cancel w-25 ml-2"
                       onClick={goBackToList}
                     >
                       Cancel

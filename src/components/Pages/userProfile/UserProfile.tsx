@@ -124,19 +124,19 @@ const UserProfile = () => {
                             updatingData === false && updatingPassword === false ? (
                                 <>
                                     <button
-                                        className="btn btn-primary m-2 h-25 w-50 rounded-pill button-style text-black"
+                                        className="btn btn-save m-2 h-25 w-50 button-style text-black"
                                         onClick={() => navigate("/employees")}
                                     >
                                         Go back
                                     </button>
                                     <button
-                                        className="btn btn-success m-2 h-25 w-50 rounded-pill button-style text-black"
+                                        className="btn btn-save m-2 h-25 w-50 button-style text-black"
                                         onClick={handleUpdateAnagraphic}
                                     >
                                         Update anagraphic
                                     </button>
                                     <button
-                                        className="btn btn-warning m-2 h-25 w-50 rounded-pill button-style text-black"
+                                        className="btn btn-save m-2 h-25 w-50 button-style text-black"
                                         onClick={handlePasswordUpdateClick}
                                     >
                                         Update password
@@ -149,20 +149,20 @@ const UserProfile = () => {
                                             updatingData === true && updatingPassword === false ? (
                                                 <>
                                                     <button
-                                                        className="btn btn-primary m-2 h-25 w-50 rounded-pill button-style text-black"
+                                                        className="btn btn-save m-2 h-25 w-50 button-style text-black"
                                                         onClick={handleUpdateConfirm}
                                                         disabled={isUpdateValid}
                                                     >
                                                         Confirm anagraphic update
                                                     </button>
                                                     <button
-                                                        className="btn btn-success m-2 h-25 w-50 rounded-pill button-style text-black"
+                                                        className="btn btn-save m-2 h-25 w-50 button-style text-black"
                                                         onClick={handleCancelUpdateClick}
                                                     >
                                                         Cancel update
                                                     </button>
                                                     <button
-                                                        className="btn btn-warning m-2 h-25 w-50 rounded-pill button-style text-black"
+                                                        className="btn btn-save m-2 h-25 w-50 button-style text-black"
                                                         onClick={handlePasswordUpdateClick}
                                                     >
                                                         Update password
@@ -173,20 +173,20 @@ const UserProfile = () => {
                                                 <>
                                                     <button
                                                         
-                                                        className="btn btn-primary m-2 h-25 w-50 rounded-pill button-style text-black"
+                                                        className="btn btn-save m-2 h-25 w-50 button-style text-black"
                                                         onClick={handlePasswordUpdate}
                                                         disabled={isPasswordUpdateValid}
                                                     >
                                                         Confirm password update
                                                     </button>
                                                     <button
-                                                        className="btn btn-success m-2 h-25 w-50 rounded-pill button-style text-black"
+                                                        className="btn btn-save m-2 h-25 w-50 button-style text-black"
                                                         onClick={handleUpdateAnagraphic}
                                                     >
                                                         Update anagraphic
                                                     </button>
                                                     <button
-                                                        className="btn btn-warning m-2 h-25 w-50 rounded-pill button-style text-black"
+                                                        className="btn btn-save m-2 h-25 w-50 button-style text-black"
                                                         onClick={handlePasswordUpdateCancel}
                                                     >
                                                         Cancel update

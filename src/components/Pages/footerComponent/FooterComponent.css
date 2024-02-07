@@ -5,8 +5,22 @@
 }
 
 .footer-text {
-    color: #5D5D5F;
+    color: #2F4858;
     text-transform: uppercase;
     font-weight: bold;
     font-size: small;
+}
+
+.background-style{
+    background: transparent !important;
+}
+
+.table-background-style{
+    background: transparent !important;
+}
+
+.table-style-footer {
+    border: 1px solid black !important;
+    border-radius: 15px;
+    overflow: hidden;
 }

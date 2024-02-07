@@ -11,3 +11,12 @@
 .footer-manager{
     min-height: 100%;
 }
+
+.btn-save{
+    border: 2px solid black !important;
+    border-radius: 15px !important;
+}
+
+.btn-cancel:hover{
+    background: #B10135 !important;
+}

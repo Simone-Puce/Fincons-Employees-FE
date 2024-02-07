@@ -79,7 +79,7 @@ const HeaderComponent = (props: Props) => {
           aria-label="Toggle navigation"
           
         >
-          {userNameDisplay()} <i className="bi bi-person-circle text-dark"></i>
+          {userNameDisplay()} <i className="bi bi-person-circle text-white"></i>
         </button>
         <div
           className="offcanvas offcanvas-end offcanvas-width"
