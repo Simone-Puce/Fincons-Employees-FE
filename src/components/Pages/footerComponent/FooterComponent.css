@@ -14,13 +14,3 @@
 .background-style{
     background: transparent !important;
 }
-
-.table-background-style{
-    background: transparent !important;
-}
-
-.table-style-footer {
-    border: 1px solid black !important;
-    border-radius: 15px;
-    overflow: hidden;
-}

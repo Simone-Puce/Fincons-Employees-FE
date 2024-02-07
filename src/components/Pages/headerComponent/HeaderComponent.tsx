@@ -13,7 +13,6 @@ interface Props {
   setUserEmail: React.Dispatch<React.SetStateAction<string>>;
   toDisplayList: string;
   setToDisplayList: React.Dispatch<React.SetStateAction<string>>;
-  
 }
 
 const HeaderComponent = (props: Props) => {

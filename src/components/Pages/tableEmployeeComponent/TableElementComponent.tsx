@@ -104,7 +104,7 @@ const TableElementComponent = (props: Props) => {
                     <td className="text-center backgroud-style align-middle"> {utils.capitalizeFirstLetter(secondElement)}</td>
                     <td hidden={isPositionSelected} className="text-center backgroud-style align-middle"> {thirdElement}</td>
                     <td className="text-center backgroud-style">
-                        <div className='ButtonDiv div-style'>
+                        <div className='button-div div-style'>
                             <Link to={`/update-employee/${tableElementId}`}><button className='btn btn-background'> <i className="bi bi-pencil-square icon-background"></i> </button></Link>
                             <button title={isButtonDisabled ? "This can't be deleted because there is at least 1 employee connected to this record" : ""} className="btn btn-background delete-button" disabled={isButtonDisabled} onClick={(e) => deleteButtonHandler(tableElementId)}><i className="bi bi-trash3-fill icon-background"></i></button>
                             <Link to={`/view-employee/${tableElementId}`}><button type="button" className="btn btn-background"><i className="bi bi-info-circle icon-background"></i></button></Link>

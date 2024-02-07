@@ -1,17 +1,15 @@
 .centered-navbar {
     position: relative;
     left: 50%;
-    margin-left: -125px !important; 
+    margin-left: -125px !important;
     display: block;
 }
 
-.offcanvas-width{
+.offcanvas-width {
     width: 150px;
 }
 
-.navbar{
+.navbar {
     background: #B10135;
-    border-bottom: 1px solid black ;
+    border-bottom: 1px solid black;
 }
-
-
