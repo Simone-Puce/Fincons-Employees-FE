@@ -16,8 +16,8 @@ interface Props {
 function ConfirmRegistrationModal(props: Props) {
   const [show, setShow] = useState(false);
   const navigate = useNavigate()
-
   const handleClose = () => setShow(false);
+  
   const handleShow = () => {
     props.checkSubmit()
     props.handleRegistration()

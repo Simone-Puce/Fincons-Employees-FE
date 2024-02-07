@@ -148,7 +148,6 @@ const LoginPageComponent = (props: Props) => {
                         type="button"
                         className="btn btn-link text-black"
                         onClick={navigateToRegister}
-                        
                       >
                         Sign up now
                       </button>

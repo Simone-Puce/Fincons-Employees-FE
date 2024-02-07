@@ -19,7 +19,6 @@ function App() {
   const [selectedUser, setSelectedUser] = useState<string>("");
   const [toDisplayList, setToDisplayList] = useState<string>("employees")
 
-
   return (
     <div id="app">
       <Router>  

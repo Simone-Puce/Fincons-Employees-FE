@@ -37,7 +37,7 @@ const EmployeeList = (props: Props) => {
   }
 
   return (
-    <div className="containerList mt-1 pt-1 mb-2">
+    <div className="containerList mt-1 pt-1 pb-4">
       <div className="row mt-4 mb-3">
         <div className="d-flex justify-content-center filterDiv">
           <button className="btn rounded-pill btn-add text-white create-button w-25" title={disabledCreation ? "You need at least one department and one position to create an employee" : ""} disabled={disabledCreation} onClick={goToAddForm}>
