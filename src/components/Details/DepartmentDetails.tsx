@@ -17,7 +17,7 @@ const DepartmentDetails = () => {
   }, [idDepartment]);
 
   const goToHomepage = () => {
-    navigate("/spinner");
+    navigate("/employees");
   };
 
   return (

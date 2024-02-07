@@ -66,7 +66,7 @@ const CreateEmployeeForm = () => {
 
   const saveOrUpdateEmployee = () => {
     EmployeeService.createEmployee(employee);
-    navigate("/spinner");
+    navigate("/employees");
   };
 
   const backToList = () => [navigate("/Employees")];

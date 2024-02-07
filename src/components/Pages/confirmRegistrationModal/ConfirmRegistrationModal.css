@@ -1,0 +1,11 @@
+.btn-style-registration {
+    background: transparent !important;
+    border: 2px solid black !important;
+    border-radius: 15px;
+}
+
+.btn-style-registration:hover{
+    background: #B10135 !important;
+    border: 2px solid black;
+    color: white !important;
+} 

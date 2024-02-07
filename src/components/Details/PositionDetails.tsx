@@ -17,7 +17,7 @@ const PositionDetails = () => {
   }, [idPosition]);
 
   const goToHomepage = () => {
-    navigate("/spinner");
+    navigate("/employees");
   };
 
   return (

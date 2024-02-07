@@ -51,7 +51,7 @@ const UpdateEmployeeForm = () => {
 
   const UpdateEmployee = () => {
     EmployeeService.updateEmployee(idEmployee, employee);
-    navigate("/spinner");
+    navigate("/employees");
   };
 
   const checkFirstName = (firstName: string) => {

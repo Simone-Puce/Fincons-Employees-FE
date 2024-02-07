@@ -34,7 +34,7 @@ const HeaderComponent = (props: Props) => {
 
   const handleEmployeeList = () => {
     props.setToDisplayList("employees")
-    navigate("/spinner");
+    navigate("/employees");
   }
 
   useEffect(() => {
@@ -84,7 +84,7 @@ const HeaderComponent = (props: Props) => {
           id="offcanvasNavbar"
           aria-labelledby="offcanvasNavbarLabel"
         >
-          <div className="offcanvas-header d-flex justify-content-center">
+          <div className="offcanvas-header d-flex justify-content-center menu-style">
             <h5 className="offcanvas-title" id="offcanvasNavbarLabel">
               {userNameDisplay()}
             </h5>
@@ -100,23 +100,13 @@ const HeaderComponent = (props: Props) => {
               }}
             ></button>
           </div>
-          <div className="offcanvas-body">
+          <div className="offcanvas-body menu-style">
             <ul className="navbar-nav justify-content-end flex-grow-1 ">
-              {" "}
-              <li className="nav-item  d-flex justify-content-center mb-3">
-                <button
-                  onClick={handleEmployeeList}
-                  data-bs-dismiss="offcanvas"
-                  className="btn btn-outline-primary btn-lg"
-                >
-                  Employees
-                </button>
-              </li>
               <li className="nav-item d-flex justify-content-center mb-3">
                 <button
                   onClick={handleLogout}
                   data-bs-dismiss="offcanvas"
-                  className="btn btn-outline-danger btn-lg"
+                  className="btn btn-canvas w-50"
                 >
                   Logout
                 </button>
@@ -125,7 +115,7 @@ const HeaderComponent = (props: Props) => {
                 <button
                   onClick={handleProfile}
                   data-bs-dismiss="offcanvas"
-                  className="btn btn-outline-danger btn-lg"
+                  className="btn btn-canvas w-50"
                 >
                   Profile
                 </button>

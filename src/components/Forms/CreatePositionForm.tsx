@@ -27,12 +27,12 @@ const CreatePositionForm = () => {
   const navigate = useNavigate();
 
   const goBackToList = () => {
-    navigate("/spinner");
+    navigate("/employees");
   };
 
   const savePosition = () => {
     PositionService.createPosition(position!);
-    navigate("/spinner");
+    navigate("/employees");
   };
 
   return (

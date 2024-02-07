@@ -53,17 +53,17 @@ const ListEmployeeComponent = (props: Props) => {
 
   const handleEmployeeList = () => {
     props.setToDisplayList("employees")
-    navigate("/spinner");
+    navigate("/employees");
   };
 
   const handlePositionList = () => {
     props.setToDisplayList("positions")
-    navigate("/spinner");
+    navigate("/employees");
   };
 
   const handleDepartmentList = () => {
     props.setToDisplayList("departments")
-    navigate("/spinner");
+    navigate("/employees");
   };
 
   const changeFilterHandler = (e: React.ChangeEvent<HTMLInputElement>) => {

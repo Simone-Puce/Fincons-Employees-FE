@@ -14,7 +14,7 @@ const CreateDepartmentForm = () => {
   const navigate = useNavigate();
 
   const goBackToList = () => {
-    navigate("/spinner");
+    navigate("/employees");
   };
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const CreateDepartmentForm = () => {
 
   const saveDepartment = () => {
     DepartmentService.createDepartment(department!);
-    navigate("/spinner");
+    navigate("/employees");
   };
 
   return (

@@ -23,12 +23,5 @@
 
 .btn-background:hover{
     background: #B10135 !important;
-}
-
-.icon-background{
-    color: black;
-}
-
-.icon-background:hover{
-    color: white;
+    color: white !important;
 }

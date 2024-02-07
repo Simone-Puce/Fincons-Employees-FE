@@ -213,16 +213,13 @@ const RegisterPageComponent = () => {
           <div className="col-lg-6 mb-5 mb-lg-0 position-relative">
             <div className="position-absolute rounded-circle shadow-5-strong"></div>
             <div className="position-absolute shadow-5-strong"></div>
-            <div className="card bg-glass rounded-5">
+            <div className="card-style">
               <div className="card-body px-4 py-5 px-md-4">
                 <form>
                   <div className="form-outline mb-4">
                     <div className="row">
                       <div className="form-floating">
-                        <motion.input
-                          whileFocus={{
-                            scale: 1.1,
-                          }}
+                        <input
                           name="firstName"
                           value={input?.firstName}
                           onChange={(e) => {
@@ -244,10 +241,7 @@ const RegisterPageComponent = () => {
                   <div className="form-outline mb-4">
                     <div className="row">
                       <div className="form-floating">
-                        <motion.input
-                          whileFocus={{
-                            scale: 1.1,
-                          }}
+                        <input
                           name="lastName"
                           value={input?.lastName}
                           onChange={(e) => {
@@ -269,10 +263,7 @@ const RegisterPageComponent = () => {
                   <div className="form-outline mb-4">
                     <div className="row">
                       <div className="form-floating">
-                        <motion.input
-                          whileFocus={{
-                            scale: 1.1,
-                          }}
+                        <input
                           name="email"
                           value={input?.email}
                           onChange={(e) => {
@@ -298,10 +289,7 @@ const RegisterPageComponent = () => {
                   <div className="form-outline mb-4">
                     <div className="row">
                       <div className="form-floating input-gruop d-flex">
-                        <motion.input
-                          whileFocus={{
-                            scale: 1.1,
-                          }}
+                        <input
                           onFocus={showDetails}
                           onBlur={showDetails}
                           type={passwordShow}
@@ -349,10 +337,7 @@ const RegisterPageComponent = () => {
                   <div className="form-outline mb-4">
                     <div className="row">
                       <div className="form-floating input-gruop d-flex">
-                        <motion.input
-                          whileFocus={{
-                            scale: 1.1,
-                          }}
+                        <input
                           type={confirmPasswordShow}
                           name="confirmPassword"
                           value={input?.confirmPassword}
@@ -401,7 +386,7 @@ const RegisterPageComponent = () => {
                     />
                     <button
                       type="button"
-                      className="btn btn-link"
+                      className="btn btn-link text-black"
                       onClick={handleBackToLogin}
                     >
                       {" "}

@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useNavigate } from 'react-router-dom';
+import './ConfirmRegistrationModal.css'
 
 interface Props {
   handleRegistration(): void
@@ -29,7 +30,7 @@ function ConfirmRegistrationModal(props: Props) {
 
   return (
     <>
-      <Button className="btn btn-primary btn-block btn-lg mb-4 rounded-pill" disabled={props.disabledButton} onClick={handleShow} style={{ margin: "0.5em" }}>
+      <Button className="btn btn-style-registration btn-lg text-black" disabled={props.disabledButton} onClick={handleShow}>
         Register
       </Button>
       <Modal show={show}

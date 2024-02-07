@@ -31,12 +31,14 @@
 
 .btn-save:hover{
     background: #B10135 !important;
+    color: white !important;
 }
 
 .btn-cancel:hover{
     background: #B10135 !important;
+    color: white !important;
 }
 
 .on-hover-handler:hover{
-    color: white;
+    color: white !important;
 }

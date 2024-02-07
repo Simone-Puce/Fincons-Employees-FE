@@ -18,7 +18,7 @@ const EmployeeDetails = () => {
   }, [idEmployee]);
 
   const goToHomepage = () => {
-    navigate("/spinner");
+    navigate("/employees");
   };
 
   return (

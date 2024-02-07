@@ -82,15 +82,15 @@ const TableElementComponent = (props: Props) => {
         switch (props.toDisplay) {
             case EMPLOYEE_CASE:
                 EmployeeService.deleteEmployee(parseInt(id!))
-                navigate("/spinner")
+                navigate("/employees")
                 break;
             case DEPARTMENT_CASE:
                 DepartmentService.deleteDepartment(parseInt(id!));
-                navigate("/spinner")
+                navigate("/employees")
                 break;
             case POSITION_CASE:
                 PositionService.deletePosition(parseInt(id!))
-                navigate("/spinner")
+                navigate("/employees")
                 break;
         }
         props.setfilter("")

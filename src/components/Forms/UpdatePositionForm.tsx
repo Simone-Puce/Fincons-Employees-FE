@@ -25,7 +25,7 @@ const UpdatePositionForm = () => {
 
   const UpdatePosition = () => {
     PositionService.updatePosition(idPosition, position!);
-    navigate("/spinner");
+    navigate("/employees");
   };
 
   const checkPositionNameValue = (positionNameValue: string) => {
