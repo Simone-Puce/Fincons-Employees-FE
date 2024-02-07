@@ -117,15 +117,6 @@ const ListEmployeeComponent = (props: Props) => {
   };
 
   return (
-    <>
-      {
-        showSpinner ? (
-          <div className='d-flex justify-content-center align-items-center vh-100'>
-            <div className='spinner-container'>
-              <ScaleLoader color="#000000" loading={true} />
-            </div>
-          </div>
-        ) : (
           <div className="col mt-5 pt-5">
             <div className="d-flex justify-content-evenly">
               <button className="btn btn-color rounded-pill mr-5 pr-5 w-25 h-25" onClick={handleEmployeeList}> Employees </button>

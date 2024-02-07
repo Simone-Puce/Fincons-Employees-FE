@@ -10,7 +10,6 @@ const GET_BY_ID = POSITION_URI + "/find-by-id"
 const CREATE_POSITION = POSITION_URI + "/create"
 const UPDATE_POSITION = POSITION_URI + "/update"
 const DELETE_POSITION = POSITION_URI + "/delete"
-
 const token = Cookies.get("jwt-token");
 const config = {
     headers: { Authorization: `Bearer ${token}` },
@@ -42,7 +41,7 @@ const PositionService = {
             }
         );
     },
-
+    
     deletePosition(positionId: number | undefined) {
         return axios.delete(DELETE_POSITION, { params: { id: positionId }, headers: { Authorization: `Bearer ${token}` } })
     }
