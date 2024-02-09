@@ -19,7 +19,7 @@ const HeaderComponent = (props: Props) => {
   const navigate = useNavigate();
   const auth = Cookies.get("jwt-token");
   const [userDetails, setUserDetails] = useState<UserDetailModels>();
-  const [isHidden, setIsHidden] = useState<boolean>(true);
+  const [isHidden, setIsHidden] = useState<boolean>(false);
 
   const handleLogout = () => {
     Cookies.remove("jwt-token");
@@ -30,11 +30,6 @@ const HeaderComponent = (props: Props) => {
 
   const handleProfile = () => {
     navigate("/profile")
-  }
-
-  const handleEmployeeList = () => {
-    props.setToDisplayList("employees")
-    navigate("/employees");
   }
 
   useEffect(() => {

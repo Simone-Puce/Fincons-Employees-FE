@@ -22,7 +22,7 @@ const EmployeeDetails = () => {
   };
 
   return (
-    <div className="mt-5 pt-3 footer-manager">
+    <div className="mt-5 pt-3 pb-5 footer-manager">
       <div className="card col-md-6 offset-md-3 mt-5 card-style">
         <h3 className="text-center mt-2"> View employee details </h3>
         <div className="card-body">
@@ -67,7 +67,7 @@ const EmployeeDetails = () => {
           <div>
             <CertificateComponent idEmployee={idEmployee} />
           </div>
-          <div className="d-flex justify-content-center">
+          <div className="d-flex justify-content-center pt-2">
             <button
               type="button"
               className="btn btn-back"

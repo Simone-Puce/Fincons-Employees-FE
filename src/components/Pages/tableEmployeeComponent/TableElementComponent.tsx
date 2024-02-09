@@ -5,6 +5,9 @@ import './TableElementComponent.css'
 import utils from "../../../utils/Utils";
 import DepartmentService from "../../../services/DepartmentService";
 import PositionService from "../../../services/PositionService";
+import { jwtDecode } from "jwt-decode";
+import Cookies from "js-cookie";
+import LoginRegistrationService from "../../../services/LoginRegistrationService";
 
 const EMPLOYEE_CASE = "employees";
 const DEPARTMENT_CASE = "departments";
@@ -25,8 +28,8 @@ const TableElementComponent = (props: Props) => {
     const [thirdElement, setThirdElement] = useState<string>()
     const [isPositionSelected, setIsPositionSelected] = useState<boolean>(false)
     const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false)
+    const [userHiddenButtons, setUserHiddenButtons] = useState<boolean>()
     const navigate = useNavigate()
-
 
     useEffect(() => {
         switch (props.toDisplay) {
@@ -78,6 +81,19 @@ const TableElementComponent = (props: Props) => {
         }
     }, [props.toDisplay, props.tableData])
 
+    useEffect(() => {
+        const jwt = Cookies.get("jwt-token")
+        const user = jwtDecode(jwt!)
+        LoginRegistrationService.getUserDetails(user.sub).then((res) => {
+            if (res.data.data.roles[0].name === 'ROLE_ADMIN') {
+                setUserHiddenButtons(true)
+            }
+            if (res.data.data.roles[0].name === 'ROLE_USER') {
+                setUserHiddenButtons(false)
+            }
+        })
+    }, [])
+
     const deleteButtonHandler = (id: string | undefined) => {
         switch (props.toDisplay) {
             case EMPLOYEE_CASE:
@@ -103,10 +119,15 @@ const TableElementComponent = (props: Props) => {
                     <td className="text-center backgroud-style align-middle"> {utils.capitalizeFirstLetter(firstElement)}</td>
                     <td className="text-center backgroud-style align-middle"> {utils.capitalizeFirstLetter(secondElement)}</td>
                     <td hidden={isPositionSelected} className="text-center backgroud-style align-middle"> {thirdElement}</td>
-                    <td className="text-center backgroud-style">
-                        <div className='button-div div-style'>
+                    <td hidden={!userHiddenButtons} className="text-center backgroud-style">
+                        <div className="d-flex justify-content-evenly">
                             <Link to={`/update-employee/${tableElementId}`}><button className='btn btn-background'> <i className="bi bi-pencil-square icon-background"></i> </button></Link>
-                            <button title={isButtonDisabled ? "This can't be deleted because there is at least 1 employee connected to this record" : ""} className="btn btn-background delete-button" disabled={isButtonDisabled} onClick={(e) => deleteButtonHandler(tableElementId)}><i className="bi bi-trash3-fill icon-background"></i></button>
+                            <button title={isButtonDisabled ? "This can't be deleted because there is at least 1 employee connected to this record" : ""} className="btn btn-background" disabled={isButtonDisabled} onClick={(e) => deleteButtonHandler(tableElementId)}><i className="bi bi-trash3-fill icon-background"></i></button>
+                            <Link to={`/view-employee/${tableElementId}`}><button type="button" className="btn btn-background"><i className="bi bi-info-circle icon-background"></i></button></Link>
+                        </div>
+                    </td>
+                    <td hidden={userHiddenButtons} className="text-center backgroud-style">
+                        <div className="d-flex justify-content-evenly">
                             <Link to={`/view-employee/${tableElementId}`}><button type="button" className="btn btn-background"><i className="bi bi-info-circle icon-background"></i></button></Link>
                         </div>
                     </td>
