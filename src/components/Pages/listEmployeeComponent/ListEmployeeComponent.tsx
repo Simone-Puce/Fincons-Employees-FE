@@ -8,7 +8,6 @@ import DepartmentList from "../../Lists/DepartmentList";
 import DepartmentService from "../../../services/DepartmentService";
 import PositionService from "../../../services/PositionService";
 import { useNavigate } from "react-router-dom";
-import { ScaleLoader } from 'react-spinners';
 
 interface Props {
   toDisplayList: string;
@@ -21,10 +20,8 @@ const ListEmployeeComponent = (props: Props) => {
   const [positions, setPositions] = useState<any>();
   const [filterByName, setFilterByName] = useState<string>();
   const navigate = useNavigate()
-  const [showSpinner, setShowSpinner] = useState(true)
 
   useEffect(() => {
-    if (filterByName !== "created") {
       EmployeeService.getEmployees().then((res) => {
         setEmployees(res.data);
       });
@@ -34,7 +31,6 @@ const ListEmployeeComponent = (props: Props) => {
       PositionService.getPositions().then((res) => {
         setPositions(res.data);
       });
-    }
   }, []);
 
   useEffect(() => {

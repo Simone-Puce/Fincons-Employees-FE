@@ -12,17 +12,15 @@ const AdminRoutes = () => {
 
     useEffect(() => {
         LoginRegistrationService.getUserDetails(userEmail).then((res) => {
-            console.log(res.data.data.roles[0].name)
             setIsAdmin(res.data.data.roles[0].name)
         })
-    }, [])
+    }, [userEmail])
 
     if (isAdmin === null) {
         return null;
     }
 
-    return isAdmin === 'ROLE_ADMIN' ? <Outlet /> : <Navigate to={"/profile"} />
-
+    return isAdmin === 'ROLE_ADMIN' ? <Outlet /> : <Navigate to={"/error"} />
 }
 
 export default AdminRoutes;

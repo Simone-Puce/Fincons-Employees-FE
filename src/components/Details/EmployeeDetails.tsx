@@ -1,9 +1,10 @@
-import { useState, useEffect, SetStateAction } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Employee from "../../models/EmployeeModel";
 import EmployeeService from "../../services/EmployeeService";
 import CertificateComponent from "../Pages/Certificate/CertificateComponentModal";
 import './Styles/Details.css'
+import Utils from "../../utils/Utils";
 
 const EmployeeDetails = () => {
   const [employee, setEmployee] = useState<Employee>()
@@ -28,40 +29,31 @@ const EmployeeDetails = () => {
         <div className="card-body">
           <div className="row d-flex justify-content-center">
             <label className="mb-3 text-center">
-              {" "}
-              First name: {employee?.firstName}{" "}
+              <span><strong>First name:</strong></span> {Utils.capitalizeFirstLetter(employee?.firstName)}
             </label>
             <label className="mb-3 text-center">
-              {" "}
-              Last name: {employee?.lastName}{" "}
+              <span><strong>Last name:</strong></span> {Utils.capitalizeFirstLetter(employee?.lastName)}
             </label>
             <label className="mb-3 text-center">
-              {" "}
-              Email: {employee?.email}{" "}
+              <span><strong>Email:</strong></span> {employee?.email}
             </label>
             <label className="mb-3 text-center">
-              {" "}
-              Birth date: {JSON.stringify(employee?.birthDate)}{" "}
+              <span><strong>Birth date:</strong></span> {JSON.stringify(employee?.birthDate)}
             </label>
             <label className="mb-3 text-center">
-              {" "}
-              Gender: {employee?.gender}{" "}
+              <span><strong>Gender:</strong></span> {employee?.gender}
             </label>
             <label className="mb-3 text-center">
-              {" "}
-              Hire date: {JSON.stringify(employee?.startDate)}{" "}
+            <span><strong>Start date:</strong></span>: {JSON.stringify(employee?.startDate)}
             </label>
             <label className="mb-3 text-center">
-              {" "}
-              Contract end date: {JSON.stringify(employee?.endDate)}{" "}
+              <span><strong>Contract end date:</strong></span> {JSON.stringify(employee?.endDate)}
             </label>
             <label className="mb-3 text-center">
-              {" "}
-              Department: {employee?.department?.name}{" "}
+            <span><strong>Department:</strong></span> {Utils.capitalizeFirstLetter(employee?.department?.name)}
             </label>
             <label className="mb-3 text-center">
-              {" "}
-              Position: {employee?.position?.name}{" "}
+            <span><strong>Position:</strong></span> {Utils.capitalizeFirstLetter(employee?.position?.name)}
             </label>
           </div>
           <div>

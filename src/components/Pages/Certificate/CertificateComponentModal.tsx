@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import CertificateService from '../../../services/CertificateService';
-import Certificate from '../../../models/CertificateModel';
 import CertificateEmployeeService from '../../../services/CertificateEmployeeService';
 import CertificateEmployee from '../../../models/CertificateEmployeeModel';
-import Employee from '../../../models/EmployeeModel';
-import EmployeeService from '../../../services/EmployeeService';
 import { Link } from 'react-router-dom';
 import './CertificateComponentModal.css'
 import Cookies from 'js-cookie';
@@ -13,25 +9,16 @@ import LoginRegistrationService from '../../../services/LoginRegistrationService
 
 interface Props {
     idEmployee: number;
-
 }
 
 const CertificateComponent = (props: Props) => {
-    const [certificates, setCertificates] = useState<Certificate[]>([]);
-    const [employee, setEmployee] = useState<Employee>();
     const [certificateEmployees, setCertificateEmployees] = useState<CertificateEmployee[]>([]);
     const [userHiddenButtons, setUserHiddenButtons] = useState<boolean>()
 
     useEffect(() => {
-        CertificateService.getCertificates().then((res) => {
-            setCertificates(res.data);
-        });
         CertificateEmployeeService.getCertificateEmployees().then((res) => {
             setCertificateEmployees(res.data)
         });
-        EmployeeService.getEmployees().then((res) => {
-            setEmployee(res.data)
-        })
     }, []);
 
     useEffect(() => {

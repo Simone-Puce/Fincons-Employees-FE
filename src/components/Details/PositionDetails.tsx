@@ -27,13 +27,10 @@ const PositionDetails = () => {
         <div className="card-body">
           <div className="row d-flex justify-content-center">
             <label className="mb-3 text-center">
-              {" "}
-              Position name: {position?.name}{" "}
+              <span><strong>Position name:</strong></span> {position?.name}
             </label>
-
             <label className="mb-3 text-center">
-              {" "}
-              Position salary: {position?.salary}{" "}
+              <span><strong>Position salary:</strong></span> {position?.salary}
             </label>
             <div className="d-flex justify-content-center">
               <button
