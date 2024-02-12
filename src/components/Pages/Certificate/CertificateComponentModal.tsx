@@ -14,12 +14,19 @@ interface Props {
 const CertificateComponent = (props: Props) => {
     const [certificateEmployees, setCertificateEmployees] = useState<CertificateEmployee[]>([]);
     const [userHiddenButtons, setUserHiddenButtons] = useState<boolean>()
+    const [tableHiddenHandler, setTableHiddenHandler] = useState<boolean>()
 
     useEffect(() => {
         CertificateEmployeeService.getCertificateEmployees().then((res) => {
             setCertificateEmployees(res.data)
+            const employeeCertificates = res.data.filter((certificate: any) => certificate.employee?.id === props.idEmployee)
+            if (employeeCertificates.length === 0) {
+                setTableHiddenHandler(true)
+            } else {
+                setTableHiddenHandler(false)
+            }
         });
-    }, []);
+    }, [props.idEmployee]);
 
     useEffect(() => {
         const jwt = Cookies.get("jwt-token")
@@ -34,19 +41,15 @@ const CertificateComponent = (props: Props) => {
         })
     }, [])
 
-    const tableHiddenHandler = () => {
-        if (certificateEmployees.filter((certificateEmployee) => certificateEmployee.id !== props.idEmployee).length === 0) {
-            return true
-        } else {
-            return false
-        }
-    }
-
     const handleDelete = (id: number | undefined) => {
-        CertificateEmployeeService.deleteCertificateEmployee(id!).then((res) => {
-            setCertificateEmployees(certificateEmployees.filter((certificateEmployee) => certificateEmployee.id !== id));
-        });
-        tableHiddenHandler()
+        CertificateEmployeeService.deleteCertificateEmployee(id!)
+        const newCertificateEmployees = certificateEmployees.filter((certificate) => certificate?.id !== id!)
+        setCertificateEmployees(newCertificateEmployees)
+        if (newCertificateEmployees.length === 0) {
+            setTableHiddenHandler(true)
+        } else {
+            setTableHiddenHandler(false)
+        }
     }
 
     const checkCertificateEmployee = (certificateEmployee: CertificateEmployee) => {
@@ -54,8 +57,8 @@ const CertificateComponent = (props: Props) => {
             return (
                 <tbody className='backgroud-style'>
                     <tr className='backgroud-style align-middle'>
-                        <td className='text-center backgroud-style align-middle' key={certificateEmployee.id}>{certificateEmployee.certificate?.name}</td>
-                        <td className='text-center backgroud-style align-middle' key={certificateEmployee.id}>{certificateEmployee.achieved?.toString()}</td>
+                        <td className='text-center backgroud-style align-middle'>{certificateEmployee.certificate?.name}</td>
+                        <td className='text-center backgroud-style align-middle'>{certificateEmployee.achieved?.toString()}</td>
                         <td hidden={userHiddenButtons} className='text-center backgroud-style '>
                             <button onClick={() => handleDelete(certificateEmployee.id)} className="btn btn-background">
                                 <i className="bi bi-trash3-fill"></i>
@@ -80,8 +83,8 @@ const CertificateComponent = (props: Props) => {
                     </button>
                 </Link>
             </div>
-            <div className='d-flex justify-content-center' hidden={tableHiddenHandler()}>
-                <div className='row table-style' hidden={tableHiddenHandler()}>
+            <div className='d-flex justify-content-center' hidden={tableHiddenHandler}>
+                <div className='row table-style' hidden={tableHiddenHandler}>
                     <table className="table table-striped mb-0">
                         <thead className="backgroud-style">
                             <tr className='text-center backgroud-style-header'>

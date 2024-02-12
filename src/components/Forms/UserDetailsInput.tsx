@@ -28,7 +28,7 @@ const UserDetailsInput = (props: Props) => {
         anagraphicFormValidation()
     }, [
         isFirstNameValid,
-        isLastNameValid,
+        isLastNameValid
     ])
 
     useEffect(() => {
@@ -88,7 +88,7 @@ const UserDetailsInput = (props: Props) => {
 
     return (
         <form className="anagraphic-form-style footer-manager">
-            <div hidden={props.updatingPassword} className="form-group w-75 mb-2">
+            <div hidden={!props.updatingData} className="form-group w-75 mb-2">
                 <label>First name</label>
                 <input
                     placeholder={props.userDetails?.firstName}
@@ -105,7 +105,7 @@ const UserDetailsInput = (props: Props) => {
                     }}
                 ></input>
             </div>
-            <div hidden={props.updatingPassword} className="form-group w-75 mb-2">
+            <div hidden={!props.updatingData} className="form-group w-75 mb-2">
                 <label>Last name</label>
                 <input
                     placeholder={props.userDetails?.lastName}
@@ -123,17 +123,14 @@ const UserDetailsInput = (props: Props) => {
                     }}
                 ></input>
             </div>
-            <div hidden={props.updatingData || props.updatingPassword} className="form-group w-75 mb-2">
-                <label>Email </label>
-                <input
-                    placeholder={props.userDetails?.email}
-                    type="text"
-                    name="email"
-                    className="form-control"
-                    value={props.userDetails?.email}
-                    disabled={true}
-                    hidden={props.updatingData}
-                ></input>
+            <div hidden={props.updatingData || props.updatingPassword} className="form-group w-75 mb-2 text-center">
+            <span><strong> First name:</strong></span> {props.userDetails.firstName}
+            </div>
+            <div hidden={props.updatingData || props.updatingPassword} className="form-group w-75 mb-2 text-center">
+            <span><strong> Last name:</strong></span> {props.userDetails.lastName}
+            </div>
+            <div hidden={props.updatingData || props.updatingPassword} className="form-group w-75 mb-2 text-center">
+            <span><strong> Email:</strong></span> {props.userDetails.email}
             </div>
             <div hidden={!props.updatingPassword} className="form-group w-75 mb-2">
                 <label> Old password </label>
