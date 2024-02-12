@@ -21,9 +21,9 @@ const CreateUpdateEmployeeComponent = (props: Props) => {
       case POSITION_CASE:
         return <CreatePositionForm />;
     }
-  };
+  }
 
   return <>{conditionalRenderCreateForm()}</>;
-};
+}
 
 export default CreateUpdateEmployeeComponent;

@@ -43,7 +43,7 @@ const HeaderComponent = (props: Props) => {
     } else {
       setIsHidden(true);
     }
-  }, [props.userEmail]);
+  }, [auth]);
 
   const userNameDisplay = () => {
     if (userDetails?.firstName === undefined) {

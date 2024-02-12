@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import UserDetailModels from "../../models/UserDetailsModel";
 import Utils from "../../utils/Utils";
 import PasswordUpdateModel from "../../models/PasswordUpdateModel";
@@ -21,39 +21,34 @@ const UserDetailsInput = (props: Props) => {
     const [isLastNameValid, setIsLastNameValid] = useState<boolean>(true)
     const [isPasswordValid, setIsPasswordValid] = useState<boolean>(false)
     const [passwordFocus, setPasswordFocus] = useState<boolean>(true)
-    const passwordSpecialCharacterCheck = RegExp(/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/);
+    const passwordSpecialCharacterCheck = RegExp(/[ `!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/);
     const passwordUppercaseLetterCheck = RegExp(/[A-Z]/);
 
-    useEffect(() => {
-        anagraphicFormValidation()
-    }, [
-        isFirstNameValid,
-        isLastNameValid
-    ])
-
-    useEffect(() => {
-        passwordFormValidation()
-    }, [
-        isPasswordValid,
-        isLastNameValid
-    ])
-
-    const anagraphicFormValidation = () => {
+    const anagraphicFormValidation = useCallback(() =>{
         if (isFirstNameValid === false && isLastNameValid === false) {
             props.setIsUpdateValid(true)
         } else {
             props.setIsUpdateValid(false)
         }
-    }
+    },[isFirstNameValid, isLastNameValid, props])
 
-    const passwordFormValidation = () => {
+    useEffect(() => {
+        anagraphicFormValidation()
+    }, [anagraphicFormValidation, isFirstNameValid, isLastNameValid])
+
+
+    const passwordFormValidation = useCallback(() => {
         if (isPasswordValid === true) {
             props.setIsPasswordUpdateValid(false)
         } else {
             props.setIsPasswordUpdateValid(true)
         }
-    }
+    },[isPasswordValid, props])
 
+    useEffect(() => {
+        passwordFormValidation()
+    }, [isPasswordValid, isLastNameValid, passwordFormValidation])
+    
     const passwordValidator = (password: string) => {
         let passwordLengthCheck = false;
         let hasUpperCase = false;

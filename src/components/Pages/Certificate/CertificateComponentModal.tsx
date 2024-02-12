@@ -102,7 +102,7 @@ const CertificateComponent = (props: Props) => {
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
 export default CertificateComponent;

@@ -1,5 +1,4 @@
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import User from "../../../models/UserModel";
@@ -9,10 +8,9 @@ import ConfirmRegistrationModal from "../confirmRegistrationModal/ConfirmRegistr
 const RegisterPageComponent = () => {
   const [input, setInput] = useState<User>();
   const passwordSpecialCharacterCheck = RegExp(
-    /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/
+    /[ `!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/
   );
   const passwordUppercaseLetterCheck = RegExp(/[A-Z]/);
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [disabledButton, setDisabledButton] = useState(true);
   const [emailFieldWarning, setEmailFieldWarning] = useState("");
   const [passwordFieldWarning, setPasswordFieldWarning] =
@@ -59,7 +57,7 @@ const RegisterPageComponent = () => {
     }
   };
 
-  const checkSubmit = () => {
+  const checkSubmit = useCallback(() => {
     if (
       input !== undefined &&
       nameFieldWarning === "is-valid" &&
@@ -72,15 +70,11 @@ const RegisterPageComponent = () => {
     } else {
       setDisabledButton(true);
     }
-  };
+  },[confirmPasswordFieldWarning, emailFieldWarning, input, nameFieldWarning, passwordFieldWarning, surnameFieldWarning]);
 
   useEffect(() => {
     checkSubmit();
-  }, [
-    emailFieldWarning,
-    passwordFieldWarning,
-    confirmPasswordFieldWarning
-  ]);
+  }, [emailFieldWarning, passwordFieldWarning, confirmPasswordFieldWarning, checkSubmit]);
 
   useEffect(() => {
     if (input?.confirmPassword !== input?.password) {
@@ -347,7 +341,6 @@ const RegisterPageComponent = () => {
                               ...input!,
                               [e.target.name]: e.target.value,
                             });
-                            setConfirmPassword(e.target.value);
                             checkConfirmPassword(e.target.value);
                           }}
                           onBlur={(e) => {

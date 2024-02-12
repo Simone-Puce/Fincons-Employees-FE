@@ -26,7 +26,7 @@ const DepartmentService = {
     },
     
     createDepartment(department: Department){
-        return axios.post(CREATE_DEPARTMENT,department, config)
+        return axios.post(CREATE_DEPARTMENT,department,{headers: { Authorization: `Bearer ${token}` }})
     },
 
     updateDepartment(departmentId: number, updatedDepartment: Department){
