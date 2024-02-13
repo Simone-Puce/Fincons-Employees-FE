@@ -64,13 +64,6 @@ const TableElementComponent = (props: Props) => {
       setIsPositionSelected(false);
     }
   }, [props.tableData, props.toDisplay]);
-  useEffect(() => {
-    if (props.toDisplay === POSITION_CASE) {
-      setIsPositionSelected(true);
-    } else {
-      setIsPositionSelected(false);
-    }
-  }, [props.tableData, props.toDisplay]);
 
   useEffect(() => {
     if (props.toDisplay === DEPARTMENT_CASE) {
