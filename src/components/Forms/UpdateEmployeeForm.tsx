@@ -1,4 +1,4 @@
-import { useState, useEffect, Key } from "react";
+import { useState, useEffect, Key, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Employee from "../../models/EmployeeModel";
 import DepartmentService from "../../services/DepartmentService";
@@ -21,18 +21,6 @@ const UpdateEmployeeForm = () => {
   const [emailValidator, setEmailValidator] = useState<boolean>(true)
   const [startDateValidator, setStartDateValidator] = useState<boolean>(true)
   const navigate = useNavigate();
-
-  useEffect(() => {
-    checkSubmit()
-  }, [
-    isButtonDisabled,
-    firstNameValidator,
-    lastNameValidator,
-    birthDateValidator,
-    emailValidator,
-    startDateValidator
-  ]
-  )
 
   useEffect(() => {
     EmployeeService.getEmployeeById(idEmployee).then((res) => {
@@ -99,7 +87,7 @@ const UpdateEmployeeForm = () => {
     checkSubmit()
   }
 
-  const checkSubmit = () => {
+  const checkSubmit = useCallback(() => {
     if (
       firstNameValidator === false ||
       lastNameValidator === false ||
@@ -111,7 +99,11 @@ const UpdateEmployeeForm = () => {
     } else {
       setIsButtonDisabled(false);
     }
-  };
+  }, [birthDateValidator, emailValidator, firstNameValidator, lastNameValidator, startDateValidator])
+
+  useEffect(() => {
+    checkSubmit()
+  }, [isButtonDisabled, firstNameValidator, lastNameValidator, birthDateValidator, emailValidator, startDateValidator, checkSubmit])
 
   const backToList = () => [navigate("/Employees")];
 

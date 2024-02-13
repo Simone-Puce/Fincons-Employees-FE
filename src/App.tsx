@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ProtectedRoutes from "./services/ProtectedRoutes";
 import "bootstrap/dist/css/bootstrap.css";
 import CreateUpdateEmployeeComponent from "./components/Pages/createUpdateEmployeeComponent/CreateEmployeeComponent";
@@ -14,6 +14,8 @@ import Update from "./components/Pages/updateComponent/Update";
 import SpinnerComponent from "./components/Pages/spinner/Spinner";
 import CreateCertificateEmployeeForm from "./components/Forms/CreateCertificateEmployeeForm";
 import UserProfile from "./components/Pages/userProfile/UserProfile";
+import AdminRoutes from "./services/AdminRoutes";
+import ErrorPageComponent from "./components/Pages/errorComponent/ErrorPageComponent";
 
 function App() {
   const [selectedUser, setSelectedUser] = useState<string>("");
@@ -21,14 +23,13 @@ function App() {
 
   return (
     <div id="app">
-      <Router>  
+      <Router>
         <HeaderComponent
           userEmail={selectedUser}
           setUserEmail={setSelectedUser}
           toDisplayList={toDisplayList}
           setToDisplayList={setToDisplayList}
         />
-
         <Routes>
           <Route
             path="/"
@@ -39,32 +40,40 @@ function App() {
               element={<ListEmployeeComponent toDisplayList={toDisplayList} setToDisplayList={setToDisplayList} />}
             ></Route>
             <Route
+              path="/profile"
+              element={<UserProfile />}
+            ></Route>
+            <Route
+              path="/error"
+              element={<ErrorPageComponent />}
+            ></Route>
+            <Route
               path="/spinner"
               element={
                 <SpinnerComponent />
               }
             ></Route>
             <Route
-              path="/profile"
-              element={<UserProfile />}
-            >
-            </Route>
-            <Route
-              path="/add-employee"
-              element={<CreateUpdateEmployeeComponent toDisplayList={toDisplayList} />}
-            ></Route>
-            <Route
               path="view-employee/:id"
               element={<ViewEmployeeComponent toDisplayList={toDisplayList} />}
             ></Route>
             <Route
-              path="update-employee/:id"
-              element={<Update toDisplayList={toDisplayList} />}
-            ></Route>
-            <Route
-              path="/add/:id"
-              element={<CreateCertificateEmployeeForm />}
-            ></Route>
+              path="/"
+              element={<AdminRoutes />}
+            >
+              <Route
+                path="/add-employee"
+                element={<CreateUpdateEmployeeComponent toDisplayList={toDisplayList} />}
+              ></Route>
+              <Route
+                path="update-employee/:id"
+                element={<Update toDisplayList={toDisplayList} />}
+              ></Route>
+              <Route
+                path="/add/:id"
+                element={<CreateCertificateEmployeeForm />}
+              ></Route>
+            </Route>
           </Route>
           { }
           <Route
@@ -88,7 +97,7 @@ function App() {
           <Route path="/register" element={<RegisterPageComponent />}></Route>
         </Routes>
       </Router>
-    <FooterComponent />
+      <FooterComponent />
     </div>
   );
 }

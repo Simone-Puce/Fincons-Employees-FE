@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Department from "../../models/DepartmentModel";
 import DepartmentService from "../../services/DepartmentService";
@@ -17,16 +17,7 @@ const CreateDepartmentForm = () => {
     navigate("/employees");
   };
 
-  useEffect(() => {
-    checkSubmit()
-  }, [
-    isButtonDisabled,
-    departmentAddressValid,
-    departmentNameValid,
-    departmentCityValid
-  ])
-
-  const checkSubmit = () => {
+  const checkSubmit = useCallback(() => {
     if (
       departmentAddressValid === false ||
       departmentCityValid === false ||
@@ -36,7 +27,11 @@ const CreateDepartmentForm = () => {
     } else {
       setIsButtonDisabled(false)
     }
-  }
+  },[departmentAddressValid, departmentCityValid, departmentNameValid])
+
+  useEffect(() => {
+    checkSubmit()
+  }, [isButtonDisabled, departmentAddressValid, departmentNameValid, departmentCityValid, checkSubmit])
 
   const saveDepartment = () => {
     DepartmentService.createDepartment(department!);

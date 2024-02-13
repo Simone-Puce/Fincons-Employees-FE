@@ -18,17 +18,17 @@ const LoginPageComponent = (props: Props) => {
   const [input, setInput] = useState<LoginUserModel>({
     email: "",
     password: "",
-  });
+  })
 
   const navigateToRegister = () => {
     navigate("/register");
-  };
+  }
 
   useEffect(() => {
     if (Cookies.get("jwt-token") !== undefined) {
       navigate("/employees")
     }
-  }, [])
+  })
 
   const handleLogin = (e: FormEvent) => {
     e.preventDefault();
@@ -160,7 +160,7 @@ const LoginPageComponent = (props: Props) => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
 export default LoginPageComponent;

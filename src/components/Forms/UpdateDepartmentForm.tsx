@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import DepartmentService from "../../services/DepartmentService";
 import Department from "../../models/DepartmentModel";
@@ -19,15 +19,6 @@ const UpdateDepartmentForm = () => {
       setDepartment(res.data.data);
     });
   }, [idDepartment]);
-
-  useEffect(() => {
-    checkSubmit()
-  }, [
-    isButtonDisabled,
-    departmentAddressValid,
-    departmentNameValid,
-    departmentCityValid
-  ])
 
   const checkName = (nameValue: string) => {
     if (nameValue.toString() === "") {
@@ -56,7 +47,7 @@ const UpdateDepartmentForm = () => {
     checkSubmit()
   }
 
-  const checkSubmit = () => {
+  const checkSubmit = useCallback(() => {
     if (
       departmentAddressValid === false ||
       departmentCityValid === false ||
@@ -66,12 +57,16 @@ const UpdateDepartmentForm = () => {
     } else {
       setIsButtonDisabled(false)
     }
-  }
+  }, [departmentAddressValid, departmentCityValid, departmentNameValid])
+
+  useEffect(() => {
+    checkSubmit()
+  }, [isButtonDisabled, departmentAddressValid, departmentNameValid, departmentCityValid, checkSubmit])
 
   const UpdatePosition = () => {
     DepartmentService.updateDepartment(idDepartment, department!);
     navigate("/employees");
-  };
+  }
 
   const backToList = () => [navigate("/Employees")];
 

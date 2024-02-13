@@ -15,15 +15,15 @@ const CreateUpdateEmployeeComponent = (props: Props) => {
   const conditionalRenderCreateForm = () => {
     switch (props.toDisplayList) {
       case EMPLOYEE_CASE:
-        return <CreateEmployeeForm />;
+        return <CreateEmployeeForm />
       case DEPARTMENT_CASE:
-        return <CreateDepartmentForm />;
+        return <CreateDepartmentForm />
       case POSITION_CASE:
-        return <CreatePositionForm />;
+        return <CreatePositionForm />
     }
-  };
+  }
 
   return <>{conditionalRenderCreateForm()}</>;
-};
+}
 
 export default CreateUpdateEmployeeComponent;

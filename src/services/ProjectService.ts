@@ -7,7 +7,6 @@ const PROJECT_URI = VERSION_URI+"/project";
 const GET_ALL_URI = PROJECT_URI+"/list";
 const GET_BY_ID=PROJECT_URI+"/find"
 const CREATE_PROJECT=PROJECT_URI+"/create"
-const UPDATE_PROJECT=PROJECT_URI+"/update"
 const DELETE_PROJECT=PROJECT_URI+"/delete"
 
 

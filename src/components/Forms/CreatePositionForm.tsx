@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Position from "../../models/PositionModel";
 import PositionService from "../../services/PositionService";
@@ -11,18 +11,17 @@ const CreatePositionForm = () => {
   const [salaryValueValid, setSalaryValueValid] = useState<boolean>(false)
   const [positionNameValid, setPositionNameValid] = useState<boolean>(false)
 
-  useEffect(() => {
-    checkSubmit()
-  }, [isButtonDisabled, salaryValueValid, position])
-
-
-  const checkSubmit = () => {
+  const checkSubmit = useCallback(() => {
     if (salaryValueValid === false || positionNameValid === false) {
       setIsButtonDisabled(true);
     } else {
       setIsButtonDisabled(false);
     }
-  };
+  },[positionNameValid, salaryValueValid])
+
+  useEffect(() => {
+    checkSubmit()
+  }, [isButtonDisabled, salaryValueValid, position, checkSubmit])
 
   const navigate = useNavigate();
 

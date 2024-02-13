@@ -14,15 +14,15 @@ const ViewEmployeeComponent = (props: Props) => {
   const conditionalRenderDetails = () => {
     switch (props.toDisplayList) {
       case EMPLOYEE_CASE:
-        return <EmployeeDetails />;
+        return <EmployeeDetails />
       case DEPARTMENT_CASE:
-        return <DepartmentDetails />;
+        return <DepartmentDetails />
       case POSITION_CASE:
-        return <PositionDetails />;
+        return <PositionDetails />
     }
-  };
+  }
 
   return <>{conditionalRenderDetails()}</>
-};
+}
 
 export default ViewEmployeeComponent;

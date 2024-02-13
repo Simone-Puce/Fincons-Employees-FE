@@ -19,7 +19,7 @@ const HeaderComponent = (props: Props) => {
   const navigate = useNavigate();
   const auth = Cookies.get("jwt-token");
   const [userDetails, setUserDetails] = useState<UserDetailModels>();
-  const [isHidden, setIsHidden] = useState<boolean>(true);
+  const [isHidden, setIsHidden] = useState<boolean>(false);
 
   const handleLogout = () => {
     Cookies.remove("jwt-token");
@@ -32,23 +32,18 @@ const HeaderComponent = (props: Props) => {
     navigate("/profile")
   }
 
-  const handleEmployeeList = () => {
-    props.setToDisplayList("employees")
-    navigate("/employees");
-  }
-
   useEffect(() => {
-    if (auth !== undefined) { 
+    if (auth !== undefined) {
       const jwt = jwtDecode(auth!)
       setIsHidden(false);
-      LoginRegistrationService.getUserDetails(jwt.sub).then((res) =>{
+      LoginRegistrationService.getUserDetails(jwt.sub).then((res) => {
         setUserDetails(res.data.data)
       }
       );
     } else {
-      setIsHidden(true);
+      setIsHidden(true)
     }
-  }, [props.userEmail]);
+  }, [auth])
 
   const userNameDisplay = () => {
     if (userDetails?.firstName === undefined) {
@@ -58,9 +53,9 @@ const HeaderComponent = (props: Props) => {
         utils.capitalizeFirstLetter(userDetails?.firstName) +
         " " +
         utils.capitalizeFirstLetter(userDetails?.lastName)
-      );
+      )
     }
-  };
+  }
 
   return (
     <nav className="navbar fixed-top mb-5 position-absolute ">
@@ -125,7 +120,7 @@ const HeaderComponent = (props: Props) => {
         </div>
       </div>
     </nav>
-  );
-};
+  )
+}
 
 export default HeaderComponent;

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Position from "../../models/PositionModel";
 import PositionService from "../../services/PositionService";
@@ -18,10 +18,6 @@ const UpdatePositionForm = () => {
       setPosition(res.data.data);
     });
   }, [idPosition]);
-
-  useEffect(() => {
-    checkSubmit()
-  }, [isButtonDisabled, salaryValueValid, position])
 
   const UpdatePosition = () => {
     PositionService.updatePosition(idPosition, position!);
@@ -46,13 +42,17 @@ const UpdatePositionForm = () => {
     checkSubmit()
   }
 
-  const checkSubmit = () => {
+  const checkSubmit = useCallback(() => {
     if (salaryValueValid === false || positionNameValid === false) {
       setIsButtonDisabled(true);
     } else {
       setIsButtonDisabled(false);
     }
-  };
+  },[positionNameValid, salaryValueValid])
+
+  useEffect(() => {
+    checkSubmit()
+  }, [isButtonDisabled, salaryValueValid, position, checkSubmit])
 
   const backToList = () => [navigate("/Employees")];
 
