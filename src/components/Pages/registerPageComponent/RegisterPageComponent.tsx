@@ -9,18 +9,18 @@ const RegisterPageComponent = () => {
   const [input, setInput] = useState<User>();
   const passwordSpecialCharacterCheck = RegExp(
     /[ `!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/
-  );
+  )
   const passwordUppercaseLetterCheck = RegExp(/[A-Z]/);
   const [disabledButton, setDisabledButton] = useState(true);
   const [emailFieldWarning, setEmailFieldWarning] = useState("");
   const [passwordFieldWarning, setPasswordFieldWarning] =
-    useState("");
+    useState("")
   const [confirmPasswordFieldWarning, setConfirmPasswordFieldWarning] =
-    useState("");
-  const [nameFieldWarning, setNameFieldWarning] = useState("");
-  const [surnameFieldWarning, setSurnameFieldWarning] = useState("");
-  const [passwordShow, setPasswordShow] = useState("password");
-  const [confirmPasswordShow, setConfirmPasswordShow] = useState("password");
+    useState("")
+  const [nameFieldWarning, setNameFieldWarning] = useState("")
+  const [surnameFieldWarning, setSurnameFieldWarning] = useState("")
+  const [passwordShow, setPasswordShow] = useState("password")
+  const [confirmPasswordShow, setConfirmPasswordShow] = useState("password")
   const [iconToShowConfirm, setIconToShowConfirm] = useState(
     <i className="bi bi-eye-slash"></i>
   );
@@ -66,11 +66,11 @@ const RegisterPageComponent = () => {
       passwordFieldWarning === "is-valid" &&
       confirmPasswordFieldWarning === "is-valid"
     ) {
-      setDisabledButton(false);
+      setDisabledButton(false)
     } else {
-      setDisabledButton(true);
+      setDisabledButton(true)
     }
-  },[confirmPasswordFieldWarning, emailFieldWarning, input, nameFieldWarning, passwordFieldWarning, surnameFieldWarning]);
+  }, [confirmPasswordFieldWarning, emailFieldWarning, input, nameFieldWarning, passwordFieldWarning, surnameFieldWarning]);
 
   useEffect(() => {
     checkSubmit();
@@ -146,19 +146,19 @@ const RegisterPageComponent = () => {
 
   const checkName = (e: string) => {
     if (e !== undefined && e !== "") {
-      setNameFieldWarning("is-valid");
+      setNameFieldWarning("is-valid")
     } else {
-      setNameFieldWarning("is-invalid");
+      setNameFieldWarning("is-invalid")
     }
-  };
+  }
 
   const checkSurname = (e: string) => {
     if (e !== undefined && e !== "") {
-      setSurnameFieldWarning("is-valid");
+      setSurnameFieldWarning("is-valid")
     } else {
-      setSurnameFieldWarning("is-invalid");
+      setSurnameFieldWarning("is-invalid")
     }
-  };
+  }
 
   const showPassword = () => {
     if (passwordShow === "password") {
@@ -168,7 +168,7 @@ const RegisterPageComponent = () => {
       setPasswordShow("password");
       setIconToShow(<i className="bi bi-eye-slash"></i>);
     }
-  };
+  }
 
   const showPasswordConfirm = () => {
     if (confirmPasswordShow === "password") {
@@ -178,7 +178,7 @@ const RegisterPageComponent = () => {
       setConfirmPasswordShow("password");
       setIconToShowConfirm(<i className="bi bi-eye-slash"></i>);
     }
-  };
+  }
 
   const showDetails = () => {
     if (passwordDetails === true) {
@@ -186,11 +186,11 @@ const RegisterPageComponent = () => {
     } else {
       setPasswordDetails(true);
     }
-  };
+  }
 
   const handleBackToLogin = () => {
     navigate("/login");
-  };
+  }
 
   return (
     <section className="background-radial-gradient overflow-hidden footer-manager ">
@@ -315,15 +315,12 @@ const RegisterPageComponent = () => {
                     </div>
                     <div hidden={passwordDetails}>
                       <div className="mb-1 mt-2">
-                        {" "}
                         {firstPasswordRestriction()} At least 8 letter {" "}
                       </div>
                       <div className="mb-1">
-                        {" "}
                         {secondPasswordRestriction()} At least 1 capital letter
                       </div>
                       <div className="mb-1">
-                        {" "}
                         {thirdPasswordRestriction()} At least 1 special character
                       </div>
                     </div>
@@ -341,10 +338,10 @@ const RegisterPageComponent = () => {
                               ...input!,
                               [e.target.name]: e.target.value,
                             });
-                            checkConfirmPassword(e.target.value);
+                            checkConfirmPassword(e.target.value)
                           }}
                           onBlur={(e) => {
-                            checkConfirmPassword(e.target.value);
+                            checkConfirmPassword(e.target.value)
                           }}
                           className={
                             "form-control rounded-4 " +
@@ -382,8 +379,7 @@ const RegisterPageComponent = () => {
                       className="btn btn-link text-black"
                       onClick={handleBackToLogin}
                     >
-                      {" "}
-                      Go back to login{" "}
+                      Go back to login
                     </button>
                   </div>
                 </form>
@@ -393,7 +389,7 @@ const RegisterPageComponent = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
 export default RegisterPageComponent;

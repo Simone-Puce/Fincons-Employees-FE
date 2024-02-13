@@ -74,7 +74,7 @@ const TableElementComponent = (props: Props) => {
                         if (singleData.position.name === props.tableData.name) {
                             setIsButtonDisabled(true)
                         }
-                        return null;
+                        return null
                     })
                 }
             })

@@ -33,17 +33,17 @@ const HeaderComponent = (props: Props) => {
   }
 
   useEffect(() => {
-    if (auth !== undefined) { 
+    if (auth !== undefined) {
       const jwt = jwtDecode(auth!)
       setIsHidden(false);
-      LoginRegistrationService.getUserDetails(jwt.sub).then((res) =>{
+      LoginRegistrationService.getUserDetails(jwt.sub).then((res) => {
         setUserDetails(res.data.data)
       }
       );
     } else {
-      setIsHidden(true);
+      setIsHidden(true)
     }
-  }, [auth]);
+  }, [auth])
 
   const userNameDisplay = () => {
     if (userDetails?.firstName === undefined) {
@@ -53,9 +53,9 @@ const HeaderComponent = (props: Props) => {
         utils.capitalizeFirstLetter(userDetails?.firstName) +
         " " +
         utils.capitalizeFirstLetter(userDetails?.lastName)
-      );
+      )
     }
-  };
+  }
 
   return (
     <nav className="navbar fixed-top mb-5 position-absolute ">
@@ -120,7 +120,7 @@ const HeaderComponent = (props: Props) => {
         </div>
       </div>
     </nav>
-  );
-};
+  )
+}
 
 export default HeaderComponent;

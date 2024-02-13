@@ -12,9 +12,9 @@ const PositionDetails = () => {
 
   useEffect(() => {
     PositionService.getPositionById(idPosition).then((res) => {
-      setPosition(res.data.data);
+      setPosition(res.data.data)
     });
-  }, [idPosition]);
+  }, [idPosition])
 
   const goToHomepage = () => {
     navigate("/employees");

@@ -16,15 +16,15 @@ const Update = (props: Props) => {
   const conditionalRenderUpdateForm = () => {
     switch (props.toDisplayList) {
       case EMPLOYEE_CASE:
-        return <UpdateEmployee />;
+        return <UpdateEmployee />
       case DEPARTMENT_CASE:
-        return <UpdateDepartment />;
+        return <UpdateDepartment />
       case POSITION_CASE:
-        return <UpdatePosition />;
+        return <UpdatePosition />
     }
-  };
+  }
 
   return <>{conditionalRenderUpdateForm()}</>;
-};
+}
 
 export default Update;

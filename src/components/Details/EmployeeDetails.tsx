@@ -16,10 +16,10 @@ const EmployeeDetails = () => {
     EmployeeService.getEmployeeById(idEmployee).then((res) => {
       setEmployee(res.data.data);
     });
-  }, [idEmployee]);
+  }, [idEmployee])
 
   const goToHomepage = () => {
-    navigate("/employees");
+    navigate("/employees")
   };
 
   return (

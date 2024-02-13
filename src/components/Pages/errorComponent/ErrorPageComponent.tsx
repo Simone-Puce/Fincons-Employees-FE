@@ -9,13 +9,13 @@ const ErrorPageComponent = () => {
                 <h3 className="text-center mt-2"> You cant access this page, press the button to go back </h3>
                 <div className="card-body">
                     <div className="d-flex justify-content-center">
-                    <button
-                        type="button"
-                        className="btn btn-back"
-                        onClick={() => navigate("/employees")}
-                    >
-                        <i className="bi bi-caret-left-fill"></i>
-                    </button>
+                        <button
+                            type="button"
+                            className="btn btn-back"
+                            onClick={() => navigate("/employees")}
+                        >
+                            <i className="bi bi-caret-left-fill"></i>
+                        </button>
                     </div>
                 </div>
             </div>

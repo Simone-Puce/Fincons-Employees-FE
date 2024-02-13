@@ -22,38 +22,38 @@ const ListEmployeeComponent = (props: Props) => {
   const navigate = useNavigate()
 
   useEffect(() => {
-      EmployeeService.getEmployees().then((res) => {
-        setEmployees(res.data);
-      });
-      DepartmentService.getDepartments().then((res) => {
-        setDepartments(res.data);
-      });
-      PositionService.getPositions().then((res) => {
-        setPositions(res.data);
-      });
-  }, []);
-
-  useEffect(() => {
     EmployeeService.getEmployees().then((res) => {
       setEmployees(res.data);
     });
-    setFilterByName("created");
-  }, [filterByName]);
+    DepartmentService.getDepartments().then((res) => {
+      setDepartments(res.data);
+    });
+    PositionService.getPositions().then((res) => {
+      setPositions(res.data);
+    })
+  }, [])
+
+  useEffect(() => {
+    EmployeeService.getEmployees().then((res) => {
+      setEmployees(res.data)
+    });
+    setFilterByName("created")
+  }, [filterByName])
 
   const handleEmployeeList = () => {
     props.setToDisplayList("employees")
-    navigate("/employees");
-  };
+    navigate("/employees")
+  }
 
   const handlePositionList = () => {
     props.setToDisplayList("positions")
-    navigate("/employees");
-  };
+    navigate("/employees")
+  }
 
   const handleDepartmentList = () => {
     props.setToDisplayList("departments")
-    navigate("/employees");
-  };
+    navigate("/employees")
+  }
 
   const changeFilterHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     let tempFilter = e.target.value;
@@ -86,7 +86,7 @@ const ListEmployeeComponent = (props: Props) => {
             setfilter={setFilterByName}
             toDisplay={props.toDisplayList}
           />
-        );
+        )
       case "positions":
         return (
           <PositionList
@@ -97,7 +97,7 @@ const ListEmployeeComponent = (props: Props) => {
             setfilter={setFilterByName}
             toDisplay={props.toDisplayList}
           />
-        );
+        )
       case "departments":
         return (
           <DepartmentList
@@ -108,22 +108,22 @@ const ListEmployeeComponent = (props: Props) => {
             setfilter={setFilterByName}
             toDisplay={props.toDisplayList}
           />
-        );
+        )
     }
-  };
+  }
 
   return (
-          <div className="col mt-5 pt-5 footer-manager">
-            <div className="d-flex justify-content-evenly">
-              <button className="btn btn-color rounded-pill mr-5 pr-5 w-25 h-25" onClick={handleEmployeeList}> Employees </button>
-              <button className="btn btn-color rounded-pill mr-5 pr-5 pl-5 ml-5 w-25 h-25" onClick={handleDepartmentList}> Departments</button>
-              <button className="btn btn-color rounded-pill ml-5 w-25 h-25" onClick={handlePositionList}> Positions</button>
-            </div>
-            <div className="container">
-              {listConditionalRender()}
-            </div>
-          </div>
-        )
-      }
+    <div className="col mt-5 pt-5 footer-manager">
+      <div className="d-flex justify-content-evenly">
+        <button className="btn btn-color rounded-pill mr-5 pr-5 w-25 h-25" onClick={handleEmployeeList}> Employees </button>
+        <button className="btn btn-color rounded-pill mr-5 pr-5 pl-5 ml-5 w-25 h-25" onClick={handleDepartmentList}> Departments</button>
+        <button className="btn btn-color rounded-pill ml-5 w-25 h-25" onClick={handlePositionList}> Positions</button>
+      </div>
+      <div className="container">
+        {listConditionalRender()}
+      </div>
+    </div>
+  )
+}
 
 export default ListEmployeeComponent;

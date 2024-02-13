@@ -139,7 +139,7 @@ const UserDetailsInput = (props: Props) => {
                         props.setPasswordUpdateValues({
                             ...props.passwordUpdateValues!,
                             [e.target.name]: e.target.value,
-                        });
+                        })
                     }}
                 ></input>
             </div>

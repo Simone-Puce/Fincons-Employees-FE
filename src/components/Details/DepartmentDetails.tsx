@@ -14,11 +14,11 @@ const DepartmentDetails = () => {
     DepartmentService.getDepartmentById(idDepartment).then((res) => {
       setDepartment(res.data.data);
     });
-  }, [idDepartment]);
+  }, [idDepartment])
 
   const goToHomepage = () => {
     navigate("/employees");
-  };
+  }
 
   return (
     <div className="mt-5 pt-3 footer-manager">

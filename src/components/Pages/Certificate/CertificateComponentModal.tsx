@@ -26,7 +26,7 @@ const CertificateComponent = (props: Props) => {
                 setTableHiddenHandler(false)
             }
         });
-    }, [props.idEmployee]);
+    }, [props.idEmployee])
 
     useEffect(() => {
         const jwt = Cookies.get("jwt-token")
