@@ -6,7 +6,7 @@ import LoginRegistrationService from "../../../services/LoginRegistrationService
 import LoginUserModel from "../../../models/LoginUserModel";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
-import './LoginPageComponent.css'
+import "./LoginPageComponent.css";
 
 interface Props {
   userEmail: string;
@@ -18,37 +18,35 @@ const LoginPageComponent = (props: Props) => {
   const [input, setInput] = useState<LoginUserModel>({
     email: "",
     password: "",
-  })
+  });
 
   const navigateToRegister = () => {
     navigate("/register");
-  }
+  };
 
   useEffect(() => {
     if (Cookies.get("jwt-token") !== undefined) {
-      navigate("/employees")
+      navigate("/employees");
     }
-  })
+  }, []);
 
   const handleLogin = (e: FormEvent) => {
     e.preventDefault();
-    LoginRegistrationService.loginService(input).then(
-      (res) => {
-        if (res.data.status === "OK") {
-          const jwt = jwtDecode(res.data.data.accessToken)
-          Cookies.set('jwt-token', res.data.data.accessToken)
-          props.setUserEmail(jwt.sub!)
-          navigate("/employees")
-        } else {
-          Swal.fire({
-            title: "Error?",
-            text: "Email or password are wrong ",
-            icon: "error",
-            confirmButtonText: "OK!",
-          });
-        }
+    LoginRegistrationService.loginService(input).then((res) => {
+      if (res.data.status === "OK") {
+        const jwt = jwtDecode(res.data.data.accessToken);
+        Cookies.set("jwt-token", res.data.data.accessToken);
+        props.setUserEmail(jwt.sub!);
+        navigate("/employees");
+      } else {
+        Swal.fire({
+          title: "Error?",
+          text: "Email or password are wrong ",
+          icon: "error",
+          confirmButtonText: "OK!",
+        });
       }
-    );
+    });
   };
 
   return (
@@ -160,7 +158,7 @@ const LoginPageComponent = (props: Props) => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 export default LoginPageComponent;
