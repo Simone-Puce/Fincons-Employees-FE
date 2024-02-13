@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import EmployeeService from "../../../services/EmployeeService";
 import "./TableElementComponent.css";
+import "./TableElementComponent.css";
 import utils from "../../../utils/Utils";
 import DepartmentService from "../../../services/DepartmentService";
 import PositionService from "../../../services/PositionService";
@@ -53,6 +54,13 @@ const TableElementComponent = (props: Props) => {
     }
   }, [props.toDisplay, props.setfilter, props]);
 
+  useEffect(() => {
+    if (props.toDisplay === POSITION_CASE) {
+      setIsPositionSelected(true);
+    } else {
+      setIsPositionSelected(false);
+    }
+  }, [props.tableData, props.toDisplay]);
   useEffect(() => {
     if (props.toDisplay === POSITION_CASE) {
       setIsPositionSelected(true);
