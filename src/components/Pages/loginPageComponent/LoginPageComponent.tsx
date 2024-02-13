@@ -28,7 +28,7 @@ const LoginPageComponent = (props: Props) => {
     if (Cookies.get("jwt-token") !== undefined) {
       navigate("/employees");
     }
-  }, []);
+  }, [navigate]);
 
   const handleLogin = (e: FormEvent) => {
     e.preventDefault();

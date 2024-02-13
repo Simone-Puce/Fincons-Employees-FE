@@ -9,7 +9,6 @@ import PositionService from "../../../services/PositionService";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
 import LoginRegistrationService from "../../../services/LoginRegistrationService";
-import EmployeeList from "../../Lists/EmployeeList";
 import Swal from "sweetalert2";
 
 const EMPLOYEE_CASE = "employees";
@@ -32,6 +31,8 @@ const TableElementComponent = (props: Props) => {
   const [isPositionSelected, setIsPositionSelected] = useState<boolean>(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false);
   const [userHiddenButtons, setUserHiddenButtons] = useState<boolean>();
+  const [departmentsList, setDepartmentsList] = useState<any>();
+  const [positionList, setPositionList] = useState<any>();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -90,6 +91,18 @@ const TableElementComponent = (props: Props) => {
       });
     }
   }, [props.toDisplay, props.tableData]);
+
+  useEffect(() => {
+    DepartmentService.getDepartments().then((res: any) => {
+      setDepartmentsList(res.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    PositionService.getPositions().then((res: any) => {
+      setPositionList(res.data);
+    });
+  }, []);
 
   useEffect(() => {
     const jwt = Cookies.get("jwt-token");
