@@ -1,3 +1,15 @@
 .footer-manager{
     min-height: 100%;
 }
+
+.btn-background:hover {
+    background: #B10135 !important;
+    color: white !important;
+}
+
+.btn-background {
+    pointer-events: auto !important;
+    background-color: transparent !important;
+    border: none !important;
+    border: 1px solid black !important;
+}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import UserDetailModels from "../../models/UserDetailsModel";
 import Utils from "../../utils/Utils";
 import PasswordUpdateModel from "../../models/PasswordUpdateModel";
@@ -21,39 +21,34 @@ const UserDetailsInput = (props: Props) => {
     const [isLastNameValid, setIsLastNameValid] = useState<boolean>(true)
     const [isPasswordValid, setIsPasswordValid] = useState<boolean>(false)
     const [passwordFocus, setPasswordFocus] = useState<boolean>(true)
-    const passwordSpecialCharacterCheck = RegExp(/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/);
+    const passwordSpecialCharacterCheck = RegExp(/[ `!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/);
     const passwordUppercaseLetterCheck = RegExp(/[A-Z]/);
 
-    useEffect(() => {
-        anagraphicFormValidation()
-    }, [
-        isFirstNameValid,
-        isLastNameValid,
-    ])
-
-    useEffect(() => {
-        passwordFormValidation()
-    }, [
-        isPasswordValid,
-        isLastNameValid
-    ])
-
-    const anagraphicFormValidation = () => {
+    const anagraphicFormValidation = useCallback(() =>{
         if (isFirstNameValid === false && isLastNameValid === false) {
             props.setIsUpdateValid(true)
         } else {
             props.setIsUpdateValid(false)
         }
-    }
+    },[isFirstNameValid, isLastNameValid, props])
 
-    const passwordFormValidation = () => {
+    useEffect(() => {
+        anagraphicFormValidation()
+    }, [anagraphicFormValidation, isFirstNameValid, isLastNameValid])
+
+
+    const passwordFormValidation = useCallback(() => {
         if (isPasswordValid === true) {
             props.setIsPasswordUpdateValid(false)
         } else {
             props.setIsPasswordUpdateValid(true)
         }
-    }
+    },[isPasswordValid, props])
 
+    useEffect(() => {
+        passwordFormValidation()
+    }, [isPasswordValid, isLastNameValid, passwordFormValidation])
+    
     const passwordValidator = (password: string) => {
         let passwordLengthCheck = false;
         let hasUpperCase = false;
@@ -88,7 +83,7 @@ const UserDetailsInput = (props: Props) => {
 
     return (
         <form className="anagraphic-form-style footer-manager">
-            <div hidden={props.updatingPassword} className="form-group w-75 mb-2">
+            <div hidden={!props.updatingData} className="form-group w-75 mb-2">
                 <label>First name</label>
                 <input
                     placeholder={props.userDetails?.firstName}
@@ -105,7 +100,7 @@ const UserDetailsInput = (props: Props) => {
                     }}
                 ></input>
             </div>
-            <div hidden={props.updatingPassword} className="form-group w-75 mb-2">
+            <div hidden={!props.updatingData} className="form-group w-75 mb-2">
                 <label>Last name</label>
                 <input
                     placeholder={props.userDetails?.lastName}
@@ -123,17 +118,14 @@ const UserDetailsInput = (props: Props) => {
                     }}
                 ></input>
             </div>
-            <div hidden={props.updatingData || props.updatingPassword} className="form-group w-75 mb-2">
-                <label>Email </label>
-                <input
-                    placeholder={props.userDetails?.email}
-                    type="text"
-                    name="email"
-                    className="form-control"
-                    value={props.userDetails?.email}
-                    disabled={true}
-                    hidden={props.updatingData}
-                ></input>
+            <div hidden={props.updatingData || props.updatingPassword} className="form-group w-75 mb-2 text-center">
+            <span><strong> First name:</strong></span> {props.userDetails.firstName}
+            </div>
+            <div hidden={props.updatingData || props.updatingPassword} className="form-group w-75 mb-2 text-center">
+            <span><strong> Last name:</strong></span> {props.userDetails.lastName}
+            </div>
+            <div hidden={props.updatingData || props.updatingPassword} className="form-group w-75 mb-2 text-center">
+            <span><strong> Email:</strong></span> {props.userDetails.email}
             </div>
             <div hidden={!props.updatingPassword} className="form-group w-75 mb-2">
                 <label> Old password </label>
@@ -147,7 +139,7 @@ const UserDetailsInput = (props: Props) => {
                         props.setPasswordUpdateValues({
                             ...props.passwordUpdateValues!,
                             [e.target.name]: e.target.value,
-                        });
+                        })
                     }}
                 ></input>
             </div>
