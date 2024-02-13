@@ -9,7 +9,6 @@ interface Props {
   filter: string | undefined;
   setfilter: React.Dispatch<React.SetStateAction<string | undefined>>;
   toDisplay: string | undefined;
-
 }
 
 const DepartmentList = (props: Props) => {

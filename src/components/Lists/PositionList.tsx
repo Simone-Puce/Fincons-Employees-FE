@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import TableHeadComponent from "../Pages/tableHeadComponent/TableHeadComponent";
 import TableElementComponent from "../Pages/tableEmployeeComponent/TableElementComponent";
 
@@ -17,7 +17,6 @@ const PositionList = (props: Props) => {
   const goToAddPosition = () => {
     navigate("/add-employee");
   };
-
 
   return (
     <div className="containerList mt-1 pt-1 pb-4">
@@ -54,7 +53,7 @@ const PositionList = (props: Props) => {
         }
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default PositionList;

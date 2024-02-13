@@ -1,4 +1,4 @@
-import { Key, useEffect, useState } from "react";
+import { Key, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Employee from "../../models/EmployeeModel";
 import Department from "../../models/DepartmentModel";
@@ -24,21 +24,6 @@ const CreateEmployeeForm = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    checkSubmit()
-  }, [
-    isButtonDisabled,
-    firstNameValidator,
-    lastNameValidator,
-    birthDateValidator,
-    emailValidator,
-    startDateValidator,
-    genderValidator,
-    departmentValidator,
-    positionValidator
-  ]
-  )
-
-  useEffect(() => {
     DepartmentService.getDepartments().then((res) => {
       setDepartments(res.data);
     });
@@ -47,7 +32,7 @@ const CreateEmployeeForm = () => {
     });
   }, []);
 
-  const checkSubmit = () => {
+  const checkSubmit = useCallback(() => {
     if (
       firstNameValidator === false ||
       lastNameValidator === false ||
@@ -62,7 +47,12 @@ const CreateEmployeeForm = () => {
     } else {
       setIsButtonDisabled(false);
     }
-  };
+  },[birthDateValidator, departmentValidator, emailValidator, firstNameValidator, genderValidator, lastNameValidator, positionValidator, startDateValidator])
+
+  useEffect(() => {
+    checkSubmit()
+  }, [isButtonDisabled, firstNameValidator, lastNameValidator, birthDateValidator, emailValidator, startDateValidator, genderValidator, departmentValidator, positionValidator, checkSubmit]
+  )
 
   const saveOrUpdateEmployee = () => {
     EmployeeService.createEmployee(employee);

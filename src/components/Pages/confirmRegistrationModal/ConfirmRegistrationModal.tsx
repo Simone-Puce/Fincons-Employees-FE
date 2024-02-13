@@ -14,9 +14,9 @@ interface Props {
 }
 
 function ConfirmRegistrationModal(props: Props) {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false)
   const navigate = useNavigate()
-  const handleClose = () => setShow(false);
+  const handleClose = () => setShow(false)
   
   const handleShow = () => {
     props.checkSubmit()
@@ -26,7 +26,7 @@ function ConfirmRegistrationModal(props: Props) {
 
   const navigateToLogin = () => {
     navigate("/login");
-  };
+  }
 
   return (
     <>
@@ -45,7 +45,6 @@ function ConfirmRegistrationModal(props: Props) {
             <div className='row justify-content-around'>
               Registered Succesfully
               <button className='btn btn-link' onClick={navigateToLogin}>Go to login page</button>
-
             </div>
           </div>
         </Modal.Body>

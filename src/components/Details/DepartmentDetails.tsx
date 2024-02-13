@@ -14,11 +14,11 @@ const DepartmentDetails = () => {
     DepartmentService.getDepartmentById(idDepartment).then((res) => {
       setDepartment(res.data.data);
     });
-  }, [idDepartment]);
+  }, [idDepartment])
 
   const goToHomepage = () => {
     navigate("/employees");
-  };
+  }
 
   return (
     <div className="mt-5 pt-3 footer-manager">
@@ -27,17 +27,13 @@ const DepartmentDetails = () => {
         <div className="card-body">
           <div className="row d-flex justify-content-center">
             <label className="mb-3 text-center">
-              {" "}
-              Name: {department?.name}{" "}
-            </label>
-
-            <label className="mb-3 text-center">
-              {" "}
-              Address: {department?.address}{" "}
+              <span><strong>Name:</strong></span> {department?.name}
             </label>
             <label className="mb-3 text-center">
-              {" "}
-              City: {department?.city}{" "}
+            <span><strong>Address:</strong></span> {department?.address}
+            </label>
+            <label className="mb-3 text-center">
+            <span><strong>City:</strong></span> {department?.city}{" "}
             </label>
             <div className="d-flex justify-content-center">
               <button

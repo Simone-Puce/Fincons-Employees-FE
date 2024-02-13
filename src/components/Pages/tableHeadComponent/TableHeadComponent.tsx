@@ -23,13 +23,13 @@ const TableHeadComponent = (props: Props) => {
       switch (props.toDisplay) {
         case EMPLOYEE_CASE:
           setTableHeadValues(["First name", "Last name", "Email", "Actions"]);
-          break;
+          break
         case DEPARTMENT_CASE:
           setTableHeadValues(["Name", "Address", "City", "Actions"]);
-          break;
+          break
         case POSITION_CASE:
           setTableHeadValues(["Name", "Salary", "Actions"]);
-          break;
+          break
       }
     }
     if (props.tableData !== undefined) {
@@ -47,7 +47,7 @@ const TableHeadComponent = (props: Props) => {
         ))}
       </tr>
     </thead>
-  );
-};
+  )
+}
 
 export default TableHeadComponent;
