@@ -2,7 +2,7 @@ import axios from "axios";
 import Position from "../models/PositionModel";
 import Cookies from "js-cookie";
 
-const POSITION_API_BASE_URL = "http://localhost:81/be/company-employee-management";
+const POSITION_API_BASE_URL = "http://localhost:8080/company-employee-management";
 const VERSION_URI = POSITION_API_BASE_URL + "/v1";
 const POSITION_URI = VERSION_URI + "/position";
 const GET_ALL_URI = POSITION_URI + "/list";

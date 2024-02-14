@@ -7,6 +7,7 @@ import LoginRegistrationService from "../../../services/LoginRegistrationService
 import UserDetailModels from "../../../models/UserDetailsModel";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
+import UserService from "../../../services/UserService";
 
 interface Props {
   userEmail: string;
@@ -36,7 +37,8 @@ const HeaderComponent = (props: Props) => {
     if (auth !== undefined) {
       const jwt = jwtDecode(auth!)
       setIsHidden(false);
-      LoginRegistrationService.getUserDetails(jwt.sub).then((res) => {
+      UserService.getUserDetails(jwt.sub).then((res) => {
+        console.log(res, " testing get user details calls ") 
         setUserDetails(res.data.data)
       }
       );

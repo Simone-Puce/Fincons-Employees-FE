@@ -3,7 +3,7 @@ import Employee from "../models/EmployeeModel";
 import Cookies from "js-cookie";
 
 const EMPLOYEE_API_BASE_URL =
-    "http://localhost:81/be/company-employee-management";
+    "http://localhost:8080/company-employee-management";
 const VERSION_URI = EMPLOYEE_API_BASE_URL + "/v1";
 const EMPLOYEES_URI = VERSION_URI + "/employee";
 const GET_ALL_URI = EMPLOYEES_URI + "/list";

@@ -26,7 +26,7 @@ const UserProfile = () => {
 
     useEffect(() => {
         const subJWT = jwtDecode(jwt!)
-        LoginRegistrationService.getUserDetails(subJWT.sub).then((res) => {
+        UserService.getUserDetails(subJWT.sub).then((res) => {
             setUserDetails(res.data.data)
         })
     }, [updatingData, updatingPassword, jwt])

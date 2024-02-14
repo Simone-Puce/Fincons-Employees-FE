@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import TableHeadComponent from "../Pages/tableHeadComponent/TableHeadComponent";
-import TableElementComponent from "../Pages/tableEmployeeComponent/TableElementComponent";
+import TableElementComponent from "../Pages/tableElementComponent/TableElementComponent";
 import { useEffect, useState } from "react";
 import DepartmentService from "../../services/DepartmentService";
 import PositionService from "../../services/PositionService";

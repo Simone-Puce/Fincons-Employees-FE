@@ -2,7 +2,7 @@ import axios from "axios";
 import CertificateModel from "../models/CertificateModel";
 import Cookies from "js-cookie";
 
-const CERTIFICATE_API_BASE_URL = "http://localhost:81/be/company-employee-management";
+const CERTIFICATE_API_BASE_URL = "http://localhost:8080/company-employee-management";
 const VERSION_URI = CERTIFICATE_API_BASE_URL + "/v1";
 const CERTIFICATE_URI = VERSION_URI + "/certificate";
 const GET_ALL_URI = CERTIFICATE_URI + "/list";

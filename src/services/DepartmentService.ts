@@ -2,7 +2,7 @@ import axios from "axios";
 import Department from "../models/DepartmentModel";
 import Cookies from "js-cookie";
 
-const DEPARTMENT_API_BASE_URL = "http://localhost:81/be/company-employee-management";
+const DEPARTMENT_API_BASE_URL = "http://localhost:8080/company-employee-management";
 const VERSION_URI = DEPARTMENT_API_BASE_URL+"/v1";
 const DEPARTMENT_URI = VERSION_URI+"/department";
 const GET_ALL_URI = DEPARTMENT_URI+"/list";

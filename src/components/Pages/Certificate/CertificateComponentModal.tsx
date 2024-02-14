@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import './CertificateComponentModal.css'
 import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
-import LoginRegistrationService from '../../../services/LoginRegistrationService';
+import UserService from '../../../services/UserService';
 
 interface Props {
     idEmployee: number;
@@ -31,7 +31,7 @@ const CertificateComponent = (props: Props) => {
     useEffect(() => {
         const jwt = Cookies.get("jwt-token")
         const user = jwtDecode(jwt!)
-        LoginRegistrationService.getUserDetails(user.sub).then((res) => {
+        UserService.getUserDetails(user.sub).then((res) => {
             if (res.data.data.roles[0].name === 'ROLE_ADMIN') {
                 setUserHiddenButtons(false)
             }

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import TableHeadComponent from "../Pages/tableHeadComponent/TableHeadComponent";
-import TableElementComponent from "../Pages/tableEmployeeComponent/TableElementComponent";
+import TableElementComponent from "../Pages/tableElementComponent/TableElementComponent";
 
 interface Props {
   changeFilterHandler: React.ChangeEventHandler<HTMLInputElement>;

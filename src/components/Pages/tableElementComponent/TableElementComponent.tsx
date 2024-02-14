@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import EmployeeService from "../../../services/EmployeeService";
 import "./TableElementComponent.css";
-import "./TableElementComponent.css";
 import utils from "../../../utils/Utils";
 import DepartmentService from "../../../services/DepartmentService";
 import PositionService from "../../../services/PositionService";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
-import LoginRegistrationService from "../../../services/LoginRegistrationService";
 import Swal from "sweetalert2";
+import UserService from "../../../services/UserService";
 
 const EMPLOYEE_CASE = "employees";
 const DEPARTMENT_CASE = "departments";
@@ -100,7 +99,7 @@ const TableElementComponent = (props: Props) => {
   useEffect(() => {
     const jwt = Cookies.get("jwt-token");
     const user = jwtDecode(jwt!);
-    LoginRegistrationService.getUserDetails(user.sub).then((res) => {
+    UserService.getUserDetails(user.sub).then((res) => {
       if (res.data.data.roles[0].name === "ROLE_ADMIN") {
         setUserHiddenButtons(true);
       }
@@ -151,18 +150,15 @@ const TableElementComponent = (props: Props) => {
       <tbody className="backgroud-style">
         <tr className="backgroud-style align-middle" key={tableElementId}>
           <td className="text-center backgroud-style align-middle">
-            {" "}
             {utils.capitalizeFirstLetter(firstElement)}
           </td>
           <td className="text-center backgroud-style align-middle">
-            {" "}
             {utils.capitalizeFirstLetter(secondElement)}
           </td>
           <td
             hidden={isPositionSelected}
             className="text-center backgroud-style align-middle"
           >
-            {" "}
             {thirdElement}
           </td>
           <td
@@ -172,7 +168,6 @@ const TableElementComponent = (props: Props) => {
             <div className="d-flex justify-content-evenly">
               <Link to={`/update-employee/${tableElementId}`}>
                 <button className="btn btn-background">
-                  {" "}
                   <i className="bi bi-pencil-square icon-background"></i>{" "}
                 </button>
               </Link>

@@ -1,8 +1,8 @@
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import { Navigate, Outlet } from "react-router-dom";
-import LoginRegistrationService from "./LoginRegistrationService";
 import { useEffect, useState } from "react";
+import UserService from "./UserService";
 
 const AdminRoutes = () => {
     const auth = Cookies.get("jwt-token")
@@ -11,7 +11,7 @@ const AdminRoutes = () => {
     const [isAdmin, setIsAdmin] = useState<string | null>(null)
 
     useEffect(() => {
-        LoginRegistrationService.getUserDetails(userEmail).then((res) => {
+        UserService.getUserDetails(userEmail).then((res) => {
             setIsAdmin(res.data.data.roles[0].name)
         })
     }, [userEmail])

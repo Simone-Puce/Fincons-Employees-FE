@@ -1,7 +1,7 @@
 import axios from "axios";
 import EmployeeModel from "../models/EmployeeModel";
 
-const PROJECT_API_BASE_URL = "http://localhost:81/be/company-employee-management";
+const PROJECT_API_BASE_URL = "http://localhost:8080/company-employee-management";
 const VERSION_URI = PROJECT_API_BASE_URL+"/v1";
 const PROJECT_URI = VERSION_URI+"/project";
 const GET_ALL_URI = PROJECT_URI+"/list";
