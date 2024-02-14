@@ -30,13 +30,13 @@ const EmployeeList = (props: Props) => {
     })
   }, [props.toDisplay])
 
-  useEffect(()=>{
-    const fetchEmployees = async() => {
+  useEffect(() => {
+    const fetchEmployees = async () => {
       const response = await getEmployees()
       setEmployees(response.data)
     }
     fetchEmployees()
-  },[])
+  }, [])
 
   const goToAddForm = () => {
     navigate("/add-employee")
@@ -64,9 +64,9 @@ const EmployeeList = (props: Props) => {
               toDisplay={props.toDisplay}
               tableData={employees}
             />
-            {employees?.map((tableData: any) => (
+            {employees?.map((employee: Employee) => (
               <TableElementComponent
-                tableData={tableData}
+                tableData={employee}
                 setTableData={setEmployees}
                 toDisplay={props.toDisplay}
               />

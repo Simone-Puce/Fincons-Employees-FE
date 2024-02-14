@@ -29,9 +29,8 @@ const TableElementComponent = (props: Props) => {
   const [userHiddenButtons, setUserHiddenButtons] = useState<boolean>();
   const [departmentsList, setDepartmentsList] = useState<any>();
   const [positionList, setPositionList] = useState<any>();
-  
+
   useEffect(() => {
-    console.log("i'm in table element component")
     const switchCaseHandler = async () => {
       switch (props.toDisplay) {
         case EMPLOYEE_CASE:
@@ -53,7 +52,7 @@ const TableElementComponent = (props: Props) => {
           break;
       }
     };
-  
+
     switchCaseHandler();
   }, [props.toDisplay, props]);
 
@@ -72,7 +71,7 @@ const TableElementComponent = (props: Props) => {
       }
     }
     if (props.toDisplay === POSITION_CASE) {
-      if(props.tableData.employees.length > 0){
+      if (props.tableData.employees.length > 0) {
         setIsButtonDisabled(true)
       }
     }

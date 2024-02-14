@@ -24,7 +24,8 @@ export const getEmployeeBySSN = async (ssn: string) => {
     const response = await axios.get(GET_BY_SSN, {
         params: { ssn: ssn },
         headers: config
-    })
+    }
+    )
     return response.data;
 }
 
@@ -75,7 +76,7 @@ export const updateEmployee = async (updatedEmployee: Employee) => {
     return response.data
 }
 
-export const deleteEmployee = async (ssn: string)  => {
+export const deleteEmployee = async (ssn: string) => {
     const response = await axios.delete(DELETE_EMPLOYEE, {
         params: { ssn: ssn },
         headers: config
