@@ -1,19 +1,18 @@
 import { useState, useEffect, Key, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Employee from "../../models/EmployeeModel";
-import DepartmentService from "../../services/DepartmentService";
-import EmployeeService from "../../services/EmployeeService";
-import PositionService from "../../services/PositionService";
 import './Styles/FormStyles.css'
 import Position from "../../models/PositionModel";
 import Department from "../../models/DepartmentModel";
+import { getDepartments } from "../../services/DepartmentService";
+import { getEmployeeBySSN, updateEmployee } from "../../services/EmployeeService";
+import { getPositions } from "../../services/PositionService";
 
 const UpdateEmployeeForm = () => {
   const [employee, setEmployee] = useState<Employee>();
   const [departments, setDepartments] = useState<any>();
   const [positions, setPositions] = useState<any>();
-  const { id } = useParams();
-  const idEmployee = parseInt(id!);
+  const { SSN } = useParams();
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false)
   const [firstNameValidator, setFirstNameValidator] = useState<boolean>(true)
   const [lastNameValidator, setLastNameValidator] = useState<boolean>(true)
@@ -23,22 +22,22 @@ const UpdateEmployeeForm = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    EmployeeService.getEmployeeById(idEmployee).then((res) => {
+    getEmployeeBySSN(SSN!).then((res) => {
       setEmployee(res.data.data);
     });
-  }, [idEmployee]);
+  }, [SSN]);
 
   useEffect(() => {
-    DepartmentService.getDepartments().then((res) => {
+    getDepartments().then((res) => {
       setDepartments(res.data);
     });
-    PositionService.getPositions().then((res) => {
+    getPositions().then((res) => {
       setPositions(res.data);
     });
   }, []);
 
   const UpdateEmployee = () => {
-    EmployeeService.updateEmployee(idEmployee, employee);
+    updateEmployee(employee!);
     navigate("/employees");
   };
 
@@ -246,7 +245,7 @@ const UpdateEmployeeForm = () => {
                   >
                     {departments?.data?.map((department: Department, index: Key) => {
                       return (
-                        <option key={index} value={department.id}>{department.name}</option>
+                        <option key={index} value={department.departmentCode}>{department.name}</option>
                       );
                     })}
                   </select>
@@ -266,7 +265,7 @@ const UpdateEmployeeForm = () => {
                   >
                     {positions?.data?.map((position: Position, index: Key) => {
                       return (
-                        <option key={index} value={position.id}>{position.name}</option>
+                        <option key={index} value={position.positionCode}>{position.name}</option>
                       );
                     })}
                   </select>

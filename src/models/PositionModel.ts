@@ -1,7 +1,7 @@
 import EmployeeModel from "./EmployeeModel";
 
 interface Position {
-    id: number,
+    positionCode: string
     name: string,
     salary: number,
     employees: EmployeeModel[]

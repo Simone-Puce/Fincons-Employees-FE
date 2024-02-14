@@ -2,35 +2,41 @@ import { useNavigate } from "react-router-dom";
 import TableHeadComponent from "../Pages/tableHeadComponent/TableHeadComponent";
 import TableElementComponent from "../Pages/tableElementComponent/TableElementComponent";
 import { useEffect, useState } from "react";
-import DepartmentService from "../../services/DepartmentService";
-import PositionService from "../../services/PositionService";
 import './style/EmployeeList.css'
+import { getDepartments } from "../../services/DepartmentService";
+import { getPositions } from "../../services/PositionService";
+import Employee from "../../models/EmployeeModel";
+import { getEmployees } from "../../services/EmployeeService";
 
 interface Props {
-  changeFilterHandler: React.ChangeEventHandler<HTMLInputElement>;
-  tableData: any;
-  setTableData: React.Dispatch<React.SetStateAction<any | undefined>>;
-  filter: string | undefined;
-  setfilter: React.Dispatch<React.SetStateAction<string | undefined>>;
-  toDisplay: string | undefined;
+  toDisplay: string;
 }
 
 const EmployeeList = (props: Props) => {
   const [disabledCreation, setDisabledCreation] = useState<boolean>(false)
+  const [employees, setEmployees] = useState<Employee[]>()
   const navigate = useNavigate()
 
   useEffect(() => {
-    DepartmentService.getDepartments().then((res) => {
-      if (res.data.data.length === 0) {
+    getDepartments().then((res) => {
+      if (res.data.length === 0) {
         setDisabledCreation(true)
       }
     })
-    PositionService.getPositions().then((res) => {
-      if (res.data.data.length === 0) {
+    getPositions().then((res) => {
+      if (res.data.length === 0) {
         setDisabledCreation(true)
       }
     })
   }, [props.toDisplay])
+
+  useEffect(()=>{
+    const fetchEmployees = async() => {
+      const response = await getEmployees()
+      setEmployees(response.data)
+    }
+    fetchEmployees()
+  },[])
 
   const goToAddForm = () => {
     navigate("/add-employee")
@@ -54,17 +60,14 @@ const EmployeeList = (props: Props) => {
             className="table table-striped mb-0"
           >
             <TableHeadComponent
-              tableHeadList={props.tableData}
+              tableHeadList={employees}
               toDisplay={props.toDisplay}
-              tableData={props.tableData}
+              tableData={employees}
             />
-            {props.tableData?.data?.map((tableData: any) => (
+            {employees?.map((tableData: any) => (
               <TableElementComponent
-                key={tableData.id}
                 tableData={tableData}
-                setTableData={props.setTableData}
-                filter={props.filter}
-                setfilter={props.setfilter}
+                setTableData={setEmployees}
                 toDisplay={props.toDisplay}
               />
             ))}

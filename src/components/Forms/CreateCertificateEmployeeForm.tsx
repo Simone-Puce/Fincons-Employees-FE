@@ -14,7 +14,7 @@ const CreateCertificateEmployeeForm = () => {
   const navigate = useNavigate();
 
   const goBackToList = () => {
-    navigate("/view-employee/" + idEmployee);
+    navigate("/view-details" + idEmployee);
   };
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const CreateCertificateEmployeeForm = () => {
   const saveCertificateEmployee = () => {
 
     CertificateEmployeeService.createCertificateEmployee(certificateEmployee!, idEmployee);
-    navigate("/view-employee/" + idEmployee);
+    navigate("/view-details" + idEmployee);
   };
 
   return (

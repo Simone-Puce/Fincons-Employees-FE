@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Position from "../../models/PositionModel";
-import PositionService from "../../services/PositionService";
 import Utils from "../../utils/Utils";
 import "./Styles/FormStyles.css"
+import { createPosition } from "../../services/PositionService";
 
 const CreatePositionForm = () => {
   const [position, setPosition] = useState<Position>();
@@ -30,7 +30,7 @@ const CreatePositionForm = () => {
   };
 
   const savePosition = () => {
-    PositionService.createPosition(position!);
+    createPosition(position!);
     navigate("/employees");
   };
 

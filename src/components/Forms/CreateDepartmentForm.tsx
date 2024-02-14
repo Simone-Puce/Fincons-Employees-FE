@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Department from "../../models/DepartmentModel";
-import DepartmentService from "../../services/DepartmentService";
 import Utils from "../../utils/Utils";
 import './Styles/FormStyles.css'
+import { createDepartment } from "../../services/DepartmentService";
 
 const CreateDepartmentForm = () => {
   const [department, setDepartment] = useState<Department>();
@@ -34,7 +34,7 @@ const CreateDepartmentForm = () => {
   }, [isButtonDisabled, departmentAddressValid, departmentNameValid, departmentCityValid, checkSubmit])
 
   const saveDepartment = () => {
-    DepartmentService.createDepartment(department!);
+    createDepartment(department!);
     navigate("/employees");
   };
 

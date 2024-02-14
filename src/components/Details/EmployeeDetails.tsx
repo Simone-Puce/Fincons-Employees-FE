@@ -1,22 +1,21 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Employee from "../../models/EmployeeModel";
-import EmployeeService from "../../services/EmployeeService";
 import CertificateComponent from "../Pages/Certificate/CertificateComponentModal";
 import './Styles/Details.css'
 import Utils from "../../utils/Utils";
+import { getEmployeeBySSN } from "../../services/EmployeeService";
 
 const EmployeeDetails = () => {
   const [employee, setEmployee] = useState<Employee>()
   const navigate = useNavigate();
-  const { id } = useParams();
-  const idEmployee = parseInt(id!);
+  const { SSN } = useParams();
 
   useEffect(() => {
-    EmployeeService.getEmployeeById(idEmployee).then((res) => {
+    getEmployeeBySSN(SSN!).then((res) => {
       setEmployee(res.data.data);
     });
-  }, [idEmployee])
+  }, [SSN])
 
   const goToHomepage = () => {
     navigate("/employees")
@@ -57,7 +56,7 @@ const EmployeeDetails = () => {
             </label>
           </div>
           <div>
-            <CertificateComponent idEmployee={idEmployee} />
+            <CertificateComponent SSN={SSN!} />
           </div>
           <div className="d-flex justify-content-center pt-2">
             <button

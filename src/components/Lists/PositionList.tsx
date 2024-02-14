@@ -1,22 +1,26 @@
 import { useNavigate } from "react-router-dom";
 import TableHeadComponent from "../Pages/tableHeadComponent/TableHeadComponent";
 import TableElementComponent from "../Pages/tableElementComponent/TableElementComponent";
+import { useEffect, useState } from "react";
+import Position from "../../models/PositionModel";
+import { getPositions } from "../../services/PositionService";
 
 interface Props {
-  changeFilterHandler: React.ChangeEventHandler<HTMLInputElement>;
-  tableData: any;
-  setTableData: React.Dispatch<React.SetStateAction<string | undefined>>;
-  filter: string | undefined;
-  setfilter: React.Dispatch<React.SetStateAction<string | undefined>>;
-  toDisplay: string | undefined;
+  toDisplay: string;
 }
 
 const PositionList = (props: Props) => {
+  const [positions, setPositions] = useState<Position[]>()
   const navigate = useNavigate();
 
   const goToAddPosition = () => {
     navigate("/add-employee");
   };
+
+  useEffect(()=>{
+    const carlo =  getPositions()
+    console.log(carlo)
+  })
 
   return (
     <div className="containerList mt-1 pt-1 pb-4">
@@ -35,17 +39,15 @@ const PositionList = (props: Props) => {
           <table
             className="table table-striped mb-0"          >
             <TableHeadComponent
-              tableHeadList={props.tableData}
+              tableHeadList={positions}
               toDisplay={props.toDisplay}
-              tableData={props.tableData}
+              tableData={positions}
             />
-            {props.tableData?.data?.map((position: any) => (
+            {positions?.map((position: any) => (
               <TableElementComponent
                 key={position.id}
                 tableData={position}
-                setTableData={props.setTableData}
-                filter={props.filter}
-                setfilter={props.setfilter}
+                setTableData={setPositions}
                 toDisplay={props.toDisplay}
               />
             ))}

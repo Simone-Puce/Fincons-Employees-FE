@@ -1,20 +1,19 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Position from "../../models/PositionModel";
-import PositionService from "../../services/PositionService";
 import './Styles/Details.css'
+import { getPositionByPositionCode } from "../../services/PositionService";
 
 const PositionDetails = () => {
   const [position, setPosition] = useState<Position>();
   const navigate = useNavigate();
-  const { id } = useParams();
-  const idPosition = parseInt(id!);
+  const { positionCode } = useParams();
 
   useEffect(() => {
-    PositionService.getPositionById(idPosition).then((res) => {
+    getPositionByPositionCode(positionCode!).then((res) => {
       setPosition(res.data.data)
     });
-  }, [idPosition])
+  }, [positionCode])
 
   const goToHomepage = () => {
     navigate("/employees");

@@ -38,7 +38,6 @@ const HeaderComponent = (props: Props) => {
       const jwt = jwtDecode(auth!)
       setIsHidden(false);
       UserService.getUserDetails(jwt.sub).then((res) => {
-        console.log(res, " testing get user details calls ") 
         setUserDetails(res.data.data)
       }
       );

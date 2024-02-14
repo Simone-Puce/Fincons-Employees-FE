@@ -1,26 +1,26 @@
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Position from "../../models/PositionModel";
-import PositionService from "../../services/PositionService";
 import "./Styles/FormStyles.css"
+import { getPositionByPositionCode, updatePosition } from "../../services/PositionService";
 
 const UpdatePositionForm = () => {
   const [position, setPosition] = useState<Position>();
-  const { id } = useParams();
-  const idPosition = parseInt(id!);
+  const { positionCode } = useParams();
+
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false)
   const [salaryValueValid, setSalaryValueValid] = useState<boolean>(true)
   const [positionNameValid, setPositionNameValid] = useState<boolean>(true)
   const navigate = useNavigate();
 
   useEffect(() => {
-    PositionService.getPositionById(idPosition).then((res) => {
-      setPosition(res.data.data);
+    getPositionByPositionCode(positionCode!).then((res) => {
+      //setPosition(res.data.data);
     });
-  }, [idPosition]);
+  }, [positionCode]);
 
   const UpdatePosition = () => {
-    PositionService.updatePosition(idPosition, position!);
+    updatePosition(positionCode!, position!);
     navigate("/employees");
   };
 

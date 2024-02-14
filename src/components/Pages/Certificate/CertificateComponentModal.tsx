@@ -8,7 +8,7 @@ import { jwtDecode } from 'jwt-decode';
 import UserService from '../../../services/UserService';
 
 interface Props {
-    idEmployee: number;
+    SSN: string;
 }
 
 const CertificateComponent = (props: Props) => {
@@ -19,14 +19,14 @@ const CertificateComponent = (props: Props) => {
     useEffect(() => {
         CertificateEmployeeService.getCertificateEmployees().then((res) => {
             setCertificateEmployees(res.data)
-            const employeeCertificates = res.data.filter((certificate: any) => certificate.employee?.id === props.idEmployee)
+            const employeeCertificates = res.data.filter((certificate: any) => certificate.employee?.SSN === props.SSN)
             if (employeeCertificates.length === 0) {
                 setTableHiddenHandler(true)
             } else {
                 setTableHiddenHandler(false)
             }
         });
-    }, [props.idEmployee])
+    }, [props.SSN])
 
     useEffect(() => {
         const jwt = Cookies.get("jwt-token")
@@ -53,7 +53,7 @@ const CertificateComponent = (props: Props) => {
     }
 
     const checkCertificateEmployee = (certificateEmployee: CertificateEmployee) => {
-        if (certificateEmployee.employee?.id === props.idEmployee) {
+        if (certificateEmployee.employee?.ssn === props.SSN) {
             return (
                 <tbody className='backgroud-style'>
                     <tr className='backgroud-style align-middle'>
@@ -73,7 +73,7 @@ const CertificateComponent = (props: Props) => {
     return (
         <div className='m-2'>
             <div className='d-flex justify-content-center'>
-                <Link to={`/add/${props.idEmployee}`}>
+                <Link to={`/add/${props.SSN}`}>
                     <button hidden={userHiddenButtons} className="btn rounded-pill btn-background mb-3 button-text" >
                         <i
                             className="bi bi-person-fill-add"

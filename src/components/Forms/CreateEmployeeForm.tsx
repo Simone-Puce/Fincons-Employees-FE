@@ -2,11 +2,11 @@ import { Key, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Employee from "../../models/EmployeeModel";
 import Department from "../../models/DepartmentModel";
-import DepartmentService from "../../services/DepartmentService";
-import EmployeeService from "../../services/EmployeeService";
-import PositionService from "../../services/PositionService";
 import './Styles/FormStyles.css'
 import Utils from "../../utils/Utils";
+import { getDepartments } from "../../services/DepartmentService";
+import { getPositions } from "../../services/PositionService";
+import { createEmployee } from "../../services/EmployeeService";
 
 const CreateEmployeeForm = () => {
   const [employee, setEmployee] = useState<Employee>();
@@ -24,10 +24,10 @@ const CreateEmployeeForm = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    DepartmentService.getDepartments().then((res) => {
+    getDepartments().then((res) => {
       setDepartments(res.data);
     });
-    PositionService.getPositions().then((res) => {
+    getPositions().then((res) => {
       setPositions(res.data);
     });
   }, []);
@@ -47,7 +47,7 @@ const CreateEmployeeForm = () => {
     } else {
       setIsButtonDisabled(false);
     }
-  },[birthDateValidator, departmentValidator, emailValidator, firstNameValidator, genderValidator, lastNameValidator, positionValidator, startDateValidator])
+  }, [birthDateValidator, departmentValidator, emailValidator, firstNameValidator, genderValidator, lastNameValidator, positionValidator, startDateValidator])
 
   useEffect(() => {
     checkSubmit()
@@ -55,7 +55,7 @@ const CreateEmployeeForm = () => {
   )
 
   const saveOrUpdateEmployee = () => {
-    EmployeeService.createEmployee(employee);
+    createEmployee(employee!);
     navigate("/employees");
   };
 
@@ -203,7 +203,7 @@ const CreateEmployeeForm = () => {
                     <option defaultValue="select the department">Select the department</option>
                     {departments?.data?.map((department: Department, index: Key) => {
                       return (
-                        <option key={index} value={department.id}>{department.name}</option>
+                        <option key={index} value={department.departmentCode}>{department.name}</option>
                       );
                     })}
                   </select>
@@ -226,7 +226,7 @@ const CreateEmployeeForm = () => {
                     <option defaultValue="select the position">Select the position</option>
                     {positions?.data?.map((position: Department, index: Key) => {
                       return (
-                        <option key={index} value={position.id}>{position.name}</option>
+                        <option key={index} value={position.departmentCode}>{position.name}</option>
                       );
                     })}
                   </select>

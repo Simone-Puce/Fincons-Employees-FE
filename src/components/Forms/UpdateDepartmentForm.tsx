@@ -1,13 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import DepartmentService from "../../services/DepartmentService";
 import Department from "../../models/DepartmentModel";
 import "./Styles/FormStyles.css"
+import { getDepartmentByDepartmentCode, updateDepartment } from "../../services/DepartmentService";
 
 const UpdateDepartmentForm = () => {
   const [department, setDepartment] = useState<Department>();
-  const { id } = useParams();
-  const idDepartment = parseInt(id!);
+  const { departmentCode } = useParams();
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false)
   const [departmentNameValid, setDepartmentNameValid] = useState<boolean>(true)
   const [departmentCityValid, setDepartmentCityValid] = useState<boolean>(true)
@@ -15,10 +14,10 @@ const UpdateDepartmentForm = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    DepartmentService.getDepartmentById(idDepartment).then((res) => {
+    getDepartmentByDepartmentCode(departmentCode!).then((res) => {
       setDepartment(res.data.data);
     });
-  }, [idDepartment]);
+  }, [departmentCode]);
 
   const checkName = (nameValue: string) => {
     if (nameValue.toString() === "") {
@@ -64,7 +63,7 @@ const UpdateDepartmentForm = () => {
   }, [isButtonDisabled, departmentAddressValid, departmentNameValid, departmentCityValid, checkSubmit])
 
   const UpdatePosition = () => {
-    DepartmentService.updateDepartment(idDepartment, department!);
+    updateDepartment(department!);
     navigate("/employees");
   }
 

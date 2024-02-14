@@ -33,7 +33,7 @@ const TableHeadComponent = (props: Props) => {
       }
     }
     if (props.tableData !== undefined) {
-      if (props.tableData.data.length === 0) {
+      if (props.tableData.length === 0) {
         setHiddenValue(true)
       }
     }

@@ -1,22 +1,26 @@
 import { useNavigate } from "react-router-dom";
 import TableHeadComponent from "../Pages/tableHeadComponent/TableHeadComponent";
 import TableElementComponent from "../Pages/tableElementComponent/TableElementComponent";
+import { useEffect, useState } from "react";
+import { getDepartments } from "../../services/DepartmentService";
+import Department from "../../models/DepartmentModel";
 
 interface Props {
-  changeFilterHandler: React.ChangeEventHandler<HTMLInputElement>;
-  tableData: any;
-  setTableData: React.Dispatch<React.SetStateAction<any | undefined>>;
-  filter: string | undefined;
-  setfilter: React.Dispatch<React.SetStateAction<string | undefined>>;
-  toDisplay: string | undefined;
+  toDisplay: string;
 }
 
 const DepartmentList = (props: Props) => {
+  const [departments, setDepartments] = useState<Department[]>()
   const navigate = useNavigate();
 
   const goToAddDepartment = () => {
     navigate("/add-employee");
   };
+
+  useEffect(()=>{
+    const carlo =  getDepartments()
+    console.log(carlo)
+  })
 
   return (
     <div className="containerList mt-1 pt-1 pb-4">
@@ -36,17 +40,15 @@ const DepartmentList = (props: Props) => {
             className="table table-striped mb-0"
           >
             <TableHeadComponent
-              tableHeadList={props.tableData}
+              tableHeadList={departments}
               toDisplay={props.toDisplay}
-              tableData={props.tableData}
+              tableData={departments}
             />
-            {props.tableData?.data?.map((tableData: any) => (
+            {departments?.map((tableData: any) => (
               <TableElementComponent
                 key={tableData.id}
-                tableData={tableData}
-                setTableData={props.setTableData}
-                filter={props.filter}
-                setfilter={props.setfilter}
+                tableData={departments}
+                setTableData={setDepartments}
                 toDisplay={props.toDisplay}
               />
             ))}

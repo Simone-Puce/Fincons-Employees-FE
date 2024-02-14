@@ -54,7 +54,7 @@ function App() {
               }
             ></Route>
             <Route
-              path="view-employee/:id"
+              path="view-details/:id"
               element={<ViewEmployeeComponent toDisplayList={toDisplayList} />}
             ></Route>
             <Route

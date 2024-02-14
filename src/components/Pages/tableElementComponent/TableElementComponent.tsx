@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import EmployeeService from "../../../services/EmployeeService";
+import { Link } from "react-router-dom";
 import "./TableElementComponent.css";
 import utils from "../../../utils/Utils";
-import DepartmentService from "../../../services/DepartmentService";
-import PositionService from "../../../services/PositionService";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
 import UserService from "../../../services/UserService";
+import { getDepartments } from "../../../services/DepartmentService";
+import { getPositions } from "../../../services/PositionService";
 
 const EMPLOYEE_CASE = "employees";
 const DEPARTMENT_CASE = "departments";
@@ -17,8 +16,6 @@ const POSITION_CASE = "positions";
 type Props = {
   tableData: any;
   setTableData: React.Dispatch<React.SetStateAction<any | undefined>>;
-  filter: string | undefined;
-  setfilter: React.Dispatch<React.SetStateAction<string | undefined>>;
   toDisplay: string | undefined;
 };
 
@@ -32,29 +29,33 @@ const TableElementComponent = (props: Props) => {
   const [userHiddenButtons, setUserHiddenButtons] = useState<boolean>();
   const [departmentsList, setDepartmentsList] = useState<any>();
   const [positionList, setPositionList] = useState<any>();
-  const navigate = useNavigate();
-
+  
   useEffect(() => {
-    switch (props.toDisplay) {
-      case EMPLOYEE_CASE:
-        setTableElementId(props.tableData.id);
-        setFirstElement(props.tableData.firstName);
-        setSecondElemnt(props.tableData.lastName);
-        setThirdElement(props.tableData.email);
-        break;
-      case DEPARTMENT_CASE:
-        setTableElementId(props.tableData.id);
-        setFirstElement(props.tableData.name);
-        setSecondElemnt(props.tableData.address);
-        setThirdElement(props.tableData.city);
-        break;
-      case POSITION_CASE:
-        setTableElementId(props.tableData.id);
-        setFirstElement(props.tableData.name.toString());
-        setSecondElemnt(props.tableData.salary.toString());
-        break;
-    }
-  }, [props.toDisplay, props.setfilter, props]);
+    console.log("i'm in table element component")
+    const switchCaseHandler = async () => {
+      switch (props.toDisplay) {
+        case EMPLOYEE_CASE:
+          setTableElementId(props.tableData.ssn);
+          setFirstElement(props.tableData.firstName);
+          setSecondElemnt(props.tableData.lastName);
+          setThirdElement(props.tableData.email);
+          break;
+        case DEPARTMENT_CASE:
+          setTableElementId(props.tableData.departmentCode);
+          setFirstElement(props.tableData.name);
+          setSecondElemnt(props.tableData.address);
+          setThirdElement(props.tableData.city);
+          break;
+        case POSITION_CASE:
+          setTableElementId(props.tableData.positionCode);
+          setFirstElement(props.tableData.name.toString());
+          setSecondElemnt(props.tableData.salary.toString());
+          break;
+      }
+    };
+  
+    switchCaseHandler();
+  }, [props.toDisplay, props]);
 
   useEffect(() => {
     if (props.toDisplay === POSITION_CASE) {
@@ -71,27 +72,20 @@ const TableElementComponent = (props: Props) => {
       }
     }
     if (props.toDisplay === POSITION_CASE) {
-      EmployeeService.getEmployees().then((res: any) => {
-        if (Array.isArray(res.data.data)) {
-          res.data.data.map((singleData: any) => {
-            if (singleData.position.name === props.tableData.name) {
-              setIsButtonDisabled(true);
-            }
-            return null;
-          });
-        }
-      });
+      if(props.tableData.employees.length > 0){
+        setIsButtonDisabled(true)
+      }
     }
   }, [props.toDisplay, props.tableData]);
 
   useEffect(() => {
-    DepartmentService.getDepartments().then((res: any) => {
+    getDepartments().then((res: any) => {
       setDepartmentsList(res.data);
     });
   }, []);
 
   useEffect(() => {
-    PositionService.getPositions().then((res: any) => {
+    getPositions().then((res: any) => {
       setPositionList(res.data);
     });
   }, []);
@@ -112,8 +106,7 @@ const TableElementComponent = (props: Props) => {
   const deleteButtonHandler = (id: string | undefined) => {
     switch (props.toDisplay) {
       case EMPLOYEE_CASE:
-        EmployeeService.deleteEmployee(parseInt(id!));
-        navigate("/spinner");
+        //deleteEmployee(parseInt(id!));
         break;
       case DEPARTMENT_CASE:
         if (departmentsList.data.length === 1) {
@@ -124,8 +117,7 @@ const TableElementComponent = (props: Props) => {
             confirmButtonText: "OK",
           });
         } else {
-          DepartmentService.deleteDepartment(parseInt(id!));
-          navigate("/spinner");
+          //deleteDepartment(parseInt(id!));
         }
         break;
       case POSITION_CASE:
@@ -137,13 +129,11 @@ const TableElementComponent = (props: Props) => {
             confirmButtonText: "OK",
           });
         } else {
-          PositionService.deletePosition(parseInt(id!));
-          navigate("/spinner");
+          //deletePosition(parseInt(id!));
         }
         break;
     }
-    props.setfilter("");
-  };
+  }
 
   return (
     <>
@@ -183,7 +173,7 @@ const TableElementComponent = (props: Props) => {
               >
                 <i className="bi bi-trash3-fill icon-background"></i>
               </button>
-              <Link to={`/view-employee/${tableElementId}`}>
+              <Link to={`/view-details/${tableElementId}`}>
                 <button type="button" className="btn btn-background">
                   <i className="bi bi-info-circle icon-background"></i>
                 </button>
@@ -195,7 +185,7 @@ const TableElementComponent = (props: Props) => {
             className="text-center backgroud-style"
           >
             <div className="d-flex justify-content-evenly">
-              <Link to={`/view-employee/${tableElementId}`}>
+              <Link to={`/view-details/${tableElementId}`}>
                 <button type="button" className="btn btn-background">
                   <i className="bi bi-info-circle icon-background"></i>
                 </button>

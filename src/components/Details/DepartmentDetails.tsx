@@ -1,20 +1,19 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { getDepartmentByDepartmentCode } from "../../services/DepartmentService";
 import Department from "../../models/DepartmentModel";
-import DepartmentService from "../../services/DepartmentService";
 import './Styles/Details.css'
 
 const DepartmentDetails = () => {
   const [department, setDepartment] = useState<Department>();
   const navigate = useNavigate();
-  const { id } = useParams();
-  const idDepartment = parseInt(id!);
+  const { departmentCode } = useParams();
 
   useEffect(() => {
-    DepartmentService.getDepartmentById(idDepartment).then((res) => {
+    getDepartmentByDepartmentCode(departmentCode!).then((res) => {
       setDepartment(res.data.data);
     });
-  }, [idDepartment])
+  }, [departmentCode])
 
   const goToHomepage = () => {
     navigate("/employees");
