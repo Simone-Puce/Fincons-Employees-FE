@@ -1,6 +1,4 @@
 import CertificateEmployee from "./CertificateEmployeeModel";
-import Department from "./DepartmentModel";
-import Position from "./PositionModel";
 import Project from "./ProjectModel";
 
 interface Employee {
@@ -12,8 +10,8 @@ interface Employee {
     email?: string
     startDate?: Date
     endDate?: Date
-    department?: Department
-    position?: Position
+    departmentCode?: string
+    positionCode?: string
     project?: Project[]
     certificateEmployee?: CertificateEmployee[]
 }

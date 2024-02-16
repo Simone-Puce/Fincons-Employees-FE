@@ -12,7 +12,7 @@ const UpdateEmployeeForm = () => {
   const [employee, setEmployee] = useState<Employee>();
   const [departments, setDepartments] = useState<any>();
   const [positions, setPositions] = useState<any>();
-  const { SSN } = useParams();
+  const { id } = useParams();
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false)
   const [firstNameValidator, setFirstNameValidator] = useState<boolean>(true)
   const [lastNameValidator, setLastNameValidator] = useState<boolean>(true)
@@ -22,19 +22,28 @@ const UpdateEmployeeForm = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getEmployeeBySSN(SSN!).then((res) => {
-      setEmployee(res.data.data);
-    });
-  }, [SSN]);
+    const fetchEmployee = async () => {
+      getEmployeeBySSN(id!).then((res) => {
+        setEmployee(res.data);
+      });
+    }
+    fetchEmployee()
+  }, [id]);
 
   useEffect(() => {
-    getDepartments().then((res) => {
-      setDepartments(res.data);
-    });
-    getPositions().then((res) => {
-      setPositions(res.data);
-    });
-  }, []);
+    const fetchDepartments = async () => {
+      getDepartments().then((res) => {
+        setDepartments(res.data);
+      })
+    }
+    const fetchPositions = async () => {
+      getPositions().then((res) => {
+        setPositions(res.data);
+      })
+    }
+    fetchDepartments()
+    fetchPositions()
+  }, [])
 
   const UpdateEmployee = () => {
     updateEmployee(employee!);
@@ -243,7 +252,7 @@ const UpdateEmployeeForm = () => {
                       });
                     }}
                   >
-                    {departments?.data?.map((department: Department, index: Key) => {
+                    {departments?.map((department: Department, index: Key) => {
                       return (
                         <option key={index} value={department.departmentCode}>{department.name}</option>
                       );
@@ -263,7 +272,7 @@ const UpdateEmployeeForm = () => {
                       });
                     }}
                   >
-                    {positions?.data?.map((position: Position, index: Key) => {
+                    {positions?.map((position: Position, index: Key) => {
                       return (
                         <option key={index} value={position.positionCode}>{position.name}</option>
                       );

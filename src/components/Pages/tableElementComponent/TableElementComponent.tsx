@@ -155,7 +155,7 @@ const TableElementComponent = (props: Props) => {
             className="text-center backgroud-style"
           >
             <div className="d-flex justify-content-evenly">
-              <Link to={`/update-employee/${tableElementId}`}>
+              <Link to={`/update/${tableElementId}`}>
                 <button className="btn btn-background">
                   <i className="bi bi-pencil-square icon-background"></i>{" "}
                 </button>

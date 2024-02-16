@@ -41,8 +41,8 @@ export const createEmployee = async (employee: Employee) => {
             email: employee?.email,
             startDate: employee?.startDate,
             endDate: employee?.endDate,
-            department: { departmentCode: employee.department },
-            position: { positionCode: employee.position },
+            department: { departmentCode: employee.departmentCode },
+            position: { positionCode: employee.positionCode },
         },
         {
             headers: config
@@ -52,9 +52,11 @@ export const createEmployee = async (employee: Employee) => {
 }
 
 export const updateEmployee = async (updatedEmployee: Employee) => {
+    console.log(updatedEmployee, "sono nel service")
     const response = await axios.put(
         UPDATE_EMPLOYEE,
         {
+            ssn: updatedEmployee.ssn,
             firstName: updatedEmployee?.firstName,
             lastName: updatedEmployee?.lastName,
             gender: updatedEmployee?.gender,
@@ -62,14 +64,14 @@ export const updateEmployee = async (updatedEmployee: Employee) => {
             email: updatedEmployee?.email,
             startDate: updatedEmployee?.startDate,
             endDate: updatedEmployee?.endDate,
-            department: { departmentCode: updatedEmployee.department },
-            position: { positionCode: updatedEmployee.position },
+            departmentCode: updatedEmployee.departmentCode,
+            positionCode: updatedEmployee.positionCode,
         },
         {
             params: { ssn: updatedEmployee.ssn },
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${token}`
             }
         }
     )

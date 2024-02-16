@@ -66,7 +66,7 @@ function App() {
                 element={<CreateUpdateEmployeeComponent toDisplayList={toDisplayList} />}
               ></Route>
               <Route
-                path="update-employee/:id"
+                path="update/:id"
                 element={<Update toDisplayList={toDisplayList} />}
               ></Route>
               <Route

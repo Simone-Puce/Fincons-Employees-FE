@@ -17,7 +17,6 @@ const EmployeeDetails = () => {
       setEmployee(response.data)
       console.log(response.data)
     }
-
     fetchEmployeesDetails()
   }, [id])
 
@@ -53,10 +52,10 @@ return (
             <span><strong>Contract end date:</strong></span> {JSON.stringify(employee?.endDate)}
           </label>
           <label className="mb-3 text-center">
-            <span><strong>Department:</strong></span> {Utils.capitalizeFirstLetter(employee?.department?.name)}
+            <span><strong>Department:</strong></span> {Utils.capitalizeFirstLetter(employee?.departmentCode)}
           </label>
           <label className="mb-3 text-center">
-            <span><strong>Position:</strong></span> {Utils.capitalizeFirstLetter(employee?.position?.name)}
+            <span><strong>Position:</strong></span> {Utils.capitalizeFirstLetter(employee?.positionCode)}
           </label>
         </div>
         <div>
