@@ -15,7 +15,6 @@ const EmployeeDetails = () => {
     const fetchEmployeesDetails = async () => {
       const response = await getEmployeeBySSN(id!)
       setEmployee(response.data)
-      console.log(response.data)
     }
     fetchEmployeesDetails()
   }, [id])

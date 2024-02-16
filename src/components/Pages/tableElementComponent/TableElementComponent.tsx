@@ -6,8 +6,10 @@ import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
 import UserService from "../../../services/UserService";
-import { getDepartments } from "../../../services/DepartmentService";
-import { getPositions } from "../../../services/PositionService";
+import { deleteDepartment, getDepartments } from "../../../services/DepartmentService";
+import { deletePosition, getPositions } from "../../../services/PositionService";
+import { deleteEmployee } from "../../../services/EmployeeService";
+
 
 const EMPLOYEE_CASE = "employees";
 const DEPARTMENT_CASE = "departments";
@@ -52,7 +54,6 @@ const TableElementComponent = (props: Props) => {
           break;
       }
     };
-
     switchCaseHandler();
   }, [props.toDisplay, props]);
 
@@ -105,7 +106,7 @@ const TableElementComponent = (props: Props) => {
   const deleteButtonHandler = (id: string | undefined) => {
     switch (props.toDisplay) {
       case EMPLOYEE_CASE:
-        //deleteEmployee(parseInt(id!));
+        deleteEmployee(props.tableData.ssn);
         break;
       case DEPARTMENT_CASE:
         if (departmentsList.data.length === 1) {
@@ -116,7 +117,7 @@ const TableElementComponent = (props: Props) => {
             confirmButtonText: "OK",
           });
         } else {
-          //deleteDepartment(parseInt(id!));
+          deleteDepartment(props.tableData.departmentCode);
         }
         break;
       case POSITION_CASE:
@@ -128,7 +129,7 @@ const TableElementComponent = (props: Props) => {
             confirmButtonText: "OK",
           });
         } else {
-          //deletePosition(parseInt(id!));
+          deletePosition(props.tableData.positionCode);
         }
         break;
     }

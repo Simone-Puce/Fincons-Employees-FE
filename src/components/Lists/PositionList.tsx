@@ -20,7 +20,7 @@ const PositionList = (props: Props) => {
   useEffect(()=>{
     const carlo =  getPositions()
     console.log(carlo)
-  })
+  },[])
 
   return (
     <div className="containerList mt-1 pt-1 pb-4">
@@ -45,7 +45,6 @@ const PositionList = (props: Props) => {
             />
             {positions?.map((position: any) => (
               <TableElementComponent
-                key={position.id}
                 tableData={position}
                 setTableData={setPositions}
                 toDisplay={props.toDisplay}

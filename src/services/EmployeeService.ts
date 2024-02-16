@@ -52,7 +52,6 @@ export const createEmployee = async (employee: Employee) => {
 }
 
 export const updateEmployee = async (updatedEmployee: Employee) => {
-    console.log(updatedEmployee, "sono nel service")
     const response = await axios.put(
         UPDATE_EMPLOYEE,
         {

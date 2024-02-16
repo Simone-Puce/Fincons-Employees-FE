@@ -20,7 +20,7 @@ const DepartmentList = (props: Props) => {
   useEffect(()=>{
     const carlo =  getDepartments()
     console.log(carlo)
-  })
+  },[])
 
   return (
     <div className="containerList mt-1 pt-1 pb-4">
@@ -46,7 +46,6 @@ const DepartmentList = (props: Props) => {
             />
             {departments?.map((tableData: any) => (
               <TableElementComponent
-                key={tableData.id}
                 tableData={departments}
                 setTableData={setDepartments}
                 toDisplay={props.toDisplay}
