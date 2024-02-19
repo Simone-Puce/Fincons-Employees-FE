@@ -67,7 +67,8 @@ const EmployeeList = (props: Props) => {
             {employees?.map((employee: Employee) => (
               <TableElementComponent
                 tableData={employee}
-                setTableData={setEmployees}
+                setTableDataList={setEmployees}
+                tableDataList={employees}
                 toDisplay={props.toDisplay}
               />
             ))}

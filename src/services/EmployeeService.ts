@@ -15,6 +15,7 @@ const DELETE_EMPLOYEE = EMPLOYEES_URI + "/delete";
 const token = Cookies.get("jwt-token");
 const config = { Authorization: `Bearer ${token}` }
 
+
 export const getEmployees = async () => {
     const response = await axios.get(GET_ALL_URI, { headers: { Authorization: `Bearer ${token}` } });
     return response.data
@@ -51,11 +52,11 @@ export const createEmployee = async (employee: Employee) => {
     return response.data
 }
 
-export const updateEmployee = async (updatedEmployee: Employee) => {
+export const updateEmployee = async (updatedEmployee: Employee, id: string) => {
     const response = await axios.put(
         UPDATE_EMPLOYEE,
         {
-            ssn: updatedEmployee.ssn,
+            ssn: id,
             firstName: updatedEmployee?.firstName,
             lastName: updatedEmployee?.lastName,
             gender: updatedEmployee?.gender,

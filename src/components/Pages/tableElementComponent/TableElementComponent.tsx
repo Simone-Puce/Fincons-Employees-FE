@@ -9,6 +9,7 @@ import UserService from "../../../services/UserService";
 import { deleteDepartment, getDepartments } from "../../../services/DepartmentService";
 import { deletePosition, getPositions } from "../../../services/PositionService";
 import { deleteEmployee } from "../../../services/EmployeeService";
+import Employee from "../../../models/EmployeeModel";
 
 
 const EMPLOYEE_CASE = "employees";
@@ -17,8 +18,9 @@ const POSITION_CASE = "positions";
 
 type Props = {
   tableData: any;
-  setTableData: React.Dispatch<React.SetStateAction<any | undefined>>;
+  setTableDataList: React.Dispatch<React.SetStateAction<any | undefined>>;
   toDisplay: string | undefined;
+  tableDataList: any;
 };
 
 const TableElementComponent = (props: Props) => {
@@ -106,7 +108,14 @@ const TableElementComponent = (props: Props) => {
   const deleteButtonHandler = (id: string | undefined) => {
     switch (props.toDisplay) {
       case EMPLOYEE_CASE:
-        deleteEmployee(props.tableData.ssn);
+        const toDeleteSSN = props.tableData.ssn
+        const oldEmployeeList = props.tableDataList
+        const employeeDelete = async () =>{
+          await deleteEmployee(toDeleteSSN);
+          const newEmployeeArray = oldEmployeeList.filter((employee : Employee)=> employee.ssn !== id)
+          props.setTableDataList(newEmployeeArray)
+        }
+        employeeDelete()
         break;
       case DEPARTMENT_CASE:
         if (departmentsList.data.length === 1) {
@@ -158,7 +167,7 @@ const TableElementComponent = (props: Props) => {
             <div className="d-flex justify-content-evenly">
               <Link to={`/update/${tableElementId}`}>
                 <button className="btn btn-background">
-                  <i className="bi bi-pencil-square icon-background"></i>{" "}
+                  <i className="bi bi-pencil-square icon-background"></i>
                 </button>
               </Link>
               <button

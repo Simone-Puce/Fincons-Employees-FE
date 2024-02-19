@@ -43,11 +43,12 @@ const PositionList = (props: Props) => {
               toDisplay={props.toDisplay}
               tableData={positions}
             />
-            {positions?.map((position: any) => (
+            {positions?.map((position: Position) => (
               <TableElementComponent
                 tableData={position}
-                setTableData={setPositions}
+                setTableDataList={setPositions}
                 toDisplay={props.toDisplay}
+                tableDataList={positions}
               />
             ))}
           </table>

@@ -45,10 +45,10 @@ const UpdateEmployeeForm = () => {
     fetchPositions()
   }, [])
 
-  const UpdateEmployee = () => {
-    updateEmployee(employee!);
-    navigate("/employees");
-  };
+  const UpdateEmployeeHandler = async () => {
+    const response = await updateEmployee(employee!, id!)
+    navigate("/employees")
+  }
 
   const checkFirstName = (firstName: string) => {
     if (firstName.toString() === "") {
@@ -113,7 +113,7 @@ const UpdateEmployeeForm = () => {
     checkSubmit()
   }, [isButtonDisabled, firstNameValidator, lastNameValidator, birthDateValidator, emailValidator, startDateValidator, checkSubmit])
 
-  const backToList = () => [navigate("/Employees")];
+  const backToList = () => { navigate("/Employees") };
 
   return (
     <div className="createContainer mt-5 pt-5 footer-manager">
@@ -283,7 +283,7 @@ const UpdateEmployeeForm = () => {
                   <div className="d-flex justify-content-evenly w-50 mt-3">
                     <button
                       className="btn btn-save w-25 pointer-control"
-                      onClick={UpdateEmployee}
+                      onClick={UpdateEmployeeHandler}
                       disabled={isButtonDisabled}
                       title={isButtonDisabled ? "some fields are not valid, please check the values" : ""}
                     >

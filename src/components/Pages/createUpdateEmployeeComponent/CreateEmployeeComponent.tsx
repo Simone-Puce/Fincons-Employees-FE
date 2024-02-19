@@ -1,5 +1,5 @@
 import CreateEmployeeForm from "../../Forms/CreateEmployeeForm";
-import CreateDepartmentForm from "../../Forms/CreateDepartmentForm";
+import CreateDepartmentForm from "../../Forms/department/CreateDepartmentForm";
 import CreatePositionForm from "../../Forms/CreatePositionForm";
 
 const EMPLOYEE_CASE = "employees";

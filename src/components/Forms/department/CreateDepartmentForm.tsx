@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Department from "../../models/DepartmentModel";
-import Utils from "../../utils/Utils";
+import Department from "../../../models/DepartmentModel";
+import Utils from "../../../utils/Utils";
 import './Styles/FormStyles.css'
-import { createDepartment } from "../../services/DepartmentService";
+import { createDepartment } from "../../../services/DepartmentService";
 
 const CreateDepartmentForm = () => {
   const [department, setDepartment] = useState<Department>();

@@ -44,11 +44,12 @@ const DepartmentList = (props: Props) => {
               toDisplay={props.toDisplay}
               tableData={departments}
             />
-            {departments?.map((tableData: any) => (
+            {departments?.map((department: Department) => (
               <TableElementComponent
-                tableData={departments}
-                setTableData={setDepartments}
+                tableData={department}
+                setTableDataList={setDepartments}
                 toDisplay={props.toDisplay}
+                tableDataList={departments}
               />
             ))}
           </table>
